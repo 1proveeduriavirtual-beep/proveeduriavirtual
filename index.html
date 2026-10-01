@@ -93,7 +93,10 @@ footer{max-width:1200px;margin:0 auto;padding:0 16px 40px;color:var(--muted);fon
   <div class="tot"><span>Total</span><span id="total">$ 0</span></div>
   <label for="cname">Tu nombre</label><input class="f" id="cname" autocomplete="name">
   <label for="caddr">Dirección de entrega</label><input class="f" id="caddr" autocomplete="street-address">
-  <a class="wa" id="wa" href="#" target="_blank" rel="noopener">Enviar pedido por WhatsApp</a>
+  <label for="cphone">Tu teléfono</label><input class="f" id="cphone" type="tel" autocomplete="tel">
+  <button class="wa" id="pay" type="button" hidden style="border:0;width:100%;cursor:pointer;font:inherit">Pagar online (Mercado Pago)</button>
+  <p class="note" id="payNote" hidden>Pagás con tarjeta, saldo de Mercado Pago o transferencia. Tu pedido queda cargado solo.</p>
+  <a class="wa" id="wa" href="#" target="_blank" rel="noopener">Enviar pedido por WhatsApp (pagás al recibir)</a>
   <button class="copy" id="copy" type="button">Copiar pedido</button>
   <p class="note">WhatsApp de la tienda: <b id="waNum"></b>. Si el botón no abre WhatsApp, copiá el pedido y mandalo a ese número.</p>
 </aside>
@@ -185,6 +188,27 @@ $("openCart").onclick=()=>{$("cart").hidden=false};
 $("closeCart").onclick=()=>{$("cart").hidden=true};
 ["cname","caddr"].forEach(id=>$(id).addEventListener("input",renderCart));
 $("copy").onclick=()=>copyText(msg(),$("copy"),"Pedido copiado","Copiar pedido");
+const PAYON=/\.netlify\.app$/.test(location.hostname);
+if(PAYON){$("pay").hidden=false;$("payNote").hidden=false}
+$("pay").onclick=async()=>{
+  const btn=$("pay"), lab="Pagar online (Mercado Pago)";
+  const say=t=>{btn.textContent=t;setTimeout(()=>btn.textContent=lab,3500)};
+  const it=items();
+  if(!it.length) return say("Primero agregá productos");
+  if(!$("cname").value.trim()||!$("caddr").value.trim()||$("cphone").value.replace(/\D/g,"").length<8) return say("Completá nombre, dirección y teléfono");
+  btn.disabled=true; btn.textContent="Un momento…";
+  try{
+    const r=await fetch("/.netlify/functions/crear-pago",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({items:it.map(([e,n])=>({e,n})),nombre:$("cname").value,direccion:$("caddr").value,telefono:$("cphone").value})});
+    const d=await r.json();
+    if(!r.ok||!d.url) throw new Error(d.error||"No se pudo iniciar el pago");
+    location.href=d.url;
+  }catch(e){say(e.message)}
+  btn.disabled=false;
+};
+{const pg=new URLSearchParams(location.search).get("pago");
+ if(pg){const m={ok:"¡Gracias! Recibimos tu pago y tu pedido ya está cargado. Te contactamos para coordinar la entrega.",pendiente:"Tu pago está pendiente. Cuando se acredite, tu pedido queda cargado.",error:"El pago no se completó. Podés intentar de nuevo."}[pg];
+  if(m){if(pg==="ok"){cart={};try{localStorage.removeItem("cart")}catch(e){}render()}
+   const d=document.createElement("div");d.textContent=m;d.style.cssText="position:sticky;top:0;z-index:50;padding:12px 16px;background:#f2b630;color:#2a1f00;font-weight:600;text-align:center";document.body.prepend(d);history.replaceState(null,"",location.pathname)}}}
 chips(); render();
 
 /* ---------- Panel del dueño: sube el archivo de Maxi y la página se vuelve a publicar ---------- */

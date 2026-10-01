@@ -1,0 +1,17 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Pedidos</title>
+<style>body{font:15px system-ui;margin:0;background:#faf9f5;color:#141413}main{max-width:760px;margin:auto;padding:16px}.o{background:#fff;border:1px solid #ddd;border-radius:10px;padding:12px;margin:10px 0}.o b.e{padding:2px 8px;border-radius:99px;background:#eee;font-size:13px}.pagado{background:#fde9a8!important}.entregado{background:#cfe8d5!important}input,button{font:inherit;padding:8px;margin:4px 0}ul{margin:6px 0;padding-left:18px}</style></head><body><main>
+<h1>Pedidos</h1><form id="f"><input id="k" type="password" placeholder="Clave" autocomplete="current-password"> <button>Entrar</button></form><p id="m"></p><div id="l"></div></main>
+<script>
+const $=i=>document.getElementById(i);let K=sessionStorage.getItem("k")||"";
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+async function load(){
+  const r=await fetch("/.netlify/functions/pedidos?k="+encodeURIComponent(K));
+  if(!r.ok){$("m").textContent="Clave incorrecta o pagos sin configurar.";return}
+  sessionStorage.setItem("k",K);$("f").hidden=true;$("m").textContent="";
+  const L=await r.json();
+  $("l").innerHTML=L.length?L.map(o=>`<div class="o"><b class="e ${o.estado}">${esc(o.estado)}</b> ${new Date(o.fecha).toLocaleString("es-AR")}<br><b>${esc(o.nombre)}</b> · ${esc(o.telefono)}<br>${esc(o.direccion)}<ul>${o.items.map(i=>`<li>${i.cantidad} x ${esc(i.nombre)}</li>`).join("")}</ul><b>Total $ ${o.total.toLocaleString("es-AR")}</b>${o.pago?" · "+esc(o.pago.medio||""):""}${o.estado==="pagado"?` <button onclick="done('${o.id}')">Marcar entregado</button>`:""}</div>`).join(""):"Todavía no hay pedidos.";
+}
+async function done(id){await fetch("/.netlify/functions/pedidos?k="+encodeURIComponent(K),{method:"POST",body:JSON.stringify({id,estado:"entregado"})});load()}
+$("f").onsubmit=e=>{e.preventDefault();K=$("k").value;load()};
+if(K)load();
+</script></body></html>
