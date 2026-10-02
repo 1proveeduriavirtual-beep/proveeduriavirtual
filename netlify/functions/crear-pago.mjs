@@ -1,4 +1,5 @@
 import { getStore } from "@netlify/blobs";
+import { pctDe, conDescuento, norm } from "../../lib/cupon.mjs";
 
 const J = (o, s = 200) => new Response(JSON.stringify(o), { status: s, headers: { "content-type": "application/json" } });
 const unesc = s => s.replace(/&#x27;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
@@ -23,14 +24,15 @@ export default async (req) => {
   const D = JSON.parse(m[1]);
   const by = new Map(D.p.map(p => [p[1], p]));
 
+  const pct = await pctDe(b.cupon);
   const items = [];
   let total = 0;
   for (const it of b.items) {
     const p = by.get(String(it.e));
     const n = Math.floor(Number(it.n));
     if (!p || !(n >= 1 && n <= 99)) return J({ error: "Hay un producto que ya no está disponible. Actualizá la página." }, 400);
-    items.push({ id: p[1], title: unesc(p[2]).slice(0, 250), quantity: n, unit_price: p[3], currency_id: "ARS" });
-    total += p[3] * n;
+    items.push({ id: p[1], title: unesc(p[2]).slice(0, 250), quantity: n, unit_price: conDescuento(p[3], pct), currency_id: "ARS" });
+    total += conDescuento(p[3], pct) * n;
   }
 
   const id = crypto.randomUUID();
@@ -51,7 +53,7 @@ export default async (req) => {
   if (!r.ok || !d.init_point) return J({ error: "Mercado Pago no pudo crear el pago." }, 502);
 
   await getStore("pedidos").setJSON(id, {
-    id, fecha: new Date().toISOString(), estado: "pendiente", nombre, direccion, telefono, total,
+    id, fecha: new Date().toISOString(), estado: "pendiente", cupon: pct ? norm(b.cupon) : undefined, descuento: pct || undefined, nombre, direccion, telefono, total,
     items: items.map(i => ({ nombre: i.title, cantidad: i.quantity, precio: i.unit_price })),
   });
   return J({ url: d.init_point });

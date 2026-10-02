@@ -1,4 +1,5 @@
 import { getStore } from "@netlify/blobs";
+import { pctDe, conDescuento, norm } from "../../lib/cupon.mjs";
 
 const J = (o, s = 200) => new Response(JSON.stringify(o), { status: s, headers: { "content-type": "application/json", "cache-control": "no-store" } });
 const unesc = s => s.replace(/&#x27;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
@@ -23,18 +24,19 @@ export default async (req) => {
   const m = html.match(/<script id="data" type="application\/json">(.*?)<\/script>/s);
   if (!m) return J({ error: "No pude leer los precios." }, 500);
   const by = new Map(JSON.parse(m[1]).p.map(p => [p[1], p]));
+  const pct = await pctDe(b.cupon);
   const items = [];
   let total = 0;
   for (const it of b.items) {
     const p = by.get(String(it.e));
     const n = Math.floor(Number(it.n));
     if (!p || !(n >= 1 && n <= 99)) return J({ error: "Hay un producto que ya no está disponible. Actualizá la página." }, 400);
-    items.push({ nombre: unesc(p[2]).slice(0, 250), cantidad: n, precio: p[3] });
-    total += p[3] * n;
+    items.push({ nombre: unesc(p[2]).slice(0, 250), cantidad: n, precio: conDescuento(p[3], pct) });
+    total += conDescuento(p[3], pct) * n;
   }
   const id = crypto.randomUUID();
   await getStore("pedidos").setJSON(id, {
-    id, fecha: new Date().toISOString(), nombre, direccion, telefono, total, items,
+    id, fecha: new Date().toISOString(), cupon: pct ? norm(b.cupon) : undefined, descuento: pct || undefined, nombre, direccion, telefono, total, items,
     estado: metodo === "efectivo" ? "efectivo al recibir" : "espera transferencia",
     pago: { medio: metodo === "efectivo" ? "efectivo" : "transferencia" },
   });

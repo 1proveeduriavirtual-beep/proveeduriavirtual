@@ -91,6 +91,7 @@ footer{max-width:1200px;margin:0 auto;padding:0 16px 40px;color:var(--muted);fon
   <div class="ahead"><h2>Tu pedido</h2><button class="x" id="closeCart" type="button" aria-label="Cerrar">×</button></div>
   <div class="lines" id="lines"></div>
   <div class="tot"><span>Total</span><span id="total">$ 0</span></div>
+  <div id="cupBox" hidden><label for="cup">¿Tenés un cupón?</label><div style="display:flex;gap:8px"><input class="f" id="cup" autocomplete="off" style="flex:1;text-transform:uppercase"><button type="button" id="cupOk" style="border:0;border-radius:8px;padding:0 14px;cursor:pointer;font:inherit;background:#1f5c3a;color:#fff">Aplicar</button></div><p class="note" id="cupMsg"></p></div>
   <label for="cname">Tu nombre</label><input class="f" id="cname" autocomplete="name">
   <label for="caddr">Dirección de entrega</label><input class="f" id="caddr" autocomplete="street-address">
   <label for="cphone">Tu teléfono</label><input class="f" id="cphone" type="tel" autocomplete="tel">
@@ -164,7 +165,8 @@ function renderCart(){
   let tot=0, units=0; const it=items();
   $("lines").innerHTML=it.length?it.map(([e,n])=>{const p=byEan[e];tot+=p[3]*n;units+=n;
     return `<div class="line"><div class="name">${p[2]}</div><div class="sub">${fmt(p[3]*n)}</div>${qtyCtl(e,n)}</div>`}).join(""):'<p class="empty">Todavía no agregaste productos.</p>';
-  $("total").textContent=fmt(tot); $("cartCount").textContent=units;
+  if(window.CUP){tot=0;it.forEach(([e,n])=>{tot+=Math.round(byEan[e][3]*(1-CUP.pct/100)*100)/100*n})}
+  $("total").textContent=fmt(tot)+(window.CUP?" (cupón -"+CUP.pct+"%)":""); $("cartCount").textContent=units;
   $("wa").href="https://wa.me/"+D.wa+"?text="+encodeURIComponent(msg());
   try{localStorage.setItem("cart",JSON.stringify(cart))}catch(e){}
 }
@@ -192,6 +194,13 @@ $("closeCart").onclick=()=>{$("cart").hidden=true};
 $("copy").onclick=()=>copyText(msg(),$("copy"),"Pedido copiado","Copiar pedido");
 const PAYON=/\.netlify\.app$/.test(location.hostname);
 if(PAYON){$("pay").hidden=false;$("payNote").hidden=false}
+if(PAYON){$("cupBox").hidden=false;$("cupOk").onclick=async()=>{
+  const c=$("cup").value.trim(), m=$("cupMsg");
+  if(!c){window.CUP=null;m.textContent="";renderCart();return}
+  try{const r=await fetch("/.netlify/functions/cupones?c="+encodeURIComponent(c));const d=await r.json();
+   if(d.ok){window.CUP={codigo:d.codigo,pct:d.pct};m.textContent="Cupón aplicado: "+d.pct+"% de descuento"}
+   else{window.CUP=null;m.textContent=d.error||"Cupón inválido"}}catch(e){m.textContent="No se pudo verificar el cupón"}
+  renderCart()}}
 $("pay").onclick=async()=>{
   const btn=$("pay"), lab="Pagar online (Mercado Pago)";
   const say=t=>{btn.textContent=t;setTimeout(()=>btn.textContent=lab,3500)};
@@ -200,7 +209,7 @@ $("pay").onclick=async()=>{
   if(!$("cname").value.trim()||!$("caddr").value.trim()||$("cphone").value.replace(/\D/g,"").length<8) return say("Completá nombre, dirección y teléfono");
   btn.disabled=true; btn.textContent="Un momento…";
   try{
-    const r=await fetch("/.netlify/functions/crear-pago",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({items:it.map(([e,n])=>({e,n})),nombre:$("cname").value,direccion:$("caddr").value,telefono:$("cphone").value})});
+    const r=await fetch("/.netlify/functions/crear-pago",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({items:it.map(([e,n])=>({e,n})),cupon:window.CUP?CUP.codigo:"",nombre:$("cname").value,direccion:$("caddr").value,telefono:$("cphone").value})});
     const d=await r.json();
     if(!r.ok||!d.url) throw new Error(d.error||"No se pudo iniciar el pago");
     location.href=d.url;
@@ -215,7 +224,7 @@ function dosPedido(btn,metodo,lab){
     if(!$("cname").value.trim()||!$("caddr").value.trim()||$("cphone").value.replace(/\D/g,"").length<8) return say("Completá nombre, dirección y teléfono");
     btn.disabled=true; btn.textContent="Un momento…";
     try{
-      const r=await fetch("/.netlify/functions/crear-pedido",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({metodo,items:it.map(([e,n])=>({e,n})),nombre:$("cname").value,direccion:$("caddr").value,telefono:$("cphone").value})});
+      const r=await fetch("/.netlify/functions/crear-pedido",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({metodo,items:it.map(([e,n])=>({e,n})),cupon:window.CUP?CUP.codigo:"",nombre:$("cname").value,direccion:$("caddr").value,telefono:$("cphone").value})});
       const d=await r.json();
       if(!r.ok||!d.ok) throw new Error(d.error||"No se pudo cargar el pedido");
       cart={};try{localStorage.removeItem("cart")}catch(e){} render(); $("cart").hidden=true;
