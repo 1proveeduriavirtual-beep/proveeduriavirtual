@@ -34,6 +34,8 @@ export default async (req) => {
     total += conDescuento(p[3], pct) * n;
   }
 
+  if (total < 80000) return J({ error: "La compra mínima es $ 80.000." }, 400);
+
   const id = crypto.randomUUID();
   const pref = {
     items,

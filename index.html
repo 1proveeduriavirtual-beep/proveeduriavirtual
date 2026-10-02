@@ -34,6 +34,9 @@ main{max-width:1200px;margin:0 auto;padding:16px 16px 96px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px;min-width:0}
 .thumb{aspect-ratio:4/3;max-width:100%;border-radius:8px;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.6rem;color:var(--brand);background:color-mix(in srgb,var(--brand) 10%,var(--surface));text-transform:uppercase}
+.thumb:has(img){display:block;overflow:hidden;background:#fff}
+.thumb img{display:block;width:100%;height:100%;object-fit:contain}
+.aviso{background:color-mix(in srgb,var(--brand) 10%,var(--surface));border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600;margin-bottom:12px}
 .name{font-weight:500;text-transform:capitalize;font-size:14px;flex:1;overflow-wrap:anywhere}
 .cat{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .price{font-family:var(--display);font-weight:800;font-size:1.25rem;font-variant-numeric:tabular-nums}
@@ -80,19 +83,22 @@ footer{max-width:1200px;margin:0 auto;padding:0 16px 40px;color:var(--muted);fon
 </header>
 
 <main>
+  <div class="aviso">🚚 Envíos solo a CABA y GBA · Compra mínima $&nbsp;80.000 · El costo del envío lo arreglamos por WhatsApp</div>
   <div class="info"><span id="count"></span><span>Precios por unidad, con IVA · actualizados el <span id="fecha"></span></span></div>
   <div class="grid" id="grid"></div>
   <p class="empty" id="empty" hidden>No encontramos productos con esa búsqueda.</p>
   <button class="more" id="more" type="button">Ver más productos</button>
 </main>
-<footer>Pedidos por WhatsApp. Los precios pueden cambiar sin aviso. <button class="adminbtn" id="openAdmin" type="button" hidden>Administrar tienda</button></footer>
+<footer>Pedidos por WhatsApp. Los precios pueden cambiar sin aviso. Envíos solo a CABA y GBA. <span id="fotoCred" hidden>Algunas fotos: <a href="https://world.openfoodfacts.org" target="_blank" rel="noopener">Open Food Facts</a> (CC BY-SA).</span> <button class="adminbtn" id="openAdmin" type="button" hidden>Administrar tienda</button></footer>
 
 <aside id="cart" hidden aria-label="Carrito">
   <div class="ahead"><h2>Tu pedido</h2><button class="x" id="closeCart" type="button" aria-label="Cerrar">×</button></div>
   <div class="lines" id="lines"></div>
   <div class="tot"><span>Total</span><span id="total">$ 0</span></div>
+  <p class="note" id="minMsg" style="color:#b3261e;font-weight:600"></p>
   <div id="cupBox" hidden><label for="cup">¿Tenés un cupón?</label><div style="display:flex;gap:8px"><input class="f" id="cup" autocomplete="off" style="flex:1;text-transform:uppercase"><button type="button" id="cupOk" style="border:0;border-radius:8px;padding:0 14px;cursor:pointer;font:inherit;background:#1f5c3a;color:#fff">Aplicar</button></div><p class="note" id="cupMsg"></p></div>
   <label for="cname">Tu nombre</label><input class="f" id="cname" autocomplete="name">
+  <label for="czona">Zona de entrega</label><select class="f" id="czona"><option value="">Elegí tu zona</option><option>CABA</option><option>GBA</option></select>
   <label for="caddr">Dirección de entrega</label><input class="f" id="caddr" autocomplete="street-address">
   <label for="cphone">Tu teléfono</label><input class="f" id="cphone" type="tel" autocomplete="tel">
   <button class="wa" id="pay" type="button" hidden style="border:0;width:100%;cursor:pointer;font:inherit">Pagar online (Mercado Pago)</button>
@@ -131,6 +137,10 @@ footer{max-width:1200px;margin:0 auto;padding:0 16px 40px;color:var(--muted);fon
     const r=await fetch("https://raw.githubusercontent.com/agustinoramonecristaldo-jpg/proveeduriavirtual/datos/productos.json?t="+Math.floor(Date.now()/300000),{signal:AbortSignal.timeout(4000)});
     if(r.ok){const d=await r.json(); if(d&&Array.isArray(d.p)&&d.p.length>100&&Array.isArray(d.cats)) document.getElementById("data").textContent=JSON.stringify(d);}
   }catch(e){}
+  try{
+    const r=await fetch("https://raw.githubusercontent.com/agustinoramonecristaldo-jpg/proveeduriavirtual/datos/fotos.json?t="+Math.floor(Date.now()/3600000),{signal:AbortSignal.timeout(3000)});
+    if(r.ok){const f=await r.json(); if(f&&typeof f==="object") window.FOTOS=f;}
+  }catch(e){}
   const s=document.createElement("script"); s.textContent=document.getElementById("app").textContent; document.body.appendChild(s);
 })();
 </script>
@@ -149,6 +159,9 @@ const norm=s=>s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
 P.forEach(p=>p.k=norm(p[2]));
 $("fecha").textContent=D.fecha;
 $("waNum").textContent=D.wa===PLACEHOLDER?"todavía no configurado":"+"+D.wa;
+const FOTOS=window.FOTOS||{};
+const dir=()=>$("caddr").value.trim()+($("czona").value?" ("+$("czona").value+")":"");
+const MIN=80000;
 function initials(n){return n.split(" ").filter(w=>w.length>2).slice(0,2).map(w=>w[0]).join("")}
 function chips(){
   const all=[["Todo",-1],...CATS.map((c,i)=>[c,i])].filter(([c,i])=>i<0||P.some(p=>p[0]===i));
@@ -161,7 +174,7 @@ function list(){
 function qtyCtl(e,n){return `<div class="qty"><button type="button" data-d="-1" data-e="${e}" aria-label="Quitar uno">−</button><b>${n}</b><button type="button" data-d="1" data-e="${e}" aria-label="Agregar uno">+</button></div>`}
 function card(p){
   const n=cart[p[1]]||0;
-  return `<div class="card"><div class="thumb">${initials(p[2])}</div><div class="cat">${CATS[p[0]]}</div><div class="name">${p[2]}</div><div class="price">${fmt(p[3])}</div>${n?qtyCtl(p[1],n):`<button class="add" type="button" data-d="1" data-e="${p[1]}">Agregar</button>`}</div>`;
+  return `<div class="card"><div class="thumb">${/^https:\/\/images\.open(food|beauty|products)facts\.org\//.test(FOTOS[p[1]]||"")?`<img src="${FOTOS[p[1]]}" alt="" loading="lazy" onerror="this.replaceWith(document.createTextNode('${initials(p[2])}'))">`:initials(p[2])}</div><div class="cat">${CATS[p[0]]}</div><div class="name">${p[2]}</div><div class="price">${fmt(p[3])}</div>${n?qtyCtl(p[1],n):`<button class="add" type="button" data-d="1" data-e="${p[1]}">Agregar</button>`}</div>`;
 }
 function render(){
   const l=list();
@@ -177,14 +190,17 @@ function renderCart(){
     return `<div class="line"><div class="name">${p[2]}</div><div class="sub">${fmt(p[3]*n)}</div>${qtyCtl(e,n)}</div>`}).join(""):'<p class="empty">Todavía no agregaste productos.</p>';
   if(window.CUP){tot=0;it.forEach(([e,n])=>{tot+=Math.round(byEan[e][3]*(1-CUP.pct/100)*100)/100*n})}
   $("total").textContent=fmt(tot)+(window.CUP?" (cupón -"+CUP.pct+"%)":""); $("cartCount").textContent=units;
-  $("wa").href="https://wa.me/"+D.wa+"?text="+encodeURIComponent(msg());
+  const falta=MIN-tot; window.MINOK=it.length>0&&falta<=0;
+  $("minMsg").textContent=it.length&&falta>0?"Compra mínima "+fmt(MIN)+": te faltan "+fmt(Math.ceil(falta))+".":"";
+  $("wa").href=window.MINOK?"https://wa.me/"+D.wa+"?text="+encodeURIComponent(msg()):"#";
+  $("wa").style.opacity=window.MINOK?"":".5";
   try{localStorage.setItem("cart",JSON.stringify(cart))}catch(e){}
 }
 function plain(s){const t=document.createElement("textarea");t.innerHTML=s;return t.value}
 function msg(){
   let tot=0;
   const rows=items().map(([e,n])=>{const p=byEan[e];tot+=p[3]*n;return `• ${n} x ${plain(p[2])} — ${fmt(p[3]*n)}`});
-  return `Hola! Quiero hacer este pedido:\n${rows.join("\n")}\nTotal: ${fmt(tot)}\nNombre: ${$("cname").value}\nDirección: ${$("caddr").value}`;
+  return `Hola! Quiero hacer este pedido:\n${rows.join("\n")}\nTotal: ${fmt(tot)}\nNombre: ${$("cname").value}\nDirección: ${dir()}`;
 }
 async function copyText(text,btn,ok,label){
   try{await navigator.clipboard.writeText(text);btn.textContent=ok}catch(e){btn.textContent="No se pudo copiar: seleccioná el texto a mano"}
@@ -200,8 +216,10 @@ $("q").addEventListener("input",e=>{q=e.target.value;shown=60;render()});
 $("more").onclick=()=>{shown+=60;render()};
 $("openCart").onclick=()=>{$("cart").hidden=false};
 $("closeCart").onclick=()=>{$("cart").hidden=true};
-["cname","caddr"].forEach(id=>$(id).addEventListener("input",renderCart));
-$("copy").onclick=()=>copyText(msg(),$("copy"),"Pedido copiado","Copiar pedido");
+["cname","caddr","czona"].forEach(id=>$(id).addEventListener("input",renderCart));
+$("wa").addEventListener("click",e=>{if(!window.MINOK){e.preventDefault();$("minMsg").textContent=$("minMsg").textContent||"Agregá productos para llegar a la compra mínima de "+fmt(MIN)+"."}});
+if(Object.keys(FOTOS).length) $("fotoCred").hidden=false;
+$("copy").onclick=()=>window.MINOK?copyText(msg(),$("copy"),"Pedido copiado","Copiar pedido"):($("minMsg").textContent="La compra mínima es "+fmt(MIN)+".");
 const PAYON=/\.netlify\.app$/.test(location.hostname);
 if(PAYON){$("pay").hidden=false;$("payNote").hidden=false}
 if(PAYON){$("cupBox").hidden=false;$("cupOk").onclick=async()=>{
@@ -216,10 +234,12 @@ $("pay").onclick=async()=>{
   const say=t=>{btn.textContent=t;setTimeout(()=>btn.textContent=lab,3500)};
   const it=items();
   if(!it.length) return say("Primero agregá productos");
+  if(!window.MINOK) return say("La compra mínima es "+fmt(MIN));
+  if(!$("czona").value) return say("Elegí tu zona (CABA o GBA)");
   if(!$("cname").value.trim()||!$("caddr").value.trim()||$("cphone").value.replace(/\D/g,"").length<8) return say("Completá nombre, dirección y teléfono");
   btn.disabled=true; btn.textContent="Un momento…";
   try{
-    const r=await fetch("/.netlify/functions/crear-pago",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({items:it.map(([e,n])=>({e,n})),cupon:window.CUP?CUP.codigo:"",nombre:$("cname").value,direccion:$("caddr").value,telefono:$("cphone").value})});
+    const r=await fetch("/.netlify/functions/crear-pago",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({items:it.map(([e,n])=>({e,n})),cupon:window.CUP?CUP.codigo:"",nombre:$("cname").value,direccion:dir(),telefono:$("cphone").value})});
     const d=await r.json();
     if(!r.ok||!d.url) throw new Error(d.error||"No se pudo iniciar el pago");
     location.href=d.url;
@@ -231,10 +251,12 @@ function dosPedido(btn,metodo,lab){
   btn.onclick=async()=>{
     const it=items();
     if(!it.length) return say("Primero agregá productos");
+    if(!window.MINOK) return say("La compra mínima es "+fmt(MIN));
+    if(!$("czona").value) return say("Elegí tu zona (CABA o GBA)");
     if(!$("cname").value.trim()||!$("caddr").value.trim()||$("cphone").value.replace(/\D/g,"").length<8) return say("Completá nombre, dirección y teléfono");
     btn.disabled=true; btn.textContent="Un momento…";
     try{
-      const r=await fetch("/.netlify/functions/crear-pedido",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({metodo,items:it.map(([e,n])=>({e,n})),cupon:window.CUP?CUP.codigo:"",nombre:$("cname").value,direccion:$("caddr").value,telefono:$("cphone").value})});
+      const r=await fetch("/.netlify/functions/crear-pedido",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({metodo,items:it.map(([e,n])=>({e,n})),cupon:window.CUP?CUP.codigo:"",nombre:$("cname").value,direccion:dir(),telefono:$("cphone").value})});
       const d=await r.json();
       if(!r.ok||!d.ok) throw new Error(d.error||"No se pudo cargar el pedido");
       cart={};try{localStorage.removeItem("cart")}catch(e){} render(); $("cart").hidden=true;

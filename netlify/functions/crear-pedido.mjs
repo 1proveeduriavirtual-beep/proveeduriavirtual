@@ -35,6 +35,8 @@ export default async (req) => {
     items.push({ nombre: unesc(p[2]).slice(0, 250), cantidad: n, precio: conDescuento(p[3], pct) });
     total += conDescuento(p[3], pct) * n;
   }
+  if (total < 80000) return J({ error: "La compra mínima es $ 80.000." }, 400);
+
   const id = crypto.randomUUID();
   const ped = {
     id, fecha: new Date().toISOString(), cupon: pct ? norm(b.cupon) : undefined, descuento: pct || undefined, nombre, direccion, telefono, total, items,
