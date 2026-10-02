@@ -1,4 +1,5 @@
 import { getStore } from "@netlify/blobs";
+import { avisarPedido } from "../../lib/aviso.mjs";
 
 export default async (req) => {
   const token = Netlify.env.get("MP_ACCESS_TOKEN");
@@ -24,8 +25,10 @@ export default async (req) => {
   const store = getStore("pedidos");
   const o = await store.get(id, { type: "json" });
   if (!o) return new Response("ok");
+  const yaPagado = o.estado === "pagado" || o.estado === "entregado";
   o.estado = p.status === "approved" ? "pagado" : p.status; // pending, rejected, etc.
   o.pago = { id: p.id, medio: p.payment_type_id, monto: p.transaction_amount, fecha: p.date_approved || p.date_created };
   await store.setJSON(id, o);
+  if (o.estado === "pagado" && !yaPagado) await avisarPedido(o, "Nuevo pedido PAGADO");
   return new Response("ok");
 };

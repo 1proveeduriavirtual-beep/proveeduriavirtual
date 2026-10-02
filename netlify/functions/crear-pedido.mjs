@@ -1,4 +1,5 @@
 import { getStore } from "@netlify/blobs";
+import { avisarPedido } from "../../lib/aviso.mjs";
 import { pctDe, conDescuento, norm } from "../../lib/cupon.mjs";
 
 const J = (o, s = 200) => new Response(JSON.stringify(o), { status: s, headers: { "content-type": "application/json", "cache-control": "no-store" } });
@@ -35,10 +36,12 @@ export default async (req) => {
     total += conDescuento(p[3], pct) * n;
   }
   const id = crypto.randomUUID();
-  await getStore("pedidos").setJSON(id, {
+  const ped = {
     id, fecha: new Date().toISOString(), cupon: pct ? norm(b.cupon) : undefined, descuento: pct || undefined, nombre, direccion, telefono, total, items,
     estado: metodo === "efectivo" ? "efectivo al recibir" : "espera transferencia",
     pago: { medio: metodo === "efectivo" ? "efectivo" : "transferencia" },
-  });
+  };
+  await getStore("pedidos").setJSON(id, ped);
+  await avisarPedido(ped, "Nuevo pedido: pagás al recibir");
   return J({ ok: true, total, alias: metodo === "transferencia" ? alias : undefined });
 };
