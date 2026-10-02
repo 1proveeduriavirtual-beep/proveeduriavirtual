@@ -1,3 +1,4 @@
+import { leerDatos } from "../../lib/datos.mjs";
 import { getStore } from "@netlify/blobs";
 import { pctDe, conDescuento, norm } from "../../lib/cupon.mjs";
 
@@ -18,10 +19,8 @@ export default async (req) => {
 
   // Los precios se leen de la tienda publicada (nunca del navegador del cliente).
   const site = new URL(req.url).origin;
-  const html = await (await fetch(site + "/", { headers: { "cache-control": "no-cache" } })).text();
-  const m = html.match(/<script id="data" type="application\/json">(.*?)<\/script>/s);
-  if (!m) return J({ error: "No pude leer los precios." }, 500);
-  const D = JSON.parse(m[1]);
+  const D = await leerDatos(site);
+  if (!D) return J({ error: "No pude leer los precios." }, 500);
   const by = new Map(D.p.map(p => [p[1], p]));
 
   const pct = await pctDe(b.cupon);

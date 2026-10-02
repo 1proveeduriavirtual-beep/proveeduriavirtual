@@ -1,3 +1,4 @@
+import { leerDatos } from "../../lib/datos.mjs";
 import { getStore } from "@netlify/blobs";
 import { avisarPedido } from "../../lib/aviso.mjs";
 import { pctDe, conDescuento, norm } from "../../lib/cupon.mjs";
@@ -21,10 +22,9 @@ export default async (req) => {
   if (!Array.isArray(b.items) || !b.items.length || b.items.length > 100) return J({ error: "El carrito está vacío." }, 400);
 
   const site = new URL(req.url).origin;
-  const html = await (await fetch(site + "/", { headers: { "cache-control": "no-cache" } })).text();
-  const m = html.match(/<script id="data" type="application\/json">(.*?)<\/script>/s);
-  if (!m) return J({ error: "No pude leer los precios." }, 500);
-  const by = new Map(JSON.parse(m[1]).p.map(p => [p[1], p]));
+  const D = await leerDatos(site);
+  if (!D) return J({ error: "No pude leer los precios." }, 500);
+  const by = new Map(D.p.map(p => [p[1], p]));
   const pct = await pctDe(b.cupon);
   const items = [];
   let total = 0;
