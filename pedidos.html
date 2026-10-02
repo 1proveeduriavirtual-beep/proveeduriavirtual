@@ -9,9 +9,9 @@ async function load(){
   if(!r.ok){$("m").textContent="Clave incorrecta o pagos sin configurar.";return}
   sessionStorage.setItem("k",K);$("f").hidden=true;$("m").textContent="";
   const L=await r.json();
-  $("l").innerHTML=L.length?L.map(o=>`<div class="o"><b class="e ${o.estado}">${esc(o.estado)}</b> ${new Date(o.fecha).toLocaleString("es-AR")}<br><b>${esc(o.nombre)}</b> · ${esc(o.telefono)}<br>${esc(o.direccion)}<ul>${o.items.map(i=>`<li>${i.cantidad} x ${esc(i.nombre)}</li>`).join("")}</ul><b>Total $ ${o.total.toLocaleString("es-AR")}</b>${o.pago?" · "+esc(o.pago.medio||""):""}${o.estado==="pagado"?` <button onclick="done('${o.id}')">Marcar entregado</button>`:""}</div>`).join(""):"Todavía no hay pedidos.";
+  $("l").innerHTML=L.length?L.map(o=>`<div class="o"><b class="e ${o.estado}">${esc(o.estado)}</b> ${new Date(o.fecha).toLocaleString("es-AR")}<br><b>${esc(o.nombre)}</b> · ${esc(o.telefono)}<br>${esc(o.direccion)}<ul>${o.items.map(i=>`<li>${i.cantidad} x ${esc(i.nombre)}</li>`).join("")}</ul><b>Total $ ${o.total.toLocaleString("es-AR")}</b>${o.pago?" · "+esc(o.pago.medio||""):""}${o.estado==="espera transferencia"?` <button onclick="setE('${o.id}','pagado')">Marcar pagado</button>`:""}${["pagado","efectivo al recibir"].includes(o.estado)?` <button onclick="setE('${o.id}','entregado')">Marcar entregado</button>`:""}</div>`).join(""):"Todavía no hay pedidos.";
 }
-async function done(id){await fetch("/.netlify/functions/pedidos?k="+encodeURIComponent(K),{method:"POST",body:JSON.stringify({id,estado:"entregado"})});load()}
+async function setE(id,estado){await fetch("/.netlify/functions/pedidos?k="+encodeURIComponent(K),{method:"POST",body:JSON.stringify({id,estado})});load()}
 $("f").onsubmit=e=>{e.preventDefault();K=$("k").value;load()};
 if(K)load();
 </script></body></html>

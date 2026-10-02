@@ -95,7 +95,9 @@ footer{max-width:1200px;margin:0 auto;padding:0 16px 40px;color:var(--muted);fon
   <label for="caddr">Dirección de entrega</label><input class="f" id="caddr" autocomplete="street-address">
   <label for="cphone">Tu teléfono</label><input class="f" id="cphone" type="tel" autocomplete="tel">
   <button class="wa" id="pay" type="button" hidden style="border:0;width:100%;cursor:pointer;font:inherit">Pagar online (Mercado Pago)</button>
-  <p class="note" id="payNote" hidden>Pagás con tarjeta, saldo de Mercado Pago o transferencia. Tu pedido queda cargado solo.</p>
+  <p class="note" id="payNote" hidden>Con Mercado Pago pagás con tarjeta (en cuotas), débito, saldo, transferencia o efectivo en Rapipago/Pago Fácil. También podés pagar al recibir. Tu pedido queda cargado solo.</p>
+  <button class="wa" id="payEf" type="button" hidden style="border:0;width:100%;cursor:pointer;font:inherit;background:#555">Pagar en efectivo al recibir</button>
+  <button class="wa" id="payTr" type="button" hidden style="border:0;width:100%;cursor:pointer;font:inherit;background:#555">Pagar por transferencia</button>
   <a class="wa" id="wa" href="#" target="_blank" rel="noopener">Enviar pedido por WhatsApp (pagás al recibir)</a>
   <button class="copy" id="copy" type="button">Copiar pedido</button>
   <p class="note">WhatsApp de la tienda: <b id="waNum"></b>. Si el botón no abre WhatsApp, copiá el pedido y mandalo a ese número.</p>
@@ -205,6 +207,28 @@ $("pay").onclick=async()=>{
   }catch(e){say(e.message)}
   btn.disabled=false;
 };
+function dosPedido(btn,metodo,lab){
+  const say=t=>{btn.textContent=t;setTimeout(()=>btn.textContent=lab,3500)};
+  btn.onclick=async()=>{
+    const it=items();
+    if(!it.length) return say("Primero agregá productos");
+    if(!$("cname").value.trim()||!$("caddr").value.trim()||$("cphone").value.replace(/\D/g,"").length<8) return say("Completá nombre, dirección y teléfono");
+    btn.disabled=true; btn.textContent="Un momento…";
+    try{
+      const r=await fetch("/.netlify/functions/crear-pedido",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({metodo,items:it.map(([e,n])=>({e,n})),nombre:$("cname").value,direccion:$("caddr").value,telefono:$("cphone").value})});
+      const d=await r.json();
+      if(!r.ok||!d.ok) throw new Error(d.error||"No se pudo cargar el pedido");
+      cart={};try{localStorage.removeItem("cart")}catch(e){} render(); $("cart").hidden=true;
+      const m=metodo==="efectivo"?"¡Gracias! Tu pedido quedó cargado. Pagás en efectivo al recibirlo. Total: "+fmt(d.total)+". Te contactamos para coordinar la entrega.":"¡Gracias! Tu pedido quedó cargado. Transferí "+fmt(d.total)+" al alias "+d.alias+" y avisanos por WhatsApp con el comprobante.";
+      const x=document.createElement("div");x.textContent=m;x.style.cssText="position:sticky;top:0;z-index:50;padding:12px 16px;background:#f2b630;color:#2a1f00;font-weight:600;text-align:center";document.body.prepend(x);scrollTo(0,0);
+    }catch(e){say(e.message)}
+    btn.disabled=false;
+  };
+}
+if(PAYON){
+  $("payEf").hidden=false; dosPedido($("payEf"),"efectivo","Pagar en efectivo al recibir");
+  fetch("/.netlify/functions/crear-pedido").then(r=>r.json()).then(d=>{if(d.transferencia){$("payTr").hidden=false;dosPedido($("payTr"),"transferencia","Pagar por transferencia")}}).catch(()=>{});
+}
 {const pg=new URLSearchParams(location.search).get("pago");
  if(pg){const m={ok:"¡Gracias! Recibimos tu pago y tu pedido ya está cargado. Te contactamos para coordinar la entrega.",pendiente:"Tu pago está pendiente. Cuando se acredite, tu pedido queda cargado.",error:"El pago no se completó. Podés intentar de nuevo."}[pg];
   if(m){if(pg==="ok"){cart={};try{localStorage.removeItem("cart")}catch(e){}render()}
