@@ -6,7 +6,7 @@ const unesc = s => s.replace(/&#x27;/g, "'").replace(/&quot;/g, '"').replace(/&l
 
 // Pedidos sin Mercado Pago: efectivo al recibir o transferencia directa.
 export default async (req) => {
-  const alias = (Netlify.env.get("ALIAS_TRANSFERENCIA") || "agustino.reir.737.mp").trim();
+  const alias = (Netlify.env.get("ALIAS_TRANSFERENCIA") || "").trim();
   if (req.method === "GET") return J({ transferencia: !!alias, alias });
   if (req.method !== "POST") return J({ error: "método no permitido" }, 405);
   let b;
