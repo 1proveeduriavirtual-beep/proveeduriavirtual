@@ -159,6 +159,62 @@ const norm=s=>s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
 P.forEach(p=>p.k=norm(p[2]));
 $("fecha").textContent=D.fecha;
 $("waNum").textContent=D.wa===PLACEHOLDER?"todavía no configurado":"+"+D.wa;
+// Ilustración genérica para productos sin foto: forma según el tipo de producto + nombre y tamaño escritos.
+const PIC=(()=>{
+  const nrm=s=>s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+  const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  // [tipo, palabras clave] — se evalúa en orden; gana la primera que aparece en el nombre
+  const RULES=[
+    ["lata",/\b(lata|atun|caballa|sardina|arvejas|choclo|duraznos en|pure de tomate|tomate perita)\b/],
+    ["aerosol",/\b(aerosol|antitranspirante|desodorante|insecticida|aromatizante|spray|fijador|espuma de afeitar)\b/],
+    ["vino",/\b(vino|espumante|champagne|sidra|vodka|whisky|fernet|aperitivo|gin|ron|licor|cerveza|vermouth|tequila|aguardiente)\b/],
+    ["botella",/\b(limpiador|limp|detergente|suavizante|lavandina|quitamanchas|desengrasante|jabon liquido|shampoo|acondicionador|acond|enjuague|aceite|vinagre|agua|gaseosa|soda|bebida|isotonica|energizante|alcohol|multiuso|cera|lustramuebles|perfume|colonia|locion)\b/],
+    ["tableta",/\b(tableta|chocolate|turron|barra|alfajor|obleas|bombon|caramelo|chicle|gomitas|almohaditas)\b/],
+    ["carton",/\b(leche|tetra|brik|jugo)\b/],
+    ["pomo",/\b(crema dental|pasta dental|crema corporal|crema facial|crema de manos|crema para|protector solar|bloqueador|pomada|gel|mascarilla|tintura|color)\b/],
+    ["frasco",/\b(crema|mermelada|dulce de|aceitunas|mayonesa|mostaza|ketchup|pickles|cafe instantaneo|miel|frasco|salsa)\b/],
+    ["jabon",/\b(jabon)\b/],
+    ["rollo",/\b(papel|rollo|servilleta)\b/],
+    ["panal",/\b(panal|panales|toallitas|toalla|toallas|protector diario|protectores|apositos)\b/],
+    ["esponja",/\b(esponja|pano|trapo|rejilla|guante|guantes|mata|fibra|virulana|secador|escoba|balde|canasta|broche|cepillo|maquina|maq|afeitadora|hisopos|preservativo)\b/],
+    ["caja",/\b(te|caldo|premezcla|saborizador|gelatina|flan|postre|polvo|cereal|copos|bizcochuelo|edulcorante|capsulas|saquitos)\b/],
+    ["bolsa",/.*/]
+  ];
+  const CAT={"almacén":"#c8742b","bebidas":"#2b6cb0","desayuno y merienda":"#8a5a2b","limpieza":"#1f8a8a","perfumería":"#a8467a","lácteos y productos frescos":"#3a7bd5","mundo bebé":"#d17aa0","mascotas":"#7a5c2e","panadería":"#b7791f","bazar y textil":"#5a6b7a"};
+  const S={
+    botella:c=>`<rect x="88" y="14" width="24" height="16" rx="3" fill="#333"/><path d="M84 30h32v10c14 6 20 16 20 30v78c0 7-5 12-12 12H76c-7 0-12-5-12-12V70c0-14 6-24 20-30z" fill="${c}"/>`,
+    vino:c=>`<rect x="92" y="8" width="16" height="14" rx="2" fill="#7a1f2b"/><path d="M93 22h14v34c14 8 19 18 19 32v62c0 6-4 10-10 10H84c-6 0-10-4-10-10V88c0-14 5-24 19-32z" fill="${c}"/>`,
+    aerosol:c=>`<rect x="88" y="12" width="24" height="18" rx="4" fill="#ddd" stroke="#999"/><rect x="72" y="30" width="56" height="130" rx="10" fill="${c}"/>`,
+    lata:c=>`<ellipse cx="100" cy="44" rx="40" ry="10" fill="#bbb"/><path d="M60 44v100c0 6 18 11 40 11s40-5 40-11V44c0 6-18 11-40 11s-40-5-40-11z" fill="${c}"/>`,
+    carton:c=>`<path d="M72 30l14-16h28l14 16v130H72z" fill="${c}"/><path d="M86 14h28l-14 16z" fill="#fff" opacity=".4"/>`,
+    pomo:c=>`<path d="M70 30h60l-8 112H78z" fill="${c}"/><rect x="88" y="142" width="24" height="16" rx="3" fill="#333"/>`,
+    frasco:c=>`<rect x="70" y="30" width="60" height="16" rx="4" fill="#555"/><rect x="62" y="46" width="76" height="110" rx="14" fill="${c}"/>`,
+    jabon:c=>`<rect x="40" y="70" width="120" height="64" rx="28" fill="${c}"/>`,
+    rollo:c=>`<rect x="56" y="36" width="88" height="116" rx="10" fill="${c}"/><ellipse cx="100" cy="36" rx="44" ry="12" fill="#fff" stroke="#ccc"/><ellipse cx="100" cy="36" rx="12" ry="4" fill="#aaa"/>`,
+    panal:c=>`<rect x="40" y="40" width="120" height="116" rx="18" fill="${c}"/><path d="M40 60h120" stroke="#fff" stroke-width="6" opacity=".5"/>`,
+    esponja:c=>`<rect x="46" y="66" width="108" height="34" rx="8" fill="#e8c547"/><rect x="46" y="98" width="108" height="34" rx="8" fill="${c}"/>`,
+    tableta:c=>`<rect x="34" y="62" width="132" height="84" rx="8" fill="${c}"/><rect x="34" y="62" width="40" height="84" rx="8" fill="#fff" opacity=".25"/>`,
+    caja:c=>`<path d="M58 40l20-14h64v116l-20 14H58z" fill="${c}"/><path d="M58 40l20-14h64l-20 14z" fill="#fff" opacity=".35"/>`,
+    bolsa:c=>`<path d="M62 30h76l6 20-4 104c0 4-3 6-6 6H66c-3 0-6-2-6-6L56 50z" fill="${c}"/><path d="M62 30h76l2 8H60z" fill="#fff" opacity=".4"/>`
+  };
+  const size=n=>(n.match(/\bx\s*\d+[\d.,]*\s*(ml|cc|c|l|lt|lts|litros?|gr|grs|g|kg|kgs|uni|unid|unidades|un|u|sobres|mts|m)\b/i)||[])[0];
+  function wrap(t,max,lines){const w=t.split(/\s+/),out=[];let cur="";for(const x of w){if((cur+" "+x).trim().length>max){if(cur)out.push(cur);cur=x}else cur=(cur+" "+x).trim()}if(cur)out.push(cur);
+    if(out.length>lines){out.length=lines;out[lines-1]=out[lines-1].replace(/.{0,2}$/,"…")}return out}
+  return function(p,cats){
+    const name=String(p[2]).replace(/&#x27;/g,"'").replace(/&quot;/g,'"').replace(/&amp;/g,"&");
+    const n=nrm(name), cat=cats[p[0]]||"", col=CAT[cat]||"#2f6b4f";
+    const tipo=(RULES.find(([,re])=>re.test(n))||RULES[RULES.length-1])[0];
+    const sz=size(name);
+    const label=name.replace(/\bx\s*\d+[\d.,]*\s*(ml|cc|c|l|lt|lts|litros?|gr|grs|g|kg|kgs|uni|unid|unidades|un|u|sobres|mts|m)\b.*/i,"").trim();
+    const ln=wrap(label.toUpperCase(),20,3);
+    const y0=sz?104:110;
+    const txt=ln.map((l,i)=>`<text x="100" y="${y0+i*15}" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="12.5" fill="#222">${esc(l)}</text>`).join("");
+    const py=y0+ln.length*15-4;
+    const pill=sz?`<rect x="60" y="${py}" width="80" height="19" rx="9.5" fill="${col}"/><text x="100" y="${py+13.5}" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="12" fill="#fff">${esc(sz.replace(/^x\s*/i,""))}</text>`:"";
+    const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 170"><rect width="200" height="170" fill="#fff"/><g transform="translate(50,0) scale(.5)" opacity=".95">${S[tipo](col)}</g><rect x="20" y="${y0-14}" width="160" height="1.5" fill="${col}" opacity=".35"/>${txt}${pill}</svg>`;
+    return `<img src="data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}" alt="" loading="lazy">`;
+  };
+})();
 const FOTOS=window.FOTOS||{};
 const dir=()=>$("caddr").value.trim()+($("czona").value?" ("+$("czona").value+")":"");
 const MIN=80000;
@@ -174,7 +230,7 @@ function list(){
 function qtyCtl(e,n){return `<div class="qty"><button type="button" data-d="-1" data-e="${e}" aria-label="Quitar uno">−</button><b>${n}</b><button type="button" data-d="1" data-e="${e}" aria-label="Agregar uno">+</button></div>`}
 function card(p){
   const n=cart[p[1]]||0;
-  return `<div class="card"><div class="thumb">${/^https:\/\/images\.open(food|beauty|products)facts\.org\//.test(FOTOS[p[1]]||"")?`<img src="${FOTOS[p[1]]}" alt="" loading="lazy" onerror="this.replaceWith(document.createTextNode('${initials(p[2])}'))">`:initials(p[2])}</div><div class="cat">${CATS[p[0]]}</div><div class="name">${p[2]}</div><div class="price">${fmt(p[3])}</div>${n?qtyCtl(p[1],n):`<button class="add" type="button" data-d="1" data-e="${p[1]}">Agregar</button>`}</div>`;
+  return `<div class="card"><div class="thumb">${/^https:\/\/images\.open(food|beauty|products)facts\.org\//.test(FOTOS[p[1]]||"")?`<img src="${FOTOS[p[1]]}" alt="" loading="lazy" onerror="this.replaceWith(document.createTextNode('${initials(p[2])}'))">`:PIC(p,CATS)}</div><div class="cat">${CATS[p[0]]}</div><div class="name">${p[2]}</div><div class="price">${fmt(p[3])}</div>${n?qtyCtl(p[1],n):`<button class="add" type="button" data-d="1" data-e="${p[1]}">Agregar</button>`}</div>`;
 }
 function render(){
   const l=list();
