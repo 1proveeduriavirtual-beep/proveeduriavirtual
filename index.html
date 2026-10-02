@@ -168,17 +168,17 @@ const PIC=(()=>{
     ["lata",/\b(lata|atun|caballa|sardina|arvejas|choclo|duraznos en|pure de tomate|tomate perita)\b/],
     ["aerosol",/\b(aerosol|antitranspirante|desodorante|insecticida|aromatizante|spray|fijador|espuma de afeitar)\b/],
     ["vino",/\b(vino|espumante|champagne|sidra|vodka|whisky|fernet|aperitivo|gin|ron|licor|cerveza|vermouth|tequila|aguardiente)\b/],
-    ["botella",/\b(limpiador|limp|detergente|suavizante|lavandina|quitamanchas|desengrasante|jabon liquido|shampoo|acondicionador|acond|enjuague|aceite|vinagre|agua|gaseosa|soda|bebida|isotonica|energizante|alcohol|multiuso|cera|lustramuebles|perfume|colonia|locion)\b/],
+    ["botella",/\b(abrillantador|apresto|aroma|aromatizador|ambientador|blanqueador|desinfectante|lustra|limpia|limpiavidrios|jabon para ropa|jabon liquido para|repelente|perfumina|agua de colonia|body splash|tonico|micelar|limpiador|limp|detergente|suavizante|lavandina|quitamanchas|desengrasante|jabon liquido|shampoo|acondicionador|acond|enjuague|aceite|vinagre|agua|gaseosa|soda|bebida|isotonica|energizante|alcohol|multiuso|cera|lustramuebles|perfume|colonia|locion)\b/],
     ["tableta",/\b(tableta|chocolate|turron|barra|alfajor|obleas|bombon|caramelo|chicle|gomitas|almohaditas)\b/],
     ["carton",/\b(leche|tetra|brik|jugo)\b/],
     ["pomo",/\b(crema dental|pasta dental|crema corporal|crema facial|crema de manos|crema para|protector solar|bloqueador|pomada|gel|mascarilla|tintura|color)\b/],
-    ["frasco",/\b(crema|mermelada|dulce de|aceitunas|mayonesa|mostaza|ketchup|pickles|cafe instantaneo|miel|frasco|salsa)\b/],
+    ["frasco",/\b(crema|mermelada|dulce de|aceitunas?|aceto|mayonesa|mostaza|ketchup|pickles|cafe instantaneo|miel|frasco|salsa)\b/],
     ["jabon",/\b(jabon)\b/],
     ["rollo",/\b(papel|rollo|servilleta)\b/],
     ["panal",/\b(panal|panales|toallitas|toalla|toallas|protector diario|protectores|apositos)\b/],
     ["esponja",/\b(esponja|pano|trapo|rejilla|guante|guantes|mata|fibra|virulana|secador|escoba|balde|canasta|broche|cepillo|maquina|maq|afeitadora|hisopos|preservativo)\b/],
-    ["caja",/\b(te|caldo|premezcla|saborizador|gelatina|flan|postre|polvo|cereal|copos|bizcochuelo|edulcorante|capsulas|saquitos)\b/],
-    ["bolsa",/.*/]
+    ["caja",/\b(antihumedad|aparato|repuesto|tabletas|pastillas|fosforos|encendedor|velas|te|caldo|premezcla|saborizador|gelatina|flan|postre|polvo|cereal|copos|bizcochuelo|edulcorante|capsulas|saquitos)\b/],
+    ["def",/.*/]
   ];
   const CAT={"almacén":"#c8742b","bebidas":"#2b6cb0","desayuno y merienda":"#8a5a2b","limpieza":"#1f8a8a","perfumería":"#a8467a","lácteos y productos frescos":"#3a7bd5","mundo bebé":"#d17aa0","mascotas":"#7a5c2e","panadería":"#b7791f","bazar y textil":"#5a6b7a"};
   const S={
@@ -203,7 +203,8 @@ const PIC=(()=>{
   return function(p,cats){
     const name=String(p[2]).replace(/&#x27;/g,"'").replace(/&quot;/g,'"').replace(/&amp;/g,"&");
     const n=nrm(name), cat=cats[p[0]]||"", col=CAT[cat]||"#2f6b4f";
-    const tipo=(RULES.find(([,re])=>re.test(n))||RULES[RULES.length-1])[0];
+    let tipo=(RULES.find(([,re])=>re.test(n))||RULES[RULES.length-1])[0];
+    if(tipo==="def") tipo=({"limpieza":"botella","perfumería":"botella","bebidas":"botella","mundo bebé":"panal","lácteos y productos frescos":"carton","bazar y textil":"caja"})[cat]||"bolsa";
     const sz=size(name);
     const label=name.replace(/\bx\s*\d+[\d.,]*\s*(ml|cc|c|l|lt|lts|litros?|gr|grs|g|kg|kgs|uni|unid|unidades|un|u|sobres|mts|m)\b.*/i,"").trim();
     const ln=wrap(label.toUpperCase(),20,3);
