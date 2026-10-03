@@ -8,7 +8,8 @@ export default async (req) => {
   if (!key || url.searchParams.get("k") !== key) return J({ error: "clave incorrecta" }, 401);
   const store = getStore("pedidos");
   if (req.method === "POST") { // marcar entregado
-    const { id, estado } = await req.json();
+    const { id, estado, borrar } = await req.json();
+    if (borrar) { await store.delete(String(id)); return J({ ok: true }); }
     const o = await store.get(String(id), { type: "json" });
     if (!o || !["pagado", "entregado"].includes(estado)) return J({ error: "no existe" }, 404);
     o.estado = estado;

@@ -1,24 +1,132 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Pedidos</title>
-<style>body{font:15px system-ui;margin:0;background:#faf9f5;color:#141413}main{max-width:760px;margin:auto;padding:16px}.o{background:#fff;border:1px solid #ddd;border-radius:10px;padding:12px;margin:10px 0}.o b.e{padding:2px 8px;border-radius:99px;background:#eee;font-size:13px}.pagado{background:#fde9a8!important}.entregado{background:#cfe8d5!important}input,button{font:inherit;padding:8px;margin:4px 0}ul{margin:6px 0;padding-left:18px}</style></head><body><main>
-<h1>Pedidos</h1><form id="f"><input id="k" type="password" placeholder="Clave" autocomplete="current-password"> <button>Entrar</button></form><p id="m"></p><div id="l"></div>
-<section id="cs" hidden><h2>Cupones</h2><form id="cf"><input id="cc" placeholder="Código (ej: BIENVENIDO)"> <input id="cp" type="number" min="1" max="90" placeholder="% off" style="width:80px"> <input id="cv" type="date" title="Vence (opcional)"> <button>Crear</button></form><div id="cl"></div></section></main>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Panel de la tienda</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+:root{--bg:#faf9f5;--fg:#141413;--muted:#5f5e5a;--line:#ddd;--card:#fff;--brand:#1f5c3a;--brand-fg:#fff;--soft:#eef4f0}
+*{box-sizing:border-box}body{font:15px system-ui,sans-serif;margin:0;background:var(--bg);color:var(--fg)}
+main{max-width:860px;margin:auto;padding:16px}h1{margin:.2em 0}h2{margin:1.2em 0 .4em}
+.o{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin:10px 0}
+.o b.e{padding:2px 8px;border-radius:99px;background:#eee;font-size:13px}.pagado{background:#fde9a8!important}.entregado{background:#cfe8d5!important}
+input,button,select{font:inherit;padding:8px;margin:4px 0;border-radius:8px;border:1px solid var(--line)}button{cursor:pointer;background:var(--card)}
+button.p{background:var(--brand);color:var(--brand-fg);border-color:var(--brand);font-weight:600}
+ul{margin:6px 0;padding-left:18px}.muted{color:var(--muted);font-size:14px}
+nav{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0;border-bottom:1px solid var(--line);padding-bottom:8px}
+nav button{border:0;background:none;padding:8px 12px;border-radius:99px}nav button[aria-pressed=true]{background:var(--brand);color:var(--brand-fg)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}.kpi small{color:var(--muted);display:block}.kpi b{font-size:1.5rem;font-variant-numeric:tabular-nums}
+.chart{display:flex;align-items:flex-end;gap:2px;height:160px;padding:8px 0;border-bottom:1px solid var(--line);position:relative}
+.bar{flex:1;background:var(--brand);border-radius:4px 4px 0 0;min-height:1px;position:relative}.bar:hover{opacity:.75}
+.bar:hover::after{content:attr(data-t);position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:#141413;color:#fff;font-size:12px;padding:4px 6px;border-radius:6px;white-space:nowrap;margin-bottom:4px;z-index:2}
+.axis{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}td,th{padding:8px;border-bottom:1px solid var(--line);text-align:left}td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+ol.steps li{margin:8px 0}code{display:block;max-height:70px;overflow:auto;font-size:11px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px;overflow-wrap:anywhere}
+.msg{font-weight:600}.err{color:#b3261e}.ok{color:var(--brand)}
+</style></head><body><main>
+<h1>Panel de la tienda</h1>
+<form id="f"><input id="k" type="password" placeholder="Clave del panel" autocomplete="current-password"> <button class="p">Entrar</button></form><p id="m" class="msg err"></p>
+<div id="app" hidden>
+<nav id="tabs"><button data-t="ped" aria-pressed="true">Pedidos</button><button data-t="est">Estadísticas</button><button data-t="pre">Precios y WhatsApp</button><button data-t="cup">Cupones</button></nav>
+
+<section id="ped"><div id="l"></div></section>
+
+<section id="est" hidden>
+  <label>Período: <select id="per"><option value="30">Últimos 30 días</option><option value="7">Últimos 7 días</option><option value="mes">Este mes</option><option value="todo">Todo</option></select></label>
+  <p class="muted">Cuenta los pedidos pagados, entregados o en efectivo al recibir (no cuenta pagos pendientes ni rechazados).</p>
+  <div class="kpis" id="kpis"></div>
+  <h2>Ventas por día</h2><div class="chart" id="chart" role="img" aria-label="Ventas por día"></div><div class="axis" id="axis"></div>
+  <h2>Productos más vendidos</h2><div id="top"></div>
+  <h2>Formas de pago</h2><div id="medios"></div>
+</section>
+
+<section id="pre" hidden>
+  <div class="o" id="estado">Cargando…</div>
+  <h2>Actualizar precios con Maxi</h2>
+  <ol class="steps">
+    <li><b>Solo la primera vez:</b> creá un marcador nuevo en el navegador (Chrome o Edge), ponele de nombre <b>Bajar precios Maxi</b> y en la dirección (URL) pegá este código:
+      <code id="bm"></code><button type="button" id="copyBm">Copiar código del marcador</button></li>
+    <li>Entrá a <a href="https://comerciante.carrefour.com.ar" target="_blank" rel="noopener">Maxi (comerciante.carrefour.com.ar)</a> con tu cuenta y tocá el marcador. Esperá el cartel de "Listo": se baja el archivo <b>maxi_productos.txt</b>.</li>
+    <li>Subí ese archivo acá y tocá <b>Actualizar precios</b>. La tienda se actualiza sola en 1 minuto, sin volver a publicarla.</li>
+  </ol>
+  <form id="pf" class="o">
+    <label>Archivo de Maxi <input id="pfile" type="file" accept=".txt,text/plain" required></label><br>
+    <label>Ganancia sobre el precio de Maxi (%) <input id="pmar" type="number" min="0" max="500" step="1" style="width:90px" required></label><br>
+    <label><input id="pfor" type="checkbox"> Forzar (solo si el panel te lo pide)</label><br>
+    <button class="p">Actualizar precios</button> <span id="pmsg" class="msg"></span>
+  </form>
+  <h2>WhatsApp de la tienda</h2>
+  <form id="wf" class="o"><input id="wa" inputmode="numeric" placeholder="5491123456789" style="width:200px"> <button class="p">Guardar</button> <span id="wmsg" class="msg"></span>
+  <p class="muted">Con 549 + código de área + número, sin espacios ni guiones.</p></form>
+</section>
+
+<section id="cup" hidden><form id="cf"><input id="cc" placeholder="Código (ej: BIENVENIDO)"> <input id="cp" type="number" min="1" max="90" placeholder="% off" style="width:80px"> <input id="cv" type="date" title="Vence (opcional)"> <button class="p">Crear cupón</button></form><div id="cl"></div></section>
+</div></main>
 <script>
-const $=i=>document.getElementById(i);let K=sessionStorage.getItem("k")||"";
+const BM="javascript:(async()=>{const H='comerciante.carrefour.com.ar';if(location.host!==H){alert('Primero abr\u00ed '+H+' y despu\u00e9s toc\u00e1 este marcador');return}let C=[...new Set([...document.querySelectorAll('a[href*=\"/sec/\"]')].map(a=>decodeURIComponent(a.pathname.split('/sec/')[1]||'').split('/')[0]))].filter(Boolean);if(!C.length)C=['bebidas','almac\u00e9n','desayuno y merienda','limpieza','perfumer\u00eda','l\u00e1cteos y productos frescos','mundo beb\u00e9','mascotas','panader\u00eda','bazar y textil'];const S=new Set(),L=[];for(let i=0;i<C.length;i++){document.title='Bajando precios '+(i+1)+'/'+C.length;const r=await fetch('/products?currentUrl=sec/'+encodeURIComponent(C[i])+'&filters=&orderBy=default&currentPage=1&itemsPerPage=5000&method=productsList');const d=new DOMParser().parseFromString(await r.text(),'text/html');for(const k of d.querySelectorAll('.item_card')){const n=(k.querySelector('.item_card__description')?.textContent||'').replace(/\\s+/g,' ').trim().replace(/\\|/g,'/');const t=k.textContent.replace(/\\s+/g,' ');const e=(t.match(/ID:\\s*(\\d+)/)||[])[1];const m=(t.match(/Llevando\\s+(\\d+)/i)||[])[1]||'';const p=t.match(/\\$\\s*([\\d,]+(?:\\.\\d+)?)/);if(!e||!p||S.has(e))continue;S.add(e);L.push([i,e,m,parseFloat(p[1].replace(/,/g,'')),n].join('|'))}}const x='\\x23cats|'+C.join('|')+'\\n\\x23formato: cat|ean|minimo|precio_maxi|nombre\\n'+L.join('\\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([x],{type:'text/plain'}));a.download='maxi_productos.txt';document.body.appendChild(a);a.click();a.remove();document.title='Listo: '+L.length+' productos';alert('Listo: '+L.length+' productos. Ahora sub\u00ed maxi_productos.txt en el panel de tu tienda.')})();";
+const $=i=>document.getElementById(i);let K=sessionStorage.getItem("k")||"",L=[];
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const plain=s=>{const t=document.createElement("textarea");t.innerHTML=s;return t.value};
+const money=n=>"$ "+Math.round(n).toLocaleString("es-AR");
+const api=(f,opt)=>fetch("/.netlify/functions/"+f+"?k="+encodeURIComponent(K),opt);
+$("bm").textContent=BM;
+$("copyBm").onclick=async()=>{try{await navigator.clipboard.writeText(BM);$("copyBm").textContent="¡Copiado!"}catch(e){$("copyBm").textContent="Seleccioná el código y copialo a mano"}setTimeout(()=>$("copyBm").textContent="Copiar código del marcador",2500)};
+$("tabs").onclick=e=>{const b=e.target.closest("button");if(!b)return;for(const x of $("tabs").children){x.setAttribute("aria-pressed",x===b);$(x.dataset.t).hidden=x!==b}if(b.dataset.t==="est")stats();if(b.dataset.t==="pre")loadP();if(b.dataset.t==="cup")loadC()};
+
 async function load(){
-  const r=await fetch("/.netlify/functions/pedidos?k="+encodeURIComponent(K));
-  if(!r.ok){$("m").textContent="Clave incorrecta o pagos sin configurar.";return}
-  sessionStorage.setItem("k",K);$("f").hidden=true;$("m").textContent="";
-  const L=await r.json();
-  loadC();$("l").innerHTML=L.length?L.map(o=>`<div class="o"><b class="e ${o.estado}">${esc(o.estado)}</b> ${new Date(o.fecha).toLocaleString("es-AR")}<br><b>${esc(o.nombre)}</b> · ${esc(o.telefono)}<br>${esc(o.direccion)}<ul>${o.items.map(i=>`<li>${i.cantidad} x ${esc(i.nombre)}</li>`).join("")}</ul><b>Total $ ${o.total.toLocaleString("es-AR")}</b>${o.pago?" · "+esc(o.pago.medio||""):""}${o.cupon?" · cupón "+esc(o.cupon)+" (-"+o.descuento+"%)":""}${o.estado==="espera transferencia"?` <button onclick="setE('${o.id}','pagado')">Marcar pagado</button>`:""}${["pagado","efectivo al recibir"].includes(o.estado)?` <button onclick="setE('${o.id}','entregado')">Marcar entregado</button>`:""}</div>`).join(""):"Todavía no hay pedidos.";
+  const r=await api("pedidos");
+  if(!r.ok){$("m").textContent="Clave incorrecta.";return}
+  sessionStorage.setItem("k",K);$("f").hidden=true;$("m").textContent="";$("app").hidden=false;
+  L=await r.json();renderP();
 }
-async function setE(id,estado){await fetch("/.netlify/functions/pedidos?k="+encodeURIComponent(K),{method:"POST",body:JSON.stringify({id,estado})});load()}
+function renderP(){
+  $("l").innerHTML=L.length?L.map(o=>`<div class="o"><b class="e ${esc(o.estado)}">${esc(o.estado)}</b> ${new Date(o.fecha).toLocaleString("es-AR")}<br><b>${esc(o.nombre)}</b> · ${esc(o.telefono)}<br>${esc(o.direccion)}<ul>${o.items.map(i=>`<li>${i.cantidad} x ${esc(i.nombre)}</li>`).join("")}</ul><b>Total ${money(o.total)}</b>${o.pago?" · "+esc(({credit_card:"tarjeta de crédito",debit_card:"tarjeta de débito",account_money:"saldo MP",ticket:"Rapipago/Pago Fácil",bank_transfer:"transferencia",efectivo:"efectivo al recibir"})[o.pago.medio]||o.pago.medio||""):""}${o.cupon?" · cupón "+esc(o.cupon)+" (-"+o.descuento+"%)":""}${o.estado==="espera transferencia"?` <button onclick="setE('${o.id}','pagado')">Marcar pagado</button>`:""}${["pagado","efectivo al recibir"].includes(o.estado)?` <button onclick="setE('${o.id}','entregado')">Marcar entregado</button>`:""} <button onclick="delP(this,'${o.id}')">Borrar</button></div>`).join(""):"Todavía no hay pedidos.";
+}
+async function setE(id,estado){await api("pedidos",{method:"POST",body:JSON.stringify({id,estado})});load()}
+async function delP(btn,id){if(btn.dataset.s!=="1"){btn.dataset.s="1";btn.textContent="¿Seguro? Tocá de nuevo";setTimeout(()=>{btn.dataset.s="";btn.textContent="Borrar"},4000);return}await api("pedidos",{method:"POST",body:JSON.stringify({id,borrar:true})});load()}
+
+function stats(){
+  const per=$("per").value, now=new Date();
+  const desde=per==="todo"?new Date(0):per==="mes"?new Date(now.getFullYear(),now.getMonth(),1):new Date(now-(+per)*864e5);
+  const V=L.filter(o=>["pagado","entregado","efectivo al recibir"].includes(o.estado)&&new Date(o.fecha)>=desde);
+  const tot=V.reduce((s,o)=>s+o.total,0), uni=V.reduce((s,o)=>s+o.items.reduce((a,i)=>a+i.cantidad,0),0);
+  $("kpis").innerHTML=[["Ventas",money(tot)],["Pedidos",V.length],["Ticket promedio",V.length?money(tot/V.length):"—"],["Unidades vendidas",uni.toLocaleString("es-AR")]].map(([a,b])=>`<div class="kpi"><small>${a}</small><b>${b}</b></div>`).join("");
+  // ventas por día
+  const days=per==="todo"?Math.max(1,Math.ceil((now-new Date(Math.min(...V.map(o=>+new Date(o.fecha)),+now)))/864e5)+1):Math.ceil((now-desde)/864e5);
+  const n=Math.min(days,90), byDay=new Map();
+  for(const o of V){const d=new Date(o.fecha).toLocaleDateString("es-AR");byDay.set(d,(byDay.get(d)||0)+o.total)}
+  const arr=[];for(let i=n-1;i>=0;i--){const d=new Date(now-i*864e5).toLocaleDateString("es-AR");arr.push([d,byDay.get(d)||0])}
+  const mx=Math.max(1,...arr.map(x=>x[1]));
+  $("chart").innerHTML=arr.map(([d,v])=>`<div class="bar" style="height:${v?Math.max(2,v/mx*100):0}%" data-t="${d}: ${money(v)}" title="${d}: ${money(v)}"></div>`).join("");
+  $("axis").innerHTML=`<span>${arr[0][0]}</span><span>Máximo: ${money(mx===1&&!tot?0:mx)}</span><span>${arr[arr.length-1][0]}</span>`;
+  // top productos
+  const P=new Map();for(const o of V)for(const i of o.items){const k=i.nombre;const x=P.get(k)||{c:0,$:0};x.c+=i.cantidad;x.$+=i.cantidad*(i.precio||0);P.set(k,x)}
+  const top=[...P].sort((a,b)=>b[1].c-a[1].c).slice(0,15);
+  $("top").innerHTML=top.length?`<table><tr><th>Producto</th><th class="n">Unidades</th><th class="n">Facturado</th></tr>${top.map(([k,x])=>`<tr><td style="text-transform:capitalize">${esc(plain(k))}</td><td class="n">${x.c}</td><td class="n">${x.$?money(x.$):"—"}</td></tr>`).join("")}</table>`:'<p class="muted">Sin ventas en este período.</p>';
+  const MED={credit_card:"Tarjeta de crédito",debit_card:"Tarjeta de débito",account_money:"Saldo de Mercado Pago",ticket:"Efectivo (Rapipago / Pago Fácil)",bank_transfer:"Transferencia",efectivo:"Efectivo al recibir",transferencia:"Transferencia directa"};const M=new Map();for(const o of V){const m=MED[o.pago?.medio]||o.pago?.medio||"Mercado Pago";M.set(m,(M.get(m)||0)+1)}
+  $("medios").innerHTML=M.size?`<table><tr><th>Forma de pago</th><th class="n">Pedidos</th></tr>${[...M].sort((a,b)=>b[1]-a[1]).map(([m,c])=>`<tr><td>${esc(m)}</td><td class="n">${c}</td></tr>`).join("")}</table>`:'<p class="muted">—</p>';
+}
+$("per").onchange=stats;
+
+async function loadP(){
+  const r=await api("productos");if(!r.ok){$("estado").textContent="No se pudo leer el estado.";return}
+  const d=await r.json();
+  $("estado").innerHTML=`Precios actualizados el <b>${esc(d.fecha||"—")}</b> · <b>${(d.productos||0).toLocaleString("es-AR")}</b> productos · ganancia <b>${esc(d.margen)}%</b> · WhatsApp <b>${esc(d.wa?"+"+d.wa:"sin configurar")}</b>`;
+  if(!$("pmar").value)$("pmar").value=d.margen;if(!$("wa").value)$("wa").value=d.wa||"";
+}
+$("pf").onsubmit=async e=>{e.preventDefault();const m=$("pmsg");const f=$("pfile").files[0];if(!f)return;
+  m.className="msg";m.textContent="Actualizando…";
+  const r=await api("productos",{method:"POST",body:JSON.stringify({archivo:await f.text(),margen:+$("pmar").value,forzar:$("pfor").checked})});
+  const d=await r.json().catch(()=>({error:"Error inesperado"}));
+  if(!r.ok){m.className="msg err";m.textContent=d.error||"No se pudo actualizar.";return}
+  m.className="msg ok";m.textContent=`¡Listo! ${d.productos} productos al ${d.fecha}: ${d.suben} suben, ${d.bajan} bajan, ${d.nuevos} nuevos, ${d.retirados} retirados.`;$("pfor").checked=false;loadP()};
+$("wf").onsubmit=async e=>{e.preventDefault();const m=$("wmsg");
+  const r=await api("productos",{method:"POST",body:JSON.stringify({wa:$("wa").value})});const d=await r.json().catch(()=>({}));
+  m.className="msg "+(r.ok?"ok":"err");m.textContent=r.ok?"Guardado. La tienda lo usa en 1 minuto.":(d.error||"No se pudo guardar.");if(r.ok)loadP()};
+
 async function loadC(){
-  const r=await fetch("/.netlify/functions/cupones?k="+encodeURIComponent(K));if(!r.ok)return;const L=await r.json();$("cs").hidden=false;
-  $("cl").innerHTML=L.length?L.map(c=>`<div class="o"><b>${esc(c.codigo)}</b> · ${c.pct}% off${c.vence?" · vence "+esc(c.vence):""} <button onclick="delC('${esc(c.codigo)}')">Borrar</button></div>`).join(""):"No hay cupones.";
+  const r=await api("cupones");if(!r.ok)return;const C=await r.json();
+  $("cl").innerHTML=C.length?C.map(c=>`<div class="o"><b>${esc(c.codigo)}</b> · ${c.pct}% off${c.vence?" · vence "+esc(c.vence):""} <button onclick="delC('${esc(c.codigo)}')">Borrar</button></div>`).join(""):"No hay cupones.";
 }
-async function delC(c){await fetch("/.netlify/functions/cupones?k="+encodeURIComponent(K),{method:"POST",body:JSON.stringify({codigo:c,borrar:true})});loadC()}
-$("cf").onsubmit=async e=>{e.preventDefault();const r=await fetch("/.netlify/functions/cupones?k="+encodeURIComponent(K),{method:"POST",body:JSON.stringify({codigo:$("cc").value,pct:$("cp").value,vence:$("cv").value})});if(!r.ok){alert((await r.json()).error);return}$("cc").value="";$("cp").value="";loadC()};
+async function delC(c){await api("cupones",{method:"POST",body:JSON.stringify({codigo:c,borrar:true})});loadC()}
+$("cf").onsubmit=async e=>{e.preventDefault();const r=await api("cupones",{method:"POST",body:JSON.stringify({codigo:$("cc").value,pct:$("cp").value,vence:$("cv").value})});if(!r.ok){$("m").textContent=(await r.json()).error;return}$("cc").value="";$("cp").value="";loadC()};
 $("f").onsubmit=e=>{e.preventDefault();K=$("k").value;load()};
 if(K)load();
 </script></body></html>
