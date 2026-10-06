@@ -1,0 +1,24 @@
+# Actualiza solo los precios y el stock de la tienda con Maxiconsumo, todos los días a las 7 de la mañana (hora Argentina).
+# Necesita el secreto ADMIN_KEY (la misma clave del panel): Settings > Secrets and variables > Actions > New repository secret.
+# Para correrlo a mano: pestaña Actions > "Actualizar precios Maxiconsumo" > Run workflow.
+name: Actualizar precios Maxiconsumo
+
+on:
+  schedule:
+    - cron: "7 10 * * *" # 07:07 en Argentina (10:07 UTC)
+  workflow_dispatch:
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Bajar precios de Maxiconsumo y subirlos a la tienda
+        run: node scripts/maxiconsumo.mjs
+        env:
+          ADMIN_KEY: ${{ secrets.ADMIN_KEY }}
+          TIENDA: ${{ vars.TIENDA_URL || 'https://proveeduriavirtual.netlify.app' }}
