@@ -24,7 +24,7 @@ export default async (req) => {
     items,
     external_reference: id,
     notification_url: site + "/.netlify/functions/webhook-mp",
-    back_urls: { success: site + "/?pago=ok", failure: site + "/?pago=error", pending: site + "/?pago=pendiente" },
+    back_urls: { success: site + "/?pago=ok&ped=" + id, failure: site + "/?pago=error", pending: site + "/?pago=pendiente&ped=" + id },
     auto_return: "approved",
     statement_descriptor: "PROVEEDURIA",
   };

@@ -28,5 +28,5 @@ export default async (req) => {
   await P.setJSON(id, ped);
   await descontarPedido(ped, P).catch(e => console.error("stock:", e?.message)); // el stock baja solo con cada venta
   await Promise.all([avisarPedido(ped, metodo === "efectivo" ? "Nuevo pedido: pagás al recibir" : "Nuevo pedido: espera transferencia"), mailCliente(ped, "recibido")]);
-  return J({ ok: true, total: ped.total, envio: ped.envio ?? null, alias: metodo === "transferencia" ? alias : undefined });
+  return J({ ok: true, id, total: ped.total, envio: ped.envio ?? null, alias: metodo === "transferencia" ? alias : undefined });
 };

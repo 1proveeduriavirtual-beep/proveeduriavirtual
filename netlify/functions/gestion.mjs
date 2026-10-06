@@ -2,6 +2,7 @@
 // Uso: /.netlify/functions/gestion?r=RECURSO&k=CLAVE_O_TOKEN
 import { getStore } from "@netlify/blobs";
 import { login, quien, puede, leerUsuarios, guardarUsuarios, hashClave, ROLES, NOMBRE_ROL } from "../../lib/auth.mjs";
+import { etapaDe, ponerEtapa } from "../../lib/etapa.mjs";
 import { leerStock, fijar, leerMovimientos, sugerirCompras, leerCompras, registrarCompra, leerProveedores, guardarProveedores, leerPropios, guardarPropios } from "../../lib/inventario.mjs";
 import { leerDatos, hoyAR } from "../../lib/datos.mjs";
 import { enviarMail } from "../../lib/aviso.mjs";
@@ -97,7 +98,18 @@ export default async (req) => {
       if (metodo === "POST") {
         if (!puede(u, "compras")) return J({ error: "sin permiso" }, 403);
         const c = await registrarCompra(b, u.nombre);
-        return J({ ok: true, compra: c });
+        // "Ya compré todo": los pedidos que estaban esperando la compra pasan a "Preparando"
+        let preparando = 0;
+        if (b.pasarPedidos !== false) {
+          const P = getStore("pedidos");
+          for (const o of await todosLosPedidos()) {
+            if (etapaDe(o) !== "nuevo") continue;
+            ponerEtapa(o, "preparando", u.nombre);
+            await P.setJSON(o.id, o);
+            preparando++;
+          }
+        }
+        return J({ ok: true, compra: c, preparando });
       }
       const [st, D, costos, compras] = await Promise.all([leerStock(), leerDatos(url.origin), getStore("tienda").get("costos", { type: "json" }).catch(() => null), leerCompras()]);
       return J({ sugeridas: sugerirCompras(st, D, costos || {}), compras: compras.slice(0, 300) });
@@ -160,7 +172,7 @@ export default async (req) => {
       const vAyer = ped.filter(o => VENDIDO.includes(o.estado) && dia(o.fecha) === ayer);
       const tot = vAyer.reduce((s, o) => s + (o.total || 0), 0), gan = vAyer.reduce((s, o) => s + o.items.reduce((a, i) => a + (i.costo ? (i.precio - i.costo) * i.cantidad : 0), 0), 0);
       const [, mm, dd] = hoy.split("-"), hoyTxt = `${+dd}/${+mm}`;
-      const entregar = ped.filter(o => ["pagado", "efectivo al recibir", "espera transferencia"].includes(o.estado));
+      const entregar = ped.filter(o => ["nuevo", "preparando", "en camino"].includes(etapaDe(o)));
       const deHoy = entregar.filter(o => String(o.entrega || "").includes(" " + hoyTxt + " "));
       const sug = sugerirCompras(st, D, costos || {});
       const bajos = Object.entries(st).filter(([, x]) => x.m > 0 && x.c > 0 && x.c < x.m);

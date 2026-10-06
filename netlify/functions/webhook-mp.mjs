@@ -27,9 +27,15 @@ export default async (req) => {
   const store = getStore("pedidos");
   const o = await store.get(id, { type: "json" });
   if (!o) return new Response("ok");
-  const yaPagado = o.estado === "pagado" || o.estado === "entregado";
-  o.estado = p.status === "approved" ? "pagado" : p.status; // pending, rejected, etc.
+  const yaPagado = o.estado === "pagado" || o.estado === "entregado" || (o.estado === "cancelado" && o.estadoPago === "pagado");
   o.pago = { id: p.id, medio: p.payment_type_id, monto: p.transaction_amount, fecha: p.date_approved || p.date_created };
+  // entregado o cancelado: no se pisa el estado, solo se guarda el dato del pago
+  if (o.estado === "entregado" || o.estado === "cancelado") {
+    if (o.estado === "cancelado") o.estadoPago = p.status === "approved" ? "pagado" : p.status;
+    await store.setJSON(id, o);
+    return new Response("ok");
+  }
+  o.estado = p.status === "approved" ? "pagado" : p.status; // pending, rejected, etc.
   await store.setJSON(id, o);
   if (o.estado === "pagado") await descontarPedido(o, store).catch(e => console.error("stock:", e?.message)); // el stock baja solo al pagarse
   if (o.estado === "pagado" && !yaPagado) await Promise.all([avisarPedido(o, "Nuevo pedido PAGADO"), mailCliente(o, "recibido")]);
