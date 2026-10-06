@@ -70,6 +70,7 @@ ol.steps li{margin:8px 0}code{display:block;max-height:70px;overflow:auto;font-s
     <label>Ingresos Brutos <input id="fiibb" style="width:140px"></label>
     <label>Inicio de actividades <input id="finicio" type="date"></label><br>
     <label>Ambiente <select id="fprod"><option value="0">Prueba (homologación: las facturas no valen)</option><option value="1">Real (facturas válidas)</option></select></label><br>
+    <label><input id="fpagar" type="checkbox"> Facturar automáticamente apenas se <b>paga</b> (Mercado Pago, o al tocar <b>Marcar pagado</b>)</label><br>
     <label><input id="factivo" type="checkbox"> Facturar automáticamente al tocar <b>Marcar entregado</b></label><br>
     <button class="p">Guardar datos</button> <span id="ffmsg" class="msg"></span>
   </form>
@@ -176,16 +177,16 @@ async function loadF(){
   const r=await api("facturacion");if(!r.ok){$("fest").textContent="No se pudo leer la facturación.";return}
   FC=await r.json();const c=FC.cfg||{};
   const vence=FC.cert?new Date(FC.cert.vence).toLocaleDateString("es-AR"):null;
-  $("fest").innerHTML=`Facturación automática: <b>${c.activo&&FC.completa&&FC.cert?"activada":"desactivada"}</b> · Ambiente: <b>${c.prod?"real":"prueba"}</b> · Certificado: <b>${FC.cert?"cargado, vence "+esc(vence):FC.csr?"falta subir el .crt":"sin generar"}</b>`;
+  $("fest").innerHTML=`Facturación automática: <b>${FC.completa&&FC.cert&&(c.alPagar||c.activo)?[c.alPagar?"al pagar":"",c.activo?"al entregar":""].filter(Boolean).join(" y "):"desactivada"}</b> · Ambiente: <b>${c.prod?"real":"prueba"}</b> · Certificado: <b>${FC.cert?"cargado, vence "+esc(vence):FC.csr?"falta subir el .crt":"sin generar"}</b>`;
   const set=(i,v)=>{if(v!==undefined&&v!==null)$(i).value=v};
-  set("fcuit",c.cuit);set("frazon",c.razon);set("fdom",c.domicilio);set("ftipo",c.tipo||"C");set("fali",String(c.alicuota||21));set("fpto",c.ptoVta);set("fiibb",c.iibb);set("finicio",c.inicio);set("fprod",c.prod?"1":"0");$("factivo").checked=!!c.activo;
+  set("fcuit",c.cuit);set("frazon",c.razon);set("fdom",c.domicilio);set("ftipo",c.tipo||"C");set("fali",String(c.alicuota||21));set("fpto",c.ptoVta);set("fiibb",c.iibb);set("finicio",c.inicio);set("fprod",c.prod?"1":"0");$("factivo").checked=!!c.activo;$("fpagar").checked=!!c.alPagar;
   $("falic").hidden=$("ftipo").value!=="B";$("fregl").hidden=!FC.cert;
 }
 $("ftipo").onchange=()=>{$("falic").hidden=$("ftipo").value!=="B"};
 const fmsg=(id,ok,t)=>{$(id).className="msg "+(ok?"ok":"err");$(id).textContent=t};
 $("ff").onsubmit=async e=>{e.preventDefault();
   if($("fprod").value==="1"&&!(FC&&FC.cfg&&FC.cfg.prod)&&!confirm("Con el ambiente REAL las facturas son válidas ante ARCA. ¿Seguro?"))return;
-  const r=await api("facturacion",{method:"POST",body:JSON.stringify({accion:"config",cuit:$("fcuit").value,razon:$("frazon").value,domicilio:$("fdom").value,tipo:$("ftipo").value,alicuota:+$("fali").value,ptoVta:+$("fpto").value,iibb:$("fiibb").value,inicio:$("finicio").value,prod:$("fprod").value==="1",activo:$("factivo").checked})});
+  const r=await api("facturacion",{method:"POST",body:JSON.stringify({accion:"config",cuit:$("fcuit").value,razon:$("frazon").value,domicilio:$("fdom").value,tipo:$("ftipo").value,alicuota:+$("fali").value,ptoVta:+$("fpto").value,iibb:$("fiibb").value,inicio:$("finicio").value,prod:$("fprod").value==="1",activo:$("factivo").checked,alPagar:$("fpagar").checked})});
   const d=await r.json().catch(()=>({}));fmsg("ffmsg",r.ok,r.ok?"Guardado.":(d.error||"No se pudo guardar."));if(r.ok)loadF()};
 $("fcsr").onclick=async()=>{
   const r=await api("facturacion",{method:"POST",body:JSON.stringify({accion:"csr",regenerar:$("freg").checked})});const d=await r.json().catch(()=>({}));
