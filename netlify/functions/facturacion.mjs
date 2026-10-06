@@ -37,7 +37,7 @@ export default async (req) => {
       if (!(ptoVta >= 1 && ptoVta <= 99998)) return J({ error: "Poné el número de punto de venta (el que creaste en ARCA para web services)." }, 400);
       const tipo = b.tipo === "B" ? "B" : "C";
       const nuevo = {
-        cuit, ptoVta, tipo, alicuota: Number(b.alicuota) === 10.5 ? 10.5 : 21, prod: !!b.prod, activo: !!b.activo,
+        cuit, ptoVta, tipo, alicuota: Number(b.alicuota) === 10.5 ? 10.5 : 21, prod: !!b.prod, activo: !!b.activo, alPagar: !!b.alPagar,
         razon: txt(b.razon), domicilio: txt(b.domicilio, 160), condIva: tipo === "C" ? "Responsable Monotributo" : "IVA Responsable Inscripto",
         iibb: txt(b.iibb, 40), inicio: txt(b.inicio, 10),
       };

@@ -1,4 +1,5 @@
 import { getStore } from "@netlify/blobs";
+import { facturarAlPagar } from "../../lib/arca.mjs";
 
 const J = (o, s = 200) => new Response(JSON.stringify(o), { status: s, headers: { "content-type": "application/json", "cache-control": "no-store" } });
 
@@ -18,6 +19,8 @@ export default async (req) => {
     if (!o || !["pagado", "entregado"].includes(estado)) return J({ error: "no existe" }, 404);
     o.estado = estado;
     await store.setJSON(o.id, o);
+    // transferencia confirmada a mano: factura sola si está activado "al pagar"
+    if (estado === "pagado" && !o.factura) await facturarAlPagar(o.id, url.origin);
     return J({ ok: true });
   }
   const { blobs } = await store.list();
