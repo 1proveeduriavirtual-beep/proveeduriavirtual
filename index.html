@@ -61,6 +61,7 @@ input.f{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:8
 .copy{width:100%;margin-top:8px;border:1px solid var(--line);background:none;color:var(--fg);border-radius:10px;padding:10px;font:500 14px var(--body);cursor:pointer}
 .note{font-size:12px;color:var(--muted);margin-top:8px}
 footer{max-width:1200px;margin:0 auto;padding:0 16px 40px;color:var(--muted);font-size:12px}
+.legal{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:12px}.legal a{color:var(--muted)}.legal .arrep{color:var(--fg);font-weight:600;border:1px solid var(--line);border-radius:999px;padding:4px 12px;text-decoration:none}
 .adminbtn{border:0;background:none;color:var(--muted);text-decoration:underline;font:inherit;cursor:pointer;padding:0}
 #admin .lines{gap:14px}
 #admin h3{font-family:var(--display);font-size:1.05rem;margin:4px 0 0}
@@ -89,7 +90,7 @@ footer{max-width:1200px;margin:0 auto;padding:0 16px 40px;color:var(--muted);fon
   <p class="empty" id="empty" hidden>No encontramos productos con esa búsqueda.</p>
   <button class="more" id="more" type="button">Ver más productos</button>
 </main>
-<footer>Pedidos por WhatsApp. Los precios pueden cambiar sin aviso. Envíos solo a CABA y GBA. <span id="fotoCred" hidden>Algunas fotos: <a href="https://world.openfoodfacts.org" target="_blank" rel="noopener">Open Food Facts</a> (CC BY-SA).</span> <button class="adminbtn" id="openAdmin" type="button" hidden>Administrar tienda</button></footer>
+<footer>Pedidos por WhatsApp. Los precios pueden cambiar sin aviso. Envíos solo a CABA y GBA. <span id="fotoCred" hidden>Algunas fotos: <a href="https://world.openfoodfacts.org" target="_blank" rel="noopener">Open Food Facts</a> (CC BY-SA).</span> <button class="adminbtn" id="openAdmin" type="button" hidden>Administrar tienda</button><nav class="legal"><a class="arrep" href="/arrepentimiento.html">Botón de arrepentimiento</a><a href="/terminos.html">Términos y condiciones</a><a href="/terminos.html#privacidad">Privacidad</a><a href="https://www.argentina.gob.ar/produccion/defensadelconsumidor" target="_blank" rel="noopener">Defensa de las y los Consumidores. Para reclamos ingrese aquí</a></nav></footer>
 
 <aside id="cart" hidden aria-label="Carrito">
   <div class="ahead"><h2>Tu pedido</h2><button class="x" id="closeCart" type="button" aria-label="Cerrar">×</button></div>

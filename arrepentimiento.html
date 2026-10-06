@@ -1,0 +1,45 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+:root{--bg:#f6f8f5;--surface:#fff;--fg:#17241c;--muted:#5d6b62;--line:#dde5df;--brand:#1f5c3a;--accent:#f2b630;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#101612;--surface:#18211b;--fg:#e8efe9;--muted:#9aa9a0;--line:#2a352e;--brand:#4cc483;color-scheme:dark}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{background:#1f5c3a;color:#fff;padding:14px 16px}header a{color:#fff;text-decoration:none;font-weight:800;font-size:1.2rem}header a span{color:#f2b630}
+main{max-width:760px;margin:0 auto;padding:20px 16px 48px}h1{font-size:1.6rem;margin:.2em 0 .6em}h2{font-size:1.15rem;margin:1.6em 0 .4em}
+a{color:var(--brand)}.muted{color:var(--muted);font-size:14px}.box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px}
+label{display:block;margin:12px 0 4px;font-weight:600}input,textarea{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg)}
+button{margin-top:16px;font:600 16px system-ui,sans-serif;background:#1f5c3a;color:#fff;border:0;border-radius:10px;padding:12px 18px;cursor:pointer}button:disabled{opacity:.6}
+.ok{background:#e3f4ea;color:#14532d;border-radius:10px;padding:14px;margin-top:16px}.err{color:#b42318;margin-top:10px}
+@media (prefers-color-scheme:dark){.ok{background:#173d27;color:#d6f5e2}.err{color:#ff8a80}}
+</style>
+<title>Botón de arrepentimiento · Proveeduría Virtual</title></head><body>
+<header><a href="/">Proveeduría <span>Virtual</span></a></header>
+<main>
+<h1>Botón de arrepentimiento</h1>
+<p>Si compraste en Proveeduría Virtual, podés cancelar tu compra dentro de los <b>10 días corridos</b> desde que recibiste los productos (o desde la compra, lo que ocurra último), sin dar explicaciones y sin costo. Completá este formulario y te damos un <b>código de seguimiento</b> al instante.</p>
+<form id="f" class="box">
+  <label for="nombre">Nombre y apellido</label><input id="nombre" autocomplete="name" required>
+  <label for="email">Email</label><input id="email" type="email" autocomplete="email" required>
+  <label for="telefono">Teléfono</label><input id="telefono" type="tel" autocomplete="tel" required>
+  <label for="pedido">Fecha de compra o número de pedido / factura <span class="muted">(opcional)</span></label><input id="pedido">
+  <label for="motivo">Comentario <span class="muted">(opcional)</span></label><textarea id="motivo" rows="3"></textarea>
+  <button id="b">Cancelar mi compra</button>
+  <div id="m" class="err" role="alert"></div>
+</form>
+<div id="ok" class="ok" hidden></div>
+<p class="muted" style="margin-top:20px">Te vamos a contactar para coordinar la devolución de los productos y el reintegro por el mismo medio de pago. Más info en <a href="/terminos.html">Términos y condiciones</a>. Si no te respondemos, podés reclamar ante <a href="https://www.argentina.gob.ar/produccion/defensadelconsumidor" target="_blank" rel="noopener">Defensa de las y los Consumidores</a>.</p>
+<p><a href="/">← Volver a la tienda</a></p>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+$("f").onsubmit=async e=>{e.preventDefault();$("m").textContent="";$("b").disabled=true;
+  try{
+    const r=await fetch("/.netlify/functions/legal",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({nombre:$("nombre").value,email:$("email").value,telefono:$("telefono").value,pedido:$("pedido").value,motivo:$("motivo").value})});
+    const d=await r.json().catch(()=>({}));
+    if(!r.ok){$("m").textContent=d.error||"No se pudo enviar. Probá de nuevo o escribinos por WhatsApp.";$("b").disabled=false;return}
+    $("f").hidden=true;$("ok").hidden=false;
+    $("ok").innerHTML="<b>Listo, recibimos tu pedido de arrepentimiento.</b><br>Tu código es <b style='font-size:1.2em'>"+d.codigo+"</b>. Te lo mandamos también por mail. Guardalo: te vamos a contactar para coordinar la devolución.";
+  }catch{$("m").textContent="No se pudo enviar. Probá de nuevo o escribinos por WhatsApp.";$("b").disabled=false}
+};
+</script>
+</body></html>
