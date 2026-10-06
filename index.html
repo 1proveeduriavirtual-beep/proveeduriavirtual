@@ -186,7 +186,7 @@ footer{max-width:1200px;margin:0 auto;padding:0 16px 40px;color:var(--muted);fon
     let D=panel&&ok(panel.datos)?panel.datos:null;
     if(!D){try{D=JSON.parse(document.getElementById("data").textContent)}catch(e){}}
     if(D){ if(panel&&panel.wa) D={...D,wa:panel.wa}; document.getElementById("data").textContent=JSON.stringify(D); }
-    window.CFG={envio:panel&&panel.envio||null,horarios:panel&&panel.horarios||null};
+    window.CFG={envio:panel&&panel.envio||null,horarios:panel&&panel.horarios||null,pagos:panel&&panel.pagos||{}};
   }catch(e){}
   try{
     const f=await get("/fotos.json");
@@ -214,7 +214,7 @@ const pr=p=>MODO==="bulto"&&p[4]>0?p[4]:p[3];
 const antes=p=>MODO==="bulto"?(p[8]>p[4]?p[8]:0):(p[7]>p[3]?p[7]:0);
 const oferta=p=>!!(antes(p)||p[9]);
 const IMGB="https://www.maxiconsumo.com/media/catalog/product/";
-const foto=p=>p[6]&&D.img?IMGB+D.img+p[6]:(/^https:\/\/images\.open(food|beauty|products)facts\.org\//.test(FOTOS[p[1]]||"")?FOTOS[p[1]]:"");
+const foto=p=>/^https:\/\//.test(p[6]||"")?p[6]:p[6]&&D.img?IMGB+D.img+p[6]:(/^https:\/\/images\.open(food|beauty|products)facts\.org\//.test(FOTOS[p[1]]||"")?FOTOS[p[1]]:"");
 function vaciar(){cart=carts[MODO||"unidad"]={};try{localStorage.setItem("carts",JSON.stringify(carts))}catch(e){}}
 const byEan=Object.fromEntries(P.map(p=>[p[1],p]));
 const $=id=>document.getElementById(id);
@@ -326,7 +326,8 @@ $("wa").addEventListener("click",e=>{if(!window.MINOK){e.preventDefault();$("min
 if(Object.keys(FOTOS).length) $("fotoCred").hidden=false;
 $("copy").onclick=()=>window.MINOK?copyText(msg(),$("copy"),"Pedido copiado","Copiar pedido"):($("minMsg").textContent="La compra mínima es "+fmt(MIN())+".");
 const PAYON=/\.netlify\.app$/.test(location.hostname);
-if(PAYON){$("pay").hidden=false;$("payNote").hidden=false}
+const PG=(window.CFG||{}).pagos||{};
+if(PAYON&&PG.mp!==false){$("pay").hidden=false;$("payNote").hidden=false}
 if(PAYON){$("cupBox").hidden=false;$("cupOk").onclick=async()=>{
   const c=$("cup").value.trim(), m=$("cupMsg");
   if(!c){window.CUP=null;m.textContent="";renderCart();return}
@@ -376,7 +377,7 @@ function dosPedido(btn,metodo,lab){
   };
 }
 if(PAYON){
-  $("payEf").hidden=false; dosPedido($("payEf"),"efectivo","Pagar en efectivo al recibir");
+  if(PG.efectivo!==false){$("payEf").hidden=false; dosPedido($("payEf"),"efectivo","Pagar en efectivo al recibir");}
   fetch("/.netlify/functions/crear-pedido").then(r=>r.json()).then(d=>{if(d.transferencia){$("payTr").hidden=false;dosPedido($("payTr"),"transferencia","Pagar por transferencia")}}).catch(()=>{});
 }
 {const pg=new URLSearchParams(location.search).get("pago");

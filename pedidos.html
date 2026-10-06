@@ -19,21 +19,72 @@ nav button{border:0;background:none;padding:8px 12px;border-radius:99px}nav butt
 .axis{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
 table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}td,th{padding:8px;border-bottom:1px solid var(--line);text-align:left}td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
 ol.steps li{margin:8px 0}code{display:block;max-height:70px;overflow:auto;font-size:11px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px;overflow-wrap:anywhere}
-@media print{#tabs,#f,h1,#com>p.muted,#com>button,#comMsg{display:none!important}section:not(#com){display:none!important}}
+@media print{#tabs,#f,h1,#yoBar,.tools,.muted,section[hidden],button{display:none!important}body{background:#fff}.o{break-inside:avoid}}
+.tools{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0}.tools input[type=search]{flex:1 1 220px}
+td input[type=number]{width:80px;margin:0}.neg{color:#b3261e;font-weight:700}.bajo{color:#a15c00;font-weight:700}
+.tag{display:inline-block;padding:1px 8px;border-radius:99px;background:var(--soft);font-size:12px;margin:2px}
+.chk{display:inline-block;margin:2px 8px 2px 0;white-space:nowrap}
 .msg{font-weight:600}.err{color:#b3261e}.ok{color:var(--brand)}
 </style></head><body><main>
 <h1>Panel de la tienda</h1>
-<form id="f"><input id="k" type="password" placeholder="Clave del panel" autocomplete="current-password"> <button class="p">Entrar</button></form><p id="m" class="msg err"></p>
+<form id="f"><input id="u" placeholder="Usuario (vacío = dueño)" autocomplete="username" style="width:200px"> <input id="k" type="password" placeholder="Clave" autocomplete="current-password"> <button class="p">Entrar</button></form><p id="m" class="msg err"></p>
+<p id="yoBar" class="muted" hidden></p>
 <div id="app" hidden>
-<nav id="tabs"><button data-t="ped" aria-pressed="true">Pedidos</button><button data-t="com">Lista de compras</button><button data-t="est">Estadísticas</button><button data-t="pre">Precios, envío y WhatsApp</button><button data-t="cup">Cupones</button><button data-t="fac">Facturación</button></nav>
+<nav id="tabs"><button data-t="ped" data-p="pedidos" aria-pressed="true">Pedidos</button><button data-t="ent" data-p="entregas">Entregas</button><button data-t="cli" data-p="clientes">Clientes</button><button data-t="inv" data-p="stock">Inventario</button><button data-t="cpr" data-p="compras">Compras y proveedores</button><button data-t="cup" data-p="promos">Promociones</button><button data-t="est" data-p="estadisticas">Estadísticas</button><button data-t="pre" data-p="precios">Precios, envío y pagos</button><button data-t="fac" data-p="facturacion">Facturación</button><button data-t="usu" data-p="usuarios">Usuarios</button></nav>
 
-<section id="ped"><div id="l"></div></section>
+<section id="ped"><div class="tools"><input id="pq" type="search" placeholder="Buscar por nombre, teléfono o producto"> <select id="pfe"><option value="">Todos los estados</option><option>pagado</option><option>efectivo al recibir</option><option>espera transferencia</option><option>entregado</option><option>pendiente</option></select> <button type="button" id="pexp">⬇ Exportar a Excel</button></div><div id="l"></div></section>
 
-<section id="com" hidden>
-  <p class="muted">Suma todos los productos de los pedidos que todavía no entregaste (pagados, en efectivo al recibir o esperando transferencia). Es lo que tenés que comprar en Maxiconsumo.</p>
-  <button type="button" onclick="print()">Imprimir</button> <button type="button" id="comWa">Copiar lista</button> <span id="comMsg" class="msg"></span>
-  <div id="comL"></div>
+<section id="ent" hidden>
+  <div class="tools"><select id="entDia"></select> <button type="button" onclick="print()">🖨 Imprimir hoja de ruta</button> <button type="button" id="entExp">⬇ Exportar a Excel</button></div>
+  <p class="muted">Pedidos para entregar, ordenados por día y zona. Tocá la dirección para abrir el mapa y el teléfono para escribirle por WhatsApp.</p>
+  <div id="entL"></div>
 </section>
+
+<section id="cli" hidden>
+  <div class="tools"><input id="cliQ" type="search" placeholder="Buscar cliente"> <select id="cliT"><option value="">Todos</option><option value="m">Mayoristas</option><option value="s">Supermercado</option></select> <button type="button" id="cliExp">⬇ Exportar a Excel</button></div>
+  <p class="muted">Se arma sola con cada compra. No hace falta cargar nada.</p>
+  <div class="kpis" id="cliK"></div><div id="cliL"></div>
+</section>
+
+<section id="inv" hidden>
+  <div class="kpis" id="invK"></div>
+  <p class="o">El stock es <b>automático</b>: cada venta lo descuenta y cada compra registrada lo repone. Si un producto queda en negativo es porque se vendió y todavía no lo compraste: aparece solo en <b>Compras</b>. Poné un <b>mínimo</b> en los productos que querés tener siempre en el depósito.</p>
+  <div class="tools"><input id="invQ" type="search" placeholder="Buscar en el stock"> <select id="invF"><option value="">Todos</option><option value="neg">Vendidos sin comprar</option><option value="bajo">Debajo del mínimo</option><option value="con">Con stock</option></select> <button type="button" id="invGuardar" class="p">Guardar cambios</button> <button type="button" id="invExp">⬇ Exportar stock</button> <button type="button" id="catExp">⬇ Exportar catálogo con precios</button> <span id="invMsg" class="msg"></span></div>
+  <div id="invL"></div>
+  <h2>Agregar un producto al stock</h2>
+  <div class="o"><input id="addQ" type="search" placeholder="Buscá un producto del catálogo (ej: yerba playadito)" style="width:100%"><div id="addL"></div></div>
+  <h2>Importar desde Excel</h2>
+  <div class="o">
+    <p class="muted">Subí un Excel (.xlsx) o CSV con títulos en la primera fila. Columnas que entiende: <b>codigo</b>, <b>nombre</b>, <b>cantidad</b> (o stock), <b>minimo</b>, <b>precio</b>, <b>precio_bulto</b>, <b>unidades_bulto</b>, <b>categoria</b>, <b>costo</b>, <b>foto</b>. <a href="#" id="impModelo">Bajar modelo</a></p>
+    <label>¿Qué querés importar? <select id="impTipo"><option value="stock">Cantidades de stock y mínimos (de productos que ya están)</option><option value="propios">Productos nuevos propios (con precio)</option></select></label><br>
+    <input id="impFile" type="file" accept=".xlsx,.xls,.csv,text/csv"> <button type="button" id="impOk" class="p" disabled>Importar</button> <span id="impMsg" class="msg"></span>
+  </div>
+  <h2>Productos propios</h2>
+  <p class="muted">Productos que no son de Maxiconsumo (por ejemplo, de otro proveedor o de tu depósito). Se muestran en la tienda mientras tengan stock.</p>
+  <form id="propF" class="o">
+    <input id="prN" placeholder="Nombre" required style="width:260px"> <input id="prC" placeholder="Categoría" list="catsDL" style="width:140px"><datalist id="catsDL"></datalist>
+    <label>Precio unidad $<input id="prU" type="number" min="0" style="width:100px"></label> <label>Precio bulto (c/u) $<input id="prB" type="number" min="0" style="width:100px"></label> <label>Unid. por bulto <input id="prBu" type="number" min="1" value="1" style="width:70px"></label>
+    <label>Costo $<input id="prCo" type="number" min="0" style="width:90px"></label> <label>Stock <input id="prS" type="number" style="width:80px"></label><br>
+    <input id="prF" placeholder="Foto (link https://…, opcional)" style="width:360px"> <button class="p">Agregar producto</button> <span id="prMsg" class="msg"></span>
+  </form>
+  <div id="propL"></div>
+  <h2>Movimientos de stock</h2>
+  <div class="tools"><input id="movMes" type="month"> <button type="button" id="movExp">⬇ Exportar</button></div><div id="movL"></div>
+</section>
+
+<section id="cpr" hidden>
+  <h2>Para comprar</h2>
+  <p class="muted">Se arma sola: lo vendido que no tenés en el depósito + lo que quedó debajo del mínimo. Revisá las cantidades y, cuando compres, tocá <b>Registrar compra</b>: el stock se repone solo.</p>
+  <div class="tools"><label>Proveedor <select id="cprProv"></select></label> <button type="button" id="cprReg" class="p">✔ Registrar compra</button> <button type="button" id="cprCopy">Copiar lista</button> <button type="button" onclick="print()">🖨 Imprimir</button> <button type="button" id="cprExp">⬇ Exportar</button> <span id="cprMsg" class="msg"></span></div>
+  <div id="cprL"></div>
+  <h2>Compras registradas</h2>
+  <div class="tools"><button type="button" id="cprHExp">⬇ Exportar compras</button></div><div id="cprH"></div>
+  <h2>Proveedores</h2>
+  <form id="provF" class="o"><input type="hidden" id="pvId"><input id="pvN" placeholder="Nombre" required> <input id="pvC" placeholder="Contacto"> <input id="pvT" placeholder="Teléfono"> <input id="pvE" placeholder="Email"> <input id="pvW" placeholder="Web"> <input id="pvNo" placeholder="Notas" style="width:240px"> <button class="p">Guardar proveedor</button> <button type="button" id="pvExp">⬇ Exportar</button></form>
+  <div id="provL"></div>
+</section>
+
+
 
 <section id="est" hidden>
   <label>Período: <select id="per"><option value="30">Últimos 30 días</option><option value="7">Últimos 7 días</option><option value="mes">Este mes</option><option value="todo">Todo</option></select></label>
@@ -80,9 +131,22 @@ ol.steps li{margin:8px 0}code{display:block;max-height:70px;overflow:auto;font-s
   </form>
   <h2>Lista de precios para mayoristas</h2>
   <p class="o">Para mandar por WhatsApp a comercios: <a href="/lista.html" target="_blank" rel="noopener"><b>proveeduriavirtual.netlify.app/lista.html</b></a> (siempre con los precios del día; se puede imprimir o guardar como PDF).</p>
+  <h2>Medios de pago</h2>
+  <form id="pgF" class="o">
+    <label><input id="pgMp" type="checkbox"> Mercado Pago (tarjetas, débito, saldo, Rapipago/Pago Fácil)</label><br>
+    <label><input id="pgEf" type="checkbox"> Efectivo al recibir</label><br>
+    <label><input id="pgTr" type="checkbox"> Transferencia directa</label> <input id="pgAl" placeholder="Alias o CBU" style="width:220px"><br>
+    <button class="p">Guardar medios de pago</button> <span id="pgMsg" class="msg"></span>
+  </form>
   <h2>WhatsApp de la tienda</h2>
   <form id="wf" class="o"><input id="wa" inputmode="numeric" placeholder="5491123456789" style="width:200px"> <button class="p">Guardar</button> <span id="wmsg" class="msg"></span>
   <p class="muted">Con 549 + código de área + número, sin espacios ni guiones.</p></form>
+</section>
+
+<section id="usu" hidden>
+  <p class="muted">Cada persona entra con su usuario y clave, y ve solo lo que le toca. <b>Vendedor</b>: pedidos, entregas, clientes, promociones y estadísticas. <b>Depósito</b>: pedidos, entregas, inventario y compras. <b>Repartidor</b>: solo sus entregas. El dueño entra dejando el usuario vacío y poniendo la clave de siempre.</p>
+  <form id="usF" class="o"><input id="usN" placeholder="Nombre" required> <input id="usU" placeholder="Usuario (sin espacios)" required> <input id="usC" type="password" placeholder="Clave (mín. 6)" required autocomplete="new-password"> <select id="usR"><option value="vendedor">Vendedor</option><option value="deposito">Depósito</option><option value="repartidor">Repartidor</option><option value="dueño">Dueño</option></select> <button class="p">Crear usuario</button> <span id="usMsg" class="msg"></span></form>
+  <div id="usL"></div>
 </section>
 
 <section id="fac" hidden>
@@ -115,7 +179,18 @@ ol.steps li{margin:8px 0}code{display:block;max-height:70px;overflow:auto;font-s
   <p class="muted">La clave privada se genera y queda guardada en tu tienda; nunca se descarga ni se comparte. Ante dudas sobre qué factura te corresponde, consultá con tu contador.</p>
 </section>
 
-<section id="cup" hidden><form id="cf"><input id="cc" placeholder="Código (ej: BIENVENIDO)"> <input id="cp" type="number" min="1" max="90" placeholder="% off" style="width:80px"> <input id="cv" type="date" title="Vence (opcional)"> <button class="p">Crear cupón</button></form><div id="cl"></div></section>
+<section id="cup" hidden>
+  <h2>Promociones</h2>
+  <p class="muted">Bajan el precio solas en la tienda durante las fechas que elijas y aparecen en "🔥 Ofertas". Sin categorías ni productos elegidos, aplica a toda la tienda.</p>
+  <form id="proF" class="o"><input type="hidden" id="poId">
+    <input id="poN" placeholder="Nombre (ej: Semana de la limpieza)" required style="width:260px"> <label><input id="poP" type="number" min="1" max="90" required style="width:70px"> % off</label>
+    <label>Para <select id="poM"><option value="ambos">Mayoristas y Supermercado</option><option value="unidad">Solo Supermercado</option><option value="bulto">Solo Mayoristas</option></select></label>
+    <label>Desde <input id="poD" type="date"></label> <label>Hasta <input id="poH" type="date"></label> <label><input id="poA" type="checkbox" checked> Activa</label>
+    <div><b>Categorías:</b> <span id="poCats"></span></div>
+    <div><b>Productos:</b> <input id="poQ" type="search" placeholder="Buscar producto para agregar" style="width:300px"><div id="poQL"></div><div id="poSk"></div></div>
+    <button class="p">Guardar promoción</button> <span id="poMsg" class="msg"></span></form>
+  <div id="proL"></div>
+  <h2>Cupones de descuento</h2><form id="cf"><input id="cc" placeholder="Código (ej: BIENVENIDO)"> <input id="cp" type="number" min="1" max="90" placeholder="% off" style="width:80px"> <input id="cv" type="date" title="Vence (opcional)"> <button class="p">Crear cupón</button></form><div id="cl"></div></section>
 </div></main>
 <script>
 const BM="javascript:(async%20()%20%3D%3E%20%7B%20if%20(!%2Fmaxiconsumo%5C.com%24%2F.test(location.host))%20%7B%20alert(%22Primero%20abr%C3%AD%20www.maxiconsumo.com%20y%20despu%C3%A9s%20toc%C3%A1%20este%20marcador%22)%3B%20return%3B%20%7D%20const%20SUC%20%3D%20(location.pathname.match(%2F%5C%2F(sucursal_%5Ba-z0-9_%5D%2B)%2F)%20%7C%7C%20%5B%5D)%5B1%5D%20%7C%7C%20%22sucursal_moreno%22%3B%20const%20CATS%20%3D%20%5B%5B%22almacen%22%2C%20%22almac%C3%A9n%22%5D%2C%20%5B%22bebidas%22%2C%20%22bebidas%22%5D%2C%20%5B%22limpieza%22%2C%20%22limpieza%22%5D%2C%20%5B%22perfumeria%22%2C%20%22perfumer%C3%ADa%22%5D%2C%20%5B%22frescos%22%2C%20%22frescos%22%5D%2C%20%5B%22congelados%22%2C%20%22congelados%22%5D%2C%20%5B%22hogar-y-bazar%22%2C%20%22hogar%20y%20bazar%22%5D%2C%20%5B%22mascotas%22%2C%20%22mascotas%22%5D%2C%20%5B%22electro%22%2C%20%22electro%22%5D%5D%3B%20const%20box%20%3D%20document.createElement(%22div%22)%3B%20box.style.cssText%20%3D%20%22position%3Afixed%3Bz-index%3A99999%3Btop%3A12px%3Bleft%3A50%25%3Btransform%3AtranslateX(-50%25)%3Bbackground%3A%231f5c3a%3Bcolor%3A%23fff%3Bpadding%3A14px%2020px%3Bborder-radius%3A12px%3Bfont%3A600%2016px%20system-ui%3Bbox-shadow%3A0%204px%2020px%20%230005%22%3B%20document.body.appendChild(box)%3B%20const%20say%20%3D%20t%20%3D%3E%20%7B%20box.textContent%20%3D%20t%3B%20document.title%20%3D%20t%3B%20%7D%3B%20const%20num%20%3D%20s%20%3D%3E%20s%20%3F%20parseFloat(s.replace(%2F%5C.%2Fg%2C%20%22%22).replace(%22%2C%22%2C%20%22.%22))%20%3A%200%3B%20const%20get%20%3D%20async%20u%20%3D%3E%20%7B%20for%20(let%20i%20%3D%200%3B%20i%20%3C%203%3B%20i%2B%2B)%20%7B%20try%20%7B%20const%20r%20%3D%20await%20fetch(u)%3B%20if%20(r.ok)%20return%20new%20DOMParser().parseFromString(await%20r.text()%2C%20%22text%2Fhtml%22)%3B%20%7D%20catch%20(e)%20%7B%7D%20await%20new%20Promise(r%20%3D%3E%20setTimeout(r%2C%201500))%3B%20%7D%20return%20null%3B%20%7D%3B%20const%20url%20%3D%20(c%2C%20p)%20%3D%3E%20%22%2F%22%20%2B%20SUC%20%2B%20%22%2F%22%20%2B%20c%20%2B%20%22.html%3Fproduct_list_limit%3D96%26p%3D%22%20%2B%20p%3B%20let%20IMG%20%3D%20%22%22%3B%20const%20S%20%3D%20new%20Set()%2C%20L%20%3D%20%5B%5D%3B%20const%20leer%20%3D%20(d%2C%20ci)%20%3D%3E%20%7B%20for%20(const%20x%20of%20d.querySelectorAll(%22li.product-item%22))%20%7B%20const%20tx%20%3D%20x.textContent.replace(%2F%5Cs%2B%2Fg%2C%20%22%20%22)%3B%20const%20sku%20%3D%20(x.querySelector(%22.product-sku%22)%3F.textContent.match(%2F%5Cd%2B%2F)%20%7C%7C%20%5B%5D)%5B0%5D%3B%20const%20nm%20%3D%20(x.querySelector(%22.product-item-link%22)%3F.textContent%20%7C%7C%20%22%22).replace(%2F%5Cs%2B%2Fg%2C%20%22%20%22).trim().replace(%2F%5C%7C%2Fg%2C%20%22%2F%22)%3B%20const%20st%20%3D%20%2Fen%20stock%2Fi.test(x.querySelector(%22.stock-status%22)%3F.textContent%20%7C%7C%20%22%22)%20%3F%201%20%3A%200%3B%20const%20pb%20%3D%20num((tx.match(%2Fbulto%20cerrado%20%3F%5C%24%20%3F(%5B%5Cd.%5D%2B%2C%5Cd%2B)%2F)%20%7C%7C%20%5B%5D)%5B1%5D)%3B%20const%20pu%20%3D%20num((tx.match(%2FPrecio%20unitario%20%3F%5C%24%20%3F(%5B%5Cd.%5D%2B%2C%5Cd%2B)%2F)%20%7C%7C%20%5B%5D)%5B1%5D)%3B%20let%20bu%20%3D%201%3B%20for%20(const%20s%20of%20x.querySelectorAll(%22script%22))%20%7B%20const%20c%20%3D%20s.textContent%2C%20i%20%3D%20c.indexOf('%22code%22%3A%22presentacion%22')%3B%20if%20(i%20%3C%200)%20continue%3B%20const%20j%20%3D%20c.indexOf('%22options%22%3A'%2C%20i)%2C%20k%20%3D%20c.indexOf('%22position%22'%2C%20j)%3B%20try%20%7B%20bu%20%3D%20Math.max(1%2C%20...JSON.parse(c.slice(j%20%2B%2010%2C%20c.lastIndexOf(%22%5D%22%2C%20k)%20%2B%201)).filter(o%20%3D%3E%20o.products%20%26%26%20o.products.length).map(o%20%3D%3E%20%2Bo.label%20%7C%7C%201))%3B%20%7D%20catch%20(e)%20%7B%7D%20%7D%20const%20im%20%3D%20x.querySelector(%22img.product-image-photo%22)%3B%20const%20src%20%3D%20im%3F.getAttribute(%22data-src%22)%20%7C%7C%20im%3F.getAttribute(%22src%22)%20%7C%7C%20%22%22%3B%20const%20m%20%3D%20src.match(%2F%5C%2Fmedia%5C%2Fcatalog%5C%2Fproduct%5C%2F(cache%5C%2F%5B%5E%2F%5D%2B%5C%2F)%3F(.%2B%3F)(%5C%3F%7C%24)%2F)%3B%20if%20(m%20%26%26%20m%5B1%5D%20%26%26%20!IMG)%20IMG%20%3D%20m%5B1%5D%3B%20if%20(!sku%20%7C%7C%20!nm%20%7C%7C%20!(pb%20%3E%200%20%7C%7C%20pu%20%3E%200)%20%7C%7C%20S.has(sku))%20continue%3B%20S.add(sku)%3B%20L.push(%5Bci%2C%20sku%2C%20st%2C%20pb%2C%20pu%2C%20bu%2C%20nm%2C%20m%20%26%26%20!%2Fplaceholder%2F.test(m%5B2%5D)%20%3F%20m%5B2%5D%20%3A%20%22%22%5D.join(%22%7C%22))%3B%20%7D%20%7D%3B%20const%20PROMO%20%3D%20new%20Set()%3B%20for%20(const%20c%20of%20%5B%22solo-por-hoy%22%2C%20%22fin-de-semana%22%5D)%20%7B%20const%20d%20%3D%20await%20get(url(c%2C%201))%3B%20if%20(d)%20for%20(const%20x%20of%20d.querySelectorAll(%22li.product-item%22))%20%7B%20const%20k%20%3D%20(x.querySelector(%22.product-sku%22)%3F.textContent.match(%2F%5Cd%2B%2F)%20%7C%7C%20%5B%5D)%5B0%5D%3B%20if%20(k)%20PROMO.add(k)%3B%20%7D%20%7D%20const%20jobs%20%3D%20%5B%5D%3B%20for%20(let%20i%20%3D%200%3B%20i%20%3C%20CATS.length%3B%20i%2B%2B)%20%7B%20say(%22Maxiconsumo%3A%20revisando%20categor%C3%ADas%20%22%20%2B%20(i%20%2B%201)%20%2B%20%22%2F%22%20%2B%20CATS.length%20%2B%20%22%E2%80%A6%22)%3B%20const%20d%20%3D%20await%20get(url(CATS%5Bi%5D%5B0%5D%2C%201))%3B%20if%20(!d)%20continue%3B%20leer(d%2C%20i)%3B%20const%20tot%20%3D%20Math.max(0%2C%20...%5B...d.querySelectorAll(%22.toolbar-number%22)%5D.map(e%20%3D%3E%20%2Be.textContent.replace(%2F%5CD%2Fg%2C%20%22%22)%20%7C%7C%200))%3B%20for%20(let%20p%20%3D%202%3B%20p%20%3C%3D%20Math.ceil(tot%20%2F%2096)%3B%20p%2B%2B)%20jobs.push(%5Bi%2C%20p%5D)%3B%20%7D%20let%20hechos%20%3D%200%2C%20fallas%20%3D%200%3B%20const%20total%20%3D%20jobs.length%3B%20await%20Promise.all(%5B0%2C%201%2C%202%2C%203%5D.map(async%20()%20%3D%3E%20%7B%20while%20(jobs.length)%20%7B%20const%20%5Bi%2C%20p%5D%20%3D%20jobs.shift()%3B%20const%20d%20%3D%20await%20get(url(CATS%5Bi%5D%5B0%5D%2C%20p))%3B%20if%20(d)%20leer(d%2C%20i)%3B%20else%20fallas%2B%2B%3B%20hechos%2B%2B%3B%20say(%22Maxiconsumo%3A%20bajando%20precios%20%22%20%2B%20Math.round(hechos%20%2F%20total%20*%20100)%20%2B%20%22%25%20%C2%B7%20%22%20%2B%20L.length%20%2B%20%22%20productos%22)%3B%20%7D%20%7D))%3B%20const%20txt%20%3D%20%22%23maxiconsumo%7C%22%20%2B%20SUC%20%2B%20%22%7C%22%20%2B%20IMG%20%2B%20%22%5Cn%23cats%7C%22%20%2B%20CATS.map(c%20%3D%3E%20c%5B1%5D).join(%22%7C%22)%20%2B%20%22%5Cn%23promo%7C%22%20%2B%20%5B...PROMO%5D.join(%22%2C%22)%20%2B%20%22%5Cn%23formato%3A%20cat%7Csku%7Cstock%7Cprecio_bulto%7Cprecio_suelto%7Cunidades_bulto%7Cnombre%7Cfoto%5Cn%22%20%2B%20L.join(%22%5Cn%22)%3B%20const%20a%20%3D%20document.createElement(%22a%22)%3B%20a.href%20%3D%20URL.createObjectURL(new%20Blob(%5Btxt%5D%2C%20%7B%20type%3A%20%22text%2Fplain%22%20%7D))%3B%20a.download%20%3D%20%22maxiconsumo_productos.txt%22%3B%20document.body.appendChild(a)%3B%20a.click()%3B%20a.remove()%3B%20say(%22Listo%3A%20%22%20%2B%20L.length%20%2B%20%22%20productos%22)%3B%20alert(%22Listo%3A%20%22%20%2B%20L.length%20%2B%20%22%20productos%22%20%2B%20(fallas%20%3F%20%22%20(%22%20%2B%20fallas%20%2B%20%22%20p%C3%A1ginas%20no%20se%20pudieron%20leer%3A%20si%20son%20muchas%2C%20prob%C3%A1%20de%20nuevo)%22%20%3A%20%22%22)%20%2B%20%22.%20Ahora%20sub%C3%AD%20maxiconsumo_productos.txt%20en%20el%20panel%20de%20tu%20tienda.%22)%3B%20%7D)()%3B";
@@ -126,7 +201,7 @@ const money=n=>"$ "+Math.round(n).toLocaleString("es-AR");
 const api=(f,opt)=>fetch("/.netlify/functions/"+f+"?k="+encodeURIComponent(K),opt);
 $("bm").textContent=BM;
 $("copyBm").onclick=async()=>{try{await navigator.clipboard.writeText(BM);$("copyBm").textContent="¡Copiado!"}catch(e){$("copyBm").textContent="Seleccioná el código y copialo a mano"}setTimeout(()=>$("copyBm").textContent="Copiar código del marcador",2500)};
-$("tabs").onclick=e=>{const b=e.target.closest("button");if(!b)return;for(const x of $("tabs").children){x.setAttribute("aria-pressed",x===b);$(x.dataset.t).hidden=x!==b}if(b.dataset.t==="est")stats();if(b.dataset.t==="pre")loadP();if(b.dataset.t==="com")compras();if(b.dataset.t==="cup")loadC();if(b.dataset.t==="fac")loadF()};
+$("tabs").onclick=e=>{const b=e.target.closest("button");if(!b)return;for(const x of $("tabs").children){x.setAttribute("aria-pressed",x===b);$(x.dataset.t).hidden=x!==b}if(b.dataset.t==="est")stats();if(b.dataset.t==="pre")loadP();if(window.TABS&&TABS[b.dataset.t])TABS[b.dataset.t]();if(b.dataset.t==="cup")loadC();if(b.dataset.t==="fac")loadF()};
 
 async function load(){
   const r=await api("pedidos");
@@ -213,20 +288,6 @@ $("hf").onsubmit=async e=>{e.preventDefault();const m=$("hmsg");
   const dias=[...$("hDias").querySelectorAll("input:checked")].map(x=>+x.value);
   const r=await api("productos",{method:"POST",body:JSON.stringify({horarios:{dias,franjas:$("hFr").value.split("\n"),anticipacion:+$("hAnt").value}})});const d=await r.json().catch(()=>({}));
   m.className="msg "+(r.ok?"ok":"err");m.textContent=r.ok?"Guardado. La tienda lo usa en 1 minuto.":(d.error||"No se pudo guardar.")};
-// Lista de compras: suma lo que hay que comprar para los pedidos sin entregar
-let COM="";
-function compras(){
-  const act=L.filter(o=>["pagado","efectivo al recibir","espera transferencia"].includes(o.estado));
-  const M=new Map();
-  for(const o of act)for(const i of o.items||[]){const k=i.sku||i.nombre;const x=M.get(k)||{nombre:i.nombre.replace(/^BULTO x\d+ - /,""),bultos:0,unid:0,bu:0};
-    if(i.bulto){x.bultos+=i.cantidad;x.bu=i.bulto}else{x.unid+=i.cantidad;const b=(i.nombre.match(/^BULTO x(\d+)/)||[])[1];if(b){x.bultos+=i.cantidad;x.unid-=i.cantidad;x.bu=+b}}
-    M.set(k,x)}
-  const rows=[...M.values()].sort((a,b)=>plain(a.nombre).localeCompare(plain(b.nombre)));
-  const txt=x=>[x.bultos?`${x.bultos} bulto${x.bultos>1?"s":""} x${x.bu}`:"",x.unid?`${x.unid} unidad${x.unid>1?"es":""}`:""].filter(Boolean).join(" + ");
-  COM="Lista de compras ("+act.length+" pedidos):\n"+rows.map(x=>"• "+txt(x)+" — "+plain(x.nombre)).join("\n");
-  $("comL").innerHTML=rows.length?`<p><b>${act.length}</b> pedidos sin entregar · <b>${rows.length}</b> productos</p><table><tr><th>Producto</th><th class="n">Comprar</th></tr>${rows.map(x=>`<tr><td>${esc(plain(x.nombre))}</td><td class="n">${esc(txt(x))}</td></tr>`).join("")}</table>`:'<p class="muted">No hay pedidos sin entregar.</p>';
-}
-$("comWa").onclick=async()=>{try{await navigator.clipboard.writeText(COM);$("comMsg").className="msg ok";$("comMsg").textContent="Copiada: pegala en WhatsApp o en tus notas."}catch(e){$("comMsg").className="msg err";$("comMsg").textContent="No se pudo copiar."}};
 $("wf").onsubmit=async e=>{e.preventDefault();const m=$("wmsg");
   const r=await api("productos",{method:"POST",body:JSON.stringify({wa:$("wa").value})});const d=await r.json().catch(()=>({}));
   m.className="msg "+(r.ok?"ok":"err");m.textContent=r.ok?"Guardado. La tienda lo usa en 1 minuto.":(d.error||"No se pudo guardar.");if(r.ok)loadP()};
@@ -264,6 +325,8 @@ async function loadC(){
 }
 async function delC(c){await api("cupones",{method:"POST",body:JSON.stringify({codigo:c,borrar:true})});loadC()}
 $("cf").onsubmit=async e=>{e.preventDefault();const r=await api("cupones",{method:"POST",body:JSON.stringify({codigo:$("cc").value,pct:$("cp").value,vence:$("cv").value})});if(!r.ok){$("m").textContent=(await r.json()).error;return}$("cc").value="";$("cp").value="";loadC()};
-$("f").onsubmit=e=>{e.preventDefault();K=$("k").value;load()};
-if(K)load();
-</script></body></html>
+$("f").onsubmit=e=>{e.preventDefault();entrar()};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" defer></script>
+<script src="/gestion.js"></script>
+</body></html>
