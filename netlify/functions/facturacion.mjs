@@ -3,6 +3,7 @@
 //   GET  ?k=CLAVE&id=PEDIDO  -> pedido + datos del emisor (para ver / imprimir la factura)
 //   POST ?k=CLAVE {accion: "config" | "csr" | "cert" | "probar" | "facturar", ...}
 import { getStore } from "@netlify/blobs";
+import { mandarFactura } from "../../lib/aviso.mjs";
 import { generarClaveYCSR, revisarCertificado, facturarPedido, probar, leerConfig, configCompleta } from "../../lib/arca.mjs";
 
 const J = (o, s = 200) => new Response(JSON.stringify(o), { status: s, headers: { "content-type": "application/json", "cache-control": "no-store" } });
@@ -71,9 +72,20 @@ export default async (req) => {
 
     if (b.accion === "probar") return J({ ok: true, ...(await probar()) });
 
-    if (b.accion === "facturar") {
-      const f = await facturarPedido(b.id);
-      return J({ ok: true, factura: f });
+    if (b.accion === "facturar" || b.accion === "enviar") {
+      const f = b.accion === "facturar" ? await facturarPedido(b.id) : null;
+      const P = getStore("pedidos");
+      const o = await P.get(String(b.id), { type: "json" });
+      if (!o?.factura) return J({ error: "Ese pedido no tiene factura." }, 400);
+      let enviada = null;
+      // al facturar se manda sola solo si es real y nunca se mandó; "enviar" la manda siempre (también de prueba)
+      if (o.email && (b.accion === "enviar" || (o.factura.prod && !o.facturaEnviada))) {
+        const link = `${url.origin}/factura.html?id=${encodeURIComponent(o.id)}&t=${o.factura.token}`;
+        if (await mandarFactura(o, cfg, link)) { o.facturaEnviada = new Date().toISOString(); await P.setJSON(o.id, o); enviada = o.email; }
+        else if (b.accion === "enviar") return J({ error: "No se pudo mandar el mail. Revisá GMAIL_APP_PASSWORD en Netlify." }, 502);
+      }
+      if (b.accion === "enviar" && !o.email) return J({ error: "El cliente no dejó email." }, 400);
+      return J({ ok: true, factura: f || o.factura, enviada });
     }
     return J({ error: "acción desconocida" }, 400);
   } catch (e) {

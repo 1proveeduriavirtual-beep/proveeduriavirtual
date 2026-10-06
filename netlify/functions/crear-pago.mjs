@@ -14,6 +14,8 @@ export default async (req) => {
   const nombre = String(b.nombre || "").trim().slice(0, 80);
   const direccion = String(b.direccion || "").trim().slice(0, 160);
   const telefono = String(b.telefono || "").trim().slice(0, 30);
+  const email = String(b.email || "").trim().slice(0, 120);
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return J({ error: "Revisá el email (o dejalo vacío)." }, 400);
   if (!nombre || !direccion || telefono.replace(/\D/g, "").length < 8) return J({ error: "Completá nombre, dirección y teléfono." }, 400);
   if (!Array.isArray(b.items) || !b.items.length || b.items.length > 100) return J({ error: "El carrito está vacío." }, 400);
 
@@ -54,7 +56,7 @@ export default async (req) => {
   if (!r.ok || !d.init_point) return J({ error: "Mercado Pago no pudo crear el pago." }, 502);
 
   await getStore("pedidos").setJSON(id, {
-    id, fecha: new Date().toISOString(), estado: "pendiente", cupon: pct ? norm(b.cupon) : undefined, descuento: pct || undefined, nombre, direccion, telefono, total,
+    id, fecha: new Date().toISOString(), estado: "pendiente", cupon: pct ? norm(b.cupon) : undefined, descuento: pct || undefined, nombre, direccion, telefono, email: email || undefined, total,
     items: items.map(i => ({ nombre: i.title, cantidad: i.quantity, precio: i.unit_price })),
   });
   return J({ url: d.init_point });
