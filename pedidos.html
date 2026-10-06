@@ -24,7 +24,7 @@ ol.steps li{margin:8px 0}code{display:block;max-height:70px;overflow:auto;font-s
 <h1>Panel de la tienda</h1>
 <form id="f"><input id="k" type="password" placeholder="Clave del panel" autocomplete="current-password"> <button class="p">Entrar</button></form><p id="m" class="msg err"></p>
 <div id="app" hidden>
-<nav id="tabs"><button data-t="ped" aria-pressed="true">Pedidos</button><button data-t="est">Estadísticas</button><button data-t="pre">Precios y WhatsApp</button><button data-t="cup">Cupones</button></nav>
+<nav id="tabs"><button data-t="ped" aria-pressed="true">Pedidos</button><button data-t="est">Estadísticas</button><button data-t="pre">Precios y WhatsApp</button><button data-t="cup">Cupones</button><button data-t="fac">Facturación</button></nav>
 
 <section id="ped"><div id="l"></div></section>
 
@@ -57,6 +57,34 @@ ol.steps li{margin:8px 0}code{display:block;max-height:70px;overflow:auto;font-s
   <p class="muted">Con 549 + código de área + número, sin espacios ni guiones.</p></form>
 </section>
 
+<section id="fac" hidden>
+  <div class="o" id="fest">Cargando…</div>
+  <h2>1. Datos del negocio</h2>
+  <form id="ff" class="o">
+    <label>CUIT <input id="fcuit" inputmode="numeric" placeholder="20123456789" style="width:160px" required></label>
+    <label>Razón social o nombre <input id="frazon" style="width:260px" required></label><br>
+    <label>Domicilio comercial <input id="fdom" style="width:360px"></label><br>
+    <label>Condición <select id="ftipo"><option value="C">Monotributo (Factura C)</option><option value="B">Responsable inscripto (Factura B)</option></select></label>
+    <label id="falic" hidden>IVA de los productos <select id="fali"><option value="21">21 %</option><option value="10.5">10,5 %</option></select></label><br>
+    <label>Punto de venta <input id="fpto" type="number" min="1" max="99998" style="width:90px" required></label>
+    <label>Ingresos Brutos <input id="fiibb" style="width:140px"></label>
+    <label>Inicio de actividades <input id="finicio" type="date"></label><br>
+    <label>Ambiente <select id="fprod"><option value="0">Prueba (homologación: las facturas no valen)</option><option value="1">Real (facturas válidas)</option></select></label><br>
+    <label><input id="factivo" type="checkbox"> Facturar automáticamente al tocar <b>Marcar entregado</b></label><br>
+    <button class="p">Guardar datos</button> <span id="ffmsg" class="msg"></span>
+  </form>
+  <h2>2. Certificado de ARCA</h2>
+  <ol class="steps">
+    <li>Tocá <b>Generar pedido de certificado</b> y descargá el archivo <b>.csr</b>.
+      <div><button type="button" id="fcsr">Generar pedido de certificado</button> <label id="fregl" hidden><input id="freg" type="checkbox"> Generar uno nuevo (el actual deja de funcionar)</label> <span id="fcsrmsg" class="msg"></span></div></li>
+    <li>En ARCA, con clave fiscal: <b>Administración de Certificados Digitales</b> (para prueba: <b>WSASS - Autogestión Certificados Homologación</b>). Creá un alias, subí el .csr y descargá el certificado <b>.crt</b>.</li>
+    <li>Subí acá el .crt: <input id="fcrt" type="file" accept=".crt,.pem,.cer"> <span id="fcrtmsg" class="msg"></span></li>
+    <li>En ARCA, en <b>Administrador de Relaciones de Clave Fiscal</b>, asociá el servicio <b>Facturación Electrónica (wsfe)</b> a ese certificado. En <b>Administración de puntos de venta y domicilios</b> creá un punto de venta del tipo <b>"RECE para aplicativo y web services"</b> y ponelo arriba.</li>
+    <li><button type="button" id="fprobar">Probar conexión con ARCA</button> <span id="fpmsg" class="msg"></span></li>
+  </ol>
+  <p class="muted">La clave privada se genera y queda guardada en tu tienda; nunca se descarga ni se comparte. Ante dudas sobre qué factura te corresponde, consultá con tu contador.</p>
+</section>
+
 <section id="cup" hidden><form id="cf"><input id="cc" placeholder="Código (ej: BIENVENIDO)"> <input id="cp" type="number" min="1" max="90" placeholder="% off" style="width:80px"> <input id="cv" type="date" title="Vence (opcional)"> <button class="p">Crear cupón</button></form><div id="cl"></div></section>
 </div></main>
 <script>
@@ -68,19 +96,38 @@ const money=n=>"$ "+Math.round(n).toLocaleString("es-AR");
 const api=(f,opt)=>fetch("/.netlify/functions/"+f+"?k="+encodeURIComponent(K),opt);
 $("bm").textContent=BM;
 $("copyBm").onclick=async()=>{try{await navigator.clipboard.writeText(BM);$("copyBm").textContent="¡Copiado!"}catch(e){$("copyBm").textContent="Seleccioná el código y copialo a mano"}setTimeout(()=>$("copyBm").textContent="Copiar código del marcador",2500)};
-$("tabs").onclick=e=>{const b=e.target.closest("button");if(!b)return;for(const x of $("tabs").children){x.setAttribute("aria-pressed",x===b);$(x.dataset.t).hidden=x!==b}if(b.dataset.t==="est")stats();if(b.dataset.t==="pre")loadP();if(b.dataset.t==="cup")loadC()};
+$("tabs").onclick=e=>{const b=e.target.closest("button");if(!b)return;for(const x of $("tabs").children){x.setAttribute("aria-pressed",x===b);$(x.dataset.t).hidden=x!==b}if(b.dataset.t==="est")stats();if(b.dataset.t==="pre")loadP();if(b.dataset.t==="cup")loadC();if(b.dataset.t==="fac")loadF()};
 
 async function load(){
   const r=await api("pedidos");
   if(!r.ok){$("m").textContent="Clave incorrecta.";return}
   sessionStorage.setItem("k",K);$("f").hidden=true;$("m").textContent="";$("app").hidden=false;
-  L=await r.json();renderP();
+  L=await r.json();
+  const f=await api("facturacion").catch(()=>null);FC=f&&f.ok?await f.json():null;
+  renderP();
+}
+let FC=null;
+const nroF=f=>String(f.ptoVta).padStart(5,"0")+"-"+String(f.nro).padStart(8,"0");
+function facHtml(o){
+  if(o.factura)return `<br>🧾 <b>Factura ${o.factura.tipo} ${nroF(o.factura)}</b>${o.factura.prod?"":" (prueba)"} · <a href="/factura.html?id=${encodeURIComponent(o.id)}" target="_blank">Ver / imprimir</a>`;
+  const puede=FC&&FC.completa&&FC.cert&&["pagado","entregado","efectivo al recibir"].includes(o.estado);
+  return (o.facturaError?`<br><span class="err">Factura: ${esc(o.facturaError)}</span>`:"")+(puede?` <button onclick="facturar(this,'${o.id}')">${o.facturaError?"Reintentar factura":"Facturar"}</button>`:"");
+}
+async function facturar(btn,id){
+  if(btn){btn.disabled=true;btn.textContent="Facturando…"}
+  const r=await api("facturacion",{method:"POST",body:JSON.stringify({accion:"facturar",id})});const d=await r.json().catch(()=>({error:"Error inesperado"}));
+  await load();
+  $("m").className="msg "+(r.ok?"ok":"err");$("m").textContent=r.ok?`Factura ${d.factura.tipo} ${nroF(d.factura)} emitida (CAE ${d.factura.cae}).`:"No se pudo facturar: "+(d.error||"");
 }
 function renderP(){
-  $("l").innerHTML=L.length?L.map(o=>`<div class="o"><b class="e ${esc(o.estado)}">${esc(o.estado)}</b> ${new Date(o.fecha).toLocaleString("es-AR")}<br><b>${esc(o.nombre)}</b> · ${esc(o.telefono)}<br>${esc(o.direccion)}<ul>${o.items.map(i=>`<li>${i.cantidad} x ${esc(i.nombre)}</li>`).join("")}</ul><b>Total ${money(o.total)}</b>${o.pago?" · "+esc(({credit_card:"tarjeta de crédito",debit_card:"tarjeta de débito",account_money:"saldo MP",ticket:"Rapipago/Pago Fácil",bank_transfer:"transferencia",efectivo:"efectivo al recibir"})[o.pago.medio]||o.pago.medio||""):""}${o.cupon?" · cupón "+esc(o.cupon)+" (-"+o.descuento+"%)":""}${o.estado==="espera transferencia"?` <button onclick="setE('${o.id}','pagado')">Marcar pagado</button>`:""}${["pagado","efectivo al recibir"].includes(o.estado)?` <button onclick="setE('${o.id}','entregado')">Marcar entregado</button>`:""} <button onclick="delP(this,'${o.id}')">Borrar</button></div>`).join(""):"Todavía no hay pedidos.";
+  $("l").innerHTML=L.length?L.map(o=>`<div class="o"><b class="e ${esc(o.estado)}">${esc(o.estado)}</b> ${new Date(o.fecha).toLocaleString("es-AR")}<br><b>${esc(o.nombre)}</b> · ${esc(o.telefono)}<br>${esc(o.direccion)}<ul>${o.items.map(i=>`<li>${i.cantidad} x ${esc(i.nombre)}</li>`).join("")}</ul><b>Total ${money(o.total)}</b>${o.pago?" · "+esc(({credit_card:"tarjeta de crédito",debit_card:"tarjeta de débito",account_money:"saldo MP",ticket:"Rapipago/Pago Fácil",bank_transfer:"transferencia",efectivo:"efectivo al recibir"})[o.pago.medio]||o.pago.medio||""):""}${o.cupon?" · cupón "+esc(o.cupon)+" (-"+o.descuento+"%)":""}${o.estado==="espera transferencia"?` <button onclick="setE('${o.id}','pagado')">Marcar pagado</button>`:""}${["pagado","efectivo al recibir"].includes(o.estado)?` <button onclick="setE('${o.id}','entregado')">Marcar entregado</button>`:""}${o.factura?.prod?"":` <button onclick="delP(this,'${o.id}')">Borrar</button>`}${facHtml(o)}</div>`).join(""):"Todavía no hay pedidos.";
 }
-async function setE(id,estado){await api("pedidos",{method:"POST",body:JSON.stringify({id,estado})});load()}
-async function delP(btn,id){if(btn.dataset.s!=="1"){btn.dataset.s="1";btn.textContent="¿Seguro? Tocá de nuevo";setTimeout(()=>{btn.dataset.s="";btn.textContent="Borrar"},4000);return}await api("pedidos",{method:"POST",body:JSON.stringify({id,borrar:true})});load()}
+async function setE(id,estado){
+  await api("pedidos",{method:"POST",body:JSON.stringify({id,estado})});
+  const o=L.find(x=>x.id===id);
+  if(estado==="entregado"&&FC&&FC.cfg.activo&&FC.completa&&FC.cert&&o&&!o.factura){$("m").className="msg";$("m").textContent="Pedido entregado. Haciendo la factura…";return facturar(null,id)}
+  load()}
+async function delP(btn,id){if(btn.dataset.s!=="1"){btn.dataset.s="1";btn.textContent="¿Seguro? Tocá de nuevo";setTimeout(()=>{btn.dataset.s="";btn.textContent="Borrar"},4000);return}const r=await api("pedidos",{method:"POST",body:JSON.stringify({id,borrar:true})});const err=r.ok?"":((await r.json().catch(()=>({}))).error||"No se pudo borrar.");await load();if(err){$("m").className="msg err";$("m").textContent=err}}
 
 function stats(){
   const per=$("per").value, now=new Date();
@@ -120,6 +167,33 @@ $("pf").onsubmit=async e=>{e.preventDefault();const m=$("pmsg");const f=$("pfile
 $("wf").onsubmit=async e=>{e.preventDefault();const m=$("wmsg");
   const r=await api("productos",{method:"POST",body:JSON.stringify({wa:$("wa").value})});const d=await r.json().catch(()=>({}));
   m.className="msg "+(r.ok?"ok":"err");m.textContent=r.ok?"Guardado. La tienda lo usa en 1 minuto.":(d.error||"No se pudo guardar.");if(r.ok)loadP()};
+
+async function loadF(){
+  const r=await api("facturacion");if(!r.ok){$("fest").textContent="No se pudo leer la facturación.";return}
+  FC=await r.json();const c=FC.cfg||{};
+  const vence=FC.cert?new Date(FC.cert.vence).toLocaleDateString("es-AR"):null;
+  $("fest").innerHTML=`Facturación automática: <b>${c.activo&&FC.completa&&FC.cert?"activada":"desactivada"}</b> · Ambiente: <b>${c.prod?"real":"prueba"}</b> · Certificado: <b>${FC.cert?"cargado, vence "+esc(vence):FC.csr?"falta subir el .crt":"sin generar"}</b>`;
+  const set=(i,v)=>{if(v!==undefined&&v!==null)$(i).value=v};
+  set("fcuit",c.cuit);set("frazon",c.razon);set("fdom",c.domicilio);set("ftipo",c.tipo||"C");set("fali",String(c.alicuota||21));set("fpto",c.ptoVta);set("fiibb",c.iibb);set("finicio",c.inicio);set("fprod",c.prod?"1":"0");$("factivo").checked=!!c.activo;
+  $("falic").hidden=$("ftipo").value!=="B";$("fregl").hidden=!FC.cert;
+}
+$("ftipo").onchange=()=>{$("falic").hidden=$("ftipo").value!=="B"};
+const fmsg=(id,ok,t)=>{$(id).className="msg "+(ok?"ok":"err");$(id).textContent=t};
+$("ff").onsubmit=async e=>{e.preventDefault();
+  if($("fprod").value==="1"&&!(FC&&FC.cfg&&FC.cfg.prod)&&!confirm("Con el ambiente REAL las facturas son válidas ante ARCA. ¿Seguro?"))return;
+  const r=await api("facturacion",{method:"POST",body:JSON.stringify({accion:"config",cuit:$("fcuit").value,razon:$("frazon").value,domicilio:$("fdom").value,tipo:$("ftipo").value,alicuota:+$("fali").value,ptoVta:+$("fpto").value,iibb:$("fiibb").value,inicio:$("finicio").value,prod:$("fprod").value==="1",activo:$("factivo").checked})});
+  const d=await r.json().catch(()=>({}));fmsg("ffmsg",r.ok,r.ok?"Guardado.":(d.error||"No se pudo guardar."));if(r.ok)loadF()};
+$("fcsr").onclick=async()=>{
+  const r=await api("facturacion",{method:"POST",body:JSON.stringify({accion:"csr",regenerar:$("freg").checked})});const d=await r.json().catch(()=>({}));
+  if(!r.ok){fmsg("fcsrmsg",false,d.error||"No se pudo generar.");if(d.confirmar)$("fregl").hidden=false;return}
+  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([d.csr],{type:"application/pkcs10"}));a.download="pedido-certificado-"+($("fcuit").value||"arca")+".csr";document.body.appendChild(a);a.click();a.remove();
+  fmsg("fcsrmsg",true,"Listo: se descargó el archivo .csr. Ahora subilo en ARCA.");$("freg").checked=false;loadF()};
+$("fcrt").onchange=async()=>{const f=$("fcrt").files[0];if(!f)return;
+  const r=await api("facturacion",{method:"POST",body:JSON.stringify({accion:"cert",pem:await f.text()})});const d=await r.json().catch(()=>({}));
+  fmsg("fcrtmsg",r.ok,r.ok?"Certificado cargado (vence "+new Date(d.cert.vence).toLocaleDateString("es-AR")+").":(d.error||"No se pudo cargar."));$("fcrt").value="";if(r.ok)loadF()};
+$("fprobar").onclick=async()=>{fmsg("fpmsg",true,"Probando…");$("fpmsg").className="msg";
+  const r=await api("facturacion",{method:"POST",body:JSON.stringify({accion:"probar"})});const d=await r.json().catch(()=>({}));
+  fmsg("fpmsg",r.ok,r.ok?`¡Conectado! Ambiente ${d.ambiente}. Última factura emitida en ese punto de venta: N° ${d.ultimo}.`:(d.error||"No se pudo conectar."))};
 
 async function loadC(){
   const r=await api("cupones");if(!r.ok)return;const C=await r.json();

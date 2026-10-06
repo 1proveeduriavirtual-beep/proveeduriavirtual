@@ -1,0 +1,48 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Factura</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+*{box-sizing:border-box}body{font:14px system-ui,sans-serif;margin:0;background:#f2f2f0;color:#141413}
+.hoja{max-width:800px;margin:16px auto;background:#fff;border:1px solid #ccc;padding:20px}
+.cab{display:grid;grid-template-columns:1fr 70px 1fr;border:1px solid #333}.cab>div{padding:10px}.letra{border-left:1px solid #333;border-right:1px solid #333;text-align:center}
+.letra b{font-size:2.4rem;display:block;line-height:1}.letra small{font-size:11px}
+h1{font-size:1.2rem;margin:0 0 6px}p{margin:3px 0}.rec{border:1px solid #333;border-top:0;padding:10px}
+table{width:100%;border-collapse:collapse;margin-top:12px}th,td{border-bottom:1px solid #ddd;padding:6px;text-align:left}td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+.tot{text-align:right;margin-top:10px;font-size:1.05rem}.pie{display:flex;gap:16px;align-items:center;border-top:1px solid #333;margin-top:16px;padding-top:12px}
+.prueba{background:#fde9a8;padding:8px;text-align:center;font-weight:700;margin-bottom:10px}.muted{color:#5f5e5a;font-size:12px}
+.bar{max-width:800px;margin:16px auto 0;display:flex;gap:8px}button{font:inherit;padding:8px 14px;border-radius:8px;border:1px solid #1f5c3a;background:#1f5c3a;color:#fff;cursor:pointer}
+@media print{body{background:#fff}.bar{display:none}.hoja{border:0;margin:0;max-width:none}}
+</style></head><body>
+<div class="bar"><button onclick="print()">Imprimir / guardar PDF</button></div>
+<div class="hoja" id="h">Cargando…</div>
+<script>
+const $=i=>document.getElementById(i);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const plain=s=>{const t=document.createElement("textarea");t.innerHTML=s;return t.value};
+const money=n=>"$ "+Number(n).toLocaleString("es-AR",{minimumFractionDigits:2,maximumFractionDigits:2});
+const fch=s=>s?`${s.slice(6,8)}/${s.slice(4,6)}/${s.slice(0,4)}`:"";
+(async()=>{
+  let K=sessionStorage.getItem("k");const id=new URLSearchParams(location.search).get("id");
+  if(!K){K=prompt("Clave del panel");if(K)sessionStorage.setItem("k",K)}
+  const r=await fetch("/.netlify/functions/facturacion?k="+encodeURIComponent(K||"")+"&id="+encodeURIComponent(id||""));
+  if(!r.ok){$("h").textContent="No se pudo abrir la factura (clave incorrecta o pedido inexistente).";return}
+  const {pedido:o,emisor:e}=await r.json();const f=o.factura;
+  if(!f){$("h").textContent="Este pedido todavía no tiene factura.";return}
+  const cod=f.tipo==="B"?"006":"011";
+  const nro=String(f.ptoVta).padStart(5,"0")+"-"+String(f.nro).padStart(8,"0");
+  document.title="Factura "+f.tipo+" "+nro;
+  $("h").innerHTML=`${f.prod?"":'<div class="prueba">COMPROBANTE DE PRUEBA (homologación) — SIN VALIDEZ FISCAL</div>'}
+  <div class="cab"><div><h1>${esc(e.razon)}</h1><p>${esc(e.domicilio)}</p><p>${esc(e.condIva)}</p></div>
+  <div class="letra"><b>${f.tipo}</b><small>COD. ${cod}</small></div>
+  <div><h1>FACTURA</h1><p>N° <b>${nro}</b></p><p>Fecha: ${fch(f.fecha)}</p><p>CUIT: ${esc(f.cuit)}</p>${e.iibb?`<p>Ingresos Brutos: ${esc(e.iibb)}</p>`:""}${e.inicio?`<p>Inicio de actividades: ${esc(e.inicio.split("-").reverse().join("/"))}</p>`:""}</div></div>
+  <div class="rec"><p><b>Cliente:</b> ${esc(o.nombre)} — Consumidor Final</p><p><b>Domicilio:</b> ${esc(o.direccion)}</p><p><b>Condición de venta:</b> ${o.pago&&o.pago.medio&&o.pago.medio!=="efectivo"?"Mercado Pago / electrónico":"Contado"}</p></div>
+  <table><tr><th class="n">Cant.</th><th>Producto</th><th class="n">Precio unit.</th><th class="n">Subtotal</th></tr>
+  ${o.items.map(i=>`<tr><td class="n">${i.cantidad}</td><td style="text-transform:capitalize">${esc(plain(i.nombre))}</td><td class="n">${money(i.precio)}</td><td class="n">${money(i.precio*i.cantidad)}</td></tr>`).join("")}</table>
+  ${o.cupon?`<p class="muted">Precios con descuento por cupón ${esc(o.cupon)} (-${o.descuento}%).</p>`:""}
+  <div class="tot">${f.tipo==="B"?`<p class="muted">Régimen de Transparencia Fiscal al Consumidor (Ley 27.743): IVA contenido ${money(f.iva)}</p>`:""}<p><b>Total: ${money(f.total)}</b></p></div>
+  <div class="pie"><div id="qr"></div><div><p><b>CAE:</b> ${esc(f.cae)}</p><p><b>Vencimiento del CAE:</b> ${fch(f.caeVto)}</p><p class="muted">Comprobante autorizado por ARCA.</p></div></div>`;
+  const datos={ver:1,fecha:`${f.fecha.slice(0,4)}-${f.fecha.slice(4,6)}-${f.fecha.slice(6,8)}`,cuit:+f.cuit,ptoVta:+f.ptoVta,tipoCmp:+cod,nroCmp:+f.nro,importe:+f.total,moneda:"PES",ctz:1,tipoDocRec:99,nroDocRec:0,tipoCodAut:"E",codAut:+f.cae};
+  const url="https://www.afip.gob.ar/fe/qr/?p="+btoa(JSON.stringify(datos));
+  try{new QRCode($("qr"),{text:url,width:110,height:110,correctLevel:QRCode.CorrectLevel.M})}catch(err){$("qr").innerHTML=`<a href="${esc(url)}">Ver en ARCA</a>`}
+})();
+</script></body></html>
