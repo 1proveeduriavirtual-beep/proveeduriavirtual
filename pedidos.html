@@ -109,7 +109,7 @@ async function load(){
 let FC=null;
 const nroF=f=>String(f.ptoVta).padStart(5,"0")+"-"+String(f.nro).padStart(8,"0");
 function facHtml(o){
-  if(o.factura)return `<br>🧾 <b>Factura ${o.factura.tipo} ${nroF(o.factura)}</b>${o.factura.prod?"":" (prueba)"} · <a href="/factura.html?id=${encodeURIComponent(o.id)}" target="_blank">Ver / imprimir</a>`;
+  if(o.factura)return `<br>🧾 <b>Factura ${o.factura.tipo} ${nroF(o.factura)}</b>${o.factura.prod?"":" (prueba)"} · <a href="/factura.html?id=${encodeURIComponent(o.id)}" target="_blank">Ver / imprimir</a>`+(o.email?(o.facturaEnviada?` · <span class="muted">mandada por mail el ${new Date(o.facturaEnviada).toLocaleDateString("es-AR")}</span> <button onclick="enviarF(this,'${o.id}')">Reenviar</button>`:` <button onclick="enviarF(this,'${o.id}')">Mandar por mail</button>`):` · <span class="muted">sin email del cliente</span>`);
   const puede=FC&&FC.completa&&FC.cert&&["pagado","entregado","efectivo al recibir"].includes(o.estado);
   return (o.facturaError?`<br><span class="err">Factura: ${esc(o.facturaError)}</span>`:"")+(puede?` <button onclick="facturar(this,'${o.id}')">${o.facturaError?"Reintentar factura":"Facturar"}</button>`:"");
 }
@@ -117,10 +117,14 @@ async function facturar(btn,id){
   if(btn){btn.disabled=true;btn.textContent="Facturando…"}
   const r=await api("facturacion",{method:"POST",body:JSON.stringify({accion:"facturar",id})});const d=await r.json().catch(()=>({error:"Error inesperado"}));
   await load();
-  $("m").className="msg "+(r.ok?"ok":"err");$("m").textContent=r.ok?`Factura ${d.factura.tipo} ${nroF(d.factura)} emitida (CAE ${d.factura.cae}).`:"No se pudo facturar: "+(d.error||"");
+  $("m").className="msg "+(r.ok?"ok":"err");$("m").textContent=r.ok?`Factura ${d.factura.tipo} ${nroF(d.factura)} emitida (CAE ${d.factura.cae}).`+(d.enviada?` Se la mandamos a ${d.enviada}.`:""):"No se pudo facturar: "+(d.error||"");
+}
+async function enviarF(btn,id){btn.disabled=true;btn.textContent="Mandando…";
+  const r=await api("facturacion",{method:"POST",body:JSON.stringify({accion:"enviar",id})});const d=await r.json().catch(()=>({error:"Error inesperado"}));
+  await load();$("m").className="msg "+(r.ok?"ok":"err");$("m").textContent=r.ok?"Factura mandada a "+d.enviada+".":"No se pudo mandar: "+(d.error||"");
 }
 function renderP(){
-  $("l").innerHTML=L.length?L.map(o=>`<div class="o"><b class="e ${esc(o.estado)}">${esc(o.estado)}</b> ${new Date(o.fecha).toLocaleString("es-AR")}<br><b>${esc(o.nombre)}</b> · ${esc(o.telefono)}<br>${esc(o.direccion)}<ul>${o.items.map(i=>`<li>${i.cantidad} x ${esc(i.nombre)}</li>`).join("")}</ul><b>Total ${money(o.total)}</b>${o.pago?" · "+esc(({credit_card:"tarjeta de crédito",debit_card:"tarjeta de débito",account_money:"saldo MP",ticket:"Rapipago/Pago Fácil",bank_transfer:"transferencia",efectivo:"efectivo al recibir"})[o.pago.medio]||o.pago.medio||""):""}${o.cupon?" · cupón "+esc(o.cupon)+" (-"+o.descuento+"%)":""}${o.estado==="espera transferencia"?` <button onclick="setE('${o.id}','pagado')">Marcar pagado</button>`:""}${["pagado","efectivo al recibir"].includes(o.estado)?` <button onclick="setE('${o.id}','entregado')">Marcar entregado</button>`:""}${o.factura?.prod?"":` <button onclick="delP(this,'${o.id}')">Borrar</button>`}${facHtml(o)}</div>`).join(""):"Todavía no hay pedidos.";
+  $("l").innerHTML=L.length?L.map(o=>`<div class="o"><b class="e ${esc(o.estado)}">${esc(o.estado)}</b> ${new Date(o.fecha).toLocaleString("es-AR")}<br><b>${esc(o.nombre)}</b> · ${esc(o.telefono)}<br>${esc(o.direccion)}${o.email?" · "+esc(o.email):""}<ul>${o.items.map(i=>`<li>${i.cantidad} x ${esc(i.nombre)}</li>`).join("")}</ul><b>Total ${money(o.total)}</b>${o.pago?" · "+esc(({credit_card:"tarjeta de crédito",debit_card:"tarjeta de débito",account_money:"saldo MP",ticket:"Rapipago/Pago Fácil",bank_transfer:"transferencia",efectivo:"efectivo al recibir"})[o.pago.medio]||o.pago.medio||""):""}${o.cupon?" · cupón "+esc(o.cupon)+" (-"+o.descuento+"%)":""}${o.estado==="espera transferencia"?` <button onclick="setE('${o.id}','pagado')">Marcar pagado</button>`:""}${["pagado","efectivo al recibir"].includes(o.estado)?` <button onclick="setE('${o.id}','entregado')">Marcar entregado</button>`:""}${o.factura?.prod?"":` <button onclick="delP(this,'${o.id}')">Borrar</button>`}${facHtml(o)}</div>`).join(""):"Todavía no hay pedidos.";
 }
 async function setE(id,estado){
   await api("pedidos",{method:"POST",body:JSON.stringify({id,estado})});

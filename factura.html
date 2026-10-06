@@ -22,10 +22,11 @@ const plain=s=>{const t=document.createElement("textarea");t.innerHTML=s;return 
 const money=n=>"$ "+Number(n).toLocaleString("es-AR",{minimumFractionDigits:2,maximumFractionDigits:2});
 const fch=s=>s?`${s.slice(6,8)}/${s.slice(4,6)}/${s.slice(0,4)}`:"";
 (async()=>{
-  let K=sessionStorage.getItem("k");const id=new URLSearchParams(location.search).get("id");
-  if(!K){K=prompt("Clave del panel");if(K)sessionStorage.setItem("k",K)}
-  const r=await fetch("/.netlify/functions/facturacion?k="+encodeURIComponent(K||"")+"&id="+encodeURIComponent(id||""));
-  if(!r.ok){$("h").textContent="No se pudo abrir la factura (clave incorrecta o pedido inexistente).";return}
+  const q=new URLSearchParams(location.search),id=q.get("id"),t=q.get("t");let r;
+  if(t){r=await fetch("/.netlify/functions/factura-publica?id="+encodeURIComponent(id||"")+"&t="+encodeURIComponent(t))}
+  else{let K=sessionStorage.getItem("k");if(!K){K=prompt("Clave del panel");if(K)sessionStorage.setItem("k",K)}
+    r=await fetch("/.netlify/functions/facturacion?k="+encodeURIComponent(K||"")+"&id="+encodeURIComponent(id||""))}
+  if(!r.ok){$("h").textContent="No se pudo abrir la factura. Revisá el link.";return}
   const {pedido:o,emisor:e}=await r.json();const f=o.factura;
   if(!f){$("h").textContent="Este pedido todavía no tiene factura.";return}
   const cod=f.tipo==="B"?"006":"011";

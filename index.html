@@ -101,6 +101,7 @@ footer{max-width:1200px;margin:0 auto;padding:0 16px 40px;color:var(--muted);fon
   <label for="czona">Zona de entrega</label><select class="f" id="czona"><option value="">Elegí tu zona</option><option>CABA</option><option>GBA</option></select>
   <label for="caddr">Dirección de entrega</label><input class="f" id="caddr" autocomplete="street-address">
   <label for="cphone">Tu teléfono</label><input class="f" id="cphone" type="tel" autocomplete="tel">
+  <label for="cmail">Tu email <span style="font-weight:400;color:#6b6b6b">(opcional, para recibir la factura)</span></label><input class="f" id="cmail" type="email" autocomplete="email" inputmode="email">
   <button class="wa" id="pay" type="button" hidden style="border:0;width:100%;cursor:pointer;font:inherit">Pagar online (Mercado Pago)</button>
   <p class="note" id="payNote" hidden>Con Mercado Pago pagás con tarjeta (en cuotas), débito, saldo, transferencia o efectivo en Rapipago/Pago Fácil. También podés pagar al recibir. Tu pedido queda cargado solo.</p>
   <button class="wa" id="payEf" type="button" hidden style="border:0;width:100%;cursor:pointer;font:inherit;background:#555">Pagar en efectivo al recibir</button>
@@ -244,9 +245,10 @@ $("pay").onclick=async()=>{
   if(!window.MINOK) return say("La compra mínima es "+fmt(MIN));
   if(!$("czona").value) return say("Elegí tu zona (CABA o GBA)");
   if(!$("cname").value.trim()||!$("caddr").value.trim()||$("cphone").value.replace(/\D/g,"").length<8) return say("Completá nombre, dirección y teléfono");
+    if($("cmail").value.trim()&&!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test($("cmail").value.trim())) return say("Revisá el email (o dejalo vacío)");
   btn.disabled=true; btn.textContent="Un momento…";
   try{
-    const r=await fetch("/.netlify/functions/crear-pago",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({items:it.map(([e,n])=>({e,n})),cupon:window.CUP?CUP.codigo:"",nombre:$("cname").value,direccion:dir(),telefono:$("cphone").value})});
+    const r=await fetch("/.netlify/functions/crear-pago",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({items:it.map(([e,n])=>({e,n})),cupon:window.CUP?CUP.codigo:"",nombre:$("cname").value,direccion:dir(),telefono:$("cphone").value,email:$("cmail").value.trim()})});
     const d=await r.json();
     if(!r.ok||!d.url) throw new Error(d.error||"No se pudo iniciar el pago");
     location.href=d.url;
@@ -261,9 +263,10 @@ function dosPedido(btn,metodo,lab){
     if(!window.MINOK) return say("La compra mínima es "+fmt(MIN));
     if(!$("czona").value) return say("Elegí tu zona (CABA o GBA)");
     if(!$("cname").value.trim()||!$("caddr").value.trim()||$("cphone").value.replace(/\D/g,"").length<8) return say("Completá nombre, dirección y teléfono");
+    if($("cmail").value.trim()&&!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test($("cmail").value.trim())) return say("Revisá el email (o dejalo vacío)");
     btn.disabled=true; btn.textContent="Un momento…";
     try{
-      const r=await fetch("/.netlify/functions/crear-pedido",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({metodo,items:it.map(([e,n])=>({e,n})),cupon:window.CUP?CUP.codigo:"",nombre:$("cname").value,direccion:dir(),telefono:$("cphone").value})});
+      const r=await fetch("/.netlify/functions/crear-pedido",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({metodo,items:it.map(([e,n])=>({e,n})),cupon:window.CUP?CUP.codigo:"",nombre:$("cname").value,direccion:dir(),telefono:$("cphone").value,email:$("cmail").value.trim()})});
       const d=await r.json();
       if(!r.ok||!d.ok) throw new Error(d.error||"No se pudo cargar el pedido");
       cart={};try{localStorage.removeItem("cart")}catch(e){} render(); $("cart").hidden=true;
