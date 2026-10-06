@@ -1,10 +1,7 @@
-import { leerDatos } from "../../lib/datos.mjs";
 import { getStore } from "@netlify/blobs";
-import { pctDe, conDescuento, norm } from "../../lib/cupon.mjs";
-import { precioDe } from "../../lib/precios.mjs";
+import { armarPedido } from "../../lib/pedido.mjs";
 
 const J = (o, s = 200) => new Response(JSON.stringify(o), { status: s, headers: { "content-type": "application/json" } });
-const unesc = s => s.replace(/&#x27;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
 
 export default async (req) => {
   if (req.method !== "POST") return J({ error: "método no permitido" }, 405);
@@ -12,35 +9,13 @@ export default async (req) => {
   if (!token) return J({ error: "El pago online todavía no está configurado." }, 503);
   let b;
   try { b = await req.json(); } catch { return J({ error: "pedido inválido" }, 400); }
-  const nombre = String(b.nombre || "").trim().slice(0, 80);
-  const direccion = String(b.direccion || "").trim().slice(0, 160);
-  const telefono = String(b.telefono || "").trim().slice(0, 30);
-  const email = String(b.email || "").trim().slice(0, 120);
-  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return J({ error: "Revisá el email (o dejalo vacío)." }, 400);
-  if (!nombre || !direccion || telefono.replace(/\D/g, "").length < 8) return J({ error: "Completá nombre, dirección y teléfono." }, 400);
-  if (!Array.isArray(b.items) || !b.items.length || b.items.length > 100) return J({ error: "El carrito está vacío." }, 400);
-
-  // Los precios se leen de la tienda publicada (nunca del navegador del cliente).
+  // Los precios se leen de la tienda (nunca del navegador del cliente).
   const site = new URL(req.url).origin;
-  const D = await leerDatos(site);
-  if (!D) return J({ error: "No pude leer los precios." }, 500);
-  const by = new Map(D.p.map(p => [p[1], p]));
-
-  const pct = await pctDe(b.cupon);
-  const modo = b.modo === "bulto" ? "bulto" : "unidad";
-  const items = [];
-  let total = 0;
-  for (const it of b.items) {
-    const p = by.get(String(it.e));
-    const n = Math.floor(Number(it.n));
-    if (!p || !(n >= 1 && n <= 99)) return J({ error: "Hay un producto que ya no está disponible. Actualizá la página." }, 400);
-    const pr = precioDe(p, modo);
-    const titulo = (pr.bulto ? `BULTO x${pr.unidades} - ` : "") + unesc(p[2]);
-    items.push({ id: p[1], title: titulo.slice(0, 250), quantity: n, unit_price: conDescuento(pr.precio, pct), currency_id: "ARS" });
-    total += conDescuento(pr.precio, pct) * n;
-  }
-
-  if (total < 80000) return J({ error: "La compra mínima es $ 80.000." }, 400);
+  const r0 = await armarPedido(b, site);
+  if (r0.error) return J({ error: r0.error }, r0.status || 400);
+  const P = r0.ped;
+  const items = P.items.map(i => ({ id: i.sku, title: i.nombre, quantity: i.cantidad, unit_price: i.precio, currency_id: "ARS" }));
+  if (P.envio > 0) items.push({ id: "envio", title: `Envío ${P.zona}`, quantity: 1, unit_price: P.envio, currency_id: "ARS" });
 
   const id = crypto.randomUUID();
   const pref = {
@@ -59,9 +34,6 @@ export default async (req) => {
   const d = await r.json();
   if (!r.ok || !d.init_point) return J({ error: "Mercado Pago no pudo crear el pago." }, 502);
 
-  await getStore("pedidos").setJSON(id, {
-    id, fecha: new Date().toISOString(), estado: "pendiente", modo, cupon: pct ? norm(b.cupon) : undefined, descuento: pct || undefined, nombre, direccion, telefono, email: email || undefined, total,
-    items: items.map(i => ({ nombre: i.title, cantidad: i.quantity, precio: i.unit_price })),
-  });
+  await getStore("pedidos").setJSON(id, { id, fecha: new Date().toISOString(), estado: "pendiente", ...P });
   return J({ url: d.init_point });
 };

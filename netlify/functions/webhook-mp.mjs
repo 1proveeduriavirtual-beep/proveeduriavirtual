@@ -1,5 +1,5 @@
 import { getStore } from "@netlify/blobs";
-import { avisarPedido } from "../../lib/aviso.mjs";
+import { avisarPedido, mailCliente } from "../../lib/aviso.mjs";
 import { facturarAlPagar } from "../../lib/arca.mjs";
 
 export default async (req) => {
@@ -30,7 +30,7 @@ export default async (req) => {
   o.estado = p.status === "approved" ? "pagado" : p.status; // pending, rejected, etc.
   o.pago = { id: p.id, medio: p.payment_type_id, monto: p.transaction_amount, fecha: p.date_approved || p.date_created };
   await store.setJSON(id, o);
-  if (o.estado === "pagado" && !yaPagado) await avisarPedido(o, "Nuevo pedido PAGADO");
+  if (o.estado === "pagado" && !yaPagado) await Promise.all([avisarPedido(o, "Nuevo pedido PAGADO"), mailCliente(o, "recibido")]);
   if (o.estado === "pagado" && !o.factura) await facturarAlPagar(id, url.origin);
   return new Response("ok");
 };
