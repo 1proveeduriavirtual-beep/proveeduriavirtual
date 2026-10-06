@@ -1,0 +1,50 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lista de precios mayorista · Proveeduría Virtual</title>
+<meta name="description" content="Lista de precios mayorista de Proveeduría Virtual: almacén, bebidas, limpieza y perfumería por bulto cerrado, con envío en CABA y GBA. Precios actualizados todos los días.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+:root{--bg:#f6f8f5;--surface:#fff;--fg:#17241c;--muted:#5d6b62;--line:#dde5df;--brand:#1f5c3a;--accent:#f2b630;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#101612;--surface:#18211b;--fg:#e8efe9;--muted:#9aa9a0;--line:#2a352e;--brand:#4cc483;color-scheme:dark}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{background:#1f5c3a;color:#fff;padding:16px}header .in{max-width:900px;margin:auto}header h1{margin:0;font-size:1.4rem}header h1 span{color:#f2b630}header p{margin:4px 0 0;opacity:.9;font-size:14px}
+main{max-width:900px;margin:auto;padding:16px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.bar input{flex:1 1 220px;padding:10px 12px;border:1px solid var(--line);border-radius:999px;font:inherit;background:var(--surface);color:var(--fg)}
+.bar button,.bar a{padding:10px 14px;border-radius:999px;border:0;background:#1f5c3a;color:#fff;font:600 14px system-ui;text-decoration:none;cursor:pointer}
+.bar a.wa{background:#1d8a4e}
+h2{font-size:1.05rem;margin:22px 0 6px;text-transform:capitalize}
+.tw{overflow-x:auto;border-radius:10px}
+table{width:100%;min-width:420px;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+th,td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left;font-size:14px}th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+td.n,th.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.of{color:#d93025;font-weight:700}.muted{color:var(--muted);font-size:13px}
+@media print{header{background:#fff;color:#000;padding:0 0 8px}header h1 span{color:#000}.bar{display:none}body{background:#fff;color:#000;font-size:11px}th,td{padding:3px 6px;font-size:11px}table{border-radius:0}h2{break-after:avoid}tr{break-inside:avoid}}
+</style></head><body>
+<header><div class="in"><h1>Proveeduría <span>Virtual</span> · Lista mayorista</h1><p id="sub">Precios por bulto cerrado, con IVA · Envíos a CABA y GBA · Compra mínima $ 100.000</p></div></header>
+<main>
+<div class="bar"><input id="q" type="search" placeholder="Buscar producto…"><button type="button" onclick="print()">Imprimir / PDF</button><a class="wa" id="wa" href="#" target="_blank" rel="noopener">Pedir por WhatsApp</a><a href="/">Ir a la tienda</a></div>
+<p class="muted" id="info">Cargando precios…</p>
+<div id="l"></div>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=n=>"$ "+Math.round(n).toLocaleString("es-AR");
+const norm=s=>s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+let D=null;
+function render(){
+  const w=norm($("q").value).split(/\s+/).filter(Boolean);
+  const rows=D.p.filter(p=>p[4]>0&&w.every(x=>p.k.includes(x)));
+  $("info").textContent=`${rows.length.toLocaleString("es-AR")} productos · actualizado el ${D.fecha}`;
+  $("l").innerHTML=D.cats.map((c,i)=>{const r=rows.filter(p=>p[0]===i);if(!r.length)return"";
+    return `<h2>${c}</h2><div class="tw"><table><tr><th>Producto</th><th class="n">Bulto</th><th class="n">Precio bulto</th><th class="n">c/u</th></tr>${r.map(p=>`<tr><td>${p[2]}${p[8]>p[4]||p[9]?' <span class="of">🔥 oferta</span>':""}</td><td class="n">x ${p[5]}</td><td class="n">${fmt(p[4])}</td><td class="n">${fmt(p[4]/p[5])}</td></tr>`).join("")}</table></div>`}).join("");
+}
+fetch("/.netlify/functions/productos").then(r=>r.json()).then(d=>{
+  D=d.datos;if(!D||!D.p){$("info").textContent="No se pudo cargar la lista.";return}
+  D.p.forEach(p=>p.k=norm(p[2].replace(/&[a-z#0-9]+;/gi," ")));
+  if(d.wa)$("wa").href="https://wa.me/"+d.wa+"?text="+encodeURIComponent("Hola! Vi la lista de precios mayorista y quiero hacer un pedido.");
+  if(!D.p.some(p=>p[4]>0)){$("info").textContent="La lista mayorista todavía no está disponible.";return}
+  render();
+}).catch(()=>$("info").textContent="No se pudo cargar la lista.");
+$("q").addEventListener("input",()=>D&&render());
+</script>
+</body></html>

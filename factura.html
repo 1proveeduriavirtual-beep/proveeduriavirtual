@@ -23,7 +23,19 @@ const money=n=>"$ "+Number(n).toLocaleString("es-AR",{minimumFractionDigits:2,ma
 const fch=s=>s?`${s.slice(6,8)}/${s.slice(4,6)}/${s.slice(0,4)}`:"";
 (async()=>{
   const q=new URLSearchParams(location.search),id=q.get("id"),t=q.get("t");let r;
-  if(t){r=await fetch("/.netlify/functions/factura-publica?id="+encodeURIComponent(id||"")+"&t="+encodeURIComponent(t))}
+  const EJ=q.has("ejemplo"); // factura de ejemplo para mostrar cómo queda (no pasa por ARCA, no es válida)
+  if(EJ&&id){ // factura de ejemplo con los datos reales de un pedido (desde el panel)
+    let K=sessionStorage.getItem("k");if(!K){K=prompt("Clave del panel");if(K)sessionStorage.setItem("k",K)}
+    const x=await fetch("/.netlify/functions/facturacion?k="+encodeURIComponent(K||"")+"&id="+encodeURIComponent(id));
+    if(x.ok){const d=await x.json();const e=d.emisor||{};
+      d.emisor={razon:e.razon||"Nombre del negocio",domicilio:e.domicilio||"Domicilio comercial",condIva:e.condIva||"Responsable Monotributo"};
+      d.pedido.factura={tipo:e.tipo||"C",ptoVta:e.ptoVta||1,nro:1,fecha:new Date().toISOString().slice(0,10).replace(/-/g,""),cuit:e.cuit||"XX-XXXXXXXX-X",total:d.pedido.total,cae:"EJEMPLO",caeVto:"",prod:true,ejemplo:true};
+      r={ok:true,json:async()=>d}}else r=x}
+  else if(EJ){r={ok:true,json:async()=>({emisor:{razon:"Nombre del negocio",domicilio:"Domicilio comercial",condIva:"Responsable Monotributo"},
+    pedido:{nombre:"Cliente de ejemplo",direccion:"Calle Falsa 123 (CABA)",pago:{medio:"credit_card"},envio:3000,
+      items:[{cantidad:2,nombre:"ACEITE COCINERO GIRASOL 900 CC",precio:4140},{cantidad:1,nombre:"YERBA PLAYADITO 1 KG",precio:6210},{cantidad:3,nombre:"AZUCAR LEDESMA 1 KG",precio:1800}],
+      factura:{tipo:"C",ptoVta:1,nro:1,fecha:new Date().toISOString().slice(0,10).replace(/-/g,""),cuit:"XX-XXXXXXXX-X",total:25890,cae:"EJEMPLO",caeVto:"",prod:true,ejemplo:true}}})}}
+  else if(t){r=await fetch("/.netlify/functions/factura-publica?id="+encodeURIComponent(id||"")+"&t="+encodeURIComponent(t))}
   else{let K=sessionStorage.getItem("k");if(!K){K=prompt("Clave del panel");if(K)sessionStorage.setItem("k",K)}
     r=await fetch("/.netlify/functions/facturacion?k="+encodeURIComponent(K||"")+"&id="+encodeURIComponent(id||""))}
   if(!r.ok){$("h").textContent="No se pudo abrir la factura. Revisá el link.";return}
@@ -32,16 +44,17 @@ const fch=s=>s?`${s.slice(6,8)}/${s.slice(4,6)}/${s.slice(0,4)}`:"";
   const cod=f.tipo==="B"?"006":"011";
   const nro=String(f.ptoVta).padStart(5,"0")+"-"+String(f.nro).padStart(8,"0");
   document.title="Factura "+f.tipo+" "+nro;
-  $("h").innerHTML=`${f.prod?"":'<div class="prueba">COMPROBANTE DE PRUEBA (homologación) — SIN VALIDEZ FISCAL</div>'}
+  $("h").innerHTML=`${f.ejemplo?'<div class="prueba">EJEMPLO — NO ES UNA FACTURA VÁLIDA (así se ve la factura que recibe el cliente)</div>':f.prod?"":'<div class="prueba">COMPROBANTE DE PRUEBA (homologación) — SIN VALIDEZ FISCAL</div>'}
   <div class="cab"><div><h1>${esc(e.razon)}</h1><p>${esc(e.domicilio)}</p><p>${esc(e.condIva)}</p></div>
   <div class="letra"><b>${f.tipo}</b><small>COD. ${cod}</small></div>
   <div><h1>FACTURA</h1><p>N° <b>${nro}</b></p><p>Fecha: ${fch(f.fecha)}</p><p>CUIT: ${esc(f.cuit)}</p>${e.iibb?`<p>Ingresos Brutos: ${esc(e.iibb)}</p>`:""}${e.inicio?`<p>Inicio de actividades: ${esc(e.inicio.split("-").reverse().join("/"))}</p>`:""}</div></div>
   <div class="rec"><p><b>Cliente:</b> ${esc(o.nombre)} — Consumidor Final</p><p><b>Domicilio:</b> ${esc(o.direccion)}</p><p><b>Condición de venta:</b> ${o.pago&&o.pago.medio&&o.pago.medio!=="efectivo"?"Mercado Pago / electrónico":"Contado"}</p></div>
   <table><tr><th class="n">Cant.</th><th>Producto</th><th class="n">Precio unit.</th><th class="n">Subtotal</th></tr>
-  ${o.items.map(i=>`<tr><td class="n">${i.cantidad}</td><td style="text-transform:capitalize">${esc(plain(i.nombre))}</td><td class="n">${money(i.precio)}</td><td class="n">${money(i.precio*i.cantidad)}</td></tr>`).join("")}</table>
+  ${o.items.map(i=>`<tr><td class="n">${i.cantidad}</td><td style="text-transform:capitalize">${esc(plain(i.nombre))}</td><td class="n">${money(i.precio)}</td><td class="n">${money(i.precio*i.cantidad)}</td></tr>`).join("")}${o.envio>0?`<tr><td class="n">1</td><td>Envío</td><td class="n">${money(o.envio)}</td><td class="n">${money(o.envio)}</td></tr>`:""}</table>
   ${o.cupon?`<p class="muted">Precios con descuento por cupón ${esc(o.cupon)} (-${o.descuento}%).</p>`:""}
   <div class="tot">${f.tipo==="B"?`<p class="muted">Régimen de Transparencia Fiscal al Consumidor (Ley 27.743): IVA contenido ${money(f.iva)}</p>`:""}<p><b>Total: ${money(f.total)}</b></p></div>
-  <div class="pie"><div id="qr"></div><div><p><b>CAE:</b> ${esc(f.cae)}</p><p><b>Vencimiento del CAE:</b> ${fch(f.caeVto)}</p><p class="muted">Comprobante autorizado por ARCA.</p></div></div>`;
+  <div class="pie"><div id="qr"></div><div><p><b>CAE:</b> ${esc(f.cae)}</p><p><b>Vencimiento del CAE:</b> ${fch(f.caeVto)}</p><p class="muted">${f.ejemplo?"Acá va el código de autorización (CAE) que da ARCA.":"Comprobante autorizado por ARCA."}</p></div></div>`;
+  if(f.ejemplo){$("qr").innerHTML='<div style="width:110px;height:110px;border:2px dashed #999;display:grid;place-items:center;font-size:11px;color:#777;text-align:center">QR de ARCA</div>';return}
   const datos={ver:1,fecha:`${f.fecha.slice(0,4)}-${f.fecha.slice(4,6)}-${f.fecha.slice(6,8)}`,cuit:+f.cuit,ptoVta:+f.ptoVta,tipoCmp:+cod,nroCmp:+f.nro,importe:+f.total,moneda:"PES",ctz:1,tipoDocRec:99,nroDocRec:0,tipoCodAut:"E",codAut:+f.cae};
   const url="https://www.afip.gob.ar/fe/qr/?p="+btoa(JSON.stringify(datos));
   try{new QRCode($("qr"),{text:url,width:110,height:110,correctLevel:QRCode.CorrectLevel.M})}catch(err){$("qr").innerHTML=`<a href="${esc(url)}">Ver en ARCA</a>`}

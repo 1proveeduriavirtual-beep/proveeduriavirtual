@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /pedidos.html
+Disallow: /factura.html
+
+Sitemap: https://proveeduriavirtual.netlify.app/sitemap.xml
