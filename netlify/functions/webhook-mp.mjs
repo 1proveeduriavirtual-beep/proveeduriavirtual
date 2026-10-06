@@ -1,6 +1,7 @@
 import { getStore } from "@netlify/blobs";
 import { avisarPedido, mailCliente } from "../../lib/aviso.mjs";
 import { facturarAlPagar } from "../../lib/arca.mjs";
+import { descontarPedido } from "../../lib/inventario.mjs";
 
 export default async (req) => {
   const token = Netlify.env.get("MP_ACCESS_TOKEN");
@@ -30,6 +31,7 @@ export default async (req) => {
   o.estado = p.status === "approved" ? "pagado" : p.status; // pending, rejected, etc.
   o.pago = { id: p.id, medio: p.payment_type_id, monto: p.transaction_amount, fecha: p.date_approved || p.date_created };
   await store.setJSON(id, o);
+  if (o.estado === "pagado") await descontarPedido(o, store).catch(e => console.error("stock:", e?.message)); // el stock baja solo al pagarse
   if (o.estado === "pagado" && !yaPagado) await Promise.all([avisarPedido(o, "Nuevo pedido PAGADO"), mailCliente(o, "recibido")]);
   if (o.estado === "pagado" && !o.factura) await facturarAlPagar(id, url.origin);
   return new Response("ok");

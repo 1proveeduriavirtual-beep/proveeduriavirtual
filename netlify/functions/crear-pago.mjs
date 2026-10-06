@@ -7,6 +7,8 @@ export default async (req) => {
   if (req.method !== "POST") return J({ error: "método no permitido" }, 405);
   const token = Netlify.env.get("MP_ACCESS_TOKEN");
   if (!token) return J({ error: "El pago online todavía no está configurado." }, 503);
+  const pg = (await getStore("tienda").get("config", { type: "json" }).catch(() => null))?.pagos || {};
+  if (pg.mp === false) return J({ error: "El pago con Mercado Pago no está disponible." }, 400);
   let b;
   try { b = await req.json(); } catch { return J({ error: "pedido inválido" }, 400); }
   // Los precios se leen de la tienda (nunca del navegador del cliente).

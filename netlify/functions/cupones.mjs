@@ -1,4 +1,5 @@
 import { getStore } from "@netlify/blobs";
+import { autorizar, puede } from "../../lib/auth.mjs";
 import { norm, pctDe } from "../../lib/cupon.mjs";
 
 const J = (o, s = 200) => new Response(JSON.stringify(o), { status: s, headers: { "content-type": "application/json", "cache-control": "no-store" } });
@@ -12,8 +13,7 @@ export default async (req) => {
     const pct = await pctDe(c);
     return pct ? J({ ok: true, codigo: c, pct }) : J({ ok: false, error: "Cupón inválido o vencido." }, 404);
   }
-  const key = Netlify.env.get("ADMIN_KEY");
-  if (!key || k !== key) return J({ error: "clave incorrecta" }, 401);
+  if (!(await autorizar(req, "promos"))) return J({ error: "clave incorrecta o sin permiso" }, 401);
   if (req.method === "POST") {
     const b = await req.json();
     const c = norm(b.codigo);

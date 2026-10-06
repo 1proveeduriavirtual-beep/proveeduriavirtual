@@ -3,7 +3,8 @@
 //   POST /.netlify/functions/productos?k=CLAVE     -> { archivo, margen } o { wa }  (panel)
 import { getStore } from "@netlify/blobs";
 import { parseMaxi, parseMaxiconsumo, marcarOfertas, fechaHoy } from "../../lib/precios.mjs";
-import { leerDatos } from "../../lib/datos.mjs";
+import { leerDatos, armarCatalogo } from "../../lib/datos.mjs";
+import { autorizar } from "../../lib/auth.mjs";
 
 const J = (o, s = 200, cache = "no-store") => new Response(JSON.stringify(o), { status: s, headers: { "content-type": "application/json", "cache-control": cache } });
 
@@ -11,17 +12,18 @@ export default async (req) => {
   const store = getStore("tienda");
   const url = new URL(req.url);
   if (req.method === "GET" && !url.searchParams.get("k")) {
-    const [datos, cfg] = await Promise.all([store.get("productos", { type: "json" }), store.get("config", { type: "json" })]);
-    return J({ datos: datos || null, wa: cfg?.wa || null, envio: cfg?.envio || null, horarios: cfg?.horarios || null }, 200, "public, max-age=60");
+    const I = getStore("inventario");
+    const [datos, cfg, propios, promos, stock] = await Promise.all([store.get("productos", { type: "json" }), store.get("config", { type: "json" }), I.get("propios", { type: "json" }).catch(() => null), store.get("promos", { type: "json" }).catch(() => null), I.get("stock", { type: "json" }).catch(() => null)]);
+    const pg = cfg?.pagos || {};
+    return J({ datos: datos ? armarCatalogo(datos, propios || [], promos || [], stock || {}) : null, wa: cfg?.wa || null, envio: cfg?.envio || null, horarios: cfg?.horarios || null, pagos: { mp: pg.mp !== false, efectivo: pg.efectivo !== false } }, 200, "public, max-age=60");
   }
-  const key = Netlify.env.get("ADMIN_KEY");
-  if (!key || url.searchParams.get("k") !== key) return J({ error: "clave incorrecta" }, 401);
+  if (!(await autorizar(req, "precios"))) return J({ error: "clave incorrecta o sin permiso" }, 401);
   const cfg = (await store.get("config", { type: "json" })) || {};
   const site = url.origin;
 
   if (req.method === "GET") { // panel: estado actual
-    const D = await leerDatos(site);
-    return J({ fecha: D?.fecha, productos: D?.p?.length || 0, proveedor: D?.proveedor || "maxi", margen: cfg.margen ?? D?.margen ?? 60, margenBulto: cfg.margenBulto ?? cfg.margen ?? 60, wa: cfg.wa || D?.wa || "", envio: cfg.envio || null, horarios: cfg.horarios || null });
+    const D = await leerDatos(site, { crudo: true });
+    return J({ pagos: cfg.pagos || {}, fecha: D?.fecha, productos: D?.p?.length || 0, proveedor: D?.proveedor || "maxi", margen: cfg.margen ?? D?.margen ?? 60, margenBulto: cfg.margenBulto ?? cfg.margen ?? 60, wa: cfg.wa || D?.wa || "", envio: cfg.envio || null, horarios: cfg.horarios || null });
   }
   if (req.method !== "POST") return J({ error: "método no permitido" }, 405);
   let b;
@@ -33,6 +35,13 @@ export default async (req) => {
     cfg.wa = wa;
     await store.setJSON("config", cfg);
     if (!b.archivo) return J({ ok: true, wa });
+  }
+
+  if (b.pagos) { // medios de pago: se activan o desactivan desde el panel
+    cfg.pagos = { mp: b.pagos.mp !== false, efectivo: b.pagos.efectivo !== false, transferencia: !!b.pagos.transferencia, alias: String(b.pagos.alias || "").trim().slice(0, 60) };
+    if (cfg.pagos.transferencia && !cfg.pagos.alias) return J({ error: "Para cobrar por transferencia poné el alias o CBU." }, 400);
+    await store.setJSON("config", cfg);
+    return J({ ok: true, pagos: cfg.pagos });
   }
 
   if (b.envio || b.horarios) { // costo de envío y horarios de entrega
@@ -59,7 +68,7 @@ export default async (req) => {
     const margen = Number(b.margen ?? cfg.margen ?? 60);
     const margenBulto = Number(b.margenBulto ?? cfg.margenBulto ?? margen);
     if (!(margen >= 0 && margen <= 500) || !(margenBulto >= 0 && margenBulto <= 500)) return J({ error: "Poné un margen de ganancia entre 0 y 500 %." }, 400);
-    const actual = await leerDatos(site);
+    const actual = await leerDatos(site, { crudo: true });
     const esMC = String(b.archivo).startsWith("#maxiconsumo|");
     const proveedor = esMC ? "maxiconsumo" : "maxi";
     let nuevo;
@@ -73,6 +82,7 @@ export default async (req) => {
       const refs = (await store.get("referencias", { type: "json" }).catch(() => null)) || {};
       const o = marcarOfertas(nuevo.p, nuevo.costos, refs, margen, margenBulto);
       await store.setJSON("referencias", o.refs);
+      await store.setJSON("costos", nuevo.costos); // costo de cada producto (para ganancia y lista de compras)
       ofertas = o.ofertas;
     }
     const D = { wa: cfg.wa || actual?.wa || "5491100000000", proveedor, margen, margenBulto, fecha: fechaHoy(), ts: new Date().toISOString(), img: nuevo.img || undefined, cats: nuevo.cats, p: nuevo.p };

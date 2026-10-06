@@ -3,6 +3,7 @@
 //   GET  ?k=CLAVE&id=PEDIDO  -> pedido + datos del emisor (para ver / imprimir la factura)
 //   POST ?k=CLAVE {accion: "config" | "csr" | "cert" | "probar" | "facturar", ...}
 import { getStore } from "@netlify/blobs";
+import { autorizar, puede } from "../../lib/auth.mjs";
 import { mandarFactura } from "../../lib/aviso.mjs";
 import { generarClaveYCSR, revisarCertificado, facturarPedido, probar, leerConfig, configCompleta } from "../../lib/arca.mjs";
 
@@ -10,9 +11,9 @@ const J = (o, s = 200) => new Response(JSON.stringify(o), { status: s, headers: 
 const txt = (v, n = 120) => String(v ?? "").trim().slice(0, n);
 
 export default async (req) => {
-  const key = Netlify.env.get("ADMIN_KEY");
   const url = new URL(req.url);
-  if (!key || url.searchParams.get("k") !== key) return J({ error: "clave incorrecta" }, 401);
+  const u = await autorizar(req);
+  if (!u || !(puede(u, "facturar") || puede(u, "pedidos"))) return J({ error: "clave incorrecta o sin permiso" }, 401);
   const st = getStore("facturacion");
   const cfg = await leerConfig();
 
@@ -29,6 +30,7 @@ export default async (req) => {
   let b;
   try { b = await req.json(); } catch { return J({ error: "pedido inválido" }, 400); }
 
+  if (["config", "csr", "cert", "probar"].includes(b.accion) && u.rol !== "dueño") return J({ error: "Solo el dueño puede cambiar la facturación." }, 403);
   try {
     if (b.accion === "config") {
       const cuit = String(b.cuit || "").replace(/\D/g, "");
