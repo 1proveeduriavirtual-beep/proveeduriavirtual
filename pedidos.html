@@ -25,18 +25,56 @@ td input[type=number]{width:80px;margin:0}.neg{color:#b3261e;font-weight:700}.ba
 .tag{display:inline-block;padding:1px 8px;border-radius:99px;background:var(--soft);font-size:12px;margin:2px}
 .chk{display:inline-block;margin:2px 8px 2px 0;white-space:nowrap}
 .msg{font-weight:600}.err{color:#b3261e}.ok{color:var(--brand)}
+.ayuda{background:var(--soft);border-radius:10px;padding:10px 12px;margin:8px 0;font-size:14px}
+.et{display:inline-block;padding:3px 10px;border-radius:99px;font-size:13px;font-weight:700;white-space:nowrap}
+.et-espera{background:#eee;color:#555}.et-nuevo{background:#fde9a8;color:#5c4300}.et-preparando{background:#d7e6fb;color:#123d73}.et-camino{background:#e4dafb;color:#3d1f7a}.et-entregado{background:#cfe8d5;color:#14532d}.et-cancelado{background:#f6d4d1;color:#7a1712}
+.como{background:var(--card);border:2px solid var(--brand);border-radius:14px;padding:14px 16px;margin:10px 0}
+.como h2{margin:0 0 6px;font-size:1.1rem}.como ol{margin:0;padding-left:20px}.como li{margin:4px 0}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin:12px 0;counter-reset:paso}
+.paso{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:6px;position:relative}
+.paso .n{font-size:2rem;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}.paso .t{font-weight:700}.paso small{color:var(--muted)}
+.paso.activo{border:2px solid #d99a00;box-shadow:0 0 0 3px #fde9a855}.paso button{margin:2px 0}
+.paso .num{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.05em}
+.blk{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:12px 0}
+.blk.activo{border:2px solid #d99a00;box-shadow:0 0 0 3px #fde9a855}
+.blk h2{margin:0 0 8px;font-size:1.15rem;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}.blk h2 .cnt{background:var(--brand);color:var(--brand-fg);border-radius:99px;padding:0 10px;font-size:.95rem}
+.fila{border-top:1px solid var(--line);padding:10px 0}.fila:first-of-type{border-top:0}
+.cobrar{background:#fde9a8;color:#5c4300;border-radius:6px;padding:1px 6px;font-weight:700}
+button.big{font-size:1rem;padding:10px 16px}
+#usF label{display:inline-block;margin:6px 12px 2px 0;vertical-align:top}#usF input{width:220px}
+.auto{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:6px 14px;font-size:14px;margin:6px 0}
 </style></head><body><main>
 <h1>Panel de la tienda</h1>
 <form id="f"><input id="u" placeholder="Usuario (vacío = dueño)" autocomplete="username" style="width:200px"> <input id="k" type="password" placeholder="Clave" autocomplete="current-password"> <button class="p">Entrar</button></form><p id="m" class="msg err"></p>
 <p id="yoBar" class="muted" hidden></p>
 <div id="app" hidden>
-<nav id="tabs"><button data-t="ped" data-p="pedidos" aria-pressed="true">Pedidos</button><button data-t="ent" data-p="entregas">Entregas</button><button data-t="cli" data-p="clientes">Clientes</button><button data-t="inv" data-p="stock">Inventario</button><button data-t="cpr" data-p="compras">Compras y proveedores</button><button data-t="cup" data-p="promos">Promociones</button><button data-t="est" data-p="estadisticas">Estadísticas</button><button data-t="pre" data-p="precios">Precios, envío y pagos</button><button data-t="fac" data-p="facturacion">Facturación</button><button data-t="usu" data-p="usuarios">Usuarios</button></nav>
+<nav id="tabs"><button data-t="hoy" data-p="logistica" aria-pressed="true">🏠 Hoy</button><button data-t="ped" data-p="pedidos" aria-pressed="false">Pedidos</button><button data-t="ent" data-p="entregas">Entregas</button><button data-t="cli" data-p="clientes">Clientes</button><button data-t="inv" data-p="stock">Inventario</button><button data-t="cpr" data-p="compras">📒 Historial de compras</button><button data-t="cup" data-p="promos">Promociones</button><button data-t="est" data-p="estadisticas">Estadísticas</button><button data-t="pre" data-p="precios">Precios, envío y pagos</button><button data-t="fac" data-p="facturacion">Facturación</button><button data-t="usu" data-p="usuarios">Usuarios</button></nav>
 
-<section id="ped"><div class="tools"><input id="pq" type="search" placeholder="Buscar por nombre, teléfono o producto"> <select id="pfe"><option value="">Todos los estados</option><option>pagado</option><option>efectivo al recibir</option><option>espera transferencia</option><option>entregado</option><option>pendiente</option></select> <button type="button" id="pexp">⬇ Exportar a Excel</button></div><div id="l"></div></section>
+<section id="hoy">
+  <div class="como"><h2>¿Cómo funciona?</h2><ol>
+    <li><b>Los clientes compran y pagan en la tienda.</b> El pedido aparece solo acá abajo, en el paso 1.</li>
+    <li><b>La lista de compras se arma sola</b> con todo lo que hay que comprar en Maxiconsumo (paso 2). Comprás y tocás <b>"Ya compré todo"</b>.</li>
+    <li><b>Repartís los pedidos</b> (paso 3) y en cada uno tocás <b>"Marcar entregado"</b>. Listo.</li>
+  </ol><p class="muted" style="margin:6px 0 0">Al cliente le llega un mail en cada paso (y la factura, si está activada). Esta pantalla se actualiza sola.</p></div>
+  <p id="hoyMsg" class="msg"></p>
+  <div id="hoyBody"></div>
+  <div id="hoyAuto"><h2>Lo que hace el sistema solo</h2>
+  <div class="o auto">
+    <span>🔄 Actualiza precios y stock de Maxiconsumo todos los días a las 7</span>
+    <span>📥 Carga los pedidos y cobra con Mercado Pago</span>
+    <span>📋 Arma la lista de compra</span>
+    <span>📦 Descuenta y repone el stock del depósito</span>
+    <span>✉️ Le avisa al cliente por mail en cada paso</span>
+    <span>📊 Te manda un resumen del día por mail</span>
+    <span>🧾 Hace la factura y se la manda al cliente (cuando cargues el CUIT)</span>
+  </div></div>
+</section>
+
+<section id="ped" hidden><p class="ayuda">Todos los pedidos, del más nuevo al más viejo. La etiqueta de color dice en qué paso está cada uno.</p><div class="tools"><input id="pq" type="search" placeholder="Buscar por nombre, teléfono o producto"> <select id="pfe"><option value="">Todos</option><option value="nuevo">📥 Recibidos (falta comprar)</option><option value="preparando">📦 Preparando</option><option value="en camino">🚚 En camino</option><option value="entregado">✅ Entregados</option><option value="esperando pago">⏳ Esperando el pago</option><option value="cancelado">✖ Cancelados</option></select> <button type="button" id="pexp">⬇ Exportar a Excel</button></div><div id="l"></div></section>
 
 <section id="ent" hidden>
   <div class="tools"><select id="entDia"></select> <button type="button" onclick="print()">🖨 Imprimir hoja de ruta</button> <button type="button" id="entExp">⬇ Exportar a Excel</button></div>
-  <p class="muted">Pedidos para entregar, ordenados por día y zona. Tocá la dirección para abrir el mapa y el teléfono para escribirle por WhatsApp.</p>
+  <p class="ayuda">Los pedidos para repartir, ordenados por día y zona. Cuando sale el pedido tocá <b>👉 Marcar que salió</b>, y cuando el cliente lo recibe tocá <b>👉 Marcar entregado</b>. La etiqueta de color de cada pedido dice en qué paso está. Tocá la dirección para abrir el mapa y el teléfono para escribirle por WhatsApp.</p>
   <div id="entL"></div>
 </section>
 
@@ -73,15 +111,15 @@ td input[type=number]{width:80px;margin:0}.neg{color:#b3261e;font-weight:700}.ba
 </section>
 
 <section id="cpr" hidden>
-  <h2>Para comprar</h2>
-  <p class="muted">Se arma sola: lo vendido que no tenés en el depósito + lo que quedó debajo del mínimo. Revisá las cantidades y, cuando compres, tocá <b>Registrar compra</b>: el stock se repone solo.</p>
-  <div class="tools"><label>Proveedor <select id="cprProv"></select></label> <button type="button" id="cprReg" class="p">✔ Registrar compra</button> <button type="button" id="cprCopy">Copiar lista</button> <button type="button" onclick="print()">🖨 Imprimir</button> <button type="button" id="cprExp">⬇ Exportar</button> <span id="cprMsg" class="msg"></span></div>
-  <div id="cprL"></div>
-  <h2>Compras registradas</h2>
-  <div class="tools"><button type="button" id="cprHExp">⬇ Exportar compras</button></div><div id="cprH"></div>
-  <h2>Proveedores</h2>
-  <form id="provF" class="o"><input type="hidden" id="pvId"><input id="pvN" placeholder="Nombre" required> <input id="pvC" placeholder="Contacto"> <input id="pvT" placeholder="Teléfono"> <input id="pvE" placeholder="Email"> <input id="pvW" placeholder="Web"> <input id="pvNo" placeholder="Notas" style="width:240px"> <button class="p">Guardar proveedor</button> <button type="button" id="pvExp">⬇ Exportar</button></form>
-  <div id="provL"></div>
+  <h2>📒 Historial de compras</h2>
+  <p class="ayuda">Acá queda anotado solo cada vez que alguien toca <b>"✅ Ya compré todo"</b> en 🏠 Hoy: qué día, qué se compró, cuánto se gastó y quién fue. <b>No hay que cargar nada a mano.</b> Sirve para saber cuánto ganás (lo ves en Estadísticas).</p>
+  <div class="kpis" id="cprK"></div>
+  <div class="tools"><button type="button" id="cprHExp">⬇ Bajar a Excel</button></div><div id="cprH"></div>
+  <details class="o" style="margin-top:18px"><summary><b>Proveedores</b> <span class="muted">(a quién le comprás: hoy, Maxiconsumo)</span></summary>
+  <form id="provF"><input type="hidden" id="pvId"><input id="pvN" placeholder="Nombre" required> <input id="pvC" placeholder="Contacto"> <input id="pvT" placeholder="Teléfono"> <input id="pvE" placeholder="Email"> <input id="pvW" placeholder="Web"> <input id="pvNo" placeholder="Notas" style="width:240px"> <button class="p">Guardar proveedor</button> <button type="button" id="pvExp">⬇ Exportar</button></form>
+  <div id="provL"></div></details>
+  <div hidden><div class="tools"><label>Proveedor <select id="cprProv"></select></label> <button type="button" id="cprReg" class="p">✅ Ya compré todo</button> <button type="button" id="cprCopy">Copiar lista</button> <button type="button" onclick="print()">🖨 Imprimir</button> <button type="button" id="cprExp">⬇ Exportar</button> <span id="cprMsg" class="msg"></span></div>
+  <div id="cprL"></div></div>
 </section>
 
 
@@ -144,9 +182,26 @@ td input[type=number]{width:80px;margin:0}.neg{color:#b3261e;font-weight:700}.ba
 </section>
 
 <section id="usu" hidden>
-  <p class="muted">Cada persona entra con su usuario y clave, y ve solo lo que le toca. <b>Vendedor</b>: pedidos, entregas, clientes, promociones y estadísticas. <b>Depósito</b>: pedidos, entregas, inventario y compras. <b>Repartidor</b>: solo sus entregas. El dueño entra dejando el usuario vacío y poniendo la clave de siempre.</p>
-  <form id="usF" class="o"><input id="usN" placeholder="Nombre" required> <input id="usU" placeholder="Usuario (sin espacios)" required> <input id="usC" type="password" placeholder="Clave (mín. 6)" required autocomplete="new-password"> <select id="usR"><option value="vendedor">Vendedor</option><option value="deposito">Depósito</option><option value="repartidor">Repartidor</option><option value="dueño">Dueño</option></select> <button class="p">Crear usuario</button> <span id="usMsg" class="msg"></span></form>
+  <h2>👥 Usuarios de tu equipo</h2>
+  <p class="ayuda">Creale un usuario a cada persona que trabaja con vos. Así entran al panel <b>con su propia clave</b> y ven <b>solo su parte</b>, no la tuya. <b>Tu clave de dueño no se la des a nadie</b>: con esa se ve todo.</p>
+  <form id="usF" class="o">
+    <b>Crear usuario nuevo</b><br>
+    <label>Nombre<br><input id="usN" placeholder="Ej: Juan" required></label>
+    <label>Usuario para entrar<br><input id="usU" placeholder="Ej: juan (sin espacios)" required autocomplete="off"></label>
+    <label>Clave<br><input id="usC" type="text" placeholder="Mínimo 6 letras o números" required autocomplete="new-password"></label><br>
+    <label>¿Qué va a hacer?<br><select id="usR" style="max-width:100%">
+      <option value="logistica">🚚 Logística — ve solo los pedidos, la lista de compras y las entregas</option>
+      <option value="repartidor">🛵 Repartidor — ve solo los pedidos que le asignás para entregar</option>
+      <option value="vendedor">💬 Vendedor — pedidos, clientes, promociones y estadísticas</option>
+      <option value="deposito">📦 Depósito — pedidos, entregas, stock y compras</option>
+      <option value="dueño">👑 Dueño — ve todo (solo para socios)</option>
+    </select></label><br>
+    <button class="p">Crear usuario</button> <span id="usMsg" class="msg"></span>
+  </form>
+  <div id="usPasar" class="o" hidden></div>
+  <h2>Tu equipo</h2>
   <div id="usL"></div>
+  <p class="muted">Si alguien deja de trabajar, tocá <b>Dar de baja</b> y no puede entrar más. Vos seguís entrando como siempre: usuario vacío y tu clave.</p>
 </section>
 
 <section id="fac" hidden>
@@ -229,13 +284,31 @@ async function enviarF(btn,id){btn.disabled=true;btn.textContent="Mandando…";
   const r=await api("facturacion",{method:"POST",body:JSON.stringify({accion:"enviar",id})});const d=await r.json().catch(()=>({error:"Error inesperado"}));
   await load();$("m").className="msg "+(r.ok?"ok":"err");$("m").textContent=r.ok?"Factura mandada a "+d.enviada+".":"No se pudo mandar: "+(d.error||"");
 }
+const ET={"esperando pago":["espera","⏳ Esperando el pago"],nuevo:["nuevo","📥 Recibido · falta comprar"],preparando:["preparando","📦 Preparando"],"en camino":["camino","🚚 En camino"],entregado:["entregado","✅ Entregado"],cancelado:["cancelado","✖ Cancelado"]};
+const etq=o=>{const e=ET[o.etapaActual]||["espera",o.estado];return `<span class="et et-${e[0]}">${e[1]}</span>`};
+const MEDIO={credit_card:"tarjeta de crédito",debit_card:"tarjeta de débito",account_money:"saldo MP",ticket:"Rapipago/Pago Fácil",bank_transfer:"transferencia",efectivo:"efectivo al recibir"};
+function pagoTxt(o){const e=o.estado==="cancelado"?o.estadoPago:o.estado;
+  if(e==="efectivo al recibir")return "💵 Paga en efectivo al recibir";
+  if(e==="espera transferencia")return "⏳ Espera transferencia";
+  if(e==="pagado"||(e==="entregado"&&o.pago&&o.pago.medio!=="efectivo"))return "💳 Pagado"+(o.pago?.medio?" con "+(MEDIO[o.pago.medio]||o.pago.medio):"");
+  if(e==="entregado")return "💵 Cobrado al entregar";
+  if(e==="rejected"||e==="cancelled")return "❌ Pago rechazado";
+  return "⏳ Pago pendiente"}
+// Un solo botón con el paso que sigue
+const SIG={nuevo:["preparando","👉 Marcar como comprado"],preparando:["en camino","👉 Marcar que salió"],"en camino":["entregado","👉 Marcar entregado"]};
+function botones(o){const s=SIG[o.etapaActual];let h="";
+  if(o.estado==="espera transferencia")h+=` <button onclick="setE('${o.id}','pagado')">💳 Ya transfirió</button>`;
+  if(s)h+=` <button class="p" onclick="setE('${o.id}','${s[0]}')">${s[1]}</button>`;
+  if(["nuevo","preparando","en camino","esperando pago"].includes(o.etapaActual))h+=` <button onclick="setE('${o.id}','cancelado')">Cancelar</button>`;
+  return h}
 function renderP(){
-  $("l").innerHTML=L.length?L.map(o=>`<div class="o"><b class="e ${esc(o.estado)}">${esc(o.estado)}</b> ${new Date(o.fecha).toLocaleString("es-AR")}${o.modo==="bulto"?" · <b>📦 MAYORISTA</b>":""}<br><b>${esc(o.nombre)}</b> · ${esc(o.telefono)}<br>${esc(o.direccion)}${o.email?" · "+esc(o.email):""}${o.entrega?`<br>🕒 Entrega: <b>${esc(o.entrega)}</b>`:""}${o.sale?" · 🚚 <b>salió</b>":""}<ul>${o.items.map(i=>`<li>${i.cantidad} x ${esc(i.nombre)}</li>`).join("")}</ul>${o.envio>0?`Envío ${money(o.envio)} · `:o.envio===0?"Envío gratis · ":o.envioACoordinar?"Envío a coordinar · ":""}<b>Total ${money(o.total)}</b>${o.pago?" · "+esc(({credit_card:"tarjeta de crédito",debit_card:"tarjeta de débito",account_money:"saldo MP",ticket:"Rapipago/Pago Fácil",bank_transfer:"transferencia",efectivo:"efectivo al recibir"})[o.pago.medio]||o.pago.medio||""):""}${o.cupon?" · cupón "+esc(o.cupon)+" (-"+o.descuento+"%)":""}${o.estado==="espera transferencia"?` <button onclick="setE('${o.id}','pagado')">Marcar pagado</button>`:""}${["pagado","efectivo al recibir","espera transferencia"].includes(o.estado)&&!o.sale?` <button onclick="setE('${o.id}','en camino')" title="Le avisa al cliente por mail">🚚 Sale hoy</button>`:""}${["pagado","efectivo al recibir"].includes(o.estado)?` <button onclick="setE('${o.id}','entregado')">Marcar entregado</button>`:""}${o.factura?.prod?"":` <button onclick="delP(this,'${o.id}')">Borrar</button>`}${facHtml(o)}</div>`).join(""):"Todavía no hay pedidos.";
+  $("l").innerHTML=L.length?L.map(o=>`<div class="o">${etq(o)} <span class="muted">${new Date(o.fecha).toLocaleString("es-AR")} · Pedido ${esc(o.id.slice(0,8).toUpperCase())}</span>${o.modo==="bulto"?" · <b>📦 MAYORISTA</b>":""}<br><b>${esc(o.nombre)}</b> · ${esc(o.telefono)}<br>${esc(o.direccion)}${o.email?" · "+esc(o.email):""}${o.entrega?`<br>🕒 Entrega: <b>${esc(o.entrega)}</b>`:""}<ul>${o.items.map(i=>`<li>${i.cantidad} x ${esc(i.nombre)}</li>`).join("")}</ul>${o.envio>0?`Envío ${money(o.envio)} · `:o.envio===0?"Envío gratis · ":o.envioACoordinar?"Envío a coordinar · ":""}<b>Total ${money(o.total)}</b> · ${pagoTxt(o)}${o.cupon?" · cupón "+esc(o.cupon)+" (-"+o.descuento+"%)":""}<br>${botones(o)}${o.factura?.prod?"":` <button onclick="delP(this,'${o.id}')">Borrar</button>`} <a href="/seguimiento.html?id=${encodeURIComponent(o.id)}" target="_blank" rel="noopener" class="muted">Ver lo que ve el cliente</a>${facHtml(o)}</div>`).join(""):"Todavía no hay pedidos.";
 }
 async function setE(id,estado){
-  await api("pedidos",{method:"POST",body:JSON.stringify({id,estado})});
-  const o=L.find(x=>x.id===id);
-  if(estado==="entregado"&&FC&&FC.cfg.activo&&FC.completa&&FC.cert&&o&&!o.factura){$("m").className="msg";$("m").textContent="Pedido entregado. Haciendo la factura…";return facturar(null,id)}
+  if(estado==="cancelado"&&!confirm("¿Cancelar este pedido? Los productos vuelven al stock."))return;
+  const r=await api("pedidos",{method:"POST",body:JSON.stringify({id,estado})});const d=await r.json().catch(()=>({}));
+  if(!r.ok){$("m").className="msg err";$("m").textContent=d.error||"No se pudo cambiar el estado.";return}
+  $("m").textContent="";
   load()}
 async function delP(btn,id){if(btn.dataset.s!=="1"){btn.dataset.s="1";btn.textContent="¿Seguro? Tocá de nuevo";setTimeout(()=>{btn.dataset.s="";btn.textContent="Borrar"},4000);return}const r=await api("pedidos",{method:"POST",body:JSON.stringify({id,borrar:true})});const err=r.ok?"":((await r.json().catch(()=>({}))).error||"No se pudo borrar.");await load();if(err){$("m").className="msg err";$("m").textContent=err}}
 

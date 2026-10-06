@@ -78,6 +78,31 @@ aside h2{font-family:var(--display);font-size:1.4rem;margin:0}
 .ahead{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
 .x{border:0;background:none;color:var(--fg);font-size:26px;cursor:pointer}
 .lines{flex:1;overflow:auto;display:flex;flex-direction:column;gap:10px}
+#cart{overflow-y:auto}#cart .lines{flex:0 0 auto;overflow:visible;margin-bottom:6px}
+#cart .ahead small{font-family:var(--body);font-size:14px;font-weight:500;color:var(--muted)}
+#mini{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9;display:flex;gap:12px;align-items:center;background:var(--brand);color:var(--brand-fg);border:0;border-radius:999px;padding:12px 20px;font:600 15px var(--body);box-shadow:0 8px 24px rgba(0,0,0,.25);cursor:pointer;white-space:nowrap;max-width:calc(100% - 24px)}
+#mini b{background:var(--accent);color:var(--accent-fg);border-radius:999px;padding:2px 10px}
+#mini.pop{animation:pop .35s}@keyframes pop{50%{transform:translateX(-50%) scale(1.08)}}
+#mini.ok{background:var(--ok)}
+/* Lo que llevás: columna fija a la derecha en compu */
+#side{display:none}
+@media (min-width:1180px){
+  body.side-on main,body.side-on footer{max-width:none;margin:0 330px 0 24px}
+  body.side-on #side{display:flex}
+  body.side-on #mini{display:none}
+}
+#side{position:fixed;top:118px;right:16px;bottom:16px;width:300px;z-index:4;flex-direction:column;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 6px 24px rgba(0,0,0,.08)}
+#side h3{font-family:var(--display);font-size:1.1rem;margin:0}
+#sideL{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:8px}
+.sl{display:grid;grid-template-columns:1fr auto;gap:2px 8px;font-size:13px;border-bottom:1px solid var(--line);padding-bottom:8px}
+.sl .q{display:flex;gap:6px;align-items:center;font-size:12px;color:var(--muted)}
+.sl .q button{border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:6px;width:24px;height:24px;cursor:pointer;font:inherit;line-height:1}
+.sl b{font-variant-numeric:tabular-nums;text-align:right}
+#side .tot{padding:4px 0;font-size:1.15rem}
+#sideGo{border:0;border-radius:10px;padding:12px;background:var(--brand);color:var(--brand-fg);font:600 15px var(--body);cursor:pointer}
+#sideMin{font-size:12px;color:#b3261e;font-weight:600;margin:0}
+#recap{border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin-top:12px;font-size:13px}
+#recap summary{cursor:pointer;font-weight:600}#recap ul{margin:6px 0 0;padding-left:18px}#recap li{margin:2px 0}
 .line{display:grid;grid-template-columns:1fr auto;gap:4px 10px;border-bottom:1px solid var(--line);padding-bottom:10px}
 .line .name{font-size:13px}
 .line .sub{font-weight:600;font-variant-numeric:tabular-nums;text-align:right}
@@ -130,8 +155,10 @@ footer{max-width:1200px;margin:0 auto;padding:0 16px 40px;color:var(--muted);fon
   </div>
 </div></div>
 
+<aside id="side" aria-label="Lo que llevás"><h3>🛒 Lo que llevás <small id="sideN" style="font:500 13px var(--body);color:var(--muted)"></small></h3><div id="sideL"></div><div class="tot"><span>Total</span><span id="sideT"></span></div><p id="sideMin"></p><button id="sideGo" type="button">Terminar compra →</button></aside>
+<button id="mini" type="button" hidden aria-label="Ver carrito">🛒 <span id="miniN"></span> <b id="miniT"></b> <span id="miniV">Ver carrito →</span></button>
 <aside id="cart" hidden aria-label="Carrito">
-  <div class="ahead"><h2>Tu pedido</h2><button class="x" id="closeCart" type="button" aria-label="Cerrar">×</button></div>
+  <div class="ahead"><h2>Tu pedido <small id="cartN"></small></h2><button class="x" id="closeCart" type="button" aria-label="Cerrar">×</button></div>
   <div class="lines" id="lines"></div>
   <button class="repetir" id="repetir" type="button" hidden>🔁 Repetir mi último pedido</button>
   <div class="subt" id="subtR" hidden><span>Productos</span><span id="subt"></span></div>
@@ -145,6 +172,7 @@ footer{max-width:1200px;margin:0 auto;padding:0 16px 40px;color:var(--muted);fon
   <div id="entR" hidden><label for="cent">Día y horario de entrega</label><select class="f" id="cent"><option value="">Elegí cuándo te lo llevamos</option></select></div>
   <label for="cphone">Tu teléfono</label><input class="f" id="cphone" type="tel" autocomplete="tel">
   <label for="cmail">Tu email <span style="font-weight:400;color:#6b6b6b">(opcional, para recibir la factura)</span></label><input class="f" id="cmail" type="email" autocomplete="email" inputmode="email">
+  <details id="recap" open hidden><summary id="recapS"></summary><ul id="recapL"></ul></details>
   <button class="wa" id="pay" type="button" hidden style="border:0;width:100%;cursor:pointer;font:inherit">Pagar online (Mercado Pago)</button>
   <p class="note" id="payNote" hidden>Con Mercado Pago pagás con tarjeta (en cuotas), débito, saldo, transferencia o efectivo en Rapipago/Pago Fácil. También podés pagar al recibir. Tu pedido queda cargado solo.</p>
   <button class="wa" id="payEf" type="button" hidden style="border:0;width:100%;cursor:pointer;font:inherit;background:#555">Pagar en efectivo al recibir</button>
@@ -284,6 +312,9 @@ function renderCart(){
   if(window.CUP){tot=0;it.forEach(([e,n])=>{tot+=Math.round(pr(byEan[e])*(1-CUP.pct/100)*100)/100*n})}
   const z=$("czona").value, env=it.length?envioDe(z,tot):null;
   $("total").textContent=fmt(tot+(it.length&&env>0?env:0))+(window.CUP?" (cupón -"+CUP.pct+"%)":""); $("cartCount").textContent=units;
+  $("cartN").textContent=it.length?`· ${it.length} producto${it.length>1?"s":""}`:"";
+  const mini=$("mini"),antes=+mini.dataset.u||0;mini.hidden=!it.length||!$("cart").hidden;$("miniN").textContent=`Llevás ${units} ${units===1?"producto":"productos"}`;$("miniT").textContent=fmt(tot);
+  if(units>antes&&!mini.hidden){mini.classList.remove("pop");void mini.offsetWidth;mini.classList.add("pop")}mini.dataset.u=units;
   $("subtR").hidden=$("envR").hidden=!it.length||!z;$("subt").textContent=fmt(tot);
   $("env").textContent=env===null?"a coordinar por WhatsApp":env===0?"¡Gratis!":fmt(env);
   window.SUBT=tot;window.ENV=env;
@@ -292,6 +323,15 @@ function renderCart(){
   $("minMsg").textContent=it.length&&falta>0?"Compra mínima "+fmt(MIN())+": te faltan "+fmt(Math.ceil(falta))+".":"";
   $("wa").href=window.MINOK?"https://wa.me/"+D.wa+"?text="+encodeURIComponent(msg()):"#";
   $("wa").style.opacity=window.MINOK?"":".5";
+  // Lo que llevás: columna en compu, resumen antes de pagar y aviso al agregar
+  document.body.classList.toggle("side-on",it.length>0&&$("cart").hidden);
+  $("sideN").textContent=it.length?`· ${units} ${units===1?"producto":"productos"}`:"";
+  $("sideL").innerHTML=it.map(([e,n])=>{const p=byEan[e];return `<div class="sl"><span>${b&&p[4]>0?"Bulto x"+p[5]+" · ":""}${p[2]}</span><b>${fmt(pr(p)*n)}</b><span class="q"><button type="button" data-d="-1" data-e="${e}" aria-label="Quitar uno">−</button>${n}<button type="button" data-d="1" data-e="${e}" aria-label="Agregar uno">+</button></span></div>`}).join("");
+  $("sideT").textContent=fmt(tot);$("sideMin").textContent=$("minMsg").textContent;
+  $("recap").hidden=!it.length;$("recapS").textContent=`Revisá lo que llevás (${units} ${units===1?"producto":"productos"} · ${fmt(tot)})`;
+  $("recapL").innerHTML=it.map(([e,n])=>`<li>${n} x ${b&&byEan[e][4]>0?"Bulto x"+byEan[e][5]+" · ":""}${byEan[e][2]}</li>`).join("");
+  if(window.LAST&&byEan[window.LAST]&&!mini.hidden){const nm=plain(byEan[window.LAST][2]);$("miniN").textContent="✓ Agregaste "+(nm.length>22?nm.slice(0,22)+"…":nm);$("miniT").hidden=$("miniV").hidden=true;mini.classList.add("ok");clearTimeout(window.LASTT);window.LASTT=setTimeout(()=>{mini.classList.remove("ok");$("miniT").hidden=$("miniV").hidden=false;$("miniN").textContent=`Llevás ${units} ${units===1?"producto":"productos"}`},1800)}
+  window.LAST=null;
   try{localStorage.setItem("carts",JSON.stringify(carts))}catch(e){}
 }
 function plain(s){const t=document.createElement("textarea");t.innerHTML=s;return t.value}
@@ -308,7 +348,7 @@ async function copyText(text,btn,ok,label){
 }
 document.addEventListener("click",ev=>{
   const b=ev.target.closest("[data-e]");
-  if(b){const e=b.dataset.e;cart[e]=Math.max(0,(cart[e]||0)+ +b.dataset.d);if(!cart[e])delete cart[e];render();return}
+  if(b){const e=b.dataset.e;if(+b.dataset.d>0)window.LAST=e;cart[e]=Math.max(0,(cart[e]||0)+ +b.dataset.d);if(!cart[e])delete cart[e];render();return}
   const c=ev.target.closest("[data-c]");
   if(c){cat=+c.dataset.c;shown=60;chips();render();return}
   const k=ev.target.closest("[data-can]");
@@ -316,8 +356,8 @@ document.addEventListener("click",ev=>{
 });
 $("q").addEventListener("input",e=>{q=e.target.value;shown=60;render()});
 $("more").onclick=()=>{shown+=60;render()};
-$("openCart").onclick=()=>{$("cart").hidden=false};
-$("closeCart").onclick=()=>{$("cart").hidden=true};
+$("openCart").onclick=$("mini").onclick=$("sideGo").onclick=()=>{$("cart").hidden=false;$("mini").hidden=true;document.body.classList.remove("side-on")};
+$("closeCart").onclick=()=>{$("cart").hidden=true;renderCart()};
 ["cname","caddr","czona","cent"].forEach(id=>$(id).addEventListener("input",renderCart));
 $("czona").addEventListener("change",renderCart);
 $("repetir").onclick=()=>{const u=ULT()||{};for(const[e,n]of Object.entries(u))if(byEan[e])cart[e]=n;render()};
@@ -371,7 +411,7 @@ function dosPedido(btn,metodo,lab){
       if(!r.ok||!d.ok) throw new Error(d.error||"No se pudo cargar el pedido");
       guardarUltimo(); vaciar(); render(); $("cart").hidden=true;
       const m=metodo==="efectivo"?"¡Gracias! Tu pedido quedó cargado. Pagás en efectivo al recibirlo. Total: "+fmt(d.total)+(d.envio===null?" (el envío lo coordinamos por WhatsApp)":"")+"."+($("cmail").value.trim()?" Te mandamos el detalle por mail.":""):"¡Gracias! Tu pedido quedó cargado. Transferí "+fmt(d.total)+" al alias "+d.alias+" y avisanos por WhatsApp con el comprobante.";
-      const x=document.createElement("div");x.textContent=m;x.style.cssText="position:sticky;top:0;z-index:50;padding:12px 16px;background:#f2b630;color:#2a1f00;font-weight:600;text-align:center";document.body.prepend(x);scrollTo(0,0);
+      const x=document.createElement("div");x.textContent=m;x.style.cssText="position:sticky;top:0;z-index:50;padding:12px 16px;background:#f2b630;color:#2a1f00;font-weight:600;text-align:center";if(d.id)x.append(" ",segLink(d.id));document.body.prepend(x);scrollTo(0,0);
     }catch(e){say(e.message)}
     btn.disabled=false;
   };
@@ -383,7 +423,8 @@ if(PAYON){
 {const pg=new URLSearchParams(location.search).get("pago");
  if(pg){const m={ok:"¡Gracias! Recibimos tu pago y tu pedido ya está cargado. Te contactamos para coordinar la entrega.",pendiente:"Tu pago está pendiente. Cuando se acredite, tu pedido queda cargado.",error:"El pago no se completó. Podés intentar de nuevo."}[pg];
   if(m){if(pg==="ok"){vaciar();render()}
-   const d=document.createElement("div");d.textContent=m;d.style.cssText="position:sticky;top:0;z-index:50;padding:12px 16px;background:#f2b630;color:#2a1f00;font-weight:600;text-align:center";document.body.prepend(d);history.replaceState(null,"",location.pathname)}}}
+   const d=document.createElement("div");d.textContent=m;d.style.cssText="position:sticky;top:0;z-index:50;padding:12px 16px;background:#f2b630;color:#2a1f00;font-weight:600;text-align:center";const pid=new URLSearchParams(location.search).get("ped");if(pid&&pg!=="error")d.append(" ",segLink(pid));document.body.prepend(d);history.replaceState(null,"",location.pathname)}}}
+function segLink(id){const a=document.createElement("a");a.href="/seguimiento.html?id="+encodeURIComponent(id);a.textContent="Seguir mi pedido →";a.style.cssText="color:inherit;text-decoration:underline;white-space:nowrap";try{localStorage.setItem("ultPed",id)}catch(e){}return a}
 function ponerModo(m){
   MODO=m;try{localStorage.setItem("modo",m)}catch(e){}
   cart=carts[m];window.CUP=window.CUP||null;cat=-1;shown=60;

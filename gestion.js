@@ -23,12 +23,13 @@ async function entrar(auto){
     YO=await GJ("yo");
   }catch(e){$("m").textContent=e.message==="clave incorrecta o sin permiso"?"Clave incorrecta.":e.message;sessionStorage.removeItem("k");return}
   sessionStorage.setItem("k",K);
-  const ok=p=>YO.permisos.includes("*")||YO.permisos.includes(p)||(p==="facturacion"&&YO.rol==="dueño");
+  const ok=p=>YO.permisos.includes("*")||YO.permisos.includes(p)||(p==="facturacion"&&YO.rol==="dueño")||(p==="logistica"&&YO.permisos.includes("pedidos"));
   let first=null;for(const b of $("tabs").children){const v=ok(b.dataset.p);b.hidden=!v;if(v&&!first)first=b}
+  const simple=YO.rol==="logistica";$("tabs").style.display=simple?"none":"";$("hoyAuto").hidden=simple; // logística: una sola pantalla
   $("yoBar").hidden=false;$("yoBar").innerHTML=`Entraste como <b>${esc(YO.nombre)}</b> (${esc(YO.rolNombre)}) · <a href="#" id="salir">Salir</a>`;
   $("salir").onclick=e=>{e.preventDefault();sessionStorage.removeItem("k");location.reload()};
   await load();
-  if(first&&first.dataset.t!=="ped")first.click();
+  if(first)first.click();
 }
 window.entrar=entrar;
 if(K)entrar(true);
@@ -36,37 +37,37 @@ if(K)entrar(true);
 // ---------- Pedidos: buscar, filtrar y exportar ----------
 const _renderP=renderP;
 renderP=function(){const q=($("pq").value||"").toLowerCase(),fe=$("pfe").value;const all=L;
-  L=all.filter(o=>(!fe||o.estado===fe)&&(!q||[o.nombre,o.telefono,o.email,o.direccion,...(o.items||[]).map(i=>i.nombre)].join(" ").toLowerCase().includes(q)));
+  L=all.filter(o=>(!fe||o.etapaActual===fe)&&(!q||[o.nombre,o.telefono,o.email,o.direccion,...(o.items||[]).map(i=>i.nombre)].join(" ").toLowerCase().includes(q)));
   try{_renderP()}finally{L=all}};
 $("pq").oninput=$("pfe").onchange=()=>renderP();
 $("pexp").onclick=()=>exportar("pedidos",["Fecha","Estado","Sección","Cliente","Teléfono","Email","Dirección","Entrega","Productos","Envío","Total","Ganancia aprox.","Pago","Factura"],
-  L.map(o=>[new Date(o.fecha).toLocaleString("es-AR"),o.estado,o.modo==="bulto"?"Mayoristas":"Supermercado",o.nombre,o.telefono,o.email||"",o.direccion,o.entrega||"",(o.items||[]).map(i=>i.cantidad+" x "+plain(i.nombre)).join(" | "),o.envio||0,o.total,(o.items||[]).reduce((a,i)=>a+(i.costo?(i.precio-i.costo)*i.cantidad:0),0),o.pago?.medio||"",o.factura?o.factura.tipo+" "+nroF(o.factura):""]));
+  L.map(o=>[new Date(o.fecha).toLocaleString("es-AR"),(ET[o.etapaActual]||[,o.estado])[1].replace(/^\S+ /,"")+" · "+pagoTxt(o).replace(/^\S+ /,""),o.modo==="bulto"?"Mayoristas":"Supermercado",o.nombre,o.telefono,o.email||"",o.direccion,o.entrega||"",(o.items||[]).map(i=>i.cantidad+" x "+plain(i.nombre)).join(" | "),o.envio||0,o.total,(o.items||[]).reduce((a,i)=>a+(i.costo?(i.precio-i.costo)*i.cantidad:0),0),o.pago?.medio||"",o.factura?o.factura.tipo+" "+nroF(o.factura):""]));
 
 // ---------- Entregas (hoja de ruta y repartidores) ----------
 let REP=[];
 const ordenDia=t=>{const m=String(t||"").match(/(\d{1,2})\/(\d{1,2})/);return m?(+m[2])*100+(+m[1]):9999};
 TABS.ent=async()=>{
   if(YO.permisos.includes("*")||YO.permisos.includes("pedidos"))REP=await GJ("repartidores").catch(()=>[]);
-  const P=L.filter(o=>["pagado","efectivo al recibir","espera transferencia"].includes(o.estado));
+  const P=L.filter(o=>["nuevo","preparando","en camino"].includes(o.etapaActual));
   const dias=[...new Set(P.map(o=>(o.entrega||"Sin día elegido").split(" · ")[0]))].sort((a,b)=>ordenDia(a)-ordenDia(b));
   const sel=$("entDia").value;$("entDia").innerHTML=`<option value="">Todos los días (${P.length})</option>`+dias.map(d=>`<option ${d===sel?"selected":""}>${esc(d)}</option>`).join("");
   renderEnt();
 };
 function renderEnt(){
   const d=$("entDia").value;
-  const P=L.filter(o=>["pagado","efectivo al recibir","espera transferencia"].includes(o.estado)&&(!d||(o.entrega||"Sin día elegido").split(" · ")[0]===d))
+  const P=L.filter(o=>["nuevo","preparando","en camino"].includes(o.etapaActual)&&(!d||(o.entrega||"Sin día elegido").split(" · ")[0]===d))
     .sort((a,b)=>ordenDia(a.entrega)-ordenDia(b.entrega)||String(a.entrega).localeCompare(String(b.entrega))||String(a.zona||a.direccion).localeCompare(String(b.zona||b.direccion)));
   window.ENTV=P;
   const asig=YO.permisos.includes("*")||YO.permisos.includes("pedidos");
-  $("entL").innerHTML=P.length?P.map((o,i)=>`<div class="o"><b>${i+1}.</b> ${o.entrega?`🕒 <b>${esc(o.entrega)}</b> · `:""}<b>${esc(o.nombre)}</b> · <a href="https://wa.me/${String(o.telefono).replace(/\D/g,"").replace(/^(?!54)/,"549")}" target="_blank" rel="noopener">${esc(o.telefono)}</a><br>📍 <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(plain(o.direccion))}" target="_blank" rel="noopener">${esc(o.direccion)}</a><br>
-    ${(o.items||[]).length} productos · <b>${o.estado==="efectivo al recibir"?"COBRAR "+money(o.total)+" en efectivo":o.estado==="espera transferencia"?"Espera transferencia: "+money(o.total):"Pagado ("+money(o.total)+")"}</b>${o.modo==="bulto"?" · 📦 Mayorista":""}${o.sale?" · 🚚 salió":""}
+  $("entL").innerHTML=P.length?P.map((o,i)=>`<div class="o"><b>${i+1}.</b> ${etq(o)} ${o.entrega?`🕒 <b>${esc(o.entrega)}</b> · `:""}<b>${esc(o.nombre)}</b> · <a href="https://wa.me/${String(o.telefono).replace(/\D/g,"").replace(/^(?!54)/,"549")}" target="_blank" rel="noopener">${esc(o.telefono)}</a><br>📍 <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(plain(o.direccion))}" target="_blank" rel="noopener">${esc(o.direccion)}</a><br>
+    ${(o.items||[]).length} productos · <b>${o.estado==="efectivo al recibir"?"COBRAR "+money(o.total)+" en efectivo":o.estado==="espera transferencia"?"Espera transferencia: "+money(o.total):"Pagado ("+money(o.total)+")"}</b>${o.modo==="bulto"?" · 📦 Mayorista":""}
     <details><summary>Ver productos</summary><ul>${o.items.map(i=>`<li>${i.cantidad} x ${esc(i.nombre)}</li>`).join("")}</ul></details>
     ${asig?`<label>Repartidor: <select onchange="asignar('${o.id}',this.value)"><option value="">Sin asignar</option>${REP.map(r=>`<option value="${esc(r.usuario)}" ${o.repartidor===r.usuario?"selected":""}>${esc(r.nombre)}</option>`).join("")}</select></label>`:""}
-    ${!o.sale?`<button onclick="setE('${o.id}','en camino')">🚚 Sale hoy</button>`:""} ${o.estado!=="espera transferencia"?`<button onclick="setE('${o.id}','entregado')">✔ Entregado</button>`:""}</div>`).join(""):'<p class="muted">No hay pedidos para entregar.</p>';
+    ${o.etapaActual==="nuevo"?'<span class="muted">Falta comprar la mercadería.</span> ':""}${o.etapaActual!=="en camino"?`<button onclick="setE('${o.id}','en camino')">👉 Marcar que salió</button>`:""} <button class="p" onclick="setE('${o.id}','entregado')">👉 Marcar entregado</button></div>`).join(""):'<p class="muted">No hay pedidos para repartir. 🎉</p>';
 }
 $("entDia").onchange=renderEnt;
 window.asignar=async(id,rep)=>{await api("pedidos",{method:"POST",body:JSON.stringify({id,repartidor:rep})});const o=L.find(x=>x.id===id);if(o)o.repartidor=rep};
-$("entExp").onclick=()=>exportar("hoja-de-ruta",["#","Entrega","Cliente","Teléfono","Dirección","Productos","Cobrar","Estado","Repartidor"],(window.ENTV||[]).map((o,i)=>[i+1,o.entrega||"",o.nombre,o.telefono,o.direccion,(o.items||[]).map(i=>i.cantidad+" x "+plain(i.nombre)).join(" | "),o.estado==="efectivo al recibir"?o.total:0,o.estado,o.repartidor||""]));
+$("entExp").onclick=()=>exportar("hoja-de-ruta",["#","Entrega","Cliente","Teléfono","Dirección","Productos","Cobrar","Estado","Repartidor"],(window.ENTV||[]).map((o,i)=>[i+1,o.entrega||"",o.nombre,o.telefono,o.direccion,(o.items||[]).map(i=>i.cantidad+" x "+plain(i.nombre)).join(" | "),o.estado==="efectivo al recibir"?o.total:0,(ET[o.etapaActual]||[,""])[1].replace(/^\S+ /,""),o.repartidor||""]));
 
 // ---------- Clientes ----------
 let CLI=[];
@@ -151,17 +152,20 @@ TABS.cpr=async()=>{try{const d=await GJ("compras");SUG=d.sugeridas;COMP=d.compra
   renderSug();renderComp();loadProv()};
 function renderSug(){
   const tot=SUG.reduce((s,x)=>s+x.costo,0);
-  $("cprL").innerHTML=SUG.length?`<p><b>${SUG.length}</b> productos · costo aprox. <b>${money(tot)}</b></p><table><tr><th>Producto</th><th class="n">Stock</th><th class="n">Falta</th><th class="n">Comprar</th><th class="n">Unidades</th><th class="n">Costo aprox.</th></tr>${SUG.map((x,i)=>`<tr><td>${esc(plain(x.nombre))}</td><td class="n ${x.stock<0?"neg":""}">${x.stock}</td><td class="n">${x.falta}</td><td class="n">${x.bultos?`${x.bultos} bulto${x.bultos>1?"s":""} x${x.bu}`:"—"}</td><td class="n"><input type="number" min="0" data-i="${i}" value="${x.unidades}"></td><td class="n">${x.costo?money(x.costo):"—"}</td></tr>`).join("")}</table>`:'<p class="muted">No hay nada para comprar. 🎉</p>';
+  $("cprL").innerHTML=SUG.length?`<p><b>${SUG.length}</b> productos · costo aprox. <b>${money(tot)}</b></p><table><tr><th>Producto</th><th class="n">Hacen falta</th><th class="n">Comprar</th><th class="n">Unidades</th><th class="n">Costo aprox.</th></tr>${SUG.map((x,i)=>`<tr><td>${esc(plain(x.nombre))}${x.stock>0?`<br><span class="muted">En el depósito hay ${x.stock}</span>`:""}</td><td class="n"><b>${x.falta}</b></td><td class="n">${x.bultos?`<b>${x.bultos} bulto${x.bultos>1?"s":""}</b> x${x.bu}`:`<b>${x.unidades} u.</b>`}</td><td class="n"><input type="number" min="0" data-i="${i}" value="${x.unidades}"></td><td class="n">${x.costo?money(x.costo):"—"}</td></tr>`).join("")}</table>`:'<p class="muted">No hay nada para comprar. 🎉</p>';
 }
 $("cprL").addEventListener("input",e=>{const i=e.target.dataset.i;if(i!==undefined)SUG[+i].unidades=+e.target.value||0});
 const sugTxt=()=>"Para comprar en Maxiconsumo:\n"+SUG.filter(x=>x.unidades>0).map(x=>"• "+(x.bultos&&x.unidades%x.bu===0?`${x.unidades/x.bu} bulto${x.unidades/x.bu>1?"s":""} x${x.bu}`:`${x.unidades} u.`)+" — "+plain(x.nombre)).join("\n");
 $("cprCopy").onclick=async()=>{try{await navigator.clipboard.writeText(sugTxt());say("cprMsg",true,"Copiada.")}catch(e){say("cprMsg",false,"No se pudo copiar.")}};
 $("cprExp").onclick=()=>exportar("para-comprar",["Código","Producto","Stock","Falta","Bultos","Unidades por bulto","Unidades a comprar","Costo unitario","Costo aprox."],SUG.map(x=>[x.sku,x.nombre,x.stock,x.falta,x.bultos||"",x.bu,x.unidades,x.costoU,x.costo]));
-$("cprReg").onclick=async()=>{const items=SUG.filter(x=>x.unidades>0).map(x=>({sku:x.sku,nombre:plain(x.nombre),unidades:x.unidades,costo:x.costoU}));
-  if(!items.length)return say("cprMsg",false,"No hay nada para registrar.");
-  if(!confirm(`¿Registrar la compra de ${items.length} productos a ${$("cprProv").value}? El stock se suma solo.`))return;
-  try{const d=await GJ("compras",{proveedor:$("cprProv").value,items});say("cprMsg",true,`Compra registrada (${money(d.compra.total)}). Stock actualizado.`);TABS.cpr()}catch(e){say("cprMsg",false,e.message)}};
-function renderComp(){$("cprH").innerHTML=COMP.length?`<table><tr><th>Fecha</th><th>Proveedor</th><th class="n">Productos</th><th class="n">Total</th><th>Quién</th></tr>${COMP.map(c=>`<tr><td>${new Date(c.fecha).toLocaleString("es-AR")}</td><td>${esc(c.proveedor)}<details><summary class="muted">detalle</summary>${c.items.map(i=>`${i.unidades} x ${esc(plain(i.nombre))}`).join("<br>")}</details></td><td class="n">${c.items.length}</td><td class="n">${money(c.total)}</td><td>${esc(c.quien||"")}</td></tr>`).join("")}</table>`:'<p class="muted">Todavía no registraste compras.</p>'}
+async function yaCompre(msgId,prov){const items=SUG.filter(x=>x.unidades>0).map(x=>({sku:x.sku,nombre:plain(x.nombre),unidades:x.unidades,costo:x.costoU}));
+  if(!items.length)return say(msgId,false,"No hay nada para comprar.");
+  if(!confirm(`¿Ya compraste los ${items.length} productos de la lista en ${prov}?\n\nEl stock se suma solo y los pedidos pasan a "Para entregar".`))return false;
+  try{const d=await GJ("compras",{proveedor:prov,items});say(msgId,true,`¡Listo! Compra anotada (${money(d.compra.total)}).${d.preparando?` ${d.preparando} pedido${d.preparando>1?"s pasaron":" pasó"} a "Para entregar".`:""}`);await load();return true}catch(e){say(msgId,false,e.message);return false}}
+$("cprReg").onclick=async()=>{if(await yaCompre("cprMsg",$("cprProv").value))TABS.cpr()};
+function renderComp(){const m=new Date().toISOString().slice(0,7),M=COMP.filter(c=>c.fecha.slice(0,7)===m);
+  $("cprK").innerHTML=[["Gastado este mes",money(M.reduce((t,c)=>t+c.total,0))],["Compras este mes",M.length],["Última compra",COMP[0]?fecha(COMP[0].fecha):"—"]].map(([a,b])=>`<div class="kpi"><small>${a}</small><b>${b}</b></div>`).join("");
+  $("cprH").innerHTML=COMP.length?`<table><tr><th>Día</th><th>Qué se compró</th><th class="n">Gastado</th><th>Quién</th></tr>${COMP.map(c=>`<tr><td>${new Date(c.fecha).toLocaleDateString("es-AR")}<br><span class="muted">${esc(c.proveedor)}</span></td><td><details><summary>${c.items.length} productos</summary>${c.items.map(i=>`${i.unidades} x ${esc(plain(i.nombre))}`).join("<br>")}</details></td><td class="n"><b>${money(c.total)}</b></td><td>${esc(c.quien||"")}</td></tr>`).join("")}</table>`:'<p class="muted">Todavía no hay compras. Aparecen solas cuando alguien toca "✅ Ya compré todo" en 🏠 Hoy.</p>'}
 $("cprHExp").onclick=()=>exportar("compras",["Fecha","Proveedor","Código","Producto","Unidades","Costo unitario","Subtotal","Quién"],COMP.flatMap(c=>c.items.map(i=>[new Date(c.fecha).toLocaleString("es-AR"),c.proveedor,i.sku,i.nombre,i.unidades,i.costo,Math.round(i.unidades*i.costo),c.quien||""])));
 async function loadProv(){PROV=await GJ("proveedores").catch(()=>[]);
   const sel=$("cprProv").value;$("cprProv").innerHTML=PROV.map(p=>`<option ${p.nombre===sel?"selected":""}>${esc(p.nombre)}</option>`).join("");
@@ -207,14 +211,51 @@ $("per").onchange=()=>stats();
 
 // ---------- Usuarios ----------
 TABS.usu=async()=>{let l;try{l=await GJ("usuarios")}catch(e){$("usL").textContent=e.message;return}renderUs(l)};
-function renderUs(l){$("usL").innerHTML=l.length?`<table><tr><th>Nombre</th><th>Usuario</th><th>Rol</th><th>Estado</th><th></th></tr>${l.map(x=>`<tr><td>${esc(x.nombre)}</td><td>${esc(x.usuario)}</td><td>${esc(x.rolNombre)}</td><td>${x.activo!==false?"Activo":"Dado de baja"}</td><td><button type="button" onclick="usAcc('${esc(x.usuario)}','activo',${x.activo===false})">${x.activo!==false?"Dar de baja":"Reactivar"}</button> <button type="button" onclick="usAcc('${esc(x.usuario)}','clave')">Cambiar clave</button> <button type="button" onclick="usAcc('${esc(x.usuario)}','borrar')">Borrar</button></td></tr>`).join("")}</table>`:'<p class="muted">Todavía no creaste usuarios. Por ahora entra solo el dueño.</p>'}
+function renderUs(l){$("usL").innerHTML=l.length?`<table><tr><th>Nombre</th><th>Usuario</th><th>Qué hace</th><th>Estado</th><th></th></tr>${l.map(x=>`<tr><td>${esc(x.nombre)}</td><td>${esc(x.usuario)}</td><td>${esc(x.rolNombre)}</td><td>${x.activo!==false?"Activo":"Dado de baja"}</td><td><button type="button" onclick="usAcc('${esc(x.usuario)}','activo',${x.activo===false})">${x.activo!==false?"Dar de baja":"Reactivar"}</button> <button type="button" onclick="usAcc('${esc(x.usuario)}','clave')">Cambiar clave</button> <button type="button" onclick="usAcc('${esc(x.usuario)}','borrar')">Borrar</button></td></tr>`).join("")}</table>`:'<p class="muted">Todavía no creaste usuarios. Por ahora entrás solo vos.</p>'}
 window.usAcc=async(usuario,acc,val)=>{try{let b={accion:"editar",usuario};
   if(acc==="activo")b.activo=val;
   if(acc==="clave"){const c=prompt("Nueva clave (mínimo 6 caracteres):");if(!c)return;b.clave=c}
   if(acc==="borrar"){if(!confirm("¿Borrar el usuario "+usuario+"?"))return;b={accion:"borrar",usuario}}
   renderUs(await GJ("usuarios",b));say("usMsg",true,"Listo.")}catch(e){say("usMsg",false,e.message)}};
-$("usF").onsubmit=async e=>{e.preventDefault();try{renderUs(await GJ("usuarios",{accion:"crear",nombre:$("usN").value,usuario:$("usU").value,clave:$("usC").value,rol:$("usR").value}));say("usMsg",true,"Usuario creado. Ya puede entrar con su usuario y clave.");$("usF").reset()}catch(err){say("usMsg",false,err.message)}};
+$("usF").onsubmit=async e=>{e.preventDefault();const n=$("usN").value.trim(),u=$("usU").value.trim().toLowerCase(),c=$("usC").value;
+  try{renderUs(await GJ("usuarios",{accion:"crear",nombre:n,usuario:u,clave:c,rol:$("usR").value}));say("usMsg",true,"¡Usuario creado!");$("usF").reset();
+    const txt=`Hola ${n}! Para entrar al panel de Proveeduría Virtual:\n👉 ${location.origin}/pedidos.html\nUsuario: ${u}\nClave: ${c}`;
+    $("usPasar").hidden=false;$("usPasar").innerHTML=`<b>Pasale esto a ${esc(n)}</b> (por WhatsApp o en persona):<pre style="white-space:pre-wrap;font:inherit;background:var(--soft);padding:10px;border-radius:8px">${esc(txt)}</pre><button type="button" id="usCopy">📋 Copiar mensaje</button>`;
+    $("usCopy").onclick=async()=>{try{await navigator.clipboard.writeText(txt);$("usCopy").textContent="¡Copiado!"}catch(e){}}}
+  catch(err){say("usMsg",false,err.message)}};
 
 // Al recargar pedidos (por ejemplo después de "Entregado"), refrescar también la hoja de ruta si está abierta
 const _load=load;
-load=async function(){await _load();if(!$("ent").hidden&&TABS.ent)TABS.ent();if(!$("cli").hidden&&TABS.cli)TABS.cli()};
+load=async function(){await _load();if(!$("hoy").hidden&&TABS.hoy)TABS.hoy();if(!$("ent").hidden&&TABS.ent)TABS.ent();if(!$("cli").hidden&&TABS.cli)TABS.cli()};
+
+// ---------- Hoy: pedidos del día → lista de compras → entregas ----------
+const irA=t=>{const b=[...$("tabs").children].find(x=>x.dataset.t===t);if(b&&!b.hidden)b.click()};window.irA=irA;
+const waLink=t=>`https://wa.me/${String(t).replace(/\D/g,"").replace(/^(?!54)/,"549")}`;
+const cobrar=o=>o.estado==="efectivo al recibir"?`<span class="cobrar">COBRAR ${money(o.total)} en efectivo</span>`:o.estado==="espera transferencia"?`<span class="cobrar">Espera transferencia (${money(o.total)})</span>`:`<span class="muted">Pagado ✓</span>`;
+const prods=o=>`<details><summary>${(o.items||[]).length} productos</summary><ul>${o.items.map(i=>`<li>${i.cantidad} x ${esc(i.nombre)}</li>`).join("")}</ul></details>`;
+TABS.hoy=async()=>{
+  const ver=p=>YO.permisos.includes("*")||YO.permisos.includes(p);
+  if(ver("compras")){try{SUG=(await GJ("compras")).sugeridas}catch(e){SUG=[]}}
+  const por=e=>L.filter(o=>o.etapaActual===e).sort((a,b)=>ordenDia(a.entrega)-ordenDia(b.entrega)||String(a.entrega).localeCompare(String(b.entrega)));
+  const nuevos=por("nuevo"),entregar=[...por("preparando"),...por("en camino")].sort((a,b)=>ordenDia(a.entrega)-ordenDia(b.entrega)||String(a.entrega).localeCompare(String(b.entrega))||String(a.zona).localeCompare(String(b.zona)));
+  const hoyS=new Date().toLocaleDateString("es-AR"),entHoy=L.filter(o=>o.etapaActual==="entregado"&&o.entregado&&new Date(o.entregado).toLocaleDateString("es-AR")===hoyS).length;
+  const esp=por("esperando pago").length,costo=SUG.reduce((t,x)=>t+x.costo,0);
+  const act=SUG.length||nuevos.length?(SUG.length?2:1):entregar.length?3:0;
+  const cant=x=>x.bultos&&x.unidades%x.bu===0?`${x.unidades/x.bu} bulto${x.unidades/x.bu>1?"s":""} x${x.bu}`:`${x.unidades} u.`;
+  $("hoyBody").innerHTML=
+  `<div class="blk ${act===1?"activo":""}"><h2>📥 1. Pedidos nuevos <span class="cnt">${nuevos.length}</span></h2>
+    ${nuevos.length?nuevos.map(o=>`<div class="fila"><b>${esc(o.nombre)}</b>${o.modo==="bulto"?" · 📦 Mayorista":""}${o.entrega?` · 🕒 ${esc(o.entrega)}`:""} · ${money(o.total)}${prods(o)}</div>`).join(""):'<p class="muted">No hay pedidos nuevos.</p>'}
+    ${esp?`<p class="muted">Hay ${esp} pedido${esp>1?"s":""} esperando que se acredite el pago: aparece${esp>1?"n":""} acá solo${esp>1?"s":""} cuando se paguen.</p>`:""}</div>
+  <div class="blk ${act===2?"activo":""}"><h2>🛒 2. Lista de compras para Maxiconsumo <span class="cnt">${SUG.length}</span>${SUG.length?`<small class="muted">aprox. ${money(costo)}</small>`:""}</h2>
+    ${SUG.length?`<table><tr><th>Comprar</th><th>Producto</th></tr>${SUG.map(x=>`<tr><td><b>${cant(x)}</b></td><td>${esc(plain(x.nombre))}</td></tr>`).join("")}</table>
+    <div class="tools"><button type="button" id="hoyCopy">📋 Copiar lista</button> <button type="button" id="hoyPrint">🖨 Imprimir lista</button> <button type="button" class="p big" id="hoyYa">✅ Ya compré todo</button></div>`
+    :nuevos.length?`<p class="muted">No hace falta comprar nada: lo que piden ya está en el depósito.</p><button type="button" class="p" id="hoyPrep">✅ Pasar los pedidos a preparar</button>`:'<p class="muted">No hay nada para comprar. 🎉</p>'}</div>
+  <div class="blk ${act===3?"activo":""}"><h2>🚚 3. Para entregar <span class="cnt">${entregar.length}</span><small class="muted">Entregados hoy: ${entHoy}</small></h2>
+    ${entregar.length?entregar.map((o,i)=>`<div class="fila"><b>${i+1}. ${esc(o.nombre)}</b>${o.entrega?` · 🕒 <b>${esc(o.entrega)}</b>`:""}<br>📍 <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(plain(o.direccion))}" target="_blank" rel="noopener">${esc(o.direccion)}</a> · 📞 <a href="${waLink(o.telefono)}" target="_blank" rel="noopener">${esc(o.telefono)}</a><br>${cobrar(o)}${prods(o)}<button type="button" class="p big" onclick="setE('${o.id}','entregado')">👉 Marcar entregado</button></div>`).join(""):'<p class="muted">No hay pedidos para entregar.</p>'}</div>`;
+  if($("hoyCopy"))$("hoyCopy").onclick=async()=>{try{await navigator.clipboard.writeText(sugTxt());say("hoyMsg",true,"Lista copiada. Pegala en WhatsApp o en las notas del celular.")}catch(e){say("hoyMsg",false,"No se pudo copiar.")}};
+  if($("hoyPrint"))$("hoyPrint").onclick=()=>{const w=open("","_blank");if(!w)return;w.document.write(`<title>Lista de compras</title><body style="font:16px system-ui;padding:20px"><h2>Lista de compras · Maxiconsumo · ${new Date().toLocaleDateString("es-AR")}</h2><table style="border-collapse:collapse">${SUG.map(x=>`<tr><td style="padding:6px 16px 6px 0">☐ <b>${cant(x)}</b></td><td>${esc(plain(x.nombre))}</td></tr>`).join("")}</table><script>print()<\/script>`);w.document.close()};
+  if($("hoyYa"))$("hoyYa").onclick=async()=>{await yaCompre("hoyMsg","Maxiconsumo")};
+  if($("hoyPrep"))$("hoyPrep").onclick=async()=>{for(const o of nuevos)await api("pedidos",{method:"POST",body:JSON.stringify({id:o.id,estado:"preparando"})});say("hoyMsg",true,"Listo, los pedidos pasaron a Para entregar.");load()};
+};
+// La pantalla se actualiza sola cada 2 minutos (si está abierta)
+setInterval(()=>{if(YO&&!$("hoy").hidden&&!document.hidden&&!document.querySelector("#hoyBody details[open]"))load()},120000);
