@@ -1,6 +1,7 @@
 import { leerDatos } from "../../lib/datos.mjs";
 import { getStore } from "@netlify/blobs";
 import { pctDe, conDescuento, norm } from "../../lib/cupon.mjs";
+import { precioDe } from "../../lib/precios.mjs";
 
 const J = (o, s = 200) => new Response(JSON.stringify(o), { status: s, headers: { "content-type": "application/json" } });
 const unesc = s => s.replace(/&#x27;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
@@ -26,14 +27,17 @@ export default async (req) => {
   const by = new Map(D.p.map(p => [p[1], p]));
 
   const pct = await pctDe(b.cupon);
+  const modo = b.modo === "bulto" ? "bulto" : "unidad";
   const items = [];
   let total = 0;
   for (const it of b.items) {
     const p = by.get(String(it.e));
     const n = Math.floor(Number(it.n));
     if (!p || !(n >= 1 && n <= 99)) return J({ error: "Hay un producto que ya no está disponible. Actualizá la página." }, 400);
-    items.push({ id: p[1], title: unesc(p[2]).slice(0, 250), quantity: n, unit_price: conDescuento(p[3], pct), currency_id: "ARS" });
-    total += conDescuento(p[3], pct) * n;
+    const pr = precioDe(p, modo);
+    const titulo = (pr.bulto ? `BULTO x${pr.unidades} - ` : "") + unesc(p[2]);
+    items.push({ id: p[1], title: titulo.slice(0, 250), quantity: n, unit_price: conDescuento(pr.precio, pct), currency_id: "ARS" });
+    total += conDescuento(pr.precio, pct) * n;
   }
 
   if (total < 80000) return J({ error: "La compra mínima es $ 80.000." }, 400);
@@ -56,7 +60,7 @@ export default async (req) => {
   if (!r.ok || !d.init_point) return J({ error: "Mercado Pago no pudo crear el pago." }, 502);
 
   await getStore("pedidos").setJSON(id, {
-    id, fecha: new Date().toISOString(), estado: "pendiente", cupon: pct ? norm(b.cupon) : undefined, descuento: pct || undefined, nombre, direccion, telefono, email: email || undefined, total,
+    id, fecha: new Date().toISOString(), estado: "pendiente", modo, cupon: pct ? norm(b.cupon) : undefined, descuento: pct || undefined, nombre, direccion, telefono, email: email || undefined, total,
     items: items.map(i => ({ nombre: i.title, cantidad: i.quantity, precio: i.unit_price })),
   });
   return J({ url: d.init_point });
