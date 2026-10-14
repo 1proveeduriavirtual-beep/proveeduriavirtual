@@ -27,6 +27,9 @@ jobs:
           curl -sL -o r.pdf "https://makro-com-ar.b-cdn.net/wp-content/uploads/Flyer-GT-OCT-2-V-FINAL.pdf"
           pdftoppm -r 200 -f 1 -l 2 -png r.pdf ofertas/png/makro-prueba
           node scripts/ia-ping.mjs
+          curl -sv https://models.github.ai/catalog/models -H "authorization: Bearer $GITHUB_TOKEN" -o ofertas/paginas/catalogo.json 2> ofertas/paginas/curl1.txt || true
+          curl -sv -X POST https://models.github.ai/inference/chat/completions -H "authorization: Bearer $GITHUB_TOKEN" -H "content-type: application/json" -d '{"model":"openai/gpt-4o-mini","messages":[{"role":"user","content":"hola"}],"max_tokens":5}' -o ofertas/paginas/curl2-body.txt 2> ofertas/paginas/curl2.txt || true
+          env | grep -i -E "proxy|ACTIONS_RUNNER|RUNNER_ENV|ImageOS" > ofertas/paginas/env.txt || true
           node scripts/ofertas-ia.mjs
           ls -la ofertas/paginas
       - name: Guardar
