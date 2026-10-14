@@ -1,22 +1,31 @@
 #!/usr/bin/env bash
 # Lee el texto de cada página de las revistas con Tesseract (gratis).
-# Antes de leer: alta resolución, blanco y negro, más contraste y nitidez (menos errores con los números).
-# Deja por página: texto (.txt), palabras con posición y confianza (.tsv) y una vista previa chica (.jpg).
+# Rápido: 200 dpi, varias páginas a la vez (una por núcleo) y un tope de tiempo total.
+# Si se acaba el tiempo, se queda con lo que ya leyó (no se pierde la corrida).
+# Deja por página: palabras con posición y confianza (.tsv), texto (.txt) y una vista previa chica (.jpg).
 set -u
-mkdir -p ofertas/paginas
+mkdir -p ofertas/paginas ofertas/png
+TOPE=${TOPE_MIN:-30}        # minutos máximos leyendo
+MAXPAG=${MAX_PAGINAS:-60}   # páginas máximas por revista
+# 1) Pasar todo a imágenes
 for f in ofertas/raw/*/*; do
   [ -f "$f" ] || continue
   tienda=$(basename "$(dirname "$f")"); base=$(basename "$f"); base=${base%.*}
-  tmp=$(mktemp -d)
-  if [[ "$f" == *.pdf ]]; then pdftoppm -r 300 -png "$f" "$tmp/p" || { rm -rf "$tmp"; continue; }
-  else magick "$f" "$tmp/p-1.png"; fi
-  for img in "$tmp"/p*.png; do
-    pag=$(basename "$img" .png); pag=${pag#p-}
-    out="ofertas/paginas/${tienda}-${base}-${pag}"
-    magick "$img" -colorspace Gray -resize 150% -normalize -sharpen 0x1 "$tmp/limpia.png"
-    tesseract "$tmp/limpia.png" "$out" -l spa --psm 11 txt tsv >/dev/null 2>&1
-    magick "$img" -resize 900x -quality 55 "$out.jpg"
-    echo "leída $out"
-  done
-  rm -rf "$tmp"
+  if [[ "$f" == *.pdf ]]; then timeout 120 pdftoppm -r 200 -l "$MAXPAG" -png "$f" "ofertas/png/${tienda}-${base}" || true
+  else magick "$f" "ofertas/png/${tienda}-${base}-1.png" || true; fi
 done
+echo "Páginas para leer: $(ls ofertas/png/*.png 2>/dev/null | wc -l)"
+# 2) Leer en paralelo
+leer() {
+  img="$1"; out="ofertas/paginas/$(basename "$img" .png)"
+  [ -f "$out.tsv" ] && return
+  magick "$img" -colorspace Gray -normalize -sharpen 0x1 "$img.g.png" &&
+  OMP_THREAD_LIMIT=1 timeout 90 tesseract "$img.g.png" "$out" -l spa --psm 11 txt tsv >/dev/null 2>&1
+  magick "$img" -resize 900x -quality 55 "$out.jpg" 2>/dev/null
+  rm -f "$img.g.png"; echo "leída $out"
+}
+export -f leer
+ls ofertas/png/*.png 2>/dev/null | timeout "${TOPE}m" xargs -P "$(nproc)" -I{} bash -c 'leer "$@"' _ {} || echo "Se terminó el tiempo: sigo con lo que ya leí."
+rm -rf ofertas/png
+echo "Páginas leídas: $(ls ofertas/paginas/*.tsv 2>/dev/null | wc -l)"
+exit 0

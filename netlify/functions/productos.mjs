@@ -60,6 +60,7 @@ export default async (req) => {
     const x = b.tienda;
     if (x.mayoristasRegistro !== undefined) cfg.mayoristasRegistro = !!x.mayoristasRegistro;
     if (x.mantenimiento !== undefined) cfg.mantenimiento = !!x.mantenimiento;
+    if (x.ofertasAuto !== undefined) cfg.ofertasAuto = !!x.ofertasAuto;
     if (x.supermercado !== undefined) cfg.supermercado = x.supermercado === "maxi" ? "maxi" : "principal";
     if (x.soporte !== undefined) cfg.soporte = String(x.soporte || "").replace(/[<>]/g, "").trim().slice(0, 120);
     if (x.mantenimientoMsg !== undefined) cfg.mantenimientoMsg = String(x.mantenimientoMsg || "").replace(/[<>]/g, "").trim().slice(0, 300);

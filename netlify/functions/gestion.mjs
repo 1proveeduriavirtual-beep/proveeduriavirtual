@@ -110,12 +110,21 @@ export default async (req) => {
             const key = m.sku + "|" + tienda;
             if (vistos.has(key) || O.descartes[nk(texto) + "|" + m.sku]) continue;
             vistos.add(key);
-            nuevas.push({ id: crypto.randomUUID().slice(0, 8), sku: m.sku, nombre: p?.[2] || m.sku, tienda, texto, precio, costoU: cu, ahorro: Math.round((1 - precio / cu) * 100), bu, precioBultoActual: p?.[4] || 0, precioBultoNuevo: Math.ceil(precio * (1 + mB / 100) / 10) * 10 * bu, aprendido: !!m.aprendido, img: String(c.img || "").slice(0, 300), pagina: String(c.pagina || "").slice(0, 80) });
+            nuevas.push({ id: crypto.randomUUID().slice(0, 8), sku: m.sku, nombre: p?.[2] || m.sku, tienda, texto, precio, costoU: cu, ahorro: Math.round((1 - precio / cu) * 100), bu, precioBultoActual: p?.[4] || 0, precioBultoNuevo: Math.ceil(precio * (1 + mB / 100) / 10) * 10 * bu, aprendido: !!m.aprendido, completo: !!m.completo, puntaje: Math.round(m.puntaje * 100) / 100, img: String(c.img || "").slice(0, 300), pagina: String(c.pagina || "").slice(0, 80) });
           }
           // de la misma marca en varias revistas, se propone la más barata
           const mejor = new Map(); for (const x of nuevas) { const y = mejor.get(x.sku); if (!y || x.precio < y.precio) mejor.set(x.sku, x); }
-          O.pendientes = [...mejor.values()].sort((a, b) => b.ahorro - a.ahorro);
-          O.corrida = { f: new Date().toISOString(), leidos, propuestas: O.pendientes.length, tiendas: [...new Set((b.candidatos || []).map(c => c.tienda))] };
+          // "Aplicar solas las seguras": las que ya se aprobaron antes o coinciden muy bien, con un ahorro razonable.
+          // Un solo precio por producto: si ya había una oferta en uso y aparece otra más barata, la reemplaza.
+          let solas = 0; const pend = [], act = vigentes(O.activas);
+          for (const x of mejor.values()) {
+            const segura = (x.aprendido || x.completo) && x.ahorro >= 5 && x.ahorro <= 40;
+            if (act[x.sku] && act[x.sku].costoU <= x.precio) continue; // ya hay una igual o más barata en uso
+            if (cfg?.ofertasAuto && segura) { O.activas[x.sku] = { tienda: x.tienda, costoU: x.precio, precioBulto: x.precioBultoNuevo, hasta: hasta7, texto: x.texto, nombre: x.nombre, aprobo: "automático" }; solas++; }
+            else pend.push(x);
+          }
+          O.pendientes = pend.sort((a, b) => b.ahorro - a.ahorro);
+          O.corrida = { f: new Date().toISOString(), leidos, propuestas: mejor.size, solas, tiendas: [...new Set((b.candidatos || []).map(c => c.tienda))] };
         } else if (b.accion === "aprobar") {
           const x = O.pendientes.find(y => y.id === b.id); if (!x) return J({ error: "Esa oferta ya no está." }, 404);
           O.activas[x.sku] = { tienda: x.tienda, costoU: x.precio, precioBulto: x.precioBultoNuevo, hasta: /^\d{4}-\d{2}-\d{2}$/.test(b.hasta || "") ? b.hasta : hasta7, texto: x.texto, nombre: x.nombre, aprobo: u.nombre };
@@ -128,7 +137,8 @@ export default async (req) => {
         await guardarOfertas(O);
       }
       const act = vigentes(O.activas);
-      return J({ pendientes: O.pendientes, activas: Object.entries(act).map(([sku, x]) => ({ sku, ...x })), corrida: O.corrida });
+      const cf = await getStore("tienda").get("config", { type: "json" }).catch(() => null);
+      return J({ pendientes: O.pendientes, activas: Object.entries(act).map(([sku, x]) => ({ sku, ...x })), corrida: O.corrida, auto: !!cf?.ofertasAuto });
     }
 
     // ---------- semáforo: ¿anda todo? ----------
