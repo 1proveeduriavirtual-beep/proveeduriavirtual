@@ -28,7 +28,8 @@ for (const f of imgs) {
     await new Promise(z => setTimeout(z, (espera || 20) * 1000));
   }
   if (!r.ok) { console.log("IA: no pude leer", f, r.status, (await r.text()).slice(0, 200)); if (r.status === 401 || r.status === 403) process.exit(0); continue; }
-  d = await r.json().catch(() => null);
+  const crudo = await r.text().catch(e => "ERROR " + e.message);
+  try { d = JSON.parse(crudo); } catch { d = { crudo: crudo.slice(0, 3000), status: r.status, tipo: r.headers.get("content-type") }; }
   const txt = String(d?.choices?.[0]?.message?.content || "").replace(/```json|```/g, "");
   let lista = []; try { lista = JSON.parse(txt.slice(txt.indexOf("["), txt.lastIndexOf("]") + 1)); } catch {}
   lista = (Array.isArray(lista) ? lista : []).map(x => ({ texto: String(x.producto || "").slice(0, 200), precio: +x.precio })).filter(x => x.texto && x.precio >= 100 && x.precio <= 500000);
