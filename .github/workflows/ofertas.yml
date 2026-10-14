@@ -1,0 +1,48 @@
+# Revistas de ofertas: baja las de Diarco, Makro, Vital y Yaguar, las lee con Tesseract (gratis)
+# y le manda a la tienda los productos con precio. En el panel (🏷 Ofertas) se revisan y se aprueban: nada se aplica solo.
+# Corre los lunes y jueves a la mañana. Para correrlo a mano: Actions > "Revistas de ofertas" > Run workflow.
+# Necesita el secreto ADMIN_KEY (el mismo de la actualización de precios).
+name: Revistas de ofertas
+
+on:
+  schedule:
+    - cron: "37 11 * * 1,4" # lunes y jueves 08:37 en Argentina
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  leer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Instalar lector de texto (Tesseract), conversor de PDF y navegador
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq tesseract-ocr tesseract-ocr-spa poppler-utils imagemagick
+          command -v magick >/dev/null || sudo ln -s "$(command -v convert)" /usr/local/bin/magick
+          npm i --no-save playwright@1.47.2
+          npx playwright install --with-deps chromium
+      - name: Bajar las revistas de la semana
+        run: node scripts/ofertas-bajar.mjs
+      - name: Leer las revistas
+        run: bash scripts/ofertas-ocr.sh
+      - name: Mandar lo leído a la tienda (queda para aprobar en el panel)
+        run: node scripts/ofertas-leer.mjs
+        env:
+          ADMIN_KEY: ${{ secrets.ADMIN_KEY }}
+          TIENDA: ${{ vars.TIENDA_URL || 'https://proveeduriavirtual.netlify.app' }}
+      - name: Guardar el resultado en la rama ofertas-prueba
+        run: |
+          git config user.name "prueba-ofertas"
+          git config user.email "prueba-ofertas@users.noreply.github.com"
+          git checkout -B ofertas-prueba # copia de lo leído, para revisar si hace falta
+          rm -rf ofertas/raw
+          git add -f ofertas
+          git commit -m "Prueba lectura de revistas $(date +%F) [skip netlify]" || echo "nada para guardar"
+          git push -f origin ofertas-prueba
