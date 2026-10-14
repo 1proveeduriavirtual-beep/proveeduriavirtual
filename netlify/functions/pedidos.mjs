@@ -8,6 +8,7 @@ import { autorizar, puede } from "../../lib/auth.mjs";
 import { descontarPedido, devolverPedido } from "../../lib/inventario.mjs";
 import { todosLosPedidos } from "../../lib/listado.mjs";
 import { ETAPAS, etapaDe, ponerEtapa } from "../../lib/etapa.mjs";
+import { numerar } from "../../lib/clientes.mjs";
 
 const J = (o, s = 200) => new Response(JSON.stringify(o), { status: s, headers: { "content-type": "application/json", "cache-control": "no-store" } });
 
@@ -63,7 +64,7 @@ export default async (req) => {
     if (!o.factura) await facturarAlPagar(o.id, url.origin);
     return J({ ok: true });
   }
-  let l = await todosLosPedidos();
+  let l = await numerar(await todosLosPedidos());
   if (u.rol === "repartidor") l = l.filter(o => o.repartidor === u.usuario && !["entregado", "cancelado", "esperando pago"].includes(etapaDe(o)));
   l = l.map(o => ({ ...o, etapaActual: etapaDe(o) }));
   return J(l);

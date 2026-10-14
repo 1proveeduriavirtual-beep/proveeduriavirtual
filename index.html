@@ -44,9 +44,9 @@ main{max-width:1200px;margin:0 auto;padding:16px 16px 96px}
 .thumb img{display:block;width:100%;height:100%;object-fit:contain}
 .modobtn{background:transparent;color:var(--brand-fg);border:1px solid color-mix(in srgb,var(--brand-fg) 45%,transparent);border-radius:999px;padding:9px 14px;font:600 14px var(--body);cursor:pointer;white-space:nowrap}
 #elegir{position:fixed;inset:0;z-index:60;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(4px);display:grid;place-items:center;padding:16px}
-#elegir .box{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;max-width:560px;width:100%;box-shadow:0 10px 40px #0002}
+#elegir .box{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;max-width:780px;width:100%;box-shadow:0 10px 40px #0002}
 #elegir h2{font-family:var(--display);margin:0 0 4px;font-size:1.5rem}
-#elegir .ops{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px}
+#elegir .ops{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:16px}
 #elegir .op{text-align:left;border:2px solid var(--line);background:var(--surface);color:var(--fg);border-radius:14px;padding:16px;cursor:pointer;font:inherit}
 #elegir .op:hover,#elegir .op:focus-visible{border-color:var(--brand);outline:none}
 #elegir .op b{display:block;font-family:var(--display);font-size:1.15rem;margin-bottom:4px}
@@ -101,6 +101,10 @@ aside h2{font-family:var(--display);font-size:1.4rem;margin:0}
 #side .tot{padding:4px 0;font-size:1.15rem}
 #sideGo{border:0;border-radius:10px;padding:12px;background:var(--brand);color:var(--brand-fg);font:600 15px var(--body);cursor:pointer}
 #sideMin{font-size:12px;color:#b3261e;font-weight:600;margin:0}
+#acct{overflow-y:auto}#acct h3{font-family:var(--display);font-size:1.05rem;margin:16px 0 4px}#acct .ped{border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0;font-size:13px}
+#acct .btn2{border:1px solid var(--brand);background:none;color:var(--fg);border-radius:8px;padding:7px 12px;font:600 13px var(--body);cursor:pointer;margin:6px 6px 0 0}
+#acct .msg{font-size:13px;font-weight:600;margin:6px 0}.lock{font-size:13px;color:var(--muted);font-weight:600}
+.add.lk{background:none;border:1px dashed var(--brand);color:var(--fg)}
 #recap{border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin-top:12px;font-size:13px}
 #recap summary{cursor:pointer;font-weight:600}#recap ul{margin:6px 0 0;padding-left:18px}#recap li{margin:2px 0}
 .line{display:grid;grid-template-columns:1fr auto;gap:4px 10px;border-bottom:1px solid var(--line);padding-bottom:10px}
@@ -108,7 +112,7 @@ aside h2{font-family:var(--display);font-size:1.4rem;margin:0}
 .line .sub{font-weight:600;font-variant-numeric:tabular-nums;text-align:right}
 .tot{display:flex;justify-content:space-between;font-family:var(--display);font-weight:800;font-size:1.3rem;padding:12px 0}
 label{font-size:13px;color:var(--muted);display:block;margin-top:6px}
-input.f{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;background:var(--bg);color:var(--fg)}
+input.f,select.f{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;background:var(--bg);color:var(--fg)}
 .wa{display:block;text-align:center;text-decoration:none;margin-top:12px;background:var(--ok);color:#fff;border-radius:10px;padding:12px;font-weight:600}
 .copy{width:100%;margin-top:8px;border:1px solid var(--line);background:none;color:var(--fg);border-radius:10px;padding:10px;font:500 14px var(--body);cursor:pointer}
 .note{font-size:12px;color:var(--muted);margin-top:8px}
@@ -131,6 +135,7 @@ footer{max-width:1200px;margin:0 auto;padding:0 16px 40px;color:var(--muted);fon
     <div class="logo">Proveeduría <span>Virtual</span></div>
     <input id="q" type="search" placeholder="Buscá yerba, fideos, lavandina…" aria-label="Buscar productos">
     <button class="modobtn" id="modoBtn" type="button" hidden></button>
+    <button class="modobtn" id="acctBtn" type="button">👤 Mi cuenta</button>
     <button class="cartbtn" id="openCart" type="button">Carrito · <span id="cartCount">0</span></button>
   </div>
   <nav class="cats" id="cats" aria-label="Categorías"></nav>
@@ -150,13 +155,18 @@ footer{max-width:1200px;margin:0 auto;padding:0 16px 40px;color:var(--muted);fon
   <h2 id="elegirT">¿Dónde querés comprar?</h2>
   <p style="margin:0;color:var(--muted)">Podés cambiarlo cuando quieras desde el botón de arriba.</p>
   <div class="ops">
-    <button class="op" type="button" data-modo="bulto"><b>📦 Mayoristas</b><span>Solo bultos cerrados, a precio mayorista. Compra mínima $ 100.000.</span></button>
     <button class="op" type="button" data-modo="unidad"><b>🛒 Supermercado</b><span>Para la familia: llevás de a una unidad. Compra mínima $ 20.000.</span></button>
+    <button class="op" type="button" data-modo="bulto"><b>📦 Mayoristas</b><span>Solo bultos cerrados, a precio mayorista. Compra mínima $ 100.000.</span></button>
+    <button class="op" type="button" data-modo="intl" hidden><b>🌎 Internacional</b><span>Productos importados que no conseguís en cualquier lado. Compra mínima $ 20.000.</span></button>
   </div>
 </div></div>
 
 <aside id="side" aria-label="Lo que llevás"><h3>🛒 Lo que llevás <small id="sideN" style="font:500 13px var(--body);color:var(--muted)"></small></h3><div id="sideL"></div><div class="tot"><span>Total</span><span id="sideT"></span></div><p id="sideMin"></p><button id="sideGo" type="button">Terminar compra →</button></aside>
 <button id="mini" type="button" hidden aria-label="Ver carrito">🛒 <span id="miniN"></span> <b id="miniT"></b> <span id="miniV">Ver carrito →</span></button>
+<aside id="acct" hidden aria-label="Mi cuenta">
+  <div class="ahead"><h2>👤 Mi cuenta</h2><button class="x" id="closeAcct" type="button" aria-label="Cerrar">×</button></div>
+  <div id="acctBody" style="overflow-y:auto"></div>
+</aside>
 <aside id="cart" hidden aria-label="Carrito">
   <div class="ahead"><h2>Tu pedido <small id="cartN"></small></h2><button class="x" id="closeCart" type="button" aria-label="Cerrar">×</button></div>
   <div class="lines" id="lines"></div>
@@ -169,8 +179,10 @@ footer{max-width:1200px;margin:0 auto;padding:0 16px 40px;color:var(--muted);fon
   <label for="cname">Tu nombre</label><input class="f" id="cname" autocomplete="name">
   <label for="czona">Zona de entrega</label><select class="f" id="czona"><option value="">Elegí tu zona</option><option>CABA</option><option>GBA</option></select>
   <label for="caddr">Dirección de entrega</label><input class="f" id="caddr" autocomplete="street-address">
+  <label for="cloc">Localidad / barrio</label><input class="f" id="cloc" autocomplete="address-level2" placeholder="Ej: Caballito, Ramos Mejía">
   <div id="entR" hidden><label for="cent">Día y horario de entrega</label><select class="f" id="cent"><option value="">Elegí cuándo te lo llevamos</option></select></div>
   <label for="cphone">Tu teléfono</label><input class="f" id="cphone" type="tel" autocomplete="tel">
+  <label for="cdni">DNI o CUIT <span style="font-weight:400;color:#6b6b6b">(opcional, para la factura y la entrega)</span></label><input class="f" id="cdni" inputmode="numeric" autocomplete="off">
   <label for="cmail">Tu email <span style="font-weight:400;color:#6b6b6b">(opcional, para recibir la factura)</span></label><input class="f" id="cmail" type="email" autocomplete="email" inputmode="email">
   <details id="recap" open hidden><summary id="recapS"></summary><ul id="recapL"></ul></details>
   <button class="wa" id="pay" type="button" hidden style="border:0;width:100%;cursor:pointer;font:inherit">Pagar online (Mercado Pago)</button>
@@ -214,7 +226,7 @@ footer{max-width:1200px;margin:0 auto;padding:0 16px 40px;color:var(--muted);fon
     let D=panel&&ok(panel.datos)?panel.datos:null;
     if(!D){try{D=JSON.parse(document.getElementById("data").textContent)}catch(e){}}
     if(D){ if(panel&&panel.wa) D={...D,wa:panel.wa}; document.getElementById("data").textContent=JSON.stringify(D); }
-    window.CFG={envio:panel&&panel.envio||null,horarios:panel&&panel.horarios||null,pagos:panel&&panel.pagos||{}};
+    window.CFG={caido:!panel,envio:panel&&panel.envio||null,horarios:panel&&panel.horarios||null,pagos:panel&&panel.pagos||{},membresia:panel&&panel.membresia||null,mantenimiento:panel&&panel.mantenimiento||null};
   }catch(e){}
   try{
     const f=await get("/fotos.json");
@@ -231,11 +243,17 @@ const CATS=D.cats, P=D.p;
 const PLACEHOLDER="5491100000000";
 const fmt=n=>"$ "+n.toLocaleString("es-AR");
 let cat=-1, q="", shown=60;
-const HAS_B=P.some(p=>p[4]>0);
+// Secciones: Supermercado (por unidad), Mayoristas (por bulto) e Internacional (importados, p[11]=1)
+const INTL=p=>p[11]===1;
+const HAS_B=P.some(p=>(p[4]>0||p[4]===-1)&&!INTL(p)), HAS_I=P.some(INTL);
+const MODOS=["unidad",...(HAS_B?["bulto"]:[]),...(HAS_I?["intl"]:[])];
 let MODO=null;try{MODO=localStorage.getItem("modo")}catch(e){}
-if(!HAS_B) MODO="unidad"; else if(MODO!=="bulto"&&MODO!=="unidad") MODO=null;
-let carts={unidad:{},bulto:{}};
-try{const c=JSON.parse(localStorage.getItem("carts")||"null");if(c)carts={unidad:c.unidad||{},bulto:c.bulto||{}}}catch(e){}
+if(MODOS.length===1) MODO="unidad"; else if(!MODOS.includes(MODO)) MODO=null;
+let carts={unidad:{},bulto:{},intl:{}};
+try{const c=JSON.parse(localStorage.getItem("carts")||"null");if(c)carts={unidad:c.unidad||{},bulto:c.bulto||{},intl:c.intl||{}}}catch(e){}
+const enSeccion=p=>MODO==="intl"?INTL(p):!INTL(p)&&(MODO==="bulto"?p[4]>0||p[4]===-1:p[3]>0);
+const bloqueado=p=>MODO==="bulto"&&p[4]===-1; // precio mayorista solo para cuentas aprobadas
+const NOMBRE_MODO={unidad:"🛒 Supermercado",bulto:"📦 Mayoristas",intl:"🌎 Internacional"};
 let cart=carts[MODO||"unidad"];
 const pr=p=>MODO==="bulto"&&p[4]>0?p[4]:p[3];
 // ofertas: [7] antes por unidad, [8] antes por bulto, [9] promo de Maxiconsumo
@@ -271,29 +289,29 @@ const CANASTAS=[
   ["☕ Desayuno y merienda","Para arrancar el día",[/^cafe .*(molido|instantaneo)/,/^te .*\b(x ?)?(25|50)\b/,/^galletitas /,/^dulce de leche .*\b400/,/^mermelada /,/^leche en polvo/]],
 ];
 function canastas(){
-  if(MODO==="bulto"||cat!==-1||q.trim()){$("canastas").hidden=true;return}
-  const html=CANASTAS.map(([t,d,res])=>{const sel=res.map(r=>P.filter(p=>r.test(p.k)&&p[3]>0).sort((a,b)=>a[3]-b[3])[0]).filter(Boolean);
+  if(MODO!=="unidad"||cat!==-1||q.trim()){$("canastas").hidden=true;return}
+  const html=CANASTAS.map(([t,d,res])=>{const sel=res.map(r=>P.filter(p=>r.test(p.k)&&p[3]>0&&!INTL(p)).sort((a,b)=>a[3]-b[3])[0]).filter(Boolean);
     if(sel.length<3)return"";const tot=sel.reduce((a,p)=>a+p[3],0);
     return `<div class="canasta"><b>${t}</b><p>${d} · ${sel.length} productos · ${fmt(tot)}</p><button type="button" data-can="${sel.map(p=>p[1]).join(",")}">Agregar canasta</button></div>`}).join("");
   $("canastas").innerHTML=html;$("canastas").hidden=!html;
 }
-const MIN=()=>MODO==="bulto"?100000:20000; // compra mínima: mayoristas $100.000, supermercado $20.000
+const MIN=()=>MODO==="bulto"?(SOCIO()&&CFG.membresia.mayoristaSinMinimo?0:100000):20000; // compra mínima: mayoristas $100.000, supermercado e internacional $20.000
 function initials(n){return n.split(" ").filter(w=>w.length>2).slice(0,2).map(w=>w[0]).join("")}
 function chips(){
-  const vis=p=>MODO!=="bulto"||p[4]>0;
+  const vis=enSeccion;
   const hay=P.some(p=>vis(p)&&oferta(p));
   const all=[["Todo",-1],...(hay?[["🔥 Ofertas",-2]]:[]),...CATS.map((c,i)=>[c,i])].filter(([c,i])=>i<0||P.some(p=>p[0]===i&&vis(p)));
   $("cats").innerHTML=all.map(([c,i])=>`<button class="chip${i===-2?" hot":""}" type="button" data-c="${i}" aria-pressed="${i===cat}">${c}</button>`).join("");
 }
 function list(){
   const words=norm(q).split(/\s+/).filter(Boolean);
-  return P.filter(p=>(cat===-1||(cat===-2?oferta(p):p[0]===cat))&&(MODO!=="bulto"||p[4]>0)&&words.every(w=>p.k.includes(w)));
+  return P.filter(p=>(cat===-1||(cat===-2?oferta(p):p[0]===cat))&&enSeccion(p)&&words.every(w=>p.k.includes(w)));
 }
 function qtyCtl(e,n){return `<div class="qty"><button type="button" data-d="-1" data-e="${e}" aria-label="Quitar uno">−</button><b>${n}</b><button type="button" data-d="1" data-e="${e}" aria-label="Agregar uno">+</button></div>`}
 function card(p){
   const n=cart[p[1]]||0;
   const f=foto(p), b=MODO==="bulto"&&p[4]>0, a=antes(p), o=oferta(p);
-  return `<div class="card"><div class="thumb">${o?`<span class="ofe">🔥 ${a?"-"+Math.round((1-pr(p)/a)*100)+"%":"OFERTA"}</span>`:""}${f?`<img src="${f}" alt="" loading="lazy" onerror="this.replaceWith(document.createTextNode('${initials(p[2])}'))">`:initials(p[2])}</div><div class="cat">${CATS[p[0]]}</div><div class="name">${p[2]}</div>${a?`<div class="antes">${fmt(a)}</div>`:""}<div class="price">${fmt(pr(p))}</div>${b?`<div class="bulto">Bulto x ${p[5]} · ${fmt(Math.round(p[4]/p[5]))} c/u</div>`:""}${n?qtyCtl(p[1],n):`<button class="add" type="button" data-d="1" data-e="${p[1]}">${b?"Agregar bulto":"Agregar"}</button>`}</div>`;
+  return `<div class="card"><div class="thumb">${o?`<span class="ofe">🔥 ${a?"-"+Math.round((1-pr(p)/a)*100)+"%":"OFERTA"}</span>`:""}${f?`<img src="${f}" alt="" loading="lazy" onerror="this.replaceWith(document.createTextNode('${initials(p[2])}'))">`:initials(p[2])}</div><div class="cat">${CATS[p[0]]}</div><div class="name">${p[2]}</div>${a?`<div class="antes">${fmt(a)}</div>`:""}${bloqueado(p)?`<div class="lock">🔒 Bulto x ${p[5]} · precio para comercios</div><button class="add lk" type="button" data-acct="1">Ingresá para ver el precio</button></div>`:`<div class="price">${fmt(pr(p))}</div>${b?`<div class="bulto">Bulto x ${p[5]} · ${fmt(Math.round(p[4]/p[5]))} c/u</div>`:""}${n?qtyCtl(p[1],n):`<button class="add" type="button" data-d="1" data-e="${p[1]}">${b?"Agregar bulto":"Agregar"}</button>`}</div>`}`;
 }
 function render(){
   const l=list();
@@ -309,9 +327,9 @@ function renderCart(){
   const b=MODO==="bulto";
   $("lines").innerHTML=it.length?it.map(([e,n])=>{const p=byEan[e];tot+=pr(p)*n;units+=n;
     return `<div class="line"><div class="name">${b&&p[4]>0?"Bulto x"+p[5]+" · ":""}${p[2]}</div><div class="sub">${fmt(pr(p)*n)}</div>${qtyCtl(e,n)}</div>`}).join(""):'<p class="empty">Todavía no agregaste productos.</p>';
-  if(window.CUP){tot=0;it.forEach(([e,n])=>{tot+=Math.round(pr(byEan[e])*(1-CUP.pct/100)*100)/100*n})}
-  const z=$("czona").value, env=it.length?envioDe(z,tot):null;
-  $("total").textContent=fmt(tot+(it.length&&env>0?env:0))+(window.CUP?" (cupón -"+CUP.pct+"%)":""); $("cartCount").textContent=units;
+  const dsc=DESC();if(dsc){tot=0;it.forEach(([e,n])=>{tot+=Math.round(pr(byEan[e])*(1-dsc/100)*100)/100*n})}
+  const z=$("czona").value, env=it.length?(SOCIO()&&CFG.membresia.envioGratis?0:envioDe(z,tot)):null;
+  $("total").textContent=fmt(tot+(it.length&&env>0?env:0))+(dsc?(window.CUP&&CUP.pct>=dsc?" (cupón -"+CUP.pct+"%)":" (socio -"+dsc+"%)"):""); $("cartCount").textContent=units;
   $("cartN").textContent=it.length?`· ${it.length} producto${it.length>1?"s":""}`:"";
   const mini=$("mini"),antes=+mini.dataset.u||0;mini.hidden=!it.length||!$("cart").hidden;$("miniN").textContent=`Llevás ${units} ${units===1?"producto":"productos"}`;$("miniT").textContent=fmt(tot);
   if(units>antes&&!mini.hidden){mini.classList.remove("pop");void mini.offsetWidth;mini.classList.add("pop")}mini.dataset.u=units;
@@ -340,7 +358,7 @@ function msg(){
   const b=MODO==="bulto";
   const rows=items().map(([e,n])=>{const p=byEan[e];tot+=pr(p)*n;return `• ${n} x ${b&&p[4]>0?"BULTO x"+p[5]+" ":""}${plain(p[2])} — ${fmt(pr(p)*n)}`});
   const env=envioDe($("czona").value,tot);
-  return `Hola! Quiero hacer este pedido (${b?"mayoristas":"supermercado"}):\n${rows.join("\n")}${env>0?`\nEnvío: ${fmt(env)}`:env===0?"\nEnvío: gratis":""}${$("cent").value?`\nEntrega: ${$("cent").value}`:""}`+`\nTotal: ${fmt(tot+(env>0?env:0))}\nNombre: ${$("cname").value}\nDirección: ${dir()}`;
+  return `Hola! Quiero hacer este pedido (${NOMBRE_MODO[MODO||"unidad"].replace(/^\S+ /,"").toLowerCase()}):\n${rows.join("\n")}${env>0?`\nEnvío: ${fmt(env)}`:env===0?"\nEnvío: gratis":""}${$("cent").value?`\nEntrega: ${$("cent").value}`:""}`+`\nTotal: ${fmt(tot+(env>0?env:0))}\nNombre: ${$("cname").value}\nDirección: ${dir()}`;
 }
 async function copyText(text,btn,ok,label){
   try{await navigator.clipboard.writeText(text);btn.textContent=ok}catch(e){btn.textContent="No se pudo copiar: seleccioná el texto a mano"}
@@ -387,11 +405,11 @@ $("pay").onclick=async()=>{
     if($("cmail").value.trim()&&!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test($("cmail").value.trim())) return say("Revisá el email (o dejalo vacío)");
   btn.disabled=true; btn.textContent="Un momento…";
   try{
-    const r=await fetch("/.netlify/functions/crear-pago",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({modo:MODO||"unidad",items:it.map(([e,n])=>({e,n})),cupon:window.CUP?CUP.codigo:"",nombre:$("cname").value,direccion:$("caddr").value.trim(),zona:$("czona").value,entrega:$("cent").value,telefono:$("cphone").value,email:$("cmail").value.trim()})});
+    const r=await fetch("/.netlify/functions/crear-pago",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({modo:MODO||"unidad",items:it.map(([e,n])=>({e,n})),cupon:window.CUP?CUP.codigo:"",nombre:$("cname").value,direccion:$("caddr").value.trim(),zona:$("czona").value,entrega:$("cent").value,telefono:$("cphone").value,email:$("cmail").value.trim(),localidad:$("cloc").value.trim(),dni:$("cdni").value.trim(),t:CT()||undefined})});
     const d=await r.json();
     if(!r.ok||!d.url) throw new Error(d.error||"No se pudo iniciar el pago");
-    guardarUltimo(); location.href=d.url;
-  }catch(e){say(e.message)}
+    guardarUltimo(); await guardarDatosCuenta(); location.href=d.url;
+  }catch(e){say(e.message);if(/fetch|network|load/i.test(e.message)&&!$("mant"))cartelWA("No pudimos conectar con la página","Puede ser un problema momentáneo. Hacé tu pedido por WhatsApp y te lo llevamos igual.")}
   btn.disabled=false;
 };
 function dosPedido(btn,metodo,lab){
@@ -406,13 +424,13 @@ function dosPedido(btn,metodo,lab){
     if($("cmail").value.trim()&&!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test($("cmail").value.trim())) return say("Revisá el email (o dejalo vacío)");
     btn.disabled=true; btn.textContent="Un momento…";
     try{
-      const r=await fetch("/.netlify/functions/crear-pedido",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({metodo,modo:MODO||"unidad",items:it.map(([e,n])=>({e,n})),cupon:window.CUP?CUP.codigo:"",nombre:$("cname").value,direccion:$("caddr").value.trim(),zona:$("czona").value,entrega:$("cent").value,telefono:$("cphone").value,email:$("cmail").value.trim()})});
+      const r=await fetch("/.netlify/functions/crear-pedido",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({metodo,modo:MODO||"unidad",items:it.map(([e,n])=>({e,n})),cupon:window.CUP?CUP.codigo:"",nombre:$("cname").value,direccion:$("caddr").value.trim(),zona:$("czona").value,entrega:$("cent").value,telefono:$("cphone").value,email:$("cmail").value.trim(),localidad:$("cloc").value.trim(),dni:$("cdni").value.trim(),t:CT()||undefined})});
       const d=await r.json();
       if(!r.ok||!d.ok) throw new Error(d.error||"No se pudo cargar el pedido");
-      guardarUltimo(); vaciar(); render(); $("cart").hidden=true;
+      guardarUltimo(); avisarCarrito(true); guardarDatosCuenta(); vaciar(); render(); $("cart").hidden=true;
       const m=metodo==="efectivo"?"¡Gracias! Tu pedido quedó cargado. Pagás en efectivo al recibirlo. Total: "+fmt(d.total)+(d.envio===null?" (el envío lo coordinamos por WhatsApp)":"")+"."+($("cmail").value.trim()?" Te mandamos el detalle por mail.":""):"¡Gracias! Tu pedido quedó cargado. Transferí "+fmt(d.total)+" al alias "+d.alias+" y avisanos por WhatsApp con el comprobante.";
       const x=document.createElement("div");x.textContent=m;x.style.cssText="position:sticky;top:0;z-index:50;padding:12px 16px;background:#f2b630;color:#2a1f00;font-weight:600;text-align:center";if(d.id)x.append(" ",segLink(d.id));document.body.prepend(x);scrollTo(0,0);
-    }catch(e){say(e.message)}
+    }catch(e){say(e.message);if(/fetch|network|load/i.test(e.message)&&!$("mant"))cartelWA("No pudimos conectar con la página","Puede ser un problema momentáneo. Hacé tu pedido por WhatsApp y te lo llevamos igual.")}
     btn.disabled=false;
   };
 }
@@ -422,19 +440,81 @@ if(PAYON){
 }
 {const pg=new URLSearchParams(location.search).get("pago");
  if(pg){const m={ok:"¡Gracias! Recibimos tu pago y tu pedido ya está cargado. Te contactamos para coordinar la entrega.",pendiente:"Tu pago está pendiente. Cuando se acredite, tu pedido queda cargado.",error:"El pago no se completó. Podés intentar de nuevo."}[pg];
-  if(m){if(pg==="ok"){vaciar();render()}
+  if(m){if(pg==="ok"){vaciar();render();setTimeout(()=>avisarCarrito(true),0)}
    const d=document.createElement("div");d.textContent=m;d.style.cssText="position:sticky;top:0;z-index:50;padding:12px 16px;background:#f2b630;color:#2a1f00;font-weight:600;text-align:center";const pid=new URLSearchParams(location.search).get("ped");if(pid&&pg!=="error")d.append(" ",segLink(pid));document.body.prepend(d);history.replaceState(null,"",location.pathname)}}}
+// ---------- Mi cuenta: entra con el mail y un código (sin contraseña), guarda datos y pedidos, acceso mayorista ----------
+const CT=()=>{try{return localStorage.getItem("ct")||""}catch(e){return ""}};
+function SOCIO(){return !!(window.CFG&&CFG.membresia&&window.CUENTA_SOCIO)}
+function DESC(){return Math.max(window.CUP?CUP.pct:0,SOCIO()?CFG.membresia.descuento||0:0)}
+let CUENTA=null,MISPED=[],ACMAIL="";
+const apiC=(b)=>fetch("/.netlify/functions/cuenta",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(b)}).then(async r=>{const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.error||"Error");return d});
+const escH=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+async function cargarCuenta(){const t=CT();if(!t){pintarBoton();return}
+  try{const r=await fetch("/.netlify/functions/cuenta?t="+encodeURIComponent(t));if(r.status===401){try{localStorage.removeItem("ct")}catch(e){}CUENTA=null;pintarBoton();return}
+    const d=await r.json();CUENTA=d.cuenta;MISPED=d.pedidos||[];window.CUENTA_SOCIO=CUENTA.socio?.estado==="activo";
+    // completa el checkout con sus datos (sin pisar lo que ya escribió)
+    const set=(id,v)=>{if(v&&!$(id).value)$(id).value=v};set("cname",CUENTA.nombre);set("cphone",CUENTA.telefono);set("caddr",CUENTA.direccion);set("cloc",CUENTA.localidad);set("cdni",CUENTA.dni);set("cmail",CUENTA.email);if(CUENTA.zona&&!$("czona").value)$("czona").value=CUENTA.zona;
+    if(D.mayReg&&CUENTA.mayorista?.estado==="aprobado"){const pm=await (await fetch("/.netlify/functions/cuenta?r=precios&t="+encodeURIComponent(t))).json().catch(()=>({}));
+      for(const p of P){const x=pm[p[1]];if(x&&p[4]===-1){p[4]=x[0];p[8]=x[1]}}chips();render()}
+  }catch(e){}
+  pintarBoton();if(window.CUENTA_SOCIO)render();}
+function pintarBoton(){$("acctBtn").textContent=CUENTA?"👤 "+(CUENTA.nombre?CUENTA.nombre.split(" ")[0]:"Mi cuenta"):"👤 Ingresar"}
+async function guardarDatosCuenta(){if(!CT())return;try{await apiC({accion:"datos",t:CT(),nombre:$("cname").value,telefono:$("cphone").value,direccion:$("caddr").value,localidad:$("cloc").value,dni:$("cdni").value,zona:$("czona").value})}catch(e){}}
+function abrirCuenta(){$("acct").hidden=false;$("cart").hidden=true;renderCuenta()}
+function renderCuenta(msg){const B=$("acctBody"),M=msg?`<p class="msg">${escH(msg)}</p>`:"";
+  if(!CUENTA){B.innerHTML=ACMAIL?`<p>Te mandamos un código de 6 números a <b>${escH(ACMAIL)}</b>. Fijate también en <b>Spam</b>.</p><label for="acCod">Código</label><input class="f" id="acCod" inputmode="numeric" autocomplete="one-time-code" maxlength="6"><button class="save" id="acEntrar" type="button" style="margin-top:10px">Entrar</button><button class="btn2" id="acOtro" type="button">Usar otro mail</button>${M}`
+    :`<p>Entrá con tu mail: guardamos tus datos de entrega y tus pedidos para <b>repetirlos con un toque</b>. No hace falta contraseña: te llega un código.</p>${D.mayReg?`<p>¿Tenés un comercio? Con tu cuenta pedís acceso a los <b>precios mayoristas</b>.</p>`:""}${CFG.membresia?`<p>⭐ Con tu cuenta también podés sumarte a <b>${escH(CFG.membresia.nombre)}</b>: ${escH(CFG.membresia.beneficios.join(" · ").toLowerCase())}.</p>`:""}<label for="acMail">Tu mail</label><input class="f" id="acMail" type="email" autocomplete="email" value="${escH($("cmail").value)}"><button class="save" id="acCodigo" type="button" style="margin-top:10px">Mandarme el código</button>${M}<p class="note">Podés seguir comprando sin cuenta si preferís.</p>`;
+    if($("acCodigo"))$("acCodigo").onclick=async()=>{const e=$("acMail").value.trim();$("acCodigo").disabled=true;try{await apiC({accion:"codigo",email:e});ACMAIL=e;renderCuenta();$("acCod").focus()}catch(err){renderCuenta(err.message)}};
+    if($("acEntrar"))$("acEntrar").onclick=async()=>{try{const d=await apiC({accion:"entrar",email:ACMAIL,codigo:$("acCod").value});try{localStorage.setItem("ct",d.t)}catch(e){}ACMAIL="";await cargarCuenta();renderCuenta("¡Listo, entraste!")}catch(err){renderCuenta(err.message)}};
+    if($("acOtro"))$("acOtro").onclick=()=>{ACMAIL="";renderCuenta()};return}
+  const c=CUENTA,m=c.mayorista,SN={unidad:"🛒 Supermercado",bulto:"📦 Mayoristas",intl:"🌎 Internacional"};
+  B.innerHTML=`<p>Hola${c.nombre?" <b>"+escH(c.nombre)+"</b>":""} · <span class="note">${escH(c.email)}</span></p>${M}
+  <h3>🧾 Mis pedidos</h3>${MISPED.length?MISPED.slice(0,10).map(o=>`<div class="ped"><b>${new Date(o.fecha).toLocaleDateString("es-AR")}</b> · ${SN[o.modo]||""} · ${fmt(o.total)} · ${escH(o.etapa)}<br><span class="note">${o.items.slice(0,4).map(i=>i.cantidad+" x "+escH(i.nombre)).join(", ")}${o.items.length>4?"…":""}</span><br><button class="btn2" type="button" data-rep="${o.id}">🔁 Repetir este pedido</button><a class="btn2" style="display:inline-block;text-decoration:none" href="/seguimiento.html?id=${encodeURIComponent(o.id)}">Seguir</a></div>`).join(""):'<p class="note">Todavía no hiciste pedidos con esta cuenta.</p>'}
+  ${D.mayReg||m?`<h3>📦 Precios mayoristas</h3>${m?.estado==="aprobado"?`<p>✅ Tu cuenta mayorista está aprobada (${escH(m.razon)}).</p>`:m?.estado==="pendiente"?`<p>⏳ Pediste acceso como <b>${escH(m.razon)}</b>. Te avisamos por mail cuando esté aprobado.</p>`:`${m?.estado==="rechazado"?'<p class="note">Tu pedido anterior no fue aprobado. Escribinos por WhatsApp si querés revisarlo.</p>':'<p>Para ver los precios por bulto y comprar en Mayoristas, pedí acceso con los datos de tu comercio:</p>'}<label for="acCuit">CUIT</label><input class="f" id="acCuit" inputmode="numeric"><label for="acRaz">Razón social o nombre del comercio</label><input class="f" id="acRaz"><label for="acRub">Rubro (opcional)</label><input class="f" id="acRub" placeholder="Ej: almacén, kiosco, restaurante"><button class="save" id="acMay" type="button" style="margin-top:10px">Pedir acceso mayorista</button>`}`:""}
+  ${CFG.membresia?`<h3>⭐ ${escH(CFG.membresia.nombre)}</h3>${c.socio?.estado==="activo"?`<p>✅ <b>Sos socio.</b> Tus beneficios se aplican solos al pagar:</p><ul>${CFG.membresia.beneficios.map(x=>`<li>${escH(x)}</li>`).join("")}</ul><button class="btn2" id="acBajaS" type="button">Dar de baja la membresía</button>`:`<p>${escH(CFG.membresia.descripcion)}</p><ul>${CFG.membresia.beneficios.map(x=>`<li>${escH(x)}</li>`).join("")}</ul><p><b>${fmt(CFG.membresia.precio)} por mes</b>, se cobra solo con Mercado Pago. La das de baja cuando quieras.</p>${c.socio?.estado==="pendiente"?'<p class="note">⏳ Empezaste la suscripción pero Mercado Pago todavía no la confirmó. Si ya la autorizaste, en unos minutos aparece activa.</p>':""}<button class="save" id="acSocio" type="button">⭐ Hacerme socio</button><p class="note">Tenés que pagar con la cuenta de Mercado Pago de este mismo mail (${escH(c.email)}).</p>`}`:""}
+  <h3>📍 Mis datos de entrega</h3><label>Nombre</label><input class="f" id="adN" value="${escH(c.nombre)}"><label>Teléfono</label><input class="f" id="adT" type="tel" value="${escH(c.telefono)}"><label>Zona</label><select class="f" id="adZ"><option value="">Elegí tu zona</option><option ${c.zona==="CABA"?"selected":""}>CABA</option><option ${c.zona==="GBA"?"selected":""}>GBA</option></select><label>Dirección</label><input class="f" id="adD" value="${escH(c.direccion)}"><label>Localidad / barrio</label><input class="f" id="adL" value="${escH(c.localidad)}"><label>DNI o CUIT</label><input class="f" id="adI" value="${escH(c.dni)}">
+  <button class="save" id="adG" type="button" style="margin-top:10px">Guardar mis datos</button>
+  <button class="btn2" id="acSalir" type="button" style="margin-top:14px">Salir de mi cuenta</button>`;
+  B.querySelectorAll("[data-rep]").forEach(x=>x.onclick=()=>{const o=MISPED.find(y=>y.id===x.dataset.rep);if(!o)return;if(o.modo!==MODO&&MODOS.includes(o.modo))ponerModo(o.modo);
+    let n=0;for(const i of o.items)if(byEan[i.sku]&&!bloqueado(byEan[i.sku])){cart[i.sku]=i.cantidad;n++}render();$("acct").hidden=true;$("cart").hidden=false;$("mini").hidden=true;
+    if(n<o.items.length)alert("Algunos productos de ese pedido ya no están disponibles. Cargamos los demás.")});
+  if($("acSocio"))$("acSocio").onclick=async()=>{$("acSocio").disabled=true;try{const d=await apiC({accion:"socio",t:CT()});if(d.url)location.href=d.url;else{CUENTA=d.cuenta;renderCuenta()}}catch(err){renderCuenta(err.message)}};
+  if($("acBajaS"))$("acBajaS").onclick=async()=>{if(!confirm("¿Dar de baja la membresía? Se deja de cobrar y perdés los beneficios."))return;try{const d=await apiC({accion:"bajaSocio",t:CT()});CUENTA=d.cuenta;renderCuenta("Listo, diste de baja la membresía.")}catch(err){renderCuenta(err.message)}};
+  if($("acMay"))$("acMay").onclick=async()=>{try{const d=await apiC({accion:"mayorista",t:CT(),cuit:$("acCuit").value,razon:$("acRaz").value,rubro:$("acRub").value});CUENTA=d.cuenta;renderCuenta("¡Listo! Te avisamos por mail cuando esté aprobado.")}catch(err){renderCuenta(err.message)}};
+  $("adG").onclick=async()=>{try{const d=await apiC({accion:"datos",t:CT(),nombre:$("adN").value,telefono:$("adT").value,zona:$("adZ").value,direccion:$("adD").value,localidad:$("adL").value,dni:$("adI").value});CUENTA=d.cuenta;["cname","cphone","caddr","cloc","cdni"].forEach(i=>$(i).value="");$("czona").value="";await cargarCuenta();renderCuenta("Datos guardados.")}catch(err){renderCuenta(err.message)}};
+  $("acSalir").onclick=()=>{try{localStorage.removeItem("ct")}catch(e){}CUENTA=null;MISPED=[];pintarBoton();renderCuenta();if(D.mayReg)location.reload()};
+}
+$("acctBtn").onclick=abrirCuenta;$("closeAcct").onclick=()=>{$("acct").hidden=true};
+document.addEventListener("click",e=>{if(e.target.closest("[data-acct]"))abrirCuenta()});
+cargarCuenta().then(()=>{if(new URLSearchParams(location.search).get("socio")){abrirCuenta();renderCuenta("¡Gracias! Cuando Mercado Pago confirme la suscripción, tus beneficios de socio se aplican solos.");history.replaceState(null,"",location.pathname)}});
+// ---------- Mantenimiento: cartel con WhatsApp (lo prende el dueño, o se muestra solo si el servidor no responde) ----------
+function cartelWA(titulo,texto,bloquea){const wa="https://wa.me/"+D.wa+"?text="+encodeURIComponent("Hola! Quiero hacer un pedido.");
+  const d=document.createElement("div");d.id="mant";d.setAttribute("role","dialog");
+  d.style.cssText="position:fixed;inset:0;z-index:80;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(4px);display:grid;place-items:center;padding:16px";
+  d.innerHTML=`<div style="background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;max-width:480px;text-align:center;box-shadow:0 10px 40px #0002"><div style="font-size:44px">🛠️</div><h2 style="font-family:var(--display);margin:6px 0">${titulo}</h2><p style="color:var(--muted)">${texto}</p><a class="wa" href="${wa}" target="_blank" rel="noopener" style="font-size:16px">💬 Hacer mi pedido por WhatsApp</a>${bloquea?"":'<button type="button" class="copy" id="mantX">Ver los productos igual</button>'}</div>`;
+  document.body.appendChild(d);if($("mantX"))$("mantX").onclick=()=>d.remove();
+  // mientras tanto, solo se puede pedir por WhatsApp
+  ["pay","payEf","payTr","payNote"].forEach(i=>{if($(i))$(i).style.display="none"});}
+if(CFG.mantenimiento)cartelWA("Estamos haciendo mejoras en la página",escH(CFG.mantenimiento.msg||"Mientras tanto, hacé tu pedido por WhatsApp y te lo llevamos igual."));
+else if(CFG.caido&&PAYON)cartelWA("La página anda con problemas","No podemos tomar pagos online en este momento. Hacé tu pedido por WhatsApp y te lo llevamos igual.");
+// Carritos que no terminaron la compra: el panel ve qué tiene cargado quien ya escribió su teléfono o mail en el checkout (sin eso no se manda nada)
+const CID=(()=>{try{let c=localStorage.getItem("cid");if(!c){c=crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2);localStorage.setItem("cid",c)}return c}catch(e){return ""}})();
+let carT=null;function avisarCarrito(listo){if(!CID||!PAYON)return;clearTimeout(carT);carT=setTimeout(()=>{const it=items();if(!listo&&!it.length)return;
+  const body=listo?{cid:CID,listo:1}:{cid:CID,modo:MODO||"unidad",nombre:$("cname").value,telefono:$("cphone").value,email:$("cmail").value.trim(),items:it.map(([e,n])=>({nombre:byEan[e]?.[2]||e,cantidad:n,precio:byEan[e]?pr(byEan[e]):0}))};
+  fetch("/.netlify/functions/carrito",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(body),keepalive:true}).catch(()=>{})},listo?0:2500)}
+["cname","cphone","cmail"].forEach(i=>$(i).addEventListener("change",()=>avisarCarrito()));
 function segLink(id){const a=document.createElement("a");a.href="/seguimiento.html?id="+encodeURIComponent(id);a.textContent="Seguir mi pedido →";a.style.cssText="color:inherit;text-decoration:underline;white-space:nowrap";try{localStorage.setItem("ultPed",id)}catch(e){}return a}
 function ponerModo(m){
   MODO=m;try{localStorage.setItem("modo",m)}catch(e){}
   cart=carts[m];window.CUP=window.CUP||null;cat=-1;shown=60;
-  $("modoBtn").hidden=!HAS_B;$("modoBtn").textContent=m==="bulto"?"📦 Mayoristas · cambiar":"🛒 Supermercado · cambiar";
-  $("pinfo").textContent=m==="bulto"?"Mayoristas: precios por bulto cerrado":"Supermercado: precios por unidad";
+  $("modoBtn").hidden=MODOS.length<2;$("modoBtn").textContent=NOMBRE_MODO[m]+" · cambiar";
+  $("pinfo").textContent=m==="bulto"?"Mayoristas: precios por bulto cerrado":m==="intl"?"Internacional: productos importados, por unidad":"Supermercado: precios por unidad";
   $("minAv").textContent=fmt(MIN());
   $("elegir").hidden=true;chips();render();
 }
 $("elegir").addEventListener("click",e=>{const b=e.target.closest("[data-modo]");if(b)ponerModo(b.dataset.modo)});
 $("modoBtn").onclick=()=>{$("elegir").hidden=false;$("elegir").querySelector(".op").focus()};
+$("elegir").querySelector('[data-modo="intl"]').hidden=!HAS_I;$("elegir").querySelector('[data-modo="bulto"]').hidden=!HAS_B;
 if(MODO) ponerModo(MODO); else {chips();render();$("elegir").hidden=false;}
 
 /* ---------- Panel del dueño: sube el archivo de Maxi y la página se vuelve a publicar ---------- */

@@ -2,6 +2,8 @@ import { getStore } from "@netlify/blobs";
 import { avisarPedido, mailCliente } from "../../lib/aviso.mjs";
 import { facturarAlPagar } from "../../lib/arca.mjs";
 import { descontarPedido } from "../../lib/inventario.mjs";
+import { estadoSuscripcion } from "../../lib/membresia.mjs";
+import { leerCuenta, guardarCuenta } from "../../lib/cuentas.mjs";
 
 export default async (req) => {
   const token = Netlify.env.get("MP_ACCESS_TOKEN");
@@ -14,6 +16,13 @@ export default async (req) => {
     paymentId = paymentId || body?.data?.id;
     type = type || body?.type;
   } catch {}
+  // Membresía: alta, pausa o baja de la suscripción mensual
+  if (paymentId && /preapproval/.test(type || "")) {
+    const e = await estadoSuscripcion(paymentId).catch(() => null);
+    const c = e?.email ? await leerCuenta(e.email) : null;
+    if (c && c.socio?.id === String(paymentId) && c.socio.estado !== e.estado) { c.socio.estado = e.estado; await guardarCuenta(c); }
+    return new Response("ok");
+  }
   if (!paymentId || (type && type !== "payment")) return new Response("ok");
 
   // No confiamos en lo que llega: le preguntamos el estado a Mercado Pago con nuestra clave.

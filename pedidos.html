@@ -3,7 +3,7 @@
 <style>
 :root{--bg:#faf9f5;--fg:#141413;--muted:#5f5e5a;--line:#ddd;--card:#fff;--brand:#1f5c3a;--brand-fg:#fff;--soft:#eef4f0}
 *{box-sizing:border-box}body{font:15px system-ui,sans-serif;margin:0;background:var(--bg);color:var(--fg)}
-main{max-width:860px;margin:auto;padding:16px}h1{margin:.2em 0}h2{margin:1.2em 0 .4em}
+main{max-width:1100px;margin:auto;padding:16px}h1{margin:.2em 0}h2{margin:1.2em 0 .4em}
 .o{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin:10px 0}
 .o b.e{padding:2px 8px;border-radius:99px;background:#eee;font-size:13px}.pagado{background:#fde9a8!important}.entregado{background:#cfe8d5!important}
 input,button,select{font:inherit;padding:8px;margin:4px 0;border-radius:8px;border:1px solid var(--line)}button{cursor:pointer;background:var(--card)}
@@ -17,7 +17,7 @@ nav button{border:0;background:none;padding:8px 12px;border-radius:99px}nav butt
 .bar{flex:1;background:var(--brand);border-radius:4px 4px 0 0;min-height:1px;position:relative}.bar:hover{opacity:.75}
 .bar:hover::after{content:attr(data-t);position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:#141413;color:#fff;font-size:12px;padding:4px 6px;border-radius:6px;white-space:nowrap;margin-bottom:4px;z-index:2}
 .axis{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}td,th{padding:8px;border-bottom:1px solid var(--line);text-align:left}td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}td,th{padding:8px;border-bottom:1px solid var(--line);text-align:left}td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 ol.steps li{margin:8px 0}code{display:block;max-height:70px;overflow:auto;font-size:11px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px;overflow-wrap:anywhere}
 @media print{#tabs,#f,h1,#yoBar,.tools,.muted,section[hidden],button{display:none!important}body{background:#fff}.o{break-inside:avoid}}
 .tools{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0}.tools input[type=search]{flex:1 1 220px}
@@ -42,25 +42,33 @@ td input[type=number]{width:80px;margin:0}.neg{color:#b3261e;font-weight:700}.ba
 .cobrar{background:#fde9a8;color:#5c4300;border-radius:6px;padding:1px 6px;font-weight:700}
 button.big{font-size:1rem;padding:10px 16px}
 #usF label{display:inline-block;margin:6px 12px 2px 0;vertical-align:top}#usF input{width:220px}
+.filtros{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:flex-end}.filtros label{font-size:13px;color:var(--muted)}.filtros input,.filtros select{color:var(--fg)}
+.sp{flex:1}.tp td{vertical-align:top}.tp tr.abierto td{background:var(--soft)}.detrow td{background:var(--soft);border-top:0}.det{font-size:14px}
+.expb button{margin:2px}
+.sem{background:var(--card);border:1px solid var(--line);border-radius:99px;padding:8px 14px;font-weight:700;display:inline-block;cursor:pointer}
+.semi{display:grid;grid-template-columns:28px 1fr;gap:4px 10px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:6px 0}.semi .d{font-size:20px;line-height:1.2}
+.inst h3{margin:16px 0 4px}.inst ol{margin:4px 0;padding-left:22px}.inst li{margin:3px 0}
+.ficha{background:var(--card);border:2px solid var(--brand);border-radius:14px;padding:14px 16px;margin:12px 0}.ficha h2{margin:0 0 4px}.ficha fieldset{border:1px solid var(--line);border-radius:10px;margin:8px 0;padding:8px 12px}.ficha legend{font-weight:700}.ficha label{display:inline-block;margin:4px 12px 4px 0}
+a.prod{color:inherit;text-decoration:underline;text-decoration-color:#aaa;cursor:pointer}
 .auto{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:6px 14px;font-size:14px;margin:6px 0}
 </style></head><body><main>
 <h1>Panel de la tienda</h1>
 <form id="f"><input id="u" placeholder="Usuario (vacío = dueño)" autocomplete="username" style="width:200px"> <input id="k" type="password" placeholder="Clave" autocomplete="current-password"> <button class="p">Entrar</button></form><p id="m" class="msg err"></p>
 <p id="yoBar" class="muted" hidden></p>
 <div id="app" hidden>
-<nav id="tabs"><button data-t="hoy" data-p="logistica" aria-pressed="true">🏠 Hoy</button><button data-t="ped" data-p="pedidos" aria-pressed="false">Pedidos</button><button data-t="ent" data-p="entregas">Entregas</button><button data-t="cli" data-p="clientes">Clientes</button><button data-t="inv" data-p="stock">Inventario</button><button data-t="cpr" data-p="compras">📒 Historial de compras</button><button data-t="cup" data-p="promos">Promociones</button><button data-t="est" data-p="estadisticas">Estadísticas</button><button data-t="pre" data-p="precios">Precios, envío y pagos</button><button data-t="fac" data-p="facturacion">Facturación</button><button data-t="usu" data-p="usuarios">Usuarios</button></nav>
+<nav id="tabs"><button data-t="hoy" data-p="logistica" aria-pressed="true">🏠 Hoy</button><button data-t="ped" data-p="pedidos" aria-pressed="false">Pedidos</button><button data-t="ent" data-p="entregas">Entregas</button><button data-t="cli" data-p="clientes">Clientes</button><button data-t="inv" data-p="stock">Inventario</button><button data-t="cpr" data-p="compras">📒 Historial de compras</button><button data-t="cup" data-p="promos">Promociones</button><button data-t="est" data-p="estadisticas">Estadísticas</button><button data-t="pre" data-p="precios">Precios, envío y pagos</button><button data-t="ofe" data-p="precios">🏷 Ofertas</button><button data-t="mem" data-p="precios">⭐ Membresía</button><button data-t="fac" data-p="facturacion">Facturación</button><button data-t="usu" data-p="usuarios">Usuarios</button><button data-t="sos" data-p="precios">🆘 Si algo falla</button></nav>
 
 <section id="hoy">
   <div class="como"><h2>¿Cómo funciona?</h2><ol>
     <li><b>Los clientes compran y pagan en la tienda.</b> El pedido aparece solo acá abajo, en el paso 1.</li>
-    <li><b>La lista de compras se arma sola</b> con todo lo que hay que comprar en Maxiconsumo (paso 2). Comprás y tocás <b>"Ya compré todo"</b>.</li>
+    <li><b>La lista de compras se arma sola</b> con todo lo que hay que comprar al proveedor (paso 2). Comprás y tocás <b>"Ya compré todo"</b>.</li>
     <li><b>Repartís los pedidos</b> (paso 3) y en cada uno tocás <b>"Marcar entregado"</b>. Listo.</li>
   </ol><p class="muted" style="margin:6px 0 0">Al cliente le llega un mail en cada paso (y la factura, si está activada). Esta pantalla se actualiza sola.</p></div>
-  <p id="hoyMsg" class="msg"></p>
+  <p id="hoySem" class="sem" hidden></p><p id="hoyMsg" class="msg"></p>
   <div id="hoyBody"></div>
   <div id="hoyAuto"><h2>Lo que hace el sistema solo</h2>
   <div class="o auto">
-    <span>🔄 Actualiza precios y stock de Maxiconsumo todos los días a las 7</span>
+    <span>🔄 Actualiza precios y stock del proveedor todos los días a las 7</span>
     <span>📥 Carga los pedidos y cobra con Mercado Pago</span>
     <span>📋 Arma la lista de compra</span>
     <span>📦 Descuenta y repone el stock del depósito</span>
@@ -70,44 +78,91 @@ button.big{font-size:1rem;padding:10px 16px}
   </div></div>
 </section>
 
-<section id="ped" hidden><p class="ayuda">Todos los pedidos, del más nuevo al más viejo. La etiqueta de color dice en qué paso está cada uno.</p><div class="tools"><input id="pq" type="search" placeholder="Buscar por nombre, teléfono o producto"> <select id="pfe"><option value="">Todos</option><option value="nuevo">📥 Recibidos (falta comprar)</option><option value="preparando">📦 Preparando</option><option value="en camino">🚚 En camino</option><option value="entregado">✅ Entregados</option><option value="esperando pago">⏳ Esperando el pago</option><option value="cancelado">✖ Cancelados</option></select> <button type="button" id="pexp">⬇ Exportar a Excel</button></div><div id="l"></div></section>
+<section id="ped" hidden>
+  <p class="ayuda"><b>Todos los pedidos.</b> Arriba elegís qué ver (estado, fechas, sección). Tocá <b>Ver</b> para abrir el detalle de un pedido. Si marcás casillas, al exportar o imprimir salen solo esos.</p>
+  <div class="kpis" id="pK"></div>
+  <div class="o filtros">
+    <label>Estado<br><select id="pfe"></select></label>
+    <label>Desde<br><input id="pd" type="date"></label>
+    <label>Hasta<br><input id="ph" type="date"></label>
+    <label>Sección<br><select id="psec"><option value="">Todas</option><option value="unidad">🛒 Supermercado</option><option value="bulto">📦 Mayoristas</option><option value="intl">🌎 Internacional</option></select></label>
+    <label style="flex:1 1 220px">Buscar<br><input id="pq" type="search" placeholder="Cliente, teléfono, Nº de pedido o producto" style="width:100%"></label>
+    <button type="button" id="plim">Limpiar filtros</button>
+  </div>
+  <div class="tools"><span id="pCnt" class="muted"></span><span class="sp"></span><span id="pExpB"></span></div>
+  <div id="l"></div><div id="lMas"></div>
+</section>
 
 <section id="ent" hidden>
-  <div class="tools"><select id="entDia"></select> <button type="button" onclick="print()">🖨 Imprimir hoja de ruta</button> <button type="button" id="entExp">⬇ Exportar a Excel</button></div>
-  <p class="ayuda">Los pedidos para repartir, ordenados por día y zona. Cuando sale el pedido tocá <b>👉 Marcar que salió</b>, y cuando el cliente lo recibe tocá <b>👉 Marcar entregado</b>. La etiqueta de color de cada pedido dice en qué paso está. Tocá la dirección para abrir el mapa y el teléfono para escribirle por WhatsApp.</p>
+  <p class="ayuda"><b>Hoja de ruteo:</b> los pedidos para repartir, ordenados por día y zona. Filtrá por fecha y estado, marcá los que salen hoy y tocá <b>Excel</b> o <b>Imprimir</b> para dársela al repartidor. Cuando sale el pedido tocá <b>👉 Marcar despachado</b>, y cuando el cliente lo recibe, <b>👉 Marcar entregado</b>. Tocá la dirección para abrir el mapa y el teléfono para escribirle por WhatsApp.</p>
+  <div class="o filtros">
+    <label>Estado<br><select id="entE"><option value="act">Todos los que faltan entregar</option><option value="preparando">📦 Comprado · para despachar</option><option value="nuevo">📥 Cobrado · falta comprar</option><option value="en camino">🚚 Despachado</option><option value="entregado">✅ Entregado</option></select></label>
+    <label>Día de entrega<br><select id="entDia"></select></label>
+    <label>Pedido desde<br><input id="entD" type="date"></label>
+    <label>Hasta<br><input id="entH" type="date"></label>
+    <label>Sección<br><select id="entS"><option value="">Todas</option><option value="unidad">🛒 Supermercado</option><option value="bulto">📦 Mayoristas</option><option value="intl">🌎 Internacional</option></select></label>
+  </div>
+  <div class="tools"><label class="chk"><input type="checkbox" id="entAll"> Marcar todos</label><span id="entCnt" class="muted"></span><span class="sp"></span><span id="entExpB"></span></div>
   <div id="entL"></div>
 </section>
 
 <section id="cli" hidden>
-  <div class="tools"><input id="cliQ" type="search" placeholder="Buscar cliente"> <select id="cliT"><option value="">Todos</option><option value="m">Mayoristas</option><option value="s">Supermercado</option></select> <button type="button" id="cliExp">⬇ Exportar a Excel</button></div>
-  <p class="muted">Se arma sola con cada compra. No hace falta cargar nada.</p>
-  <div class="kpis" id="cliK"></div><div id="cliL"></div>
+  <p class="ayuda"><b>Tus clientes.</b> Se cargan solos con cada compra, cada uno con su <b>número de cliente</b>. Tocá <b>Ficha</b> para darle <b>envío gratis</b>, marcarlo como <b>socio</b> (membresía), darlo de baja o anotar su DNI/CUIT. Los clientes que se crean cuenta entran con un código que les llega al mail: no usan contraseña, así que no hay nada que ver ni que recuperar.</p>
+  <div class="o filtros">
+    <label style="flex:1 1 220px">Buscar<br><input id="cliQ" type="search" placeholder="Nombre, teléfono, email o Nº de cliente" style="width:100%"></label>
+    <label>Tipo<br><select id="cliT"><option value="">Todos</option><option value="m">📦 Mayoristas</option><option value="s">🛒 Supermercado</option><option value="eg">🚚 Con envío gratis</option><option value="so">⭐ Socios</option><option value="baja">⛔ Dados de baja</option><option value="sin">Sin compras todavía</option></select></label>
+  </div>
+  <div class="kpis" id="cliK"></div>
+  <div class="tools"><span id="cliCnt" class="muted"></span><span class="sp"></span><span id="cliExpB"></span></div>
+  <div id="cliL"></div>
+  <h2>📦 Cuentas mayoristas</h2>
+  <p class="ayuda">Los comercios que se crean una cuenta en la tienda y piden ver los <b>precios por bulto</b>. Revisá el CUIT y tocá <b>✅ Aprobar</b>: les llega un mail y ya pueden comprar en Mayoristas.</p>
+  <label class="chk o" style="display:block"><input type="checkbox" id="mayReg"> <b>Pedir cuenta aprobada para ver los precios mayoristas</b> <span class="muted">(si lo destildás, cualquiera ve los precios por bulto, como antes)</span> <span id="mayRegMsg" class="msg"></span></label>
+  <div id="ctaL"></div>
+  <h2>🛒 Carritos que no terminaron la compra</h2>
+  <p class="ayuda">Gente que cargó productos y completó sus datos pero <b>no pagó</b>, o que empezó a pagar con Mercado Pago y no terminó. Escribiles por WhatsApp para ayudarlos a terminar la compra.</p>
+  <div class="tools"><span id="carCnt" class="muted"></span><span class="sp"></span><span id="carExpB"></span></div>
+  <div id="carL"></div>
 </section>
 
 <section id="inv" hidden>
+  <p class="ayuda"><b>Tu stock.</b> Baja solo con cada venta y sube solo con cada compra. Tocá el <b>nombre</b> de un producto para abrir su <b>ficha</b>: ahí sumás mercadería (con fecha de ingreso y vencimiento), corregís el stock, cambiás el precio o lo escondés de la tienda. Antes de guardar siempre te pregunta, y si te equivocás tenés el botón <b>↩ Deshacer</b>.</p>
   <div class="kpis" id="invK"></div>
-  <p class="o">El stock es <b>automático</b>: cada venta lo descuenta y cada compra registrada lo repone. Si un producto queda en negativo es porque se vendió y todavía no lo compraste: aparece solo en <b>Compras</b>. Poné un <b>mínimo</b> en los productos que querés tener siempre en el depósito.</p>
-  <div class="tools"><input id="invQ" type="search" placeholder="Buscar en el stock"> <select id="invF"><option value="">Todos</option><option value="neg">Vendidos sin comprar</option><option value="bajo">Debajo del mínimo</option><option value="con">Con stock</option></select> <button type="button" id="invGuardar" class="p">Guardar cambios</button> <button type="button" id="invExp">⬇ Exportar stock</button> <button type="button" id="catExp">⬇ Exportar catálogo con precios</button> <span id="invMsg" class="msg"></span></div>
-  <div id="invL"></div>
-  <h2>Agregar un producto al stock</h2>
-  <div class="o"><input id="addQ" type="search" placeholder="Buscá un producto del catálogo (ej: yerba playadito)" style="width:100%"><div id="addL"></div></div>
-  <h2>Importar desde Excel</h2>
-  <div class="o">
-    <p class="muted">Subí un Excel (.xlsx) o CSV con títulos en la primera fila. Columnas que entiende: <b>codigo</b>, <b>nombre</b>, <b>cantidad</b> (o stock), <b>minimo</b>, <b>precio</b>, <b>precio_bulto</b>, <b>unidades_bulto</b>, <b>categoria</b>, <b>costo</b>, <b>foto</b>. <a href="#" id="impModelo">Bajar modelo</a></p>
-    <label>¿Qué querés importar? <select id="impTipo"><option value="stock">Cantidades de stock y mínimos (de productos que ya están)</option><option value="propios">Productos nuevos propios (con precio)</option></select></label><br>
-    <input id="impFile" type="file" accept=".xlsx,.xls,.csv,text/csv"> <button type="button" id="impOk" class="p" disabled>Importar</button> <span id="impMsg" class="msg"></span>
+  <div id="ficha" class="ficha" hidden></div>
+  <h2>📦 Stock del depósito</h2>
+  <div class="o filtros">
+    <label style="flex:1 1 220px">Buscar<br><input id="invQ" type="search" placeholder="Nombre o código" style="width:100%"></label>
+    <label>Mostrar<br><select id="invF"><option value="">Todos</option><option value="con">Con stock</option><option value="bajo">Debajo del mínimo</option><option value="neg">Vendidos sin comprar</option><option value="ven30">Vencen en 30 días</option><option value="vencido">Vencidos</option></select></label>
   </div>
-  <h2>Productos propios</h2>
-  <p class="muted">Productos que no son de Maxiconsumo (por ejemplo, de otro proveedor o de tu depósito). Se muestran en la tienda mientras tengan stock.</p>
-  <form id="propF" class="o">
+  <div class="tools"><button type="button" id="invGuardar" class="p">💾 Guardar cambios</button> <button type="button" id="invDeshacer" hidden>↩ Deshacer lo último</button> <span id="invMsg" class="msg"></span><span class="sp"></span><span id="invExpB"></span></div>
+  <div id="invL"></div><div id="invPag" class="tools"></div>
+  <h2>➕ Agregar mercadería o un producto nuevo</h2>
+  <div class="o"><b>¿Es un producto que ya vendés?</b> Buscalo y abrí su ficha para sumarle stock:<br><input id="addQ" type="search" placeholder="Ej: yerba playadito" style="width:100%"><div id="addL"></div></div>
+  <form id="propF" class="o"><b>¿Es un producto nuevo?</b> <span class="muted">(de otro proveedor, importado o de tu depósito)</span> <label class="chk" style="display:inline"><input id="prX" type="checkbox"> 🌎 Va en la sección <b>Internacional</b></label><br>
     <input id="prN" placeholder="Nombre" required style="width:260px"> <input id="prC" placeholder="Categoría" list="catsDL" style="width:140px"><datalist id="catsDL"></datalist>
     <label>Precio unidad $<input id="prU" type="number" min="0" style="width:100px"></label> <label>Precio bulto (c/u) $<input id="prB" type="number" min="0" style="width:100px"></label> <label>Unid. por bulto <input id="prBu" type="number" min="1" value="1" style="width:70px"></label>
     <label>Costo $<input id="prCo" type="number" min="0" style="width:90px"></label> <label>Stock <input id="prS" type="number" style="width:80px"></label><br>
+    <label>Fecha de ingreso <input id="prI" type="date"></label> <label>Vencimiento <input id="prV" type="date"></label> <label class="chk"><input id="prA" type="checkbox" checked> Mostrar en la tienda</label><br>
     <input id="prF" placeholder="Foto (link https://…, opcional)" style="width:360px"> <button class="p">Agregar producto</button> <span id="prMsg" class="msg"></span>
   </form>
+  <h2>📄 Importar desde Excel</h2>
+  <div class="o">
+    <p class="muted">Subí un Excel (.xlsx) o CSV con títulos en la primera fila. Columnas que entiende: <b>codigo</b>, <b>nombre</b>, <b>cantidad</b> (o stock), <b>minimo</b>, <b>precio</b>, <b>precio_bulto</b>, <b>unidades_bulto</b>, <b>categoria</b>, <b>costo</b>, <b>ingreso</b>, <b>vencimiento</b>, <b>internacional</b> (si/no), <b>foto</b>. <a href="#" id="impModelo">Bajar modelo</a></p>
+    <label>¿Qué querés importar? <select id="impTipo"><option value="stock">Cantidades de stock y mínimos (de productos que ya están)</option><option value="propios">Productos nuevos propios (con precio)</option></select></label><br>
+    <input id="impFile" type="file" accept=".xlsx,.xls,.csv,text/csv"> <button type="button" id="impOk" class="p" disabled>Importar</button> <span id="impMsg" class="msg"></span>
+  </div>
+  <h2>🏷 Productos propios</h2>
+  <p class="muted">Los que cargaste vos. Tocá el nombre para editarlos.</p>
   <div id="propL"></div>
-  <h2>Movimientos de stock</h2>
-  <div class="tools"><input id="movMes" type="month"> <button type="button" id="movExp">⬇ Exportar</button></div><div id="movL"></div>
+  <h2>🔁 Movimientos de stock</h2>
+  <p class="muted">Todo lo que entró y salió: ventas, compras, ingresos, correcciones e importaciones.</p>
+  <div class="o filtros">
+    <label>Desde<br><input id="movD" type="date"></label><label>Hasta<br><input id="movH" type="date"></label>
+    <label>Tipo<br><select id="movT"><option value="">Todos</option><option value="venta">Venta</option><option value="compra">Compra</option><option value="ingreso">Ingreso de mercadería</option><option value="ajuste">Corrección</option><option value="devolucion">Devolución</option><option value="importacion">Importación</option></select></label>
+    <label style="flex:1 1 200px">Producto<br><input id="movQ" type="search" placeholder="Nombre o código" style="width:100%"></label>
+  </div>
+  <div class="tools"><span id="movCnt" class="muted"></span><span class="sp"></span><span id="movExpB"></span></div>
+  <div id="movL"></div>
 </section>
 
 <section id="cpr" hidden>
@@ -115,7 +170,7 @@ button.big{font-size:1rem;padding:10px 16px}
   <p class="ayuda">Acá queda anotado solo cada vez que alguien toca <b>"✅ Ya compré todo"</b> en 🏠 Hoy: qué día, qué se compró, cuánto se gastó y quién fue. <b>No hay que cargar nada a mano.</b> Sirve para saber cuánto ganás (lo ves en Estadísticas).</p>
   <div class="kpis" id="cprK"></div>
   <div class="tools"><button type="button" id="cprHExp">⬇ Bajar a Excel</button></div><div id="cprH"></div>
-  <details class="o" style="margin-top:18px"><summary><b>Proveedores</b> <span class="muted">(a quién le comprás: hoy, Maxiconsumo)</span></summary>
+  <details class="o" style="margin-top:18px"><summary><b>Proveedores</b> <span class="muted">(a quién le comprás; podés cambiarles el nombre)</span></summary>
   <form id="provF"><input type="hidden" id="pvId"><input id="pvN" placeholder="Nombre" required> <input id="pvC" placeholder="Contacto"> <input id="pvT" placeholder="Teléfono"> <input id="pvE" placeholder="Email"> <input id="pvW" placeholder="Web"> <input id="pvNo" placeholder="Notas" style="width:240px"> <button class="p">Guardar proveedor</button> <button type="button" id="pvExp">⬇ Exportar</button></form>
   <div id="provL"></div></details>
   <div hidden><div class="tools"><label>Proveedor <select id="cprProv"></select></label> <button type="button" id="cprReg" class="p">✅ Ya compré todo</button> <button type="button" id="cprCopy">Copiar lista</button> <button type="button" onclick="print()">🖨 Imprimir</button> <button type="button" id="cprExp">⬇ Exportar</button> <span id="cprMsg" class="msg"></span></div>
@@ -125,32 +180,45 @@ button.big{font-size:1rem;padding:10px 16px}
 
 
 <section id="est" hidden>
-  <label>Período: <select id="per"><option value="30">Últimos 30 días</option><option value="7">Últimos 7 días</option><option value="mes">Este mes</option><option value="todo">Todo</option></select></label>
-  <p class="muted">Cuenta los pedidos pagados, entregados o en efectivo al recibir (no cuenta pagos pendientes ni rechazados).</p>
+  <p class="ayuda"><b>Cuánto vendiste y cuánto ganaste.</b> Elegí el período y la sección. Cuenta solo los pedidos cobrados (pagados, entregados o en efectivo al recibir).</p>
+  <div class="o filtros">
+    <label>Período<br><select id="per"><option value="mes">Este mes</option><option value="mesant">Mes pasado</option><option value="7">Últimos 7 días</option><option value="30">Últimos 30 días</option><option value="anio">Este año</option><option value="todo">Todo</option><option value="rango">Elegir fechas…</option></select></label>
+    <label id="perR" hidden>Desde<br><input id="perD" type="date"></label><label id="perR2" hidden>Hasta<br><input id="perH" type="date"></label>
+    <label>Sección<br><select id="perS"><option value="">Todas</option><option value="unidad">🛒 Supermercado</option><option value="bulto">📦 Mayoristas</option><option value="intl">🌎 Internacional</option></select></label>
+  </div>
   <div class="kpis" id="kpis"></div>
   <h2>Ventas por día</h2><div class="chart" id="chart" role="img" aria-label="Ventas por día"></div><div class="axis" id="axis"></div>
+  <h2>Mes a mes</h2><div id="meses"></div>
   <h2>Productos más vendidos</h2><div id="top"></div>
   <h2>Formas de pago</h2><div id="medios"></div>
 </section>
 
 <section id="pre" hidden>
   <div class="o" id="estado">Cargando…</div>
-  <h2>Actualizar precios y stock con Maxiconsumo</h2>
-  <p class="o"><b>Se actualizan solos todos los días a las 7 de la mañana</b> (lo hace GitHub, no hace falta tener ninguna compu prendida). Acá abajo podés cambiar las ganancias: se aplican en la próxima actualización. Si querés actualizar en el momento, usá el marcador:</p>
-  <ol class="steps">
-    <li><b>Solo la primera vez:</b> creá un marcador nuevo en el navegador (Chrome o Edge), ponele de nombre <b>Bajar precios Maxiconsumo</b> y en la dirección (URL) pegá este código:
-      <code id="bm"></code><button type="button" id="copyBm">Copiar código del marcador</button></li>
-    <li>Entrá a <a href="https://www.maxiconsumo.com" target="_blank" rel="noopener">www.maxiconsumo.com</a> (si iniciás sesión, toma los precios y el stock de tu sucursal; si no, los de Moreno) y tocá el marcador. Tarda unos 10 minutos: no cierres la pestaña. Al final se baja el archivo <b>maxiconsumo_productos.txt</b>.</li>
-    <li>Subí ese archivo acá y tocá <b>Actualizar precios</b>. La tienda se actualiza sola en 1 minuto, sin volver a publicarla.</li>
-  </ol>
+  <h2>💲 Precios y ganancia</h2>
+  <p class="ayuda"><b>Los precios se actualizan solos todos los días a las 7 de la mañana</b> con los del proveedor (no hay que hacer nada ni tener una compu prendida). Lo único que elegís acá es <b>cuánto ganás</b> sobre el precio del proveedor: se aplica en la próxima actualización.</p>
   <form id="pf" class="o">
-    <label>Archivo de Maxiconsumo <span class="muted">(opcional)</span> <input id="pfile" type="file" accept=".txt,text/plain"></label><br>
     <label>Ganancia <b>Supermercado</b> (%) <input id="pmar" type="number" min="0" max="500" step="1" style="width:90px" required></label>
-    <label>Ganancia <b>Mayorista</b> (%) <input id="pmarb" type="number" min="0" max="500" step="1" style="width:90px" required></label><br>
-    <p class="muted">Los productos que Maxiconsumo marca sin stock no se muestran en la tienda.</p>
-    <label><input id="pfor" type="checkbox"> Forzar (solo si el panel te lo pide)</label><br>
+    <label>Ganancia <b>Mayoristas</b> (%) <input id="pmarb" type="number" min="0" max="500" step="1" style="width:90px" required></label>
+    <p class="muted">Ejemplo: si al proveedor le pagás $1.000 y ponés 20%, en la tienda sale $1.200. Los productos que el proveedor no tiene en stock no se muestran.</p>
+    <details><summary class="muted">Avanzado: actualizar a mano (solo si la actualización automática falla)</summary>
+    <ol class="steps">
+      <li><b>Solo la primera vez:</b> creá un marcador nuevo en el navegador (Chrome o Edge), ponele de nombre <b>Bajar precios</b> y en la dirección (URL) pegá este código:
+        <code id="bm"></code><button type="button" id="copyBm">Copiar código del marcador</button></li>
+      <li>Entrá a la <a href="https://www.maxiconsumo.com" target="_blank" rel="noopener">página del proveedor</a> y tocá el marcador. Tarda unos 10 minutos: no cierres la pestaña. Al final se baja un archivo <b>.txt</b>.</li>
+      <li>Subilo acá y tocá <b>Guardar</b>: <input id="pfile" type="file" accept=".txt,text/plain"></li>
+    </ol>
+    <label><input id="pfor" type="checkbox"> Forzar (solo si el panel te lo pide)</label></details>
     <button class="p">Guardar</button> <span id="pmsg" class="msg"></span>
   </form>
+  <h2>🛒 Precios de Supermercado (por unidad)</h2>
+  <div class="o" id="smEst">Cargando…</div>
+  <p class="ayuda">Supermercado puede tener <b>sus propios precios</b>, sacados del proveedor que vende <b>por unidad</b> (así se compra solo lo que se vendió y no queda mercadería de más). Mayoristas sigue con el proveedor principal, por bulto. Para actualizar los precios de Supermercado: entrá con tu usuario a la página del proveedor por unidad, tocá el marcador y subí el archivo acá.</p>
+  <details class="o"><summary><b>Cómo actualizar los precios de Supermercado</b></summary><ol class="steps">
+    <li><b>Solo la primera vez:</b> creá un marcador en el navegador, ponele de nombre <b>Precios Supermercado</b> y en la dirección pegá este código: <code id="bm2"></code><button type="button" id="copyBm2">Copiar código del marcador</button></li>
+    <li>Entrá con tu usuario a la <a href="https://comerciante.carrefour.com.ar" target="_blank" rel="noopener">página del proveedor por unidad</a> y tocá el marcador. Se baja un archivo <b>.txt</b>.</li>
+    <li>Subilo acá: <input id="smFile" type="file" accept=".txt,text/plain"> <button type="button" id="smOk" class="p">Actualizar Supermercado</button> <span id="smMsg" class="msg"></span></li>
+  </ol><label class="chk"><input type="checkbox" id="smVolver"> Volver a usar el proveedor principal también para Supermercado</label></details>
   <h2>Envío</h2>
   <form id="ef" class="o">
     <label>CABA $ <input id="eCaba" type="number" min="0" step="100" style="width:110px" placeholder="a coordinar"></label>
@@ -179,6 +247,61 @@ button.big{font-size:1rem;padding:10px 16px}
   <h2>WhatsApp de la tienda</h2>
   <form id="wf" class="o"><input id="wa" inputmode="numeric" placeholder="5491123456789" style="width:200px"> <button class="p">Guardar</button> <span id="wmsg" class="msg"></span>
   <p class="muted">Con 549 + código de área + número, sin espacios ni guiones.</p></form>
+</section>
+
+<section id="ofe" hidden>
+  <h2>🏷 Ofertas de las revistas</h2>
+  <p class="ayuda">Los lunes y jueves un robot baja las <b>revistas de ofertas</b> de otros mayoristas (Diarco, Vital, Makro, Yaguar), las lee y busca productos que <b>tenemos en Mayoristas</b> y que ahí están <b>más baratos</b> que en el proveedor principal. <b>Nada se cambia solo:</b> revisá cada una y tocá <b>✅ Usar</b>. Al usarla, el precio por bulto baja en la tienda (sale como 🔥 oferta) y en la lista de compras ese producto dice dónde comprarlo. Lo que aprobás, el robot lo reconoce solo la próxima vez.</p>
+  <div class="o" id="ofC">Cargando…</div>
+  <h2>Para revisar</h2><div id="ofP"></div>
+  <h2>En uso ahora</h2><div id="ofA"></div>
+</section>
+
+<section id="mem" hidden>
+  <h2>⭐ Membresía mensual</h2>
+  <p class="ayuda">Los clientes se suscriben desde <b>👤 Mi cuenta</b> en la tienda y <b>Mercado Pago les cobra solo todos los meses</b>. Mientras pagan, los beneficios se aplican solos al comprar. Si dejan de pagar, los pierden solos. Acá elegís el precio y los beneficios cuando quieras.</p>
+  <form id="mbF" class="o">
+    <label class="chk"><input type="checkbox" id="mbA"> <b>Membresía activa</b> (se ofrece en la tienda)</label><br>
+    <label>Nombre <input id="mbN" style="width:220px" placeholder="Club Proveeduría"></label> <label>Precio por mes $ <input id="mbP" type="number" min="100" step="100" style="width:110px"></label><br>
+    <label>Descripción <input id="mbD" style="width:100%" placeholder="Beneficios todos los meses para los clientes que más compran."></label>
+    <fieldset style="border:1px solid var(--line);border-radius:10px;margin:8px 0;padding:8px 12px"><legend><b>Beneficios</b></legend>
+      <label class="chk"><input type="checkbox" id="mbE"> 🚚 Envío gratis en todas sus compras</label><br>
+      <label>🏷 Descuento en todo <input id="mbDe" type="number" min="0" max="50" style="width:70px"> % <span class="muted">(0 = sin descuento)</span></label><br>
+      <label class="chk"><input type="checkbox" id="mbM"> 📦 Compran en Mayoristas sin compra mínima</label>
+    </fieldset>
+    <p class="muted">Si cambiás el precio, a los socios que ya pagan se les cobra el precio nuevo desde el mes siguiente.</p>
+    <button class="p">Guardar membresía</button> <span id="mbMsg" class="msg"></span>
+  </form>
+  <h2>Socios</h2>
+  <p class="muted">Los que pagan con Mercado Pago aparecen solos. Si alguien te paga en efectivo, marcalo como <b>⭐ Socio</b> en su ficha (Clientes) y también recibe los beneficios.</p>
+  <div class="kpis" id="mbK"></div><div id="mbL"></div>
+</section>
+
+<section id="sos" hidden>
+  <h2>🚦 ¿Anda todo?</h2>
+  <p class="ayuda">El panel revisa solo las partes importantes de la tienda. <b>Verde</b> = anda bien. <b>Naranja</b> = conviene mirarlo. <b>Rojo</b> = hay que arreglarlo (abajo dice cómo).</p>
+  <div id="semL">Revisando…</div><button type="button" id="semR">🔄 Revisar de nuevo</button>
+  <h2>🛠️ Modo mantenimiento</h2>
+  <p class="ayuda">Si la página falla o la estás arreglando, prendé esto: los clientes ven un cartel que dice que la página está en mantenimiento, con un botón para <b>hacer el pedido por WhatsApp</b>. Cuando se arregla, lo apagás.</p>
+  <form id="mtF" class="o">
+    <label class="chk"><input type="checkbox" id="mtA"> <b>Poner la tienda en mantenimiento</b></label><br>
+    <label>Mensaje para el cliente <input id="mtM" style="width:100%" placeholder="Estamos haciendo mejoras. Hacé tu pedido por WhatsApp y te lo llevamos igual."></label><br>
+    <label>¿A quién llamar si nada funciona? <input id="mtS" style="width:100%" placeholder="Ej: Agustín (soporte de la página) · 11 1234-5678"></label><br>
+    <button class="p">Guardar</button> <span id="mtMsg" class="msg"></span>
+  </form>
+  <h2>📘 Instructivo: qué hacer si algo falla</h2>
+  <div class="tools"><button type="button" id="instPr">🖨 Imprimir o guardar en PDF</button></div>
+  <div class="o inst" id="inst">
+    <p><b>Regla de oro:</b> si la tienda no deja comprar, prendé el <b>modo mantenimiento</b> (arriba) y seguí tomando pedidos por WhatsApp. Ningún cliente se pierde mientras se arregla.</p>
+    <h3>1. La página no abre</h3><ol><li>Probá abrirla desde el celular con datos (sin wifi). Si abre, el problema es tu internet.</li><li>Si no abre en ningún lado, mandá un estado de WhatsApp o una historia de Instagram: "Tomamos pedidos por WhatsApp".</li><li>Avisale a soporte (al final de esta hoja).</li></ol>
+    <h3>2. Los pagos con Mercado Pago no entran</h3><ol><li>Fijate el semáforo de arriba: si <b>Pagos con Mercado Pago</b> está en rojo, la clave venció o se cambió.</li><li>Entrá a Mercado Pago → Tu negocio → Credenciales y copiá de nuevo el <b>Access Token de producción</b>.</li><li>Pegalo en Netlify (Configuración del proyecto → Variables de entorno → MP_ACCESS_TOKEN). Lo hace soporte si no sabés.</li><li>Mientras tanto: en <b>Precios, envío y pagos → Medios de pago</b> dejá activo <b>Efectivo al recibir</b> o <b>Transferencia</b>.</li></ol>
+    <h3>3. Los precios no se actualizaron</h3><ol><li>El semáforo te dice la última fecha. Se actualizan solos todos los días a las 7.</li><li>Si pasaron 2 días o más, avisale a soporte. Mientras, la tienda sigue vendiendo con los últimos precios.</li><li>Si un producto quedó con un precio raro, abrí su <b>ficha</b> en Inventario y ponele el precio a mano o escondelo de la tienda.</li></ol>
+    <h3>4. A los clientes no les llegan los mails</h3><ol><li>Pediles que miren en <b>Spam</b> o <b>Promociones</b>.</li><li>Si el semáforo marca <b>Mails a clientes</b> en rojo, hay que cargar de nuevo la contraseña de aplicación de Gmail (lo hace soporte).</li><li>El pedido igual queda cargado: el mail es solo un aviso.</li></ol>
+    <h3>5. Un producto tiene un precio raro o no hay stock</h3><ol><li>Inventario → buscá el producto → abrí su ficha.</li><li>Ponele el precio a mano, o destildá <b>Mostrar en la tienda</b>.</li><li>Tocá Guardar. Si te equivocaste, ↩ Deshacer.</li></ol>
+    <h3>6. Me olvidé la clave del panel</h3><ol><li>Si sos empleado: pedile al dueño que te cambie la clave en <b>Usuarios</b>.</li><li>Si sos el dueño: la clave está en Netlify (variable ADMIN_KEY). Pedísela a soporte.</li></ol>
+    <h3>7. Un cliente dice que pagó y no aparece el pedido</h3><ol><li>Buscalo en <b>Pedidos</b> por su nombre o teléfono, con el estado <b>Pendiente de pago</b>.</li><li>Si en tu Mercado Pago figura el pago, tocá en el pedido el paso que sigue. Si pagó por transferencia, tocá <b>💳 Ya transfirió</b>.</li></ol>
+    <h3>Si nada funciona</h3><p id="instSop">Llamá a soporte.</p>
+  </div>
 </section>
 
 <section id="usu" hidden>
@@ -284,7 +407,7 @@ async function enviarF(btn,id){btn.disabled=true;btn.textContent="Mandando…";
   const r=await api("facturacion",{method:"POST",body:JSON.stringify({accion:"enviar",id})});const d=await r.json().catch(()=>({error:"Error inesperado"}));
   await load();$("m").className="msg "+(r.ok?"ok":"err");$("m").textContent=r.ok?"Factura mandada a "+d.enviada+".":"No se pudo mandar: "+(d.error||"");
 }
-const ET={"esperando pago":["espera","⏳ Esperando el pago"],nuevo:["nuevo","📥 Recibido · falta comprar"],preparando:["preparando","📦 Preparando"],"en camino":["camino","🚚 En camino"],entregado:["entregado","✅ Entregado"],cancelado:["cancelado","✖ Cancelado"]};
+const ET={"esperando pago":["espera","⏳ Pendiente de pago"],nuevo:["nuevo","📥 Cobrado · falta comprar"],preparando:["preparando","📦 Comprado · para despachar"],"en camino":["camino","🚚 Despachado"],entregado:["entregado","✅ Entregado"],cancelado:["cancelado","✖ Cancelado"]};
 const etq=o=>{const e=ET[o.etapaActual]||["espera",o.estado];return `<span class="et et-${e[0]}">${e[1]}</span>`};
 const MEDIO={credit_card:"tarjeta de crédito",debit_card:"tarjeta de débito",account_money:"saldo MP",ticket:"Rapipago/Pago Fácil",bank_transfer:"transferencia",efectivo:"efectivo al recibir"};
 function pagoTxt(o){const e=o.estado==="cancelado"?o.estadoPago:o.estado;
@@ -295,15 +418,37 @@ function pagoTxt(o){const e=o.estado==="cancelado"?o.estadoPago:o.estado;
   if(e==="rejected"||e==="cancelled")return "❌ Pago rechazado";
   return "⏳ Pago pendiente"}
 // Un solo botón con el paso que sigue
-const SIG={nuevo:["preparando","👉 Marcar como comprado"],preparando:["en camino","👉 Marcar que salió"],"en camino":["entregado","👉 Marcar entregado"]};
+const SIG={nuevo:["preparando","👉 Marcar comprado"],preparando:["en camino","👉 Marcar despachado"],"en camino":["entregado","👉 Marcar entregado"]};
 function botones(o){const s=SIG[o.etapaActual];let h="";
   if(o.estado==="espera transferencia")h+=` <button onclick="setE('${o.id}','pagado')">💳 Ya transfirió</button>`;
   if(s)h+=` <button class="p" onclick="setE('${o.id}','${s[0]}')">${s[1]}</button>`;
   if(["nuevo","preparando","en camino","esperando pago"].includes(o.etapaActual))h+=` <button onclick="setE('${o.id}','cancelado')">Cancelar</button>`;
   return h}
+// Detalle completo de un pedido (se abre con "Ver")
+function detalleP(o){return `<div class="det">${esc(o.direccion)}${o.email?" · "+esc(o.email):""} · ${esc(o.telefono)}${o.entrega?`<br>🕒 Entrega: <b>${esc(o.entrega)}</b>`:""}<ul>${o.items.map(i=>`<li>${i.cantidad} x ${esc(i.nombre)} <span class="muted">${money(i.precio*i.cantidad)}</span></li>`).join("")}</ul>${o.envio>0?`Envío ${money(o.envio)} · `:o.envio===0?"Envío gratis · ":o.envioACoordinar?"Envío a coordinar · ":""}<b>Total ${money(o.total)}</b> · ${pagoTxt(o)}${o.cupon?" · cupón "+esc(o.cupon)+" (-"+o.descuento+"%)":""}<br>${botones(o)}${o.factura?.prod?"":` <button onclick="delP(this,'${o.id}')">Borrar</button>`} <a href="/seguimiento.html?id=${encodeURIComponent(o.id)}" target="_blank" rel="noopener" class="muted">Ver lo que ve el cliente</a>${facHtml(o)}</div>`}
+let PV=[],PMAX=100,PSEL=new Set(),POPEN=new Set();
+const nroP=o=>o.nro?"#"+o.nro:o.id.slice(0,8).toUpperCase();
+const secN=o=>({bulto:"Mayoristas",intl:"Internacional"})[o.modo]||"Supermercado";
+const secTag=o=>o.modo==="bulto"?' <span class="tag">📦 Mayorista</span>':o.modo==="intl"?' <span class="tag">🌎 Internacional</span>':"";
 function renderP(){
-  $("l").innerHTML=L.length?L.map(o=>`<div class="o">${etq(o)} <span class="muted">${new Date(o.fecha).toLocaleString("es-AR")} · Pedido ${esc(o.id.slice(0,8).toUpperCase())}</span>${o.modo==="bulto"?" · <b>📦 MAYORISTA</b>":""}<br><b>${esc(o.nombre)}</b> · ${esc(o.telefono)}<br>${esc(o.direccion)}${o.email?" · "+esc(o.email):""}${o.entrega?`<br>🕒 Entrega: <b>${esc(o.entrega)}</b>`:""}<ul>${o.items.map(i=>`<li>${i.cantidad} x ${esc(i.nombre)}</li>`).join("")}</ul>${o.envio>0?`Envío ${money(o.envio)} · `:o.envio===0?"Envío gratis · ":o.envioACoordinar?"Envío a coordinar · ":""}<b>Total ${money(o.total)}</b> · ${pagoTxt(o)}${o.cupon?" · cupón "+esc(o.cupon)+" (-"+o.descuento+"%)":""}<br>${botones(o)}${o.factura?.prod?"":` <button onclick="delP(this,'${o.id}')">Borrar</button>`} <a href="/seguimiento.html?id=${encodeURIComponent(o.id)}" target="_blank" rel="noopener" class="muted">Ver lo que ve el cliente</a>${facHtml(o)}</div>`).join(""):"Todavía no hay pedidos.";
+  if(!$("pfe").options.length)$("pfe").innerHTML=`<option value="">Todos los estados</option>`+Object.entries(ET).map(([k,v])=>`<option value="${k}">${v[1]}</option>`).join("");
+  const q=($("pq").value||"").toLowerCase().trim(),fe=$("pfe").value,sec=$("psec").value,d=$("pd").value,h=$("ph").value;
+  const dia=f=>new Date(new Date(f)-3*3600e3).toISOString().slice(0,10);
+  PV=L.filter(o=>(!fe||o.etapaActual===fe)&&(!sec||(o.modo||"unidad")===sec)&&(!d||dia(o.fecha)>=d)&&(!h||dia(o.fecha)<=h)&&(!q||[nroP(o),String(o.nro||""),o.nombre,o.telefono,o.email,o.direccion,...(o.items||[]).map(i=>i.nombre)].join(" ").toLowerCase().includes(q)));
+  // números de arriba (como el sistema anterior): pedidos del mes, facturado del mes y del año
+  const now=new Date(),mes=now.toISOString().slice(0,7),anio=String(now.getFullYear()),VEN=["pagado","entregado","efectivo al recibir"];
+  const V=L.filter(o=>VEN.includes(o.estado)),vm=V.filter(o=>dia(o.fecha).slice(0,7)===mes),va=V.filter(o=>dia(o.fecha).slice(0,4)===anio);
+  if($("pK"))$("pK").innerHTML=[["Pedidos del mes",vm.length],["Facturado este mes",money(vm.reduce((s,o)=>s+o.total,0))],["Facturado en el año",money(va.reduce((s,o)=>s+o.total,0))],["Pendientes de pago",L.filter(o=>o.etapaActual==="esperando pago").length]].map(([a,b])=>`<div class="kpi"><small>${a}</small><b>${b}</b></div>`).join("");
+  const tot=PV.reduce((s,o)=>s+(o.total||0),0);
+  if($("pCnt"))$("pCnt").innerHTML=`<b>${PV.length}</b> pedidos · ${money(tot)}${PSEL.size?` · <b>${PSEL.size} marcados</b> <a href="#" onclick="PSEL.clear();renderP();return false">desmarcar</a>`:""}`;
+  const R=PV.slice(0,PMAX);
+  $("l").innerHTML=PV.length?`<table class="tp"><tr><th><input type="checkbox" id="pAll" title="Marcar todos"></th><th>Nº</th><th>Cliente</th><th class="n">Monto</th><th>Pago</th><th>Estado</th><th></th></tr>${R.map(o=>`<tr class="${POPEN.has(o.id)?"abierto":""}"><td><input type="checkbox" data-sel="${o.id}" ${PSEL.has(o.id)?"checked":""}></td><td><b>${nroP(o)}</b></td><td><b>${esc(o.nombre)}</b>${secTag(o)}<br><span class="muted">${new Date(o.fecha).toLocaleString("es-AR",{dateStyle:"short",timeStyle:"short"})}${o.nroCliente?" · cliente Nº "+o.nroCliente:""}</span></td><td class="n"><b>${money(o.total)}</b></td><td class="muted">${pagoTxt(o)}</td><td>${etq(o)}</td><td><button type="button" onclick="verP('${o.id}')">${POPEN.has(o.id)?"Cerrar":"Ver"}</button></td></tr>${POPEN.has(o.id)?`<tr class="detrow"><td></td><td colspan="6">${detalleP(o)}</td></tr>`:""}`).join("")}</table>`:'<p class="muted">No hay pedidos con estos filtros.</p>';
+  $("lMas").innerHTML=PV.length>PMAX?`<button type="button" onclick="PMAX+=100;renderP()">Mostrar 100 más (${PV.length-PMAX} restantes)</button>`:"";
+  const all=$("pAll");if(all){all.checked=R.length&&R.every(o=>PSEL.has(o.id));all.onchange=()=>{R.forEach(o=>all.checked?PSEL.add(o.id):PSEL.delete(o.id));renderP()}}
 }
+window.verP=id=>{POPEN.has(id)?POPEN.delete(id):POPEN.add(id);renderP()};
+$("l").addEventListener("change",e=>{const id=e.target.dataset?.sel;if(!id)return;e.target.checked?PSEL.add(id):PSEL.delete(id);renderP()});
+
 async function setE(id,estado){
   if(estado==="cancelado"&&!confirm("¿Cancelar este pedido? Los productos vuelven al stock."))return;
   const r=await api("pedidos",{method:"POST",body:JSON.stringify({id,estado})});const d=await r.json().catch(()=>({}));
@@ -312,20 +457,37 @@ async function setE(id,estado){
   load()}
 async function delP(btn,id){if(btn.dataset.s!=="1"){btn.dataset.s="1";btn.textContent="¿Seguro? Tocá de nuevo";setTimeout(()=>{btn.dataset.s="";btn.textContent="Borrar"},4000);return}const r=await api("pedidos",{method:"POST",body:JSON.stringify({id,borrar:true})});const err=r.ok?"":((await r.json().catch(()=>({}))).error||"No se pudo borrar.");await load();if(err){$("m").className="msg err";$("m").textContent=err}}
 
+// Período elegido en Estadísticas: [desde, hasta) y cantidad de días
+function periodo(){const per=$("per").value,now=new Date(),y=now.getFullYear(),m=now.getMonth();
+  $("perR").hidden=$("perR2").hidden=per!=="rango";
+  if(per==="mes")return[new Date(y,m,1),now];
+  if(per==="mesant")return[new Date(y,m-1,1),new Date(y,m,1)];
+  if(per==="anio")return[new Date(y,0,1),now];
+  if(per==="todo")return[new Date(Math.min(...L.map(o=>+new Date(o.fecha)),+now)),now];
+  if(per==="rango"){const d=$("perD").value?new Date($("perD").value+"T00:00"):new Date(y,m,1),h=$("perH").value?new Date($("perH").value+"T23:59:59"):now;return[d,h]}
+  return[new Date(now-(+per)*864e5),now]}
+const VEND=["pagado","entregado","efectivo al recibir"];
+const ventasDe=(d,h)=>L.filter(o=>VEND.includes(o.estado)&&(!$("perS").value||(o.modo||"unidad")===$("perS").value)&&new Date(o.fecha)>=d&&new Date(o.fecha)<h);
 function stats(){
-  const per=$("per").value, now=new Date();
-  const desde=per==="todo"?new Date(0):per==="mes"?new Date(now.getFullYear(),now.getMonth(),1):new Date(now-(+per)*864e5);
-  const V=L.filter(o=>["pagado","entregado","efectivo al recibir"].includes(o.estado)&&new Date(o.fecha)>=desde);
+  const [desde,hasta]=periodo(),now=new Date();
+  const V=ventasDe(desde,hasta);
   const tot=V.reduce((s,o)=>s+o.total,0), uni=V.reduce((s,o)=>s+o.items.reduce((a,i)=>a+i.cantidad,0),0);
-  $("kpis").innerHTML=[["Ventas",money(tot)],["Pedidos",V.length],["Ticket promedio",V.length?money(tot/V.length):"—"],["Unidades vendidas",uni.toLocaleString("es-AR")]].map(([a,b])=>`<div class="kpi"><small>${a}</small><b>${b}</b></div>`).join("");
+  const dias=Math.max(1,Math.ceil((Math.min(+hasta,+now)-desde)/864e5));
+  $("kpis").innerHTML=[["Ventas",money(tot)],["Pedidos",V.length],["Promedio de venta por día",money(tot/dias)],["Ticket promedio",V.length?money(tot/V.length):"—"],["Unidades vendidas",uni.toLocaleString("es-AR")]].map(([a,b])=>`<div class="kpi"><small>${a}</small><b>${b}</b></div>`).join("");
   // ventas por día
-  const days=per==="todo"?Math.max(1,Math.ceil((now-new Date(Math.min(...V.map(o=>+new Date(o.fecha)),+now)))/864e5)+1):Math.ceil((now-desde)/864e5);
-  const n=Math.min(days,90), byDay=new Map();
+  const n=Math.min(dias,92), byDay=new Map(), fin=new Date(Math.min(+hasta-1,+now));
   for(const o of V){const d=new Date(o.fecha).toLocaleDateString("es-AR");byDay.set(d,(byDay.get(d)||0)+o.total)}
-  const arr=[];for(let i=n-1;i>=0;i--){const d=new Date(now-i*864e5).toLocaleDateString("es-AR");arr.push([d,byDay.get(d)||0])}
+  const arr=[];for(let i=n-1;i>=0;i--){const d=new Date(fin-i*864e5).toLocaleDateString("es-AR");arr.push([d,byDay.get(d)||0])}
   const mx=Math.max(1,...arr.map(x=>x[1]));
   $("chart").innerHTML=arr.map(([d,v])=>`<div class="bar" style="height:${v?Math.max(2,v/mx*100):0}%" data-t="${d}: ${money(v)}" title="${d}: ${money(v)}"></div>`).join("");
   $("axis").innerHTML=`<span>${arr[0][0]}</span><span>Máximo: ${money(mx===1&&!tot?0:mx)}</span><span>${arr[arr.length-1][0]}</span>`;
+  // mes a mes (últimos 12 meses)
+  const filas=[];for(let i=0;i<12;i++){const d=new Date(now.getFullYear(),now.getMonth()-i,1),h=new Date(now.getFullYear(),now.getMonth()-i+1,1),M=ventasDe(d,h);
+    if(i>0&&h<=new Date(Math.min(...L.map(o=>+new Date(o.fecha)),+now)))break; // antes de la primera venta no hay nada
+    const t=M.reduce((s,o)=>s+o.total,0),g=M.reduce((s,o)=>s+o.items.reduce((a,x)=>a+(x.costo?(x.precio-x.costo)*x.cantidad:0),0),0),dd=i===0?now.getDate():Math.round((h-d)/864e5);
+    filas.push([d.toLocaleDateString("es-AR",{month:"long",year:"numeric"}),M.length,t,t/dd,g])}
+  window.MESES=filas;
+  $("meses").innerHTML=`<table><tr><th>Mes</th><th class="n">Pedidos</th><th class="n">Ventas</th><th class="n">Promedio por día</th><th class="n">Ganancia aprox.</th></tr>${filas.map(f=>`<tr><td style="text-transform:capitalize">${f[0]}</td><td class="n">${f[1]}</td><td class="n">${money(f[2])}</td><td class="n">${money(f[3])}</td><td class="n">${f[4]?money(f[4]):"—"}</td></tr>`).join("")}</table>`;
   // top productos
   const P=new Map();for(const o of V)for(const i of o.items){const k=i.nombre;const x=P.get(k)||{c:0,$:0};x.c+=i.cantidad;x.$+=i.cantidad*(i.precio||0);P.set(k,x)}
   const top=[...P].sort((a,b)=>b[1].c-a[1].c).slice(0,15);
@@ -338,7 +500,7 @@ $("per").onchange=stats;
 async function loadP(){
   const r=await api("productos");if(!r.ok){$("estado").textContent="No se pudo leer el estado.";return}
   const d=await r.json();
-  $("estado").innerHTML=`Precios actualizados el <b>${esc(d.fecha||"—")}</b> · <b>${(d.productos||0).toLocaleString("es-AR")}</b> productos · ${d.proveedor==="maxiconsumo"?"Maxiconsumo":"Maxi"} · ganancia supermercado <b>${esc(d.margen)}%</b> / mayorista <b>${esc(d.margenBulto)}%</b> · WhatsApp <b>${esc(d.wa?"+"+d.wa:"sin configurar")}</b>`;
+  $("estado").innerHTML=`Precios actualizados el <b>${esc(d.fecha||"—")}</b> · <b>${(d.productos||0).toLocaleString("es-AR")}</b> productos · del proveedor · ganancia supermercado <b>${esc(d.margen)}%</b> / mayorista <b>${esc(d.margenBulto)}%</b> · WhatsApp <b>${esc(d.wa?"+"+d.wa:"sin configurar")}</b>`;
   const E=d.envio||{},H=d.horarios||{dias:[1,2,3,4,5,6],franjas:["9 a 13 hs","14 a 18 hs"],anticipacion:1};
   const v=x=>x===null||x===undefined?"":x;$("eCaba").value=v(E.caba);$("eGba").value=v(E.gba);$("eGratis").value=v(E.gratisDesde);
   $("hDias").innerHTML=["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"].map((n,i)=>`<label style="margin-right:8px"><input type="checkbox" value="${i}" ${H.dias.includes(i)?"checked":""}> ${n}</label>`).join("");
