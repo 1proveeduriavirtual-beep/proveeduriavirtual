@@ -11,7 +11,17 @@ MAXPAG=${MAX_PAGINAS:-60}   # páginas máximas por revista
 for f in ofertas/raw/*/*; do
   [ -f "$f" ] || continue
   tienda=$(basename "$(dirname "$f")"); base=$(basename "$f"); base=${base%.*}
-  if [[ "$f" == *.pdf ]]; then timeout 120 pdftoppm -r 200 -l "$MAXPAG" -png "$f" "ofertas/png/${tienda}-${base}" || true
+  if [[ "$f" == *.pdf ]]; then
+    # primero el texto que trae el PDF (exacto); solo las páginas sin texto pasan a imagen para Tesseract
+    hechas=$(node "$(dirname "$0")/pdf-texto.mjs" "$f" "ofertas/paginas/${tienda}-${base}" 2>/dev/null)
+    [ -n "$hechas" ] && echo "$tienda $base: páginas con texto propio: $hechas"
+    timeout 120 pdftoppm -r 200 -l "$MAXPAG" -png "$f" "ofertas/png/${tienda}-${base}" || true
+    for n in $hechas; do
+      for img in ofertas/png/${tienda}-${base}-*.png; do
+        [ "$((10#$(basename "$img" .png | sed 's/.*-//')))" = "$n" ] || continue
+        magick "$img" -resize 900x -quality 55 "ofertas/paginas/${tienda}-${base}-${n}.jpg" 2>/dev/null; rm -f "$img"
+      done
+    done
   else magick "$f" "ofertas/png/${tienda}-${base}-1.png" || true; fi
 done
 echo "Páginas para leer: $(ls ofertas/png/*.png 2>/dev/null | wc -l)"

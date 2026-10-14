@@ -42,14 +42,20 @@ for (const [tienda, urls] of Object.entries(TIENDAS)) {
       links.filter(esFolleto).forEach(l => vistos.add(l));
     } catch (e) { console.log(tienda, u, "no se pudo abrir:", e.message); }
   }
+  // Primero los PDF (traen el texto exacto). Se saltean links para compartir (WhatsApp), banners
+  // y las fotos "_page-0001" de un folleto que ya está en PDF.
+  const lista = [...vistos].filter(u => !/^https?:\/\/(wa\.me|api\.whatsapp|www\.facebook|twitter|x\.com)/i.test(u) && !/banner|hero|logo/i.test(u));
+  const pdfs = lista.filter(u => /\.pdf(\?|$)/i.test(u)), base = u => u.replace(/[?#].*$/, "").replace(/(_page-\d+)?(-\d+)?\.(pdf|jpe?g|png|webp)$/i, "").replace(/-(v-final|corregido-final|final)$/i, "").toLowerCase();
+  const orden = [...pdfs, ...lista.filter(u => !pdfs.includes(u) && !pdfs.some(f => base(f) === base(u)))];
   let n = 0;
-  for (const u of vistos) {
+  for (const u of orden) {
     if (n >= 12) break;
     try {
       const r = await ctx.request.get(u, { timeout: 60000 });
       if (!r.ok()) continue;
       const buf = await r.body(); if (buf.length < 50000) continue;
-      const ext = (r.headers()["content-type"] || "").includes("pdf") || /\.pdf/i.test(u) ? "pdf" : "jpg";
+      const ext = buf.subarray(0, 5).toString() === "%PDF-" ? "pdf" : "jpg";
+      if (ext === "jpg" && !/image\//.test(r.headers()["content-type"] || "")) continue; // no es ni PDF ni imagen
       const f = path.join(dir, `${String(++n).padStart(2, "0")}.${ext}`);
       fs.writeFileSync(f, buf);
       fuentes.push({ tienda, archivo: f, url: u, bytes: buf.length });

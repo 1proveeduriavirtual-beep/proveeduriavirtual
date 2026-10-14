@@ -24,14 +24,29 @@ for (const f of fs.existsSync(DIR) ? fs.readdirSync(DIR).filter(n => n.endsWith(
   const W = leerTsv(path.join(DIR, f));
   if (!W.length) continue;
   const hMed = W.map(w => w.h).sort((a, b) => a - b)[Math.floor(W.length / 2)] || 20;
-  // Los precios de las revistas son números grandes: buscamos cada uno y juntamos el texto que tiene arriba
-  for (const p of W) {
+  // Los precios de las revistas son números grandes. Cada palabra de texto se asigna a UN solo precio:
+  // el más cercano que tenga debajo (así no se mezclan los nombres de dos productos vecinos).
+  const esPrecio = w => precioDe(w.t) && w.h >= hMed * 1.4; // los números chicos (1 kg, 400 g) son parte del nombre
+  const precios = W.filter(esPrecio);
+  const util = w => /[a-záéíóúñ]{2,}/i.test(w.t) || /^\d+([.,]\d+)?$/.test(w.t) || /^(g|l)$/i.test(w.t);
+  const grupos = new Map(precios.map(p => [p, []]));
+  for (const w of W) {
+    if (esPrecio(w) || !util(w)) continue;
+    const cx = w.x + w.w / 2;
+    let mejor = null, dmin = Infinity;
+    for (const p of precios) {
+      const dy = p.y - (w.y + w.h); // cuánto más abajo está el precio
+      if (dy < -p.h * 0.3 || dy > p.h * 3.5) continue;
+      const dx = cx < p.x - p.w * 0.6 ? p.x - cx : cx > p.x + p.w * 1.6 ? cx - p.x - p.w : 0;
+      if (dx > p.w * 0.6) continue;
+      const d = Math.max(dy, 0) + dx * 2;
+      if (d < dmin) { dmin = d; mejor = p; }
+    }
+    if (mejor) grupos.get(mejor).push(w);
+  }
+  for (const [p, ws] of grupos) {
     const precio = precioDe(p.t);
-    if (!precio || p.h < hMed * 1.4) continue;
-    const caja = { x0: p.x - p.w * 0.8, x1: p.x + p.w * 2.4, y0: p.y - p.h * 3.5, y1: p.y + p.h * 0.3 };
-    const esPrecio = w => precioDe(w.t) && w.h >= hMed * 1.4; // los números chicos (1 kg, 400 g) son parte del nombre
-    const texto = W.filter(w => w !== p && !esPrecio(w) && w.x >= caja.x0 && w.x <= caja.x1 && w.y >= caja.y0 && w.y <= caja.y1 && (/[a-záéíóúñ]{2,}/i.test(w.t) || /^\d+([.,]\d+)?$/.test(w.t) || /^(g|l)$/i.test(w.t)))
-      .sort((a, b) => Math.round(a.y / (hMed * 0.8)) - Math.round(b.y / (hMed * 0.8)) || a.x - b.x).map(w => w.t).join(" ");
+    const texto = ws.sort((a, b) => Math.round(a.y / (hMed * 0.8)) - Math.round(b.y / (hMed * 0.8)) || a.x - b.x).map(w => w.t).join(" ");
     if (texto.split(/\s+/).length < 2) continue;
     out.push({ tienda, texto: texto.slice(0, 200), precio, pagina: f.replace(/\.tsv$/, "") });
   }
