@@ -26,6 +26,7 @@ jobs:
           mkdir -p ofertas/png ofertas/paginas
           curl -sL -o r.pdf "https://makro-com-ar.b-cdn.net/wp-content/uploads/Flyer-GT-OCT-2-V-FINAL.pdf"
           pdftoppm -r 200 -f 1 -l 2 -png r.pdf ofertas/png/makro-prueba
+          node scripts/ia-ping.mjs
           node scripts/ofertas-ia.mjs
           ls -la ofertas/paginas
       - name: Guardar
