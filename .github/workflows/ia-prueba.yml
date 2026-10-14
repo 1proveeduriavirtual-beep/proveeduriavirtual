@@ -1,10 +1,9 @@
-# Prueba rápida del lector con IA gratis de GitHub sobre 2 páginas de una revista (no toca la tienda).
+# Prueba rápida del lector con IA gratis de Google sobre 2 páginas de una revista (no toca la tienda).
 name: Prueba lector IA
 on:
   workflow_dispatch:
 permissions:
   contents: write
-  models: read
 jobs:
   probar:
     runs-on: ubuntu-latest
@@ -16,7 +15,7 @@ jobs:
           node-version: 22
       - name: Bajar una revista y leer 2 páginas
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           IA_MAX_PAGINAS: "2"
         run: |
           mkdir -p ofertas/png ofertas/paginas
@@ -26,10 +25,6 @@ jobs:
           mkdir -p ofertas/png ofertas/paginas
           curl -sL -o r.pdf "https://makro-com-ar.b-cdn.net/wp-content/uploads/Flyer-GT-OCT-2-V-FINAL.pdf"
           pdftoppm -r 200 -f 1 -l 2 -png r.pdf ofertas/png/makro-prueba
-          node scripts/ia-ping.mjs
-          curl -sv https://models.github.ai/catalog/models -H "authorization: Bearer $GITHUB_TOKEN" -o ofertas/paginas/catalogo.json 2> ofertas/paginas/curl1.txt || true
-          curl -sv -X POST https://models.github.ai/inference/chat/completions -H "authorization: Bearer $GITHUB_TOKEN" -H "content-type: application/json" -d '{"model":"openai/gpt-4o-mini","messages":[{"role":"user","content":"hola"}],"max_tokens":5}' -o ofertas/paginas/curl2-body.txt 2> ofertas/paginas/curl2.txt || true
-          env | grep -i -E "proxy|ACTIONS_RUNNER|RUNNER_ENV|ImageOS" > ofertas/paginas/env.txt || true
           node scripts/ofertas-ia.mjs
           ls -la ofertas/paginas
       - name: Guardar
