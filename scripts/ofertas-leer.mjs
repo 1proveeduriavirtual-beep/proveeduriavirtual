@@ -51,6 +51,11 @@ for (const f of fs.existsSync(DIR) ? fs.readdirSync(DIR).filter(n => n.endsWith(
     out.push({ tienda, texto: texto.slice(0, 200), precio, pagina: f.replace(/\.tsv$/, "") });
   }
 }
+// Lo que leyó la inteligencia artificial (ya viene como producto + precio)
+for (const f of fs.existsSync(DIR) ? fs.readdirSync(DIR).filter(n => n.endsWith(".ia.json")) : []) {
+  const tienda = { diarco: "Diarco", vital: "Vital", makro: "Makro", yaguar: "Yaguar" }[f.split("-")[0]] || f.split("-")[0];
+  for (const x of JSON.parse(fs.readFileSync(path.join(DIR, f), "utf8"))) out.push({ tienda, texto: x.texto, precio: x.precio, pagina: f.replace(/\.ia\.json$/, ""), ia: 1 });
+}
 console.log(`Leídos ${out.length} posibles productos con precio.`);
 if (process.env.SECO) { console.log(JSON.stringify(out.slice(0, 40), null, 1)); process.exit(0); }
 const T = (process.env.TIENDA || "https://proveeduriavirtual.netlify.app").replace(/\/$/, ""), K = process.env.ADMIN_KEY;

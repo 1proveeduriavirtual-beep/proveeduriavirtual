@@ -1,5 +1,5 @@
 # Revistas de ofertas: baja las de Diarco, Makro, Vital y Yaguar, las lee con Tesseract (gratis)
-# y le manda a la tienda los productos con precio. En el panel (🏷 Ofertas) se revisan, o se aplican solas las seguras si está prendido.
+# (los PDF por su texto, las fotos con la IA gratis de GitHub) y le manda a la tienda los productos con precio. En el panel (🏷 Ofertas) se revisan, o se aplican solas las seguras si está prendido.
 # Corre los lunes y jueves a la mañana. Para correrlo a mano: Actions > "Revistas de ofertas" > Run workflow.
 # Necesita el secreto ADMIN_KEY (el mismo de la actualización de precios).
 name: Revistas de ofertas
@@ -11,6 +11,7 @@ on:
 
 permissions:
   contents: write
+  models: read # inteligencia artificial gratis de GitHub para leer las revistas
 
 jobs:
   leer:
@@ -32,6 +33,8 @@ jobs:
         run: timeout 15m node scripts/ofertas-bajar.mjs || echo "Se cortó la bajada, sigo con lo que bajó."
       - name: Leer las revistas
         run: bash scripts/ofertas-ocr.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Mandar lo leído a la tienda
         if: always()
         run: node scripts/ofertas-leer.mjs

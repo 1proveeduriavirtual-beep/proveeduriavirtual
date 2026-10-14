@@ -24,8 +24,11 @@ for f in ofertas/raw/*/*; do
     done
   else magick "$f" "ofertas/png/${tienda}-${base}-1.png" || true; fi
 done
-echo "Páginas para leer: $(ls ofertas/png/*.png 2>/dev/null | wc -l)"
-# 2) Leer en paralelo
+echo "Páginas que son foto: $(ls ofertas/png/*.png 2>/dev/null | wc -l)"
+# 2a) Las fotos las lee la inteligencia artificial gratis de GitHub (entiende las revistas mucho mejor)
+timeout 25m node "$(dirname "$0")/ofertas-ia.mjs" || true
+echo "Páginas para el lector común: $(ls ofertas/png/*.png 2>/dev/null | wc -l)"
+# 2b) Lo que quede, con Tesseract en paralelo
 leer() {
   img="$1"; out="ofertas/paginas/$(basename "$img" .png)"
   [ -f "$out.tsv" ] && return
