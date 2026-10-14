@@ -33,6 +33,7 @@ for (const f of imgs) {
   let lista = []; try { lista = JSON.parse(txt.slice(txt.indexOf("["), txt.lastIndexOf("]") + 1)); } catch {}
   lista = (Array.isArray(lista) ? lista : []).map(x => ({ texto: String(x.producto || "").slice(0, 200), precio: +x.precio })).filter(x => x.texto && x.precio >= 100 && x.precio <= 500000);
   fs.writeFileSync(`ofertas/paginas/${f.replace(/\.png$/, "")}.ia.json`, JSON.stringify(lista));
+  if (!lista.length) fs.writeFileSync(`ofertas/paginas/${f.replace(/\.png$/, "")}.ia-respuesta.txt`, JSON.stringify(d).slice(0, 4000)); // para revisar qué contestó
   fs.rmSync(png, { force: true }); ok++;
   console.log(`IA: ${f} -> ${lista.length} productos`);
   await new Promise(z => setTimeout(z, 6500)); // máximo ~10 por minuto

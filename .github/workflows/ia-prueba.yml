@@ -1,0 +1,33 @@
+# Prueba rápida del lector con IA gratis de GitHub sobre 2 páginas de una revista (no toca la tienda).
+name: Prueba lector IA
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+  models: read
+jobs:
+  probar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Bajar una revista y leer 2 páginas
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          IA_MAX_PAGINAS: "2"
+        run: |
+          sudo apt-get install -y -qq poppler-utils imagemagick >/dev/null
+          command -v magick >/dev/null || sudo ln -s "$(command -v convert)" /usr/local/bin/magick
+          mkdir -p ofertas/png ofertas/paginas
+          curl -sL -o r.pdf "https://makro-com-ar.b-cdn.net/wp-content/uploads/Flyer-GT-OCT-2-V-FINAL.pdf"
+          pdftoppm -r 200 -f 1 -l 2 -png r.pdf ofertas/png/makro-prueba
+          node scripts/ofertas-ia.mjs
+          ls -la ofertas/paginas
+      - name: Guardar
+        if: always()
+        run: |
+          git config user.name "prueba-ia"; git config user.email "prueba-ia@users.noreply.github.com"
+          git checkout -B ia-prueba; git add -f ofertas/paginas; git commit -m "prueba ia [skip netlify]" || true; git push -f origin ia-prueba
