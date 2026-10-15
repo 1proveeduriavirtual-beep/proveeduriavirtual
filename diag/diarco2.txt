@@ -1,0 +1,102 @@
+select 0 visible=true: =Seleccioná una sucursal | buenos-aires-provincia=Buenos Aires Provincia | 9-de-julio=9 de Julio | bahia-blanca=Bahía Blanca | chascomus=Chascomús | coronel-suarez=Coronel Suárez | junin=Junin | pehuajo=Pehuajó
+select 1 visible=false: =Seleccioná una sucursal | caba-gba-barrio=Capital Federal y GBA | almagro-av-diaz-velez-4173=Almagro (Av. Díaz Vélez 4173) | almagro-av-diaz-velez-4402=Almagro (Av. Díaz Vélez 4402) | almagro-gascon-685=Almagro (Gascón 685) | balvanera-av-corrientes-2970=Balvanera (Av. Corrientes 2970) | balvanera-av-entre-rios-785=Balvanera (Av. Entre Ríos 785) | balvanera-av-pueyrredon-582=Balvanera (Av. Pueyrredón 582)
+select 2 visible=true: SELECCIONÁ TU SUCURSAL=SELECCIONÁ TU SUCURSAL | 1) DIARCO MAYORISTA=1) DIARCO MAYORISTA | • CAPITAL FEDERAL Y GBA=• CAPITAL FEDERAL Y GBA. | Martínez=Martínez | Mercado Central=Mercado Central | Pilar=Pilar | San Martín (Ruta 8)=San Martín (Ruta 8) | • BUENOS AIRES PROVINCIA=• BUENOS AIRES PROVINCIA
+### elegí Mercado Central (value mercado-central) -> https://www.diarco.com.ar/ofertas/?e-filter-9a897e7-sucursal=mercado-central&tipo-sucursal=mayorista#
+A https://www.diarco.com.ar/ofertas/?e-filter-9a897e7-sucursal=mercado-central&tipo-sucursal=mayorista#content | Ir al contenido
+A https://www.diarco.com.ar/ofertas/ | Ofertas
+IMG https://www.diarco.com.ar/wp-content/uploads/2023/02/Recurso-4-1.png | 
+A https://www.diarco.com.ar/diarco-club/ | Diarco Club
+A https://www.diarco.com.ar/promociones/ | Promociones
+A https://www.diarco.com.ar/sucursales/ | Sucursales
+A https://www.diarco.com.ar/nuestras-marcas/ | Nuestras Marcas
+A https://www.diarco.com.ar/blog/ | Blog
+A https://www.diarco.com.ar/ofertas/ | Ofertas
+IMG https://www.diarco.com.ar/wp-content/uploads/2023/02/Recurso-4-1.png | 
+A https://www.diarco.com.ar/diarco-club/ | Diarco Club
+A https://www.diarco.com.ar/promociones/ | Promociones
+A https://www.diarco.com.ar/sucursales/ | Sucursales
+A https://www.diarco.com.ar/nuestras-marcas/ | Nuestras Marcas
+A https://www.diarco.com.ar/blog/ | Blog
+A https://www.diarco.com.ar/ | 
+A https://www.diarco.com.ar/ofertas/ | Ofertas
+IMG https://www.diarco.com.ar/wp-content/uploads/2023/02/Recurso-4-1.png | 
+A https://www.diarco.com.ar/diarco-club/ | Diarco Club
+A https://www.diarco.com.ar/promociones/ | Promociones
+A https://www.diarco.com.ar/sucursales/ | Sucursales
+A https://www.diarco.com.ar/nuestras-marcas/ | Nuestras Marcas
+A https://www.diarco.com.ar/blog/ | Blog
+A https://www.diarco.com.ar/ofertas/ | Ofertas
+IMG https://www.diarco.com.ar/wp-content/uploads/2023/02/Recurso-4-1.png | 
+A https://www.diarco.com.ar/diarco-club/ | Diarco Club
+A https://www.diarco.com.ar/promociones/ | Promociones
+A https://www.diarco.com.ar/sucursales/ | Sucursales
+A https://www.diarco.com.ar/nuestras-marcas/ | Nuestras Marcas
+A https://www.diarco.com.ar/blog/ | Blog
+A https://www.diarco.com.ar/ofertas/ | Ofertas
+IMG https://www.diarco.com.ar/wp-content/uploads/2023/02/Recurso-4-1.png | 
+A https://www.diarco.com.ar/diarco-club/ | Diarco Club
+A https://www.diarco.com.ar/promociones/ | Promociones
+A https://www.diarco.com.ar/sucursales/ | Sucursales
+A https://www.diarco.com.ar/nuestras-marcas/ | Nuestras Marcas
+A https://www.diarco.com.ar/blog/ | Blog
+A https://www.diarco.com.ar/ofertas/ | Ofertas
+IMG https://www.diarco.com.ar/wp-content/uploads/2023/02/Recurso-4-1.png | 
+A https://www.diarco.com.ar/diarco-club/ | Diarco Club
+A https://www.diarco.com.ar/promociones/ | Promociones
+A https://www.diarco.com.ar/sucursales/ | Sucursales
+A https://www.diarco.com.ar/nuestras-marcas/ | Nuestras Marcas
+A https://www.diarco.com.ar/blog/ | Blog
+A https://www.diarco.com.ar/ | 
+A https://www.diarco.com.ar/ofertas/ | 
+IMG https://www.diarco.com.ar/wp-content/uploads/2023/02/Recurso-4-1.png | 
+A https://www.diarco.com.ar/diarco-club/ | 
+A https://www.diarco.com.ar/promociones/ | 
+A https://www.diarco.com.ar/sucursales/ | 
+A https://www.diarco.com.ar/nuestras-marcas/ | 
+A https://www.diarco.com.ar/blog/ | 
+A https://www.diarco.com.ar/ofertas/ | Ofertas
+IMG https://www.diarco.com.ar/wp-content/uploads/2023/02/Recurso-4-1.png | 
+A https://www.diarco.com.ar/diarco-club/ | Diarco Club
+A https://www.diarco.com.ar/promociones/ | Promociones
+A https://www.diarco.com.ar/sucursales/ | Sucursales
+A https://www.diarco.com.ar/nuestras-marcas/ | Nuestras Marcas
+A https://www.diarco.com.ar/blog/ | Blog
+A https://www.diarco.com.ar/ofertas/?e-filter-9a897e7-sucursal=mercado-central&tipo-sucursal=mayorista# | BARRIO
+A https://www.diarco.com.ar/ofertas/?e-filter-9a897e7-sucursal=mercado-central&tipo-sucursal=mayorista# | MAYORISTA
+A https://www.diarco.com.ar/wp-content/uploads/2026/10/ESP-ORGANIZACION-GBA-DEL-12.10-AL-16.10.pdf | 
+IMG https://www.diarco.com.ar/wp-content/uploads/2026/10/GBA_ESPECIAL-scaled.jpg | ESPECIAL ORGANIZACIÓN
+A https://www.diarco.com.ar/wp-content/uploads/2026/09/MASCOTAS-GBA-12.10-AL-16.10.pdf | 
+IMG https://www.diarco.com.ar/wp-content/uploads/2026/09/INSERT-MASCOTAS_GBA-scaled.jpg | ESPECIAL MASCOTAS
+A https://www.diarco.com.ar/wp-content/uploads/2024/08/GBA-DEL12.10-AL-16.10.pdf | 
+IMG https://www.diarco.com.ar/wp-content/uploads/2024/08/01-GBA-108.jpg | OFERTAS GBA
+A https://www.diarco.com.ar/wp-content/uploads/2026/10/DDM-GBA-DEL-07.10-AL-18.10.pdf | 
+IMG https://www.diarco.com.ar/wp-content/uploads/2026/10/DIA-DE-LA-MADRE-GBA-scaled.jpg | DIA DE LA MADRE
+A https://www.diarco.com.ar/wp-content/uploads/2026/06/ESPECIAL-DESAYUNO-LAS-MARIAS_GBA-12-al-16.pdf | 
+IMG https://www.diarco.com.ar/wp-content/uploads/2026/06/ESPECIAL-DESAYUNO-LAS-MARIAS_GBA-scaled.jpg | LAS MARIAS
+A https://www.diarco.com.ar/wp-content/uploads/2026/04/MOLINOS-MAYORISTA-DEL-12.10-AL-16.10.pdf | 
+IMG https://www.diarco.com.ar/wp-content/uploads/2026/04/MAYORISTA-1.jpg | ESPECIAL MOLINOS
+A https://www.diarco.com.ar/wp-content/uploads/2025/05/UG-MAYORISTA-DEL-12.10-AL-16.10.pdf | 
+IMG https://www.diarco.com.ar/wp-content/uploads/2025/05/MAYORISTA-3-scaled.png | ESPECIAL UNIÓN GANADERA
+IMG https://www.diarco.com.ar/wp-content/uploads/2024/02/banner-seccion-ofertas-1024x157.png | 
+A https://www.diarco.com.ar/nosotros/ | ¿Quiénes Somos?
+A https://www.diarco.com.ar/diarco-club/ | Conocé Diarco Club
+A https://www.diarco.com.ar/nuestras-marcas/ | Marca Propia
+A https://www.diarco.com.ar/blog/ | Nuestro Blog
+RED:
+200 text/html ? https://www.diarco.com.ar/ofertas/?e-filter-9a897e7-sucursal=mercado-central&tipo-sucursal=mayorista
+200 image/png 1037 https://www.diarco.com.ar/wp-content/uploads/2023/02/Recurso-4-1.png
+200 image/png 664 https://www.diarco.com.ar/wp-content/uploads/2023/02/Discount.png
+200 image/png 602 https://www.diarco.com.ar/wp-content/uploads/2023/02/Combined-Shape.png
+200 image/png 2288 https://www.diarco.com.ar/wp-content/uploads/2023/08/logo-nuestras-marcas.png
+200 image/png 594 https://www.diarco.com.ar/wp-content/uploads/2023/02/Chat.png
+200 image/png 16989 https://www.diarco.com.ar/wp-content/uploads/2023/11/logo-mayorista-300x69.png
+200 image/png 132448 https://www.diarco.com.ar/wp-content/uploads/2024/02/banner-seccion-ofertas-1024x157.png
+200 image/png 20930 https://www.diarco.com.ar/wp-content/uploads/2023/08/logo-goldfarb-2-768x193.png
+200 image/png 4456 https://www.diarco.com.ar/wp-content/uploads/2023/02/recupero-c-logo-diarco.png
+200 image/jpeg 753436 https://www.diarco.com.ar/wp-content/uploads/2026/10/GBA_ESPECIAL-scaled.jpg
+200 image/jpeg 809005 https://www.diarco.com.ar/wp-content/uploads/2026/09/INSERT-MASCOTAS_GBA-scaled.jpg
+200 image/jpeg 1143671 https://www.diarco.com.ar/wp-content/uploads/2024/08/01-GBA-108.jpg
+200 image/jpeg 428733 https://www.diarco.com.ar/wp-content/uploads/2026/10/DIA-DE-LA-MADRE-GBA-scaled.jpg
+200 image/jpeg 859138 https://www.diarco.com.ar/wp-content/uploads/2026/06/ESPECIAL-DESAYUNO-LAS-MARIAS_GBA-scaled.jpg
+200 image/jpeg 2343284 https://www.diarco.com.ar/wp-content/uploads/2026/04/MAYORISTA-1.jpg
+200 image/png 1109225 https://www.diarco.com.ar/wp-content/uploads/2025/05/MAYORISTA-3-scaled.png
