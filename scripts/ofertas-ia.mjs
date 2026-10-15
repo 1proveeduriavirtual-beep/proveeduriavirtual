@@ -21,7 +21,7 @@ for (const f of imgs) {
   const b64 = fs.readFileSync(jpg).toString("base64"); fs.rmSync(jpg, { force: true });
   let d = null, modelo = MODELOS[0];
   for (let intento = 0; intento < 4 && !d; intento++) {
-    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelo}:generateContent?key=${KEY}`, { method: "POST", headers: { "content-type": "application/json" },
+    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelo}:generateContent`, { method: "POST", headers: { "content-type": "application/json", "x-goog-api-key": KEY },
       body: JSON.stringify({ contents: [{ parts: [{ text: PROMPT }, { inline_data: { mime_type: "image/jpeg", data: b64 } }] }], generationConfig: { temperature: 0, responseMimeType: "application/json" } }) }).catch(e => ({ ok: false, status: 0, text: async () => e.message }));
     if (r.ok) { d = await r.json().catch(() => null); break; }
     const err = (await r.text()).slice(0, 300);
