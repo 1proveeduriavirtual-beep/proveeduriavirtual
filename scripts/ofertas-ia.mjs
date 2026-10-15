@@ -20,12 +20,13 @@ for (const f of imgs) {
   try { execFileSync("magick", [png, "-resize", "1600x1600>", "-quality", "82", jpg]); } catch { continue; }
   const b64 = fs.readFileSync(jpg).toString("base64"); fs.rmSync(jpg, { force: true });
   let d = null, modelo = MODELOS[0];
-  for (let intento = 0; intento < 4 && !d; intento++) {
+  for (let intento = 0; intento < 5 && !d; intento++) {
     const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelo}:generateContent`, { method: "POST", headers: { "content-type": "application/json", "x-goog-api-key": KEY },
       body: JSON.stringify({ contents: [{ parts: [{ text: PROMPT }, { inline_data: { mime_type: "image/jpeg", data: b64 } }] }], generationConfig: { temperature: 0, responseMimeType: "application/json" } }) }).catch(e => ({ ok: false, status: 0, text: async () => e.message }));
     if (r.ok) { d = await r.json().catch(() => null); break; }
     const err = (await r.text()).slice(0, 300);
     if (r.status === 404 && MODELOS.indexOf(modelo) < MODELOS.length - 1) { modelo = MODELOS[MODELOS.indexOf(modelo) + 1]; continue; } // ese modelo ya no existe: pruebo el siguiente
+    if (r.status >= 500) { await new Promise(z => setTimeout(z, 15000 * (intento + 1))); continue; } // Google ocupado: espero y reintento
     if (r.status === 429) { if (/per day|PerDay/i.test(err)) { console.log("IA: se terminó el cupo gratis de hoy; lo que falta lo lee el lector común."); process.exit(0); } await new Promise(z => setTimeout(z, 30000)); continue; }
     console.log("IA: no pude leer", f, r.status, err); if (r.status === 400 || r.status === 401 || r.status === 403) process.exit(0); break;
   }
