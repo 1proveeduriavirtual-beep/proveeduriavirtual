@@ -6,7 +6,8 @@ import fs from "node:fs";
 import path from "node:path";
 
 const TIENDAS = {
-  diarco: ["https://www.diarco.com.ar/ofertas/"],
+  // Diarco muestra los PDF recién al elegir "Mayorista" y una sucursal (Mercado Central = GBA)
+  diarco: ["https://www.diarco.com.ar/ofertas/?e-filter-9a897e7-sucursal=mercado-central&tipo-sucursal=mayorista", "https://www.diarco.com.ar/ofertas/"],
   makro: ["https://makro.com.ar/ofertas/"],
   vital: ["https://www.vital.com.ar/ofertas/"],
   yaguar: ["https://www.yaguar.com.ar/", "https://www.yaguar.com.ar/ofertas/", "https://yaguar.com.ar/revista/"],
