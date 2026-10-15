@@ -37,20 +37,27 @@ for (const [tienda, urls] of Object.entries(TIENDAS)) {
     try {
       await p.goto(u, { waitUntil: "networkidle", timeout: 60000 });
       await p.waitForTimeout(3000);
-      // si hay un selector de folletos/sucursales, probamos cada opción
-      for (const sel of await p.$$("select")) {
-        const ops = await sel.$$eval("option", o => o.map(x => x.value).filter(Boolean));
-        for (const v of ops.slice(0, 6)) { try { await sel.selectOption(v); await p.waitForTimeout(2500); } catch {} }
+      const juntar = async () => (await p.$$eval("a[href],iframe[src],embed[src],object[data],img[src]", els => els.map(e => e.href || e.src || e.data).filter(Boolean)).catch(() => [])).filter(esFolleto).forEach(l => vistos.add(l));
+      await juntar();
+      // si no aparecieron PDF y hay un selector de folletos/sucursales, probamos algunas opciones (cada una puede recargar la página)
+      if (![...vistos].some(l => /\.pdf/i.test(l))) {
+        for (let k = 0; k < 6; k++) {
+          try {
+            const sel = (await p.$$("select"))[0]; if (!sel) break;
+            const ops = await sel.$$eval("option", o => o.map(x => x.value).filter(Boolean));
+            if (!ops[k]) break;
+            await sel.selectOption(ops[k]); await p.waitForTimeout(3000); await juntar();
+          } catch {}
+        }
       }
-      const links = await p.$$eval("a[href],iframe[src],embed[src],object[data],img[src]", els => els.map(e => e.href || e.src || e.data).filter(Boolean));
-      links.filter(esFolleto).forEach(l => vistos.add(l));
     } catch (e) { console.log(tienda, u, "no se pudo abrir:", e.message); }
   }
   // Primero los PDF (traen el texto exacto). Se saltean links para compartir (WhatsApp), banners
   // y las fotos "_page-0001" de un folleto que ya está en PDF.
   const lista = [...vistos].filter(u => !/^https?:\/\/(wa\.me|api\.whatsapp|www\.facebook|twitter|x\.com)/i.test(u) && !/banner|hero|logo/i.test(u));
   const pdfs = lista.filter(u => /\.pdf(\?|$)/i.test(u)), base = u => u.replace(/[?#].*$/, "").replace(/(_page-\d+)?(-\d+)?\.(pdf|jpe?g|png|webp)$/i, "").replace(/-(v-final|corregido-final|final)$/i, "").toLowerCase();
-  const orden = [...pdfs, ...lista.filter(u => !pdfs.includes(u) && !pdfs.some(f => base(f) === base(u)))];
+  // si hay PDF, solo los PDF (las imágenes suelen ser las tapas de esos mismos PDF)
+  const orden = pdfs.length ? pdfs : lista;
   let n = 0;
   for (const u of orden) {
     if (n >= 12) break;
