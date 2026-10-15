@@ -6,7 +6,7 @@
 import fs from "node:fs";
 import { execFileSync } from "node:child_process";
 const KEY = process.env.GEMINI_API_KEY, MAX = +(process.env.IA_MAX_PAGINAS || 160), POR = +(process.env.IA_POR_PEDIDO || 4);
-let MODELOS = (process.env.IA_MODELO || "gemini-2.5-flash-lite,gemini-2.5-flash,gemini-flash-lite-latest,gemini-flash-latest,gemini-2.0-flash,gemini-2.0-flash-lite").split(",");
+let MODELOS = (process.env.IA_MODELO || "gemini-flash-lite-latest,gemini-flash-latest,gemini-2.5-flash-lite,gemini-2.5-flash,gemini-2.0-flash,gemini-2.0-flash-lite").split(",");
 const LOG = "ofertas/ia-registro.txt";
 const log = (...a) => { const l = a.join(" "); console.log(l); fs.appendFileSync(LOG, l + "\n"); };
 if (!KEY) { log("IA: falta GEMINI_API_KEY, sigo con el lector común."); process.exit(0); }
