@@ -29,7 +29,7 @@ jobs:
           npm i --no-save playwright@1.47.2
           npx playwright install --with-deps chromium
       - name: Bajar las revistas de la semana
-        run: timeout 15m node scripts/ofertas-bajar.mjs || echo "Se cortó la bajada, sigo con lo que bajó."
+        run: mkdir -p ofertas && (timeout 15m node scripts/ofertas-bajar.mjs || echo "Se cortó la bajada, sigo con lo que bajó.") 2>&1 | tee ofertas/bajada-registro.txt
       - name: Leer las revistas
         run: bash scripts/ofertas-ocr.sh
         env:
