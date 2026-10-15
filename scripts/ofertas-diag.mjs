@@ -10,17 +10,28 @@ const out = [];
 await p.goto("https://www.diarco.com.ar/ofertas/", { waitUntil: "networkidle", timeout: 60000 }); await p.waitForTimeout(3000);
 for (const sel of [".elementor-popup-modal .dialog-close-button", "[aria-label*=Cerrar]", ".dialog-lightbox-close-button"]) await p.click(sel, { timeout: 2000 }).catch(() => {});
 await p.keyboard.press("Escape").catch(() => {});
-for (const tipo of ["MAYORISTA", "BARRIO"]) {
+await p.getByText("MAYORISTA", { exact: true }).first().click({ timeout: 8000 }).catch(e => out.push("no pude MAYORISTA " + e.message));
+await p.waitForTimeout(3000);
+const sels = await p.$$("select");
+for (const [i, s] of sels.entries()) {
+  const vis = await s.isVisible().catch(() => false);
+  const ops = await s.$$eval("option", o => o.map(x => [x.value, x.textContent.trim()]));
+  out.push(`select ${i} visible=${vis}: ` + ops.slice(0, 8).map(o => o.join("=")).join(" | "));
+}
+for (const [i, s] of sels.entries()) {
+  if (!(await s.isVisible().catch(() => false))) continue;
+  const ops = await s.$$eval("option", o => o.map(x => [x.value, x.textContent.trim()]));
+  const op = ops.find(o => /mercado central|san mart/i.test(o[1])) || ops.find(o => o[0] && !/selecc/i.test(o[1]));
+  if (!op) continue;
   red.length = 0;
-  await p.getByText(tipo, { exact: true }).first().click({ timeout: 8000 }).catch(e => out.push("no pude clickear " + tipo + ": " + e.message));
-  await p.waitForTimeout(6000);
+  const nav = p.waitForNavigation({ timeout: 15000 }).catch(() => null);
+  await s.selectOption(op[0]).catch(e => out.push("select err " + e.message));
+  await nav; await p.waitForTimeout(6000);
   for (let k = 0; k < 6; k++) { await p.mouse.wheel(0, 1200); await p.waitForTimeout(800); }
-  await p.screenshot({ path: `diag/diarco-${tipo}.png`, fullPage: true }).catch(() => {});
+  await p.screenshot({ path: `diag/diarco-suc-${i}.png`, fullPage: true }).catch(() => {});
   const links = await p.$$eval("a[href],iframe[src],embed[src],object[data],img[src]", els => els.map(e => `${e.tagName} ${e.href || e.src || e.data} | ${(e.innerText || e.alt || "").trim().slice(0, 60)}`));
-  out.push(`### ${tipo} -> ${p.url()}`, ...links.filter(l => !/facebook|instagram|tiktok|youtube|wa\.me|whatsapp|linkedin/i.test(l)).slice(0, 200), "RED:", ...[...new Set(red)].filter(l => !/clarity|google|gtm|facebook|doubleclick/i.test(l)).slice(0, 120));
-  // si hay sucursales para elegir, mostrar las opciones
-  out.push("SELECTS:", ...(await p.$$eval("select", s => s.map(x => [...x.options].map(o => o.textContent.trim()).join(" | ")))));
-  await p.goto("https://www.diarco.com.ar/ofertas/", { waitUntil: "networkidle", timeout: 60000 }).catch(() => {}); await p.waitForTimeout(2000); await p.keyboard.press("Escape").catch(() => {});
+  out.push(`### elegí ${op[1]} (value ${op[0]}) -> ${p.url()}`, ...links.filter(l => !/facebook|instagram|tiktok|youtube|wa\.me|whatsapp|linkedin|Discount|Combined|Chat\.png|logo|icon/i.test(l)).slice(0, 80), "RED:", ...[...new Set(red)].filter(l => !/clarity|google|gtm|facebook|doubleclick|\.svg/i.test(l)).slice(0, 80));
+  break;
 }
 fs.writeFileSync("diag/diarco2.txt", out.join("\n"));
 await b.close();
