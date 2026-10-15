@@ -5,7 +5,7 @@
 # Deja por página: palabras con posición y confianza (.tsv), texto (.txt) y una vista previa chica (.jpg).
 set -u
 mkdir -p ofertas/paginas ofertas/png
-TOPE=${TOPE_MIN:-30}        # minutos máximos leyendo
+TOPE=${TOPE_MIN:-15}        # minutos máximos leyendo
 MAXPAG=${MAX_PAGINAS:-60}   # páginas máximas por revista
 # 1) Pasar todo a imágenes
 for f in ofertas/raw/*/*; do
@@ -13,7 +13,8 @@ for f in ofertas/raw/*/*; do
   tienda=$(basename "$(dirname "$f")"); base=$(basename "$f"); base=${base%.*}
   if [[ "$f" == *.pdf ]]; then
     # primero el texto que trae el PDF (exacto); solo las páginas sin texto pasan a imagen para Tesseract
-    hechas=$(node "$(dirname "$0")/pdf-texto.mjs" "$f" "ofertas/paginas/${tienda}-${base}" 2>/dev/null)
+    # con IA (clave de Gemini) leemos TODAS las páginas con IA: muchos PDF traen texto suelto pero los productos son fotos
+    hechas=""; [ -z "${GEMINI_API_KEY:-}" ] && hechas=$(node "$(dirname "$0")/pdf-texto.mjs" "$f" "ofertas/paginas/${tienda}-${base}" 2>/dev/null)
     [ -n "$hechas" ] && echo "$tienda $base: páginas con texto propio: $hechas"
     timeout 120 pdftoppm -r 200 -l "$MAXPAG" -png "$f" "ofertas/png/${tienda}-${base}" || true
     for n in $hechas; do
@@ -26,7 +27,7 @@ for f in ofertas/raw/*/*; do
 done
 echo "Páginas que son foto: $(ls ofertas/png/*.png 2>/dev/null | wc -l)"
 # 2a) Las fotos las lee la inteligencia artificial gratis de GitHub (entiende las revistas mucho mejor)
-timeout 25m node "$(dirname "$0")/ofertas-ia.mjs" || true
+timeout 45m node "$(dirname "$0")/ofertas-ia.mjs" || true
 echo "Páginas para el lector común: $(ls ofertas/png/*.png 2>/dev/null | wc -l)"
 # 2b) Lo que quede, con Tesseract en paralelo
 leer() {

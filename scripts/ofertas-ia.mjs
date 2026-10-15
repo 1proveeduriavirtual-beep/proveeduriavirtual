@@ -4,7 +4,7 @@
 // Si no hay clave o se termina el cupo gratis del día, las páginas que quedan las lee Tesseract como antes.
 import fs from "node:fs";
 import { execFileSync } from "node:child_process";
-const KEY = process.env.GEMINI_API_KEY, MAX = +(process.env.IA_MAX_PAGINAS || 80);
+const KEY = process.env.GEMINI_API_KEY, MAX = +(process.env.IA_MAX_PAGINAS || 150);
 const MODELOS = (process.env.IA_MODELO || "gemini-2.5-flash,gemini-flash-latest,gemini-2.0-flash").split(",");
 if (!KEY) { console.log("IA: falta GEMINI_API_KEY, sigo con el lector común."); process.exit(0); }
 const PROMPT = `Es una página de una revista de ofertas de un supermercado mayorista de Argentina.
@@ -38,6 +38,6 @@ for (const f of imgs) {
   if (!lista.length) fs.writeFileSync(`ofertas/paginas/${f.replace(/\.png$/, "")}.ia-respuesta.txt`, JSON.stringify(d).slice(0, 4000)); // para revisar qué contestó
   fs.rmSync(png, { force: true }); ok++;
   console.log(`IA: ${f} -> ${lista.length} productos`);
-  await new Promise(z => setTimeout(z, 6500)); // máximo ~10 por minuto
+  await new Promise(z => setTimeout(z, 4000)); // sin pasarse del límite por minuto
 }
 console.log(`IA: leyó ${ok} páginas.`);

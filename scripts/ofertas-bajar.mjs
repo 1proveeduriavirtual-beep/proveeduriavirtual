@@ -29,7 +29,10 @@ for (const [tienda, urls] of Object.entries(TIENDAS)) {
       if (ct.includes("pdf") || (/image\/(jpe?g|png|webp)/.test(ct) && +(r.headers()["content-length"] || 0) > 150000)) vistos.add(u);
     } catch {}
   });
-  for (const u of urls) {
+  const vueltas = [...urls, ...urls]; // la segunda vuelta solo corre si la primera no encontró nada (la página no respondió)
+  for (let i = 0; i < vueltas.length; i++) {
+    const u = vueltas[i];
+    if (i === urls.length) { if (vistos.size) break; console.log(tienda, "no encontré folletos, reintento"); await p.waitForTimeout(20000); }
     try {
       await p.goto(u, { waitUntil: "networkidle", timeout: 60000 });
       await p.waitForTimeout(3000);
