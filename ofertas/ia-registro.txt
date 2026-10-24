@@ -1,0 +1,25 @@
+IA: 92 páginas para leer, de a 4 por pedido.
+IA (gemini-flash-lite-latest): diarco-01-1.png, makro-01-1.png, makro-01-2.png, makro-02-01.png -> 27 productos
+IA (gemini-flash-lite-latest): makro-02-02.png, makro-02-03.png, makro-02-04.png, makro-02-05.png -> 10 productos
+IA (gemini-flash-lite-latest): makro-02-06.png, makro-02-07.png, makro-02-08.png, makro-02-09.png -> 43 productos
+IA (gemini-flash-lite-latest): makro-02-10.png, makro-02-11.png, makro-02-12.png, makro-02-13.png -> 26 productos
+IA (gemini-flash-lite-latest): makro-02-14.png, makro-02-15.png, makro-02-16.png, makro-02-17.png -> 25 productos
+IA (gemini-flash-lite-latest): makro-03-01.png, makro-03-02.png, makro-03-03.png, makro-03-04.png -> 16 productos
+IA (gemini-flash-lite-latest): makro-03-05.png, makro-03-06.png, makro-03-07.png, makro-03-08.png -> 39 productos
+IA (gemini-flash-lite-latest): makro-03-09.png, makro-03-10.png, makro-03-11.png, makro-03-12.png -> 18 productos
+IA (gemini-flash-lite-latest): makro-03-13.png, makro-03-14.png, makro-03-15.png, makro-03-16.png -> 41 productos
+IA (gemini-flash-lite-latest): makro-03-17.png, makro-03-18.png, makro-04-1.png, makro-04-2.png -> 26 productos
+IA (gemini-flash-lite-latest): makro-04-3.png, makro-04-4.png, makro-04-5.png, vital-01-1.png -> 43 productos
+IA (gemini-flash-lite-latest): vital-01-2.png, vital-01-3.png, vital-01-4.png, vital-02-01.png -> 51 productos
+IA (gemini-flash-lite-latest): vital-02-02.png, vital-02-03.png, vital-02-04.png, vital-02-05.png -> 41 productos
+IA (gemini-flash-lite-latest): vital-02-06.png, vital-02-07.png, vital-02-08.png, vital-02-09.png -> 41 productos
+IA (gemini-flash-lite-latest): vital-02-10.png, vital-02-11.png, vital-02-12.png, vital-02-13.png -> 50 productos
+IA (gemini-flash-lite-latest): vital-02-14.png, vital-02-15.png, vital-02-16.png, vital-02-17.png -> 46 productos
+IA (gemini-flash-lite-latest): vital-02-18.png, vital-02-19.png, vital-02-20.png, vital-02-21.png -> 46 productos
+IA (gemini-flash-lite-latest): vital-02-22.png, vital-02-23.png, vital-02-24.png, vital-02-25.png -> 39 productos
+IA (gemini-flash-lite-latest): vital-03-1.png, vital-04-1.png, vital-04-2.png, vital-04-3.png -> 33 productos
+IA (gemini-flash-lite-latest): vital-04-4.png, vital-04-5.png, vital-05-01.png, vital-05-02.png -> 18 productos
+IA (gemini-flash-lite-latest): vital-05-03.png, vital-05-04.png, vital-05-05.png, vital-05-06.png -> 28 productos
+IA (gemini-flash-lite-latest): vital-05-07.png, vital-05-08.png, vital-05-09.png, vital-05-10.png -> 31 productos
+IA (gemini-flash-lite-latest): vital-05-11.png, vital-06-1.png, vital-06-2.png, vital-06-3.png -> 31 productos
+IA: leyó 92 páginas, 756 productos.
