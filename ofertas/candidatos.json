@@ -1,0 +1,7036 @@
+[
+ {
+  "tienda": "Diarco",
+  "texto": "BELDENT SIN IMPUESTOS.",
+  "precio": 5784.3,
+  "pagina": "diarco-01-05"
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "NACIONALES Caramelos",
+  "precio": 600,
+  "pagina": "diarco-01-05"
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "NACIONALES Pan Chocolate",
+  "precio": 400,
+  "pagina": "diarco-01-06"
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "VODKA> PROMO SHOOTER Aperitivo 355 MI Cód:25258,",
+  "precio": 52499,
+  "pagina": "diarco-01-07"
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "PRECIO SIN IMPUESTOS 10 NACIONALES 2395,87 QUILMES Cerveza Lata 710 ML. Cód:28107",
+  "precio": 57999,
+  "pagina": "diarco-01-07"
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "PRECIO SIN IMPUESTOS NACIONALES 5693,39 CARPANO Aperitivo Rosso 950 Cód:44035",
+  "precio": 7599,
+  "pagina": "diarco-01-07"
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "MANTECOL Con Almendras BudinSTEINHAUSER STEINHAUSER BARILOCHE BARILOCHE Chocolate",
+  "precio": 820,
+  "pagina": "diarco-01-08"
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Mermolado terx80Gr. BARILOCHE Estuche BARILOCHE",
+  "precio": 760,
+  "pagina": "diarco-01-08"
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "NATURA Aceite Girasol x 1,5 Lt.",
+  "precio": 5849,
+  "pagina": "diarco-01-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "CAÑUELAS Arroz Grano Largo x 1 Kg.",
+  "precio": 1249,
+  "pagina": "diarco-01-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "NATURA Mayonesa D/P x 250 Gr.",
+  "precio": 1289,
+  "pagina": "diarco-01-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "OKEY Tomate Triturado Botella x 910 Gr.",
+  "precio": 1289,
+  "pagina": "diarco-01-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "PLAYADITO Yerba Mate Suave x 500 Gr.",
+  "precio": 1999,
+  "pagina": "diarco-01-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "VIÑAS DE ALVEAR Vino Tinto x 1,125 Lt.",
+  "precio": 2089,
+  "pagina": "diarco-01-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "NICASIA Vino Varietal x 750 Ml.",
+  "precio": 7499,
+  "pagina": "diarco-01-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "ALA Jabón Líquido Ecolavado D/P x 3 Lt.",
+  "precio": 7199,
+  "pagina": "diarco-01-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "SUSSEX Rollo de Cocina Clásico 3 x 50 Paños.",
+  "precio": 1499,
+  "pagina": "diarco-01-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "MAGISTRAL Detergente Multiuso x 500 Ml.",
+  "precio": 2849,
+  "pagina": "diarco-01-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "ZORRO Jabon en Polvo Bicarbonato x 400 Gr.",
+  "precio": 999,
+  "pagina": "diarco-01-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "PANTENE Shampoo y Acondicionador x 200 Ml.",
+  "precio": 3599,
+  "pagina": "diarco-01-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "HUGGIES Pañales Classic Jumbopack",
+  "precio": 8599,
+  "pagina": "diarco-01-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "DONCELLA Toallas Pocket x 8 Un.",
+  "precio": 629,
+  "pagina": "diarco-01-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "OKEY Leche Larga Vida x 1 Lt.",
+  "precio": 2099,
+  "pagina": "diarco-01-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "OKEY Queso Cremoso x KG.",
+  "precio": 7349,
+  "pagina": "diarco-01-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "PECETO CONGELADO x Kg.",
+  "precio": 18999,
+  "pagina": "diarco-01-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "BIFE DE CHORIZO x Kg.",
+  "precio": 28999,
+  "pagina": "diarco-01-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "PHILCO Aire Acondicionado 6300 W SPLIT F/C",
+  "precio": 216599,
+  "pagina": "diarco-01-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "OKEY Fideos x 500 Gr.",
+  "precio": 569,
+  "pagina": "diarco-01-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "LEGÍTIMO Aceite Girasol x 900 Ml.",
+  "precio": 2879,
+  "pagina": "diarco-01-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "OKEY Aceite Mezcla x 900 Ml.",
+  "precio": 2199,
+  "pagina": "diarco-01-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "FRITOLIM Aceite En Aerosol Clásico x 120 Gr.",
+  "precio": 3499,
+  "pagina": "diarco-01-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "ESPAÑOLA Aceite Oliva Extra Virgen Vidrio x 500 Ml.",
+  "precio": 11899,
+  "pagina": "diarco-01-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "OKEY Vinagre de Alcohol x 1 Lt.",
+  "precio": 1149,
+  "pagina": "diarco-01-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "VILLA GRIMELLI Aceto Balsámico x 500 Ml.",
+  "precio": 3299,
+  "pagina": "diarco-01-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "DOS ANCLAS Azúcar Impalpable x 250 Gr.",
+  "precio": 1899,
+  "pagina": "diarco-01-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "FAVORITA Harina 000 x 1 Kg.",
+  "precio": 849,
+  "pagina": "diarco-01-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "PUREZA Harina Integral x 1 Kg.",
+  "precio": 1499,
+  "pagina": "diarco-01-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "MAMA COCINA Premezcla Buñuelos x 400 Gr.",
+  "precio": 2199,
+  "pagina": "diarco-01-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "MAIZENA Almidón de Maíz x 550 Gr.",
+  "precio": 2999,
+  "pagina": "diarco-01-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "VITINA Sémola Clasica Nutrivit Max x 500 Gr.",
+  "precio": 2899,
+  "pagina": "diarco-01-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "MAMÁ COCINA Pan Rallado x 500 Gr.",
+  "precio": 999,
+  "pagina": "diarco-01-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "CAÑUELAS Arroz Parboil x 1 Kg.",
+  "precio": 1499,
+  "pagina": "diarco-01-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "DÁNICA Mostaza Sachet x 60 Gr.",
+  "precio": 289,
+  "pagina": "diarco-01-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "SAVORA Mostaza D/P x 250 Gr.",
+  "precio": 1259,
+  "pagina": "diarco-01-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "NATURA Ketchup D/P x 250 Gr.",
+  "precio": 1379,
+  "pagina": "diarco-01-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "HELLMANN'S Ketchup D/P. x 500 grs.",
+  "precio": 3549,
+  "pagina": "diarco-01-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "CAÑUELAS Mayonesa x 500 Gr.",
+  "precio": 1299,
+  "pagina": "diarco-01-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "NATURA Mayonesa x 950 Gr.",
+  "precio": 4999,
+  "pagina": "diarco-01-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "MAGGI Caldo x 2 Un.",
+  "precio": 289,
+  "pagina": "diarco-01-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "LA NEGRA Picadillo x 90 Gr.",
+  "precio": 719,
+  "pagina": "diarco-01-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "MAGGI Puré de Papas Cremoso x 125 Gr.",
+  "precio": 1849,
+  "pagina": "diarco-01-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "DOS ANCLAS Sal Gruesa Paquete x 1 Kg.",
+  "precio": 1699,
+  "pagina": "diarco-01-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "INCA Puré de Tomate x 520 Gr.",
+  "precio": 949,
+  "pagina": "diarco-01-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "INCA Extracto De Tomate x 150 Gr.",
+  "precio": 999,
+  "pagina": "diarco-01-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "ARCOR Garbanzos Lata x 300 Gr.",
+  "precio": 1329,
+  "pagina": "diarco-01-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "OKEY Porotos Lata x 350 Gr.",
+  "precio": 799,
+  "pagina": "diarco-01-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "INCA Jardinera x 350 Gr.",
+  "precio": 899,
+  "pagina": "diarco-01-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "INCA Choclo Amarillo en Grano x 300 Gr.",
+  "precio": 1249,
+  "pagina": "diarco-01-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "INCA Arvejas x 350 Gr.",
+  "precio": 599,
+  "pagina": "diarco-01-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "HILERET Endulzante Clásico Forte x 250 Ml.",
+  "precio": 1899,
+  "pagina": "diarco-01-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "HILERET Endulzante Stevia Forte x 200 Ml.",
+  "precio": 3999,
+  "pagina": "diarco-01-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "HILERET Endulzante Zucra x 400 Ml.",
+  "precio": 4299,
+  "pagina": "diarco-01-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "LA PLANTA DE CAFÉ Café x 18 Saquitos",
+  "precio": 3999,
+  "pagina": "diarco-01-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "PURÍSIMA Leche en Polvo Entera Plus x 800 Gr.",
+  "precio": 8499,
+  "pagina": "diarco-01-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "NOBLEZA GAUCHA Mate Cocido x 25 Saquitos",
+  "precio": 899,
+  "pagina": "diarco-01-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "LA TRANQUERA Yerba Mate Liviana x 500 Gr.",
+  "precio": 1129,
+  "pagina": "diarco-01-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "CANARIAS Yerba Mate x 500 Gr.",
+  "precio": 5999,
+  "pagina": "diarco-01-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "VERDE FLOR Yerba Mate Hierbas Serranas x 500 Gr.",
+  "precio": 1499,
+  "pagina": "diarco-01-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "LA TRANQUERA Yerba Mate Seleccion x 1 Kg.",
+  "precio": 2799,
+  "pagina": "diarco-01-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "ROSAMONTE Yerba Mate 55 Aniversario x 500 Gr.",
+  "precio": 1499,
+  "pagina": "diarco-01-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "GREEN HILLS Té Momentos x 25 Saquitos Ensobrados",
+  "precio": 1399,
+  "pagina": "diarco-01-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "NESCAFE Capsula de Café x 10 Un.",
+  "precio": 9499,
+  "pagina": "diarco-01-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "CABRALES Café Súper x 250 Gr.",
+  "precio": 10999,
+  "pagina": "diarco-01-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "LA PLANTA DE CAFÉ Café x 500 Gr.",
+  "precio": 10999,
+  "pagina": "diarco-01-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "NESCAFÉ DOLCA Café Orígenes x 170 Gr.",
+  "precio": 7999,
+  "pagina": "diarco-01-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "NESQUIK Cacao x 360 Gr.",
+  "precio": 3499,
+  "pagina": "diarco-01-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "GALLO ORO Arroz x 5 Kg.",
+  "precio": 9599,
+  "pagina": "diarco-01-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "COINCO Ananá en Rodajas x 3,03 Kg.",
+  "precio": 17999,
+  "pagina": "diarco-01-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "DÁNICA Ketchup x 3 Kg.",
+  "precio": 7999,
+  "pagina": "diarco-01-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "GUSTOSO Vinagre Alcohol x 5 Lt.",
+  "precio": 6499,
+  "pagina": "diarco-01-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "OKEY Durazno En Trozos x 2.9 Kg.",
+  "precio": 7249,
+  "pagina": "diarco-01-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "PREFERIDO Pan Rallado Fortificado x 5 Kg.",
+  "precio": 12999,
+  "pagina": "diarco-01-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "CAÑUELAS Aceite Girasol x 5 Lt.",
+  "precio": 18699,
+  "pagina": "diarco-01-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "COINCO Tomate Triturado x 8 Kg.",
+  "precio": 9499,
+  "pagina": "diarco-01-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "NOEL Dulce Batata / Batata con Chocolate Lata x 5 Kg.",
+  "precio": 15999,
+  "pagina": "diarco-01-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "PUREZA Harina Pizza Casera x 1 Kg.",
+  "precio": 1399,
+  "pagina": "diarco-01-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "PREFERIDO Pan Rallado Fortificado x 1 Kg.",
+  "precio": 2699,
+  "pagina": "diarco-01-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "PUGLISI Caballa x 380 Gr",
+  "precio": 5299,
+  "pagina": "diarco-01-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "GOMES DA COSTA Atún Lomo x 170 Gr.",
+  "precio": 2999,
+  "pagina": "diarco-01-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "ROSAMONTE Yerba Mate 55 Aniversario x 1 Kg.",
+  "precio": 2799,
+  "pagina": "diarco-01-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "LOPEZ Vino Malbec x 750 Ml.",
+  "precio": 3999,
+  "pagina": "diarco-01-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "SANTA JULIA Vino Varietal x 750 Cc",
+  "precio": 4299,
+  "pagina": "diarco-01-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "CHEETOS x 85 Gr.",
+  "precio": 3399,
+  "pagina": "diarco-01-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "FELA Salchichas x 6 Un.",
+  "precio": 1599,
+  "pagina": "diarco-01-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "LA SANTIAGUEÑA Tapas De Pascualina criolla",
+  "precio": 1199,
+  "pagina": "diarco-01-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "LA QUESERA Rallado x 150 Gr.",
+  "precio": 2499,
+  "pagina": "diarco-01-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "SWIFT Hamburguesa De Carne Clásica x 4 Un",
+  "precio": 6109,
+  "pagina": "diarco-01-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "ALA Jabón Líquido para Diluir x 500 Ml. + Botella",
+  "precio": 9999,
+  "pagina": "diarco-01-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "HIGIENOL Papel Higiénico Max Aloe Panal 4 Un x 100 Mt.",
+  "precio": 4899,
+  "pagina": "diarco-01-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "HIGIENOL Papel Higiénico Fresh 4 Un. X 30 Mt.",
+  "precio": 1399,
+  "pagina": "diarco-01-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "ODOL Dentifrico Doble Protección x 70 Gr.",
+  "precio": 1699,
+  "pagina": "diarco-01-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "LINA Toallas Aloe con Alas x 8 Un.",
+  "precio": 999,
+  "pagina": "diarco-01-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "CAREFREE Protectores Diarios Compact x 20 Un.",
+  "precio": 1999,
+  "pagina": "diarco-01-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "PUROCOL Alcohol Fino x 500 Ml.",
+  "precio": 1899,
+  "pagina": "diarco-01-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "SAINT PAULIN Queso Cremoso x Kg.",
+  "precio": 9499,
+  "pagina": "diarco-01-10",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "MC CAIN Papas Tradicional x 700 Gr.",
+  "precio": 6499,
+  "pagina": "diarco-01-10",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "LARIO Bondiola x Kg.",
+  "precio": 26499,
+  "pagina": "diarco-01-10",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "LARIO Fiambre de Cerdo x Kg.",
+  "precio": 11999,
+  "pagina": "diarco-01-10",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "TONADITA Queso x 8 Fetas",
+  "precio": 1999,
+  "pagina": "diarco-01-10",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "LA BLANCA Bocaditos De Pollo x 1,5 Kg.",
+  "precio": 11999,
+  "pagina": "diarco-01-10",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "MC CAIN Papas Air Fryer x 700 Gr.",
+  "precio": 7999,
+  "pagina": "diarco-01-10",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "SWIFT Bocaditos de Pollo Kids x 400 Gr.",
+  "precio": 4249,
+  "pagina": "diarco-01-10",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "LA PAULINA Queso Mozzarella x Kg.",
+  "precio": 10999,
+  "pagina": "diarco-01-10",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "LA PAULINA Queso Pategras x Kg.",
+  "precio": 22999,
+  "pagina": "diarco-01-10",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "CAGNOLI Salame Baston x Kg.",
+  "precio": 28899,
+  "pagina": "diarco-01-10",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "MILKAUT Queso Rallado x 120 Gr.",
+  "precio": 4999,
+  "pagina": "diarco-01-10",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "OKEY Fiambre de Cerdo x Kg.",
+  "precio": 5399,
+  "pagina": "diarco-01-10",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "VILLA D' AGRI Ravioles x 520 Gr.",
+  "precio": 2299,
+  "pagina": "diarco-01-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "VILLA D' AGRI Tapas para Freir x 320 Gr.",
+  "precio": 1299,
+  "pagina": "diarco-01-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "YOGURÍSIMO Yogur Big Pot x 290 Gr.",
+  "precio": 4599,
+  "pagina": "diarco-01-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "LA SERENISIMA Manteca Paquete x 200 Gr.",
+  "precio": 3999,
+  "pagina": "diarco-01-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "LEVEX Levadura Seca 2 x 10 Gr.",
+  "precio": 849,
+  "pagina": "diarco-01-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "ILOLAY Queso Untable x 290 Gr.",
+  "precio": 2899,
+  "pagina": "diarco-01-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "LA PAULINA Queso Untable x 190Gr.",
+  "precio": 2399,
+  "pagina": "diarco-01-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "PRINGLES Papas Fritas x 109 Gr.",
+  "precio": 3899,
+  "pagina": "diarco-01-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "KING Maní Frito x 350 Gr.",
+  "precio": 2699,
+  "pagina": "diarco-01-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "TAKIS Snack x 140 Gr.",
+  "precio": 3999,
+  "pagina": "diarco-01-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "JL Pasta de Maní Chispeada x 360 Gr.",
+  "precio": 1999,
+  "pagina": "diarco-01-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "PRIMERA MARCA Salchichas x 6 Un.",
+  "precio": 1149,
+  "pagina": "diarco-01-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "JL Maní Crocante Saborizado x 500 Gr.",
+  "precio": 2899,
+  "pagina": "diarco-01-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "DONCELLA Protectores Diarios x 20 Un.",
+  "precio": 719,
+  "pagina": "diarco-01-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "LADYSOFT Toallas Normal con Alas x 8 Un.",
+  "precio": 799,
+  "pagina": "diarco-01-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "PAMPERS Pañales Babysan Pack Ahorro",
+  "precio": 21999,
+  "pagina": "diarco-01-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "PAMPERS Pañales Supersec Jumbopack",
+  "precio": 7999,
+  "pagina": "diarco-01-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "HUGGINS Pañales Flexi Comfort Jumbopack",
+  "precio": 14999,
+  "pagina": "diarco-01-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "HUGGINS Toallitas Humedas Protección x 80 Un.",
+  "precio": 4799,
+  "pagina": "diarco-01-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "ESTRELLA Óleo Calcáreo x 250 Ml.",
+  "precio": 3699,
+  "pagina": "diarco-01-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "JOHNSON´S Shampoo y Acondicionador x 400 Ml.",
+  "precio": 8699,
+  "pagina": "diarco-01-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "JOHNSON´S BABY Jabón de Tocador x 80 Gr.",
+  "precio": 1399,
+  "pagina": "diarco-01-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "CAREFREE Protectores Diarios Todos los Dias x 60 Un.",
+  "precio": 7499,
+  "pagina": "diarco-01-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "CALIPSO Protectores Diarios Normal x 50 Un.",
+  "precio": 1999,
+  "pagina": "diarco-01-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "NOSOTRAS Protectores Diarios Normal x 100 Un.",
+  "precio": 6999,
+  "pagina": "diarco-01-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "CAREFREE Protectores Todos los Días x 20 Un.",
+  "precio": 2899,
+  "pagina": "diarco-01-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "DONCELLA Toallas Tanga con Desodorante sin Alas x 8 Un.",
+  "precio": 899,
+  "pagina": "diarco-01-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "SIEMPRE LIBRE Toallas Adapt Nocturnas c/ Alas x 16 Un.",
+  "precio": 4429,
+  "pagina": "diarco-01-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "CALIPO Toallas Nocturnas Con Calendula x 8 Un.",
+  "precio": 1299,
+  "pagina": "diarco-01-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "CALIPSO Toallas Normal con Gel alas x 16 Un.",
+  "precio": 1299,
+  "pagina": "diarco-01-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "KOTEX Toallas Esencial con Alas x 8 Un.",
+  "precio": 1299,
+  "pagina": "diarco-01-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "ALWAYS Toallas Femeninas Xtra Triple Protec Noche Suave 16 Un.",
+  "precio": 4499,
+  "pagina": "diarco-01-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "LINA Protector Diario Anatómico x 20 Un.",
+  "precio": 1099,
+  "pagina": "diarco-01-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Rexona Odorono Desodorante Masculino Glicerina Crema x 60 Gr",
+  "precio": 1999,
+  "pagina": "diarco-01-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Sedal Shampoo y Acondicionador x 190 Ml",
+  "precio": 2349,
+  "pagina": "diarco-01-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Sedal Shampoo y Acondicionador x 10 Gr",
+  "precio": 219,
+  "pagina": "diarco-01-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Dove Shampoo y Acondicionador x 400 Ml",
+  "precio": 5799,
+  "pagina": "diarco-01-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Lord Cheseline Gel Fijador x 280 Gr",
+  "precio": 6499,
+  "pagina": "diarco-01-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Head & Shoulders Shampoo y Acondicionador x 375 Ml",
+  "precio": 7199,
+  "pagina": "diarco-01-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Plusbelle Shampoo y Acondicionador Esencia x 970 Ml",
+  "precio": 3499,
+  "pagina": "diarco-01-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Pantene Crema Para Peinar Biotinamina Anticaída x 300 Ml",
+  "precio": 7199,
+  "pagina": "diarco-01-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "317 Tintura KIT",
+  "precio": 2299,
+  "pagina": "diarco-01-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Bagovit Crema Tratamiento Plasma Vegetal x 300 Ml",
+  "precio": 5999,
+  "pagina": "diarco-01-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Elvive Shampoo y Acondicionador x 400 Ml",
+  "precio": 7999,
+  "pagina": "diarco-01-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Dove Desodorante Antitranspirante Femenino x 89 Gr",
+  "precio": 3399,
+  "pagina": "diarco-01-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Rexona Desodorante Antitranspirante Roll On x 50 Ml",
+  "precio": 2199,
+  "pagina": "diarco-01-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Aktion Talco Pie x 100 Gr",
+  "precio": 1899,
+  "pagina": "diarco-01-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Palmolive Jabón de Tocador Nutrimilk Prot.de Leche x 85 Gr",
+  "precio": 1299,
+  "pagina": "diarco-01-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Rexona Jabón de Tocador 3 un x 125 Gr",
+  "precio": 2899,
+  "pagina": "diarco-01-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Palmolive Jabón Líquido D/P x 200 Ml",
+  "precio": 1699,
+  "pagina": "diarco-01-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Etiquet Desodorante Roll On x 60 Gr",
+  "precio": 1899,
+  "pagina": "diarco-01-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Saint Tropez Jabón De Tocador Glicerina 3 Un x 90 Gr",
+  "precio": 1999,
+  "pagina": "diarco-01-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Argentino Jabón de Tocador 3 Un x 80 Gr",
+  "precio": 1199,
+  "pagina": "diarco-01-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Prestobarba Maquina de Afeitar Ultra Grip 2 Filos",
+  "precio": 879,
+  "pagina": "diarco-01-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Oral B Dentífrico Anticaries x 70 Gr",
+  "precio": 1399,
+  "pagina": "diarco-01-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Colgate Dentífrico Total Original Mint x 140 Gr",
+  "precio": 5599,
+  "pagina": "diarco-01-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Kolynos Dentífrico Frescura 123 x 70 Gr",
+  "precio": 1149,
+  "pagina": "diarco-01-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Colgate Dentífrico Original x 180 Gr",
+  "precio": 4599,
+  "pagina": "diarco-01-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Oral B Dentífrico Complete 4 en 1 x 70 Gr",
+  "precio": 1879,
+  "pagina": "diarco-01-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Colgate Cepillo Brillant White x 2 Un",
+  "precio": 4299,
+  "pagina": "diarco-01-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Colgate Cepillo Triple Acción 2x1",
+  "precio": 2899,
+  "pagina": "diarco-01-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Oral B Cepillo Indicator 2x1",
+  "precio": 5699,
+  "pagina": "diarco-01-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Elite Pañuelos 6 Pack x 10 Un",
+  "precio": 1149,
+  "pagina": "diarco-01-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Sensodyne Dentífrico Deep Clean x 90 Gr",
+  "precio": 3999,
+  "pagina": "diarco-01-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Mach 3 Repuesto Bolsa x 1 Un",
+  "precio": 3699,
+  "pagina": "diarco-01-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Prestobarba3 Maquina de Afeitar Rosa x 2 Un",
+  "precio": 5399,
+  "pagina": "diarco-01-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Venus Maquina de Afeitar Suave x 2 Un",
+  "precio": 5499,
+  "pagina": "diarco-01-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Bagovit Crema A Emulsión Dosif x 350 Ml",
+  "precio": 12999,
+  "pagina": "diarco-01-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Hinds Crema Rosa Vitamina A x 250 Gr",
+  "precio": 3599,
+  "pagina": "diarco-01-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Nivea Crema Normal x 400 Ml",
+  "precio": 7999,
+  "pagina": "diarco-01-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Doncella Algodón x 70 Gr",
+  "precio": 749,
+  "pagina": "diarco-01-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Estrella Algodón Clásico x 300 Gr",
+  "precio": 3499,
+  "pagina": "diarco-01-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Okey Hisopos x 100 Un",
+  "precio": 1249,
+  "pagina": "diarco-01-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Lina Toallas Femeninas Incontinencia x 8 Un",
+  "precio": 1899,
+  "pagina": "diarco-01-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Doncella Toallas Incontinencia Leve x 8 Un",
+  "precio": 1799,
+  "pagina": "diarco-01-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Noni Sec Pañal Adulto GD x 10",
+  "precio": 5499,
+  "pagina": "diarco-01-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Okey Cepillo Neumatico Madera",
+  "precio": 3699,
+  "pagina": "diarco-01-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Algabo Talco Talquera x 100 Gr",
+  "precio": 1499,
+  "pagina": "diarco-01-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Estrella Algodón Discos x 80 Un",
+  "precio": 1999,
+  "pagina": "diarco-01-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Glade Desinfectante De Baño Pastilla",
+  "precio": 1399,
+  "pagina": "diarco-01-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Glade Desinfectante De Baño Canasta Líquida Repuesto",
+  "precio": 4799,
+  "pagina": "diarco-01-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Poett Desinfectante De Baño Canasta",
+  "precio": 1699,
+  "pagina": "diarco-01-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Fuyi Aparato Líquido Eléctrico x 32.9 Ml",
+  "precio": 5499,
+  "pagina": "diarco-01-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Raid Espiral 12 Sobres x 4 Un",
+  "precio": 7999,
+  "pagina": "diarco-01-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Selton Insecticida Mata Moscas y Mosquitos x 360 Ml",
+  "precio": 3299,
+  "pagina": "diarco-01-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Cucatrap Insecticida x 360 Ml",
+  "precio": 3599,
+  "pagina": "diarco-01-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Fuyi Insecticida MMM x 360 Ml",
+  "precio": 3899,
+  "pagina": "diarco-01-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Okey Papel Higiénico Blanco 4 Un x 30 Mt",
+  "precio": 1199,
+  "pagina": "diarco-01-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Sussex Rollo de Cocina Clásico 1 Un x 200 Paños",
+  "precio": 2199,
+  "pagina": "diarco-01-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Elite Papel Higiénico Ultra Soft Doble Hoja 4 Un x 30 Mt",
+  "precio": 2999,
+  "pagina": "diarco-01-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Higienol Papel Higiénico Doble Hoja Duo Aloe Panal 4 Un x 50 Mt",
+  "precio": 5299,
+  "pagina": "diarco-01-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Higienol Papel Higiénico Fresh 18 Un x 30 Mt",
+  "precio": 6499,
+  "pagina": "diarco-01-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Okey Papel Higiénico 4 Un x 50 Mt",
+  "precio": 1999,
+  "pagina": "diarco-01-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Okey Papel Higiénico Max 1 Un x 80 Mt",
+  "precio": 799,
+  "pagina": "diarco-01-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Elite Rollo de Cocina Maxi Rollo x 2 Un",
+  "precio": 3199,
+  "pagina": "diarco-01-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Celestial Rollo de Cocina x 3 Un x 40 Paños",
+  "precio": 999,
+  "pagina": "diarco-01-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Cif Detergente D/P Active Gel x 400 Ml",
+  "precio": 2799,
+  "pagina": "diarco-01-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Odex Detergente Ultra x 500 Ml",
+  "precio": 1899,
+  "pagina": "diarco-01-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Finish Detergente Estuche x 1 Kg",
+  "precio": 7999,
+  "pagina": "diarco-01-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Odex Limpiador De Piso x 900 Ml",
+  "precio": 899,
+  "pagina": "diarco-01-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Poett Limpiador Líquido x 4 Lt",
+  "precio": 7999,
+  "pagina": "diarco-01-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Procenex Limpiador Líquido x 1.8 Lt",
+  "precio": 3399,
+  "pagina": "diarco-01-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Querubín Lavandina Concentrada x 1 Lt",
+  "precio": 899,
+  "pagina": "diarco-01-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Ayudín Lavandina Clásica x 4 Lt",
+  "precio": 5299,
+  "pagina": "diarco-01-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Blem Limpiador Multiuso Repuesto x 400 Ml",
+  "precio": 2399,
+  "pagina": "diarco-01-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Ceramicol Limpiador De Piso Para Lampazo x 1 Lt",
+  "precio": 3899,
+  "pagina": "diarco-01-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Mr. Músculo Limpiador Limpia Vidrios Platinum D/P x 450 Ml",
+  "precio": 1999,
+  "pagina": "diarco-01-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "ACE Jabón en Polvo x 800 Gr.",
+  "precio": 2299,
+  "pagina": "diarco-01-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "GRANBY Jabón Líquido Para Diluir x 500 Ml.",
+  "precio": 4499,
+  "pagina": "diarco-01-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "ACE Jabón Líquido D/P x 3 Lt.",
+  "precio": 5999,
+  "pagina": "diarco-01-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "ALA Jabón Líquido x 5 Lt.",
+  "precio": 16999,
+  "pagina": "diarco-01-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "ALA Jabón Líquido Lavado a Mano Doy Pack x 800 Ml.",
+  "precio": 2299,
+  "pagina": "diarco-01-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "ARIEL Jabón Líquido Diluible Botella x 500 Ml.",
+  "precio": 8349,
+  "pagina": "diarco-01-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "NETIC Jabón Líquido Doy Pack x 3 Lt.",
+  "precio": 4399,
+  "pagina": "diarco-01-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "WOOLITE Jabón Líquido Doy Pack x 450 Ml.",
+  "precio": 2299,
+  "pagina": "diarco-01-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "ALA Jabon en Polvo Dual con Bicarbonato x 400 Gr.",
+  "precio": 1199,
+  "pagina": "diarco-01-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "TRENET Quitamanchas Bolilla x",
+  "precio": 2599,
+  "pagina": "diarco-01-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "AYUDÍN Lavandina Ropa Blanca x 1 Lt.",
+  "precio": 1999,
+  "pagina": "diarco-01-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "COMFORT Suavizante x 1 Lt.",
+  "precio": 9499,
+  "pagina": "diarco-01-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "QUERUBÍN Suavizante Premium x 3 Lt.",
+  "precio": 7699,
+  "pagina": "diarco-01-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "CIF Limpiador D/P x 450 Ml.",
+  "precio": 1939,
+  "pagina": "diarco-01-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "CIF Limpiador U Pro x 5 Lt.",
+  "precio": 18699,
+  "pagina": "diarco-01-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "LYSOFORM Desinfectante de Ambiente x 380 Ml.",
+  "precio": 3299,
+  "pagina": "diarco-01-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "GLADE Desinfectante De Ambiente x 360 Ml.",
+  "precio": 2699,
+  "pagina": "diarco-01-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "CIF Limpiador Cremoso Blanco x 750 Gr.",
+  "precio": 2999,
+  "pagina": "diarco-01-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "PROCENEX Limpiador Cocina Doy Pack x 420 Ml.",
+  "precio": 1499,
+  "pagina": "diarco-01-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "DREAN Lavarropas 6 KG. / 800 RPM",
+  "precio": 106599,
+  "pagina": "diarco-01-18",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Paty Hamburguesas de Carne Clásica x 4 Un.",
+  "precio": 6949,
+  "pagina": "diarco-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Paty Medallón de Carne Express x 4 Un.",
+  "precio": 3899,
+  "pagina": "diarco-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Paty Hamburguesas de Carne Clásica x 12 Un.",
+  "precio": 15999,
+  "pagina": "diarco-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Paty Salchichas Clásicas x 12 Un.",
+  "precio": 3999,
+  "pagina": "diarco-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Paty Hamburguesa x 4 Un. x 72 Gr.",
+  "precio": 6299,
+  "pagina": "diarco-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Paty Salchichas Fun x 6 Un.",
+  "precio": 1699,
+  "pagina": "diarco-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Paty Salchichas Clásicas x 6 Un.",
+  "precio": 2069,
+  "pagina": "diarco-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Sadia Alitas de Pollo Golden Congeladas x 400 Grs.",
+  "precio": 5689,
+  "pagina": "diarco-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Vienissima Salchichas x 12Un.",
+  "precio": 4599,
+  "pagina": "diarco-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Sadia Chicken Fingers Congelados x 3 Kg.",
+  "precio": 28999,
+  "pagina": "diarco-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Sadia Crunchy Chicken Golden Congelados x 300 Gr.",
+  "precio": 4249,
+  "pagina": "diarco-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Sadia Fiambre Paleta x Kg.",
+  "precio": 9899,
+  "pagina": "diarco-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Sadia Jamón Cocido x Kg.",
+  "precio": 12389,
+  "pagina": "diarco-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Sadia Lasagna Mix de Queso Congelado x 350 Gr.",
+  "precio": 5149,
+  "pagina": "diarco-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Green Life Mix Choc. Ceb. Pim. Congelado x 500 Gr.",
+  "precio": 4699,
+  "pagina": "diarco-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Sadia Nuggets De Pollo x 3 Kg.",
+  "precio": 26999,
+  "pagina": "diarco-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Sadia Nuggets Saurios de Pollo x 400 Gr.",
+  "precio": 4399,
+  "pagina": "diarco-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Diarco",
+  "texto": "Sadia Sadinesa de Pollo x 100 Gr.",
+  "precio": 749,
+  "pagina": "diarco-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Asado Enf/Cong Xkg",
+  "precio": 12999,
+  "pagina": "makro-01-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Suprema De Pollo Congelada Xkg",
+  "precio": 7999,
+  "pagina": "makro-01-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Cerveza Brahma Lt X710Ml",
+  "precio": 2549,
+  "pagina": "makro-01-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Cerveza Estrella Damm x 500 Ml",
+  "precio": 2499,
+  "pagina": "makro-01-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Fernet 1882 x 1 Lt",
+  "precio": 7449,
+  "pagina": "makro-01-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Medallon De Carne M&K x 20Un",
+  "precio": 14799,
+  "pagina": "makro-01-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Tapa La Salteña Criolla/Horno x 22U",
+  "precio": 3399,
+  "pagina": "makro-01-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Arroz Gallo Parboil x 1 Kg",
+  "precio": 2449,
+  "pagina": "makro-01-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Papas Fritas Pehuamar Variedad X420Gr",
+  "precio": 6799,
+  "pagina": "makro-01-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Shampoo / Acondicionador Dove Variedad x 400 Ml",
+  "precio": 5999,
+  "pagina": "makro-01-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Suavizante Downy Variedad Bt X1L",
+  "precio": 8999,
+  "pagina": "makro-01-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Paleta A/V Y Fraccionado X Kg",
+  "precio": 14899,
+  "pagina": "makro-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Roast Beef A/V Y Fraccionado X Kg",
+  "precio": 14399,
+  "pagina": "makro-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Pechito De Cerdo Con Hueso X Kg",
+  "precio": 7499,
+  "pagina": "makro-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Medallon De Carne Swift Caja x 4 Un x 69 G",
+  "precio": 3599,
+  "pagina": "makro-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Queso Cremoso Aro X100 Gr",
+  "precio": 720,
+  "pagina": "makro-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Fideos Lucchetti Variedad x 500 Gr",
+  "precio": 1039,
+  "pagina": "makro-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Yerba Suave Playadito x 500 Gr",
+  "precio": 2119,
+  "pagina": "makro-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Mayonesa Clásica Hellmann's x 500 Cc",
+  "precio": 2249,
+  "pagina": "makro-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Surtido Bagley x 400Gr",
+  "precio": 2499,
+  "pagina": "makro-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Cerveza Budweiser x 473 Ml",
+  "precio": 1889,
+  "pagina": "makro-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Jabon Comun Rexona Variedad x 125 Gr",
+  "precio": 999,
+  "pagina": "makro-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Papel Higiénico Aro Simple Hoja 4Un x 80 Mt",
+  "precio": 3199,
+  "pagina": "makro-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Medallón de carne M&K Flow Pack x 2Un x 55Gr",
+  "precio": 949,
+  "pagina": "makro-02-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Hamburguesa Swift Clásica x 20Un",
+  "precio": 24399,
+  "pagina": "makro-02-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Nuggets crocantes pollo Grangys x 400 Gr",
+  "precio": 6999,
+  "pagina": "makro-02-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Palitos Swift Pollo Bs x Kg",
+  "precio": 11999,
+  "pagina": "makro-02-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Formitas de pollo Lucchetti x 350 Gr",
+  "precio": 3749,
+  "pagina": "makro-02-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Bastoncito de merluza GDS x 300 Gr",
+  "precio": 3999,
+  "pagina": "makro-02-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Hamburguesa Paty Clásica x 4 Un",
+  "precio": 6949,
+  "pagina": "makro-02-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Papa Smiles McCain Congelada x 700Gr",
+  "precio": 6999,
+  "pagina": "makro-02-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Queso Goya Aro x 100Gr",
+  "precio": 2110,
+  "pagina": "makro-02-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Supremitas Gja del Sol Roc x 480G",
+  "precio": 9199,
+  "pagina": "makro-02-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Patitas pollo original Prefrito x 400 Gr",
+  "precio": 6449,
+  "pagina": "makro-02-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Alimento a base queso La Quesera x 40/100/150 Gr",
+  "precio": 6999,
+  "pagina": "makro-02-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Ravioles La Salteña 4 Quesos / Pollo y Espinaca x 900 Gr",
+  "precio": 5784,
+  "pagina": "makro-02-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Leberwurst Cagnoli x 150 Gr",
+  "precio": 1999,
+  "pagina": "makro-02-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Pan La Santiagueña Salvado / Lactal x 600 Gr",
+  "precio": 2319,
+  "pagina": "makro-02-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Pionono M&K x 180Gr",
+  "precio": 1999,
+  "pagina": "makro-02-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Salchicha de viena Paladini x 6 Un",
+  "precio": 2499,
+  "pagina": "makro-02-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Tapa Pascualina Aro Hojaldre / Criolla x 2Un",
+  "precio": 1549,
+  "pagina": "makro-02-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Tapa empanada especial Aro Horno / Criolla X12 Un",
+  "precio": 1499,
+  "pagina": "makro-02-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Aceite de girasol Cocinero x 900Cc",
+  "precio": 3249,
+  "pagina": "makro-02-05",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Harina 000 Cañuelas x 1 Kg",
+  "precio": 779,
+  "pagina": "makro-02-05",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Arroz largo fino Cañuelas x 500 Gr",
+  "precio": 649,
+  "pagina": "makro-02-05",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Aceite girasol legitimo x 1.5L",
+  "precio": 4749,
+  "pagina": "makro-02-05",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Fideos Pastasole Variedad x 500 Gr",
+  "precio": 839,
+  "pagina": "makro-02-05",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Arroz integral Gallo x 1 Kg",
+  "precio": 2499,
+  "pagina": "makro-02-05",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Harina Morixe 0000 x 1Kg",
+  "precio": 1189,
+  "pagina": "makro-02-05",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Harina leudante Blancaflor x 1Kg",
+  "precio": 1499,
+  "pagina": "makro-02-05",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Tomate entero Salsati x 400 gr",
+  "precio": 1699,
+  "pagina": "makro-02-06",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Arvejas secas La Campagnola x 300 gr",
+  "precio": 1199,
+  "pagina": "makro-02-06",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Ketchup Hellmann's x 300 g",
+  "precio": 3599,
+  "pagina": "makro-02-06",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Garbanzos Inalpa x 350 g",
+  "precio": 649,
+  "pagina": "makro-02-06",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Palmito entero el Cosaco x 400 gr",
+  "precio": 4799,
+  "pagina": "makro-02-06",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Ketchup Hellmanns x 500 gr",
+  "precio": 2974,
+  "pagina": "makro-02-06",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Porotos Inalpa x 350 g",
+  "precio": 699,
+  "pagina": "makro-02-06",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Atún lomo Gomes Da Costa aceite / natural x 170 gr",
+  "precio": 2999,
+  "pagina": "makro-02-06",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Mostaza original Savora x 500 gr",
+  "precio": 2148,
+  "pagina": "makro-02-06",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Atún desmenuzado M&K aceite / natural x 170 gr",
+  "precio": 1099,
+  "pagina": "makro-02-06",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Vinagre de alcohol Menoyo x 500 ml",
+  "precio": 999,
+  "pagina": "makro-02-06",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Mayonesa Mayoliva de aceite de oliva x 250 cc",
+  "precio": 2049,
+  "pagina": "makro-02-06",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Doritos de queso x 129 gr",
+  "precio": 4799,
+  "pagina": "makro-02-07",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Sal fina Dos Anclas x 500 g",
+  "precio": 949,
+  "pagina": "makro-02-07",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Sal gruesa Dos Estrellas x 1 kg",
+  "precio": 1199,
+  "pagina": "makro-02-07",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Maní King tostado s/sal x 350 gr",
+  "precio": 3149,
+  "pagina": "makro-02-07",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Puré papa Maggi cremoso x 125 gr",
+  "precio": 1999,
+  "pagina": "makro-02-07",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Batatas Quento x 345 gr",
+  "precio": 6999,
+  "pagina": "makro-02-07",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Pan rallado / rebozador Preferido c/hie x 1 kg",
+  "precio": 2899,
+  "pagina": "makro-02-07",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Brownie Exquisita chocolate x 425 gr",
+  "precio": 3999,
+  "pagina": "makro-02-07",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Bizcochuelo Mama Cocina chocolate x 540 gr",
+  "precio": 2849,
+  "pagina": "makro-02-07",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Yerba verdeflor variedad x 500 gr",
+  "precio": 1599,
+  "pagina": "makro-02-08",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Cacao Nesquik s/tacc x 800 gr",
+  "precio": 7499,
+  "pagina": "makro-02-08",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Café instantáneo Arlistan x 100 gr",
+  "precio": 4189,
+  "pagina": "makro-02-08",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Leche en polvo Purísima entera / descremada x 800 gr",
+  "precio": 8599,
+  "pagina": "makro-02-08",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Nescafé Dolca café instantáneo suave / regular x 160 gr",
+  "precio": 7999,
+  "pagina": "makro-02-08",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Café molido tostado Cabrales x 500 g",
+  "precio": 19999,
+  "pagina": "makro-02-08",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Pasta de maní natural Maní King x 485 gr",
+  "precio": 3449,
+  "pagina": "makro-02-08",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Galletitas Pepitos regular x 3 x 357 gr",
+  "precio": 3559,
+  "pagina": "makro-02-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Barra cereal mix variedad x 23 / 26 gr",
+  "precio": 769,
+  "pagina": "makro-02-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Galletitas Macucas x 110 gr",
+  "precio": 869,
+  "pagina": "makro-02-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Caramelos palitos de la Selva x 660 gr",
+  "precio": 8699,
+  "pagina": "makro-02-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "SIDRA DEL VALLE x 720ML",
+  "precio": 2399,
+  "pagina": "makro-02-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "SIDRA 1930 Varietales BTX 750ML",
+  "precio": 7699,
+  "pagina": "makro-02-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "FIZZ DEL VALLE Anana / Fresa x 720/710ML",
+  "precio": 3099,
+  "pagina": "makro-02-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "VINO COSECHA TARDIA ROSADO / BCO / TINTO X 750ML",
+  "precio": 3799,
+  "pagina": "makro-02-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "VINO CORDERO PIEL LOBO MALB / BCO / CBNT X 750ML",
+  "precio": 4199,
+  "pagina": "makro-02-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "ESPUMANTE CORDERO EXTRA BRUT / DULCE X 750 ML",
+  "precio": 6199,
+  "pagina": "makro-02-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "VINO PUTRUELE MALBEC ESTATE 750ML",
+  "precio": 4499,
+  "pagina": "makro-02-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "VINO SALENTEIN RESERVA MALB / CBNT X 750ML",
+  "precio": 10399,
+  "pagina": "makro-02-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "VINO FOND DE CAVE MALBEC / CABERNET SAUV X 750ML",
+  "precio": 6899,
+  "pagina": "makro-02-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "CHAMPAGNE SENETINER BR / EXT NAT BTX 750ML",
+  "precio": 11499,
+  "pagina": "makro-02-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "ESPUMANTE MUMM VARIEDAD X 750ML",
+  "precio": 7899,
+  "pagina": "makro-02-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "CHAMPAGNE FAMILIA GASCON EXTRA BRUT X 750ML",
+  "precio": 7199,
+  "pagina": "makro-02-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "GASEOSA CUNNINGTON Variedad x 1.5 L",
+  "precio": 2299,
+  "pagina": "makro-02-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "APERITIVO CAMPARI x 750 ML",
+  "precio": 10099,
+  "pagina": "makro-02-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "VINO ALMA MORA Syr / Malb / Cbnt x 750ML",
+  "precio": 4799,
+  "pagina": "makro-02-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "VINO FINCA LAS MERCEDES Varietales x 750 ML",
+  "precio": 2299,
+  "pagina": "makro-02-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "VINO CIRCUS Red Blend / Cbnt / Malb x 750ML",
+  "precio": 3199,
+  "pagina": "makro-02-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "VINO EL PORTILLO Cabernet / Malbec x 750 ML",
+  "precio": 4199,
+  "pagina": "makro-02-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "VODKA SMIRNOFF Variedad x 700 ML",
+  "precio": 7849,
+  "pagina": "makro-02-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "FERNET VITTONE Btx 750ML",
+  "precio": 4799,
+  "pagina": "makro-02-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "CERVEZA PATAGONIA Variedad x 730ML",
+  "precio": 3989,
+  "pagina": "makro-02-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Shampoo / Acondicionador Dove Variedad x 650 ml",
+  "precio": 12499,
+  "pagina": "makro-02-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Shampoo / Acondicionador Pantene x 510 ml",
+  "precio": 10999,
+  "pagina": "makro-02-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Desodorante masculino Etiquet Variedad x 60 ml",
+  "precio": 1899,
+  "pagina": "makro-02-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Desodorante Dove Original x 250 ml",
+  "precio": 5799,
+  "pagina": "makro-02-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Desodorante femenino Hinds Variedad x 60 ml",
+  "precio": 1899,
+  "pagina": "makro-02-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Crema Ponds Humect Nutrit/Biohidratante Pote x 50g",
+  "precio": 2199,
+  "pagina": "makro-02-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Crema Dental Kolynos White Protection x 180g",
+  "precio": 4199,
+  "pagina": "makro-02-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Crema Dental Sensodyne Repara Y Protege Aliento x 100 Gr",
+  "precio": 6999,
+  "pagina": "makro-02-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Crema Dental Sensodyne Extra Fresh x 140Gr",
+  "precio": 6899,
+  "pagina": "makro-02-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Preservativos Playboy Variedad x 3 Un",
+  "precio": 1999,
+  "pagina": "makro-02-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Papel Higiénico Elegante Suave Doble Hoja 4U X30M",
+  "precio": 2399,
+  "pagina": "makro-02-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Shampoo / Acondicionador Plusbelle Kids Variedad x 350 Ml",
+  "precio": 3799,
+  "pagina": "makro-02-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Pañal Pampers Babysan Hipoalergenico Variedad x un",
+  "precio": 22899,
+  "pagina": "makro-02-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Rollo Cocina Elegante Premium 3Ux 60 Pñ",
+  "precio": 1899,
+  "pagina": "makro-02-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Jabón Pan Gran Federal 2 Un x 150Gr",
+  "precio": 1599,
+  "pagina": "makro-02-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Suavizante Downy Variedad x 450 / 500 Ml",
+  "precio": 5499,
+  "pagina": "makro-02-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Jabón Líquido Skip Ciclo Corto Botella X800Ml",
+  "precio": 7999,
+  "pagina": "makro-02-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Detergente Cif Acitve Gel Variedad Bt x 500 Ml",
+  "precio": 3399,
+  "pagina": "makro-02-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Espiral Antimosquitos Raid Pack X5UndVerde x 12 Un",
+  "precio": 1939,
+  "pagina": "makro-02-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Lavandina Ayudin Antisplash x 2 L",
+  "precio": 3549,
+  "pagina": "makro-02-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Limpiador Piso Aro Variedad x 4.5Lt",
+  "precio": 3299,
+  "pagina": "makro-02-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Paños Microfibra Aro Pack X5Und",
+  "precio": 3999,
+  "pagina": "makro-02-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Almohada Antistress",
+  "precio": 19999,
+  "pagina": "makro-02-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Delantal Vip Estampa Surtido",
+  "precio": 13999,
+  "pagina": "makro-02-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Delantal Vip Estampa Surtido Mujer",
+  "precio": 13999,
+  "pagina": "makro-02-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Plato Luminarc Carine Noir",
+  "precio": 4699,
+  "pagina": "makro-02-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Plato Playo Aro Blanco Mate / Gris Mate 25Cm",
+  "precio": 4999,
+  "pagina": "makro-02-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Tabla Cortar Peq 30X21Cm Clasica",
+  "precio": 14999,
+  "pagina": "makro-02-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Set Cuchillos 5Pc Aro Home",
+  "precio": 24999,
+  "pagina": "makro-02-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Set Utensilios De Cocina Aro Home",
+  "precio": 12799,
+  "pagina": "makro-02-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Set X3 Perchas Aro Home Madera/Natural",
+  "precio": 4799,
+  "pagina": "makro-02-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Velas Noche Aro Pack X 24",
+  "precio": 8999,
+  "pagina": "makro-02-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Dog Selection Criadores Adultos 15 Kg / 17 Kg",
+  "precio": 42499,
+  "pagina": "makro-02-18",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Dog Selection Criadores Variedad 3 Kg",
+  "precio": 10499,
+  "pagina": "makro-02-18",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Alimento Gatos Aro Adultos 8 Kg",
+  "precio": 27499,
+  "pagina": "makro-02-18",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Hamburguesa clásica Paty x 12 ún.",
+  "precio": 15999,
+  "pagina": "makro-03-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Medallón Express, 4 x 69 GR",
+  "precio": 3899,
+  "pagina": "makro-03-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Salchichas Patyvienna x6 (190gr)",
+  "precio": 1699,
+  "pagina": "makro-03-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Paleta Sadia x1000gr",
+  "precio": 9899,
+  "pagina": "makro-03-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Jamon Cocido Sadia x1000gr",
+  "precio": 12389,
+  "pagina": "makro-03-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Lasagna A la Bolognesa 350gr",
+  "precio": 5149,
+  "pagina": "makro-03-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Salchicha Vienissima sin TACC x 12U",
+  "precio": 4599,
+  "pagina": "makro-03-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Salchicha Vienissima sin TACC x 6U",
+  "precio": 2389,
+  "pagina": "makro-03-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Yerba Taragui S/Palo x 1000 G",
+  "precio": 4899,
+  "pagina": "makro-03-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Yerba Taragui Sin Palo x500 G",
+  "precio": 2499,
+  "pagina": "makro-03-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Yerba Taragui S/Palo x 1 Kg",
+  "precio": 3399,
+  "pagina": "makro-03-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Yerba Taragui Sin Palo x500gr",
+  "precio": 1749,
+  "pagina": "makro-03-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Yerba Mañanita x 1 Kg",
+  "precio": 3399,
+  "pagina": "makro-03-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Yerba Mañanita x 500gr",
+  "precio": 1749,
+  "pagina": "makro-03-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Yerba Union Suave x 1 Kg",
+  "precio": 3399,
+  "pagina": "makro-03-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Yerba Union Suave x 500gr",
+  "precio": 1749,
+  "pagina": "makro-03-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Yerba Union Liviana x 500 G",
+  "precio": 2099,
+  "pagina": "makro-03-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Yerba Union Liviana x 1000 G",
+  "precio": 3949,
+  "pagina": "makro-03-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Yerba Buenas & Santas 500G",
+  "precio": 1899,
+  "pagina": "makro-03-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Yerba La Merced 500G",
+  "precio": 3599,
+  "pagina": "makro-03-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Yerba La Merced Campo Sur Variedad x 1 Kg",
+  "precio": 4999,
+  "pagina": "makro-03-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Barilla Fideos Secos Variedad x 500G",
+  "precio": 5499,
+  "pagina": "makro-03-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Arroz Largo Fino Dos Hermanos x 500Gr",
+  "precio": 699,
+  "pagina": "makro-03-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Arroz Largo Fino Dos Hermanos x 1Kg",
+  "precio": 1199,
+  "pagina": "makro-03-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Arroz Parboil Dos Hermanos x 500Gr",
+  "precio": 799,
+  "pagina": "makro-03-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Arroz Parboil Dos Hermanos x 1Kg",
+  "precio": 1499,
+  "pagina": "makro-03-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Arroz Doble Carolina Dos Hermanos x 500Gr",
+  "precio": 1149,
+  "pagina": "makro-03-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Arroz Doble Carolina Dos Hermanos x 1Kg",
+  "precio": 2099,
+  "pagina": "makro-03-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Azucar Clasica x 1Kg Domino",
+  "precio": 1199,
+  "pagina": "makro-03-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Edulcorante Liquido Bt. x 200ml Domino",
+  "precio": 1349,
+  "pagina": "makro-03-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Edulcorante Liquido Bt. x 500ml Domino",
+  "precio": 2049,
+  "pagina": "makro-03-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Americano Gancia x 1250 ml",
+  "precio": 6899,
+  "pagina": "makro-03-6",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Amargo Obrero 950 ml",
+  "precio": 4189,
+  "pagina": "makro-03-6",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Ron Bacardí 980 ml",
+  "precio": 19999,
+  "pagina": "makro-03-6",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Dr. Lemon 1000 ml",
+  "precio": 3089,
+  "pagina": "makro-03-6",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Gin Bombay Sapphire 750 ml",
+  "precio": 29299,
+  "pagina": "makro-03-6",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Martini 995 ml",
+  "precio": 6049,
+  "pagina": "makro-03-6",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Crema Dental Total 12 Clean Mint x 90G Colgate",
+  "precio": 5199,
+  "pagina": "makro-03-7",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Crema Dental Gel Total Whitening Colgate x 90G",
+  "precio": 4199,
+  "pagina": "makro-03-7",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Enjuague Bucal Clean Mint Colgate x 500 Ml",
+  "precio": 4599,
+  "pagina": "makro-03-7",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Enjuague Bucal Mint Colgate Total Clean Unid x 250 G",
+  "precio": 3499,
+  "pagina": "makro-03-7",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Crema Dental Colgate Total Clean Mint x 140 Gr",
+  "precio": 5999,
+  "pagina": "makro-03-7",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Crema Dental Total 12 Clean Mint x 50G Colgate",
+  "precio": 2699,
+  "pagina": "makro-03-7",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Jabon Palmolive Variedad x 85 Gr",
+  "precio": 599,
+  "pagina": "makro-03-7",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Palmolive Jabón Líquido Nutrimilk Doypack x 200ml",
+  "precio": 1699,
+  "pagina": "makro-03-7",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Jabón Antibacterial Aloe Protex x 221 Ml",
+  "precio": 3299,
+  "pagina": "makro-03-7",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Protex Jabón Líquido Balance / Vitamin E Doypack x 200ml",
+  "precio": 2299,
+  "pagina": "makro-03-7",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Jabón Palmolive Nutrimilk Regular x 85 Gr",
+  "precio": 1499,
+  "pagina": "makro-03-7",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Jab Bar Palmolive Nat Alm 3X 90Gr",
+  "precio": 3199,
+  "pagina": "makro-03-7",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Pañales Pampers Premium Care M 72u / G 72u / XG 58u / XXG 50u",
+  "precio": 39999,
+  "pagina": "makro-03-8",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Pañales Pampers Deluxe RN+ 36u",
+  "precio": 17999,
+  "pagina": "makro-03-8",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Pañales Pampers Baby Dry RN+ 36u",
+  "precio": 14999,
+  "pagina": "makro-03-8",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Pañales Pampers Supersec M 32u / G 40u",
+  "precio": 8199,
+  "pagina": "makro-03-8",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Pañales Pampers Baby-Dry XG 56u / XXG 54u / XXXG 50u",
+  "precio": 29999,
+  "pagina": "makro-03-8",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Toallas femeninas Always Xtr Prot. 8u",
+  "precio": 1999,
+  "pagina": "makro-03-8",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Toallas femeninas Always Xtr Dob. Prot. 8u",
+  "precio": 1499,
+  "pagina": "makro-03-8",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Toallas femeninas Always Xtr Trip. Prot. 8u / 16u",
+  "precio": 3999,
+  "pagina": "makro-03-8",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Toallas femeninas Always Xtr Prot. 8u",
+  "precio": 2399,
+  "pagina": "makro-03-8",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Protectores diarios Always Xrim 15u",
+  "precio": 1699,
+  "pagina": "makro-03-8",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Protectores diarios Always Respirable",
+  "precio": 3499,
+  "pagina": "makro-03-8",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Protectores diarios Always Respirável / Respirable",
+  "precio": 7999,
+  "pagina": "makro-03-8",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Protectores diarios Always Proteción con perfume 15u",
+  "precio": 4199,
+  "pagina": "makro-03-8",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Jabón líquido para diluir Skip x 500ml",
+  "precio": 8599,
+  "pagina": "makro-03-9",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Jabón en polvo Ala con bicarbonato x 3kg",
+  "precio": 7499,
+  "pagina": "makro-03-9",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Jabón líquido Ala Camellito x 900ml",
+  "precio": 4999,
+  "pagina": "makro-03-9",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Suavizante Comfort x 450ml",
+  "precio": 3249,
+  "pagina": "makro-03-9",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Lavavajilla Cif x 1,25lt",
+  "precio": 6799,
+  "pagina": "makro-03-9",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Desinfectante Cif en aerosol x 360gr",
+  "precio": 2899,
+  "pagina": "makro-03-9",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Limpiador Cif Expert Baño, Antigrasa y Vidrios x 500ml",
+  "precio": 3299,
+  "pagina": "makro-03-9",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Lavavajilla Cif Active gel x 400ml",
+  "precio": 2179,
+  "pagina": "makro-03-9",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Detergente para máquina lavavajilla Sun Cápsulas x 240gr",
+  "precio": 12999,
+  "pagina": "makro-03-9",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Limpiador Cif Ultra Shine x 400ml",
+  "precio": 3999,
+  "pagina": "makro-03-9",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Pecho x Kg",
+  "precio": 9500,
+  "pagina": "makro-04-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Rueda x Kg",
+  "precio": 11500,
+  "pagina": "makro-04-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Solomillo De Cerdo Congelado x Kg",
+  "precio": 7999,
+  "pagina": "makro-04-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Medallon De Carne Swift Parrillero 60U x 109G",
+  "precio": 94999,
+  "pagina": "makro-04-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Papa Noisette Aro Bolsa x 2.5Kg",
+  "precio": 19999,
+  "pagina": "makro-04-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Manteca Primer Premio / Lucrecia Pilon x 2.5",
+  "precio": 28999,
+  "pagina": "makro-04-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Queso Cheddar Milkaut En Fetas x 192",
+  "precio": 49999,
+  "pagina": "makro-04-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Barra Pategras Sandwich La Paulina X100Gr",
+  "precio": 1110,
+  "pagina": "makro-04-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Jamon Cocico Clásico Paladini",
+  "precio": 1400,
+  "pagina": "makro-04-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Mortadela Cañon Paladini 100Gr",
+  "precio": 990,
+  "pagina": "makro-04-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Jamon Cocido Sorrento X 100 Gr",
+  "precio": 870,
+  "pagina": "makro-04-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Pata C/Cuero Don Antonino x 100 Gr",
+  "precio": 750,
+  "pagina": "makro-04-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Fiambre Turin Para Emparedados x 100 Gr",
+  "precio": 490,
+  "pagina": "makro-04-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Panceta Ahumada 1997 x 100 Gr",
+  "precio": 1600,
+  "pagina": "makro-04-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Tapa De Empnadas La Santiagueña Rotisera X60U",
+  "precio": 6599,
+  "pagina": "makro-04-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Salchicha Patyviena Gastronómica x 18 Un",
+  "precio": 10399,
+  "pagina": "makro-04-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Pionono Aro Gastronómico x 300Gr",
+  "precio": 2999,
+  "pagina": "makro-04-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Harina 0000 Cañuelas Pqx25Kg",
+  "precio": 24499,
+  "pagina": "makro-04-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Aceite Siglo De OroMezcla x 5L",
+  "precio": 14499,
+  "pagina": "makro-04-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Aceite De Oliva Oliovita x 5 Lt",
+  "precio": 99999,
+  "pagina": "makro-04-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Yerba Baldo Tradicional Pqx5Kg",
+  "precio": 50499,
+  "pagina": "makro-04-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Vinagre De Alcohol Menoyo x 5 Lt",
+  "precio": 7999,
+  "pagina": "makro-04-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Vinagre De Vino Menoyo x 5 Lt",
+  "precio": 13999,
+  "pagina": "makro-04-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Mayonesa Hellmanns x 2900 Cc",
+  "precio": 13499,
+  "pagina": "makro-04-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Ketchup Hellmanns Bolsa x 3 Kg",
+  "precio": 14999,
+  "pagina": "makro-04-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Cóctel De Fruta Gentleman x 3 Kg",
+  "precio": 15999,
+  "pagina": "makro-04-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Pure De Tomate De La Huerta x 1030Gr",
+  "precio": 1999,
+  "pagina": "makro-04-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Fecula De Maíz Maízena x 2 Kg",
+  "precio": 11299,
+  "pagina": "makro-04-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Maní Salado Sin Piel Aro x 3 Kg",
+  "precio": 17499,
+  "pagina": "makro-04-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Café Instantáneo Nescafé Clásico x 1 Kg",
+  "precio": 46499,
+  "pagina": "makro-04-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Café En Grano Cabrales 1 Kg",
+  "precio": 47499,
+  "pagina": "makro-04-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Pan Rallado/ Rebozador Aro x 5kg",
+  "precio": 12999,
+  "pagina": "makro-04-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Cacao Nesquik Choco x 2Kg",
+  "precio": 17999,
+  "pagina": "makro-04-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Agua Saborizada Sierra Los Padres(Variedad) Botella x 500Ml",
+  "precio": 609,
+  "pagina": "makro-04-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Vino Wampa Varietales Btx750Ml",
+  "precio": 3199,
+  "pagina": "makro-04-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Amargo Tres Torres Variedad X1.5Lt",
+  "precio": 1019,
+  "pagina": "makro-04-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Alc De Quemar BialcoholX500Ml",
+  "precio": 2399,
+  "pagina": "makro-04-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Detergente Limón Drax x 5 Lt",
+  "precio": 16999,
+  "pagina": "makro-04-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Bobina De Hilo Aro x 2 Un x 400 M",
+  "precio": 35999,
+  "pagina": "makro-04-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Makro",
+  "texto": "Bolsa Camiseta Aro 45X60 X100 U",
+  "precio": 4899,
+  "pagina": "makro-04-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "COCINERO Aceite girasol x1.5lt.",
+  "precio": 4899,
+  "pagina": "vital-01-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "LUCCHETTI Fideos x500gr.",
+  "precio": 999,
+  "pagina": "vital-01-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "LEDESMA Azúcar x1kg.",
+  "precio": 1199,
+  "pagina": "vital-01-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "HELLMANNS Mayonesa d/p. x475gr.",
+  "precio": 1899,
+  "pagina": "vital-01-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "BLANCAFLOR Harina leud. fort.x1kg.",
+  "precio": 1489,
+  "pagina": "vital-01-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PLAYADITO Yerba x1kg.",
+  "precio": 3699,
+  "pagina": "vital-01-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "OREO Galletitas 3u.x118gr.",
+  "precio": 3799,
+  "pagina": "vital-01-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "COSECHA TARDIA Vino blanco x750cc.",
+  "precio": 3799,
+  "pagina": "vital-01-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CORONA Cerveza porrón NR x330cc.",
+  "precio": 2699,
+  "pagina": "vital-01-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "DOVE Jabón original crema 3u.x90gr.",
+  "precio": 4899,
+  "pagina": "vital-01-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PANTENE Shampoo/ acondicionador x400ml.",
+  "precio": 5899,
+  "pagina": "vital-01-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "COLGATE Crema dental original x180gr.",
+  "precio": 4499,
+  "pagina": "vital-01-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SKIP Jabón líquido d/p.x3lt.",
+  "precio": 8699,
+  "pagina": "vital-01-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SUSSEX MAXI Rollo de cocina 3u.x100p.",
+  "precio": 3699,
+  "pagina": "vital-01-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CIF BIOACTIVE Detergente x500ml.",
+  "precio": 2389,
+  "pagina": "vital-01-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "POLLO CONGELADO Soychu xkg.",
+  "precio": 2999,
+  "pagina": "vital-01-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "BONDIOLA Congelada xkg.",
+  "precio": 7999,
+  "pagina": "vital-01-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MATAMBRE FRESCO Swift xkg.",
+  "precio": 12999,
+  "pagina": "vital-01-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "VACÍO Swift xkg.",
+  "precio": 14999,
+  "pagina": "vital-01-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "LAS TRES NIÑAS Leche t/b.x1lt.",
+  "precio": 1999,
+  "pagina": "vital-01-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MILKAUT Dulce de leche familiar x400gr.",
+  "precio": 2999,
+  "pagina": "vital-01-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CASANCREM Queso crema x480gr.",
+  "precio": 5995,
+  "pagina": "vital-01-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MILKAUT Manteca x100gr.",
+  "precio": 1999,
+  "pagina": "vital-01-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ELOGIO Queso cremoso horma xkg.",
+  "precio": 8499,
+  "pagina": "vital-01-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SWIFT Hamburguesa clásica 4u.x80gr.",
+  "precio": 6109,
+  "pagina": "vital-01-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "UNION GANADERA Nuggets de pollo crocantes x1kg.",
+  "precio": 10999,
+  "pagina": "vital-01-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MC CAIN Papas corte tradicional x1.4kg.",
+  "precio": 8449,
+  "pagina": "vital-01-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Salamin CAGNOLI tandilero x145gr.",
+  "precio": 6299,
+  "pagina": "vital-01-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Queso pategras LA PAULINA Horma xkg.",
+  "precio": 20499,
+  "pagina": "vital-01-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Mortadela PALADINI familiar x300gr.",
+  "precio": 3499,
+  "pagina": "vital-01-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Smart TV BGH 43\" FULL HD",
+  "precio": 364313,
+  "pagina": "vital-01-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MICROONDAS BGH MECÁNICO 18LT",
+  "precio": 155000,
+  "pagina": "vital-01-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "TALADRO PERC VTL 500W",
+  "precio": 25000,
+  "pagina": "vital-01-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MÁQUINA DE HIELO VTL 1.2LT.",
+  "precio": 125000,
+  "pagina": "vital-01-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SET ESPEJO SPEAKER + CEPILLO HAVIT",
+  "precio": 49000,
+  "pagina": "vital-01-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SET 3EN1 VTL TOSTADORA CAFETERA-PAVA",
+  "precio": 120000,
+  "pagina": "vital-01-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SET COPETINERO + BOWL + 4 CHOPPS 475ML",
+  "precio": 24000,
+  "pagina": "vital-01-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SET JARRA + VASOS HOME LIFE",
+  "precio": 20000,
+  "pagina": "vital-01-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SET COPAS CHAMPAGNE VIDRIO X6U",
+  "precio": 14000,
+  "pagina": "vital-01-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CANASTO DE ROPA HOME LIFE DOBLE GRIS",
+  "precio": 49000,
+  "pagina": "vital-01-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "REMERON MANGA CORTA MUJER",
+  "precio": 7500,
+  "pagina": "vital-01-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PONCHO DE TOALLA INFANTIL 60X120CM",
+  "precio": 6500,
+  "pagina": "vital-01-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "BERMUDA BOLSILLO CON CORDÓN",
+  "precio": 13000,
+  "pagina": "vital-01-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ARBOL DE NAVIDAD 1.5MT",
+  "precio": 31900,
+  "pagina": "vital-01-6",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SET DE ADORNOS X28 PIEZAS",
+  "precio": 8900,
+  "pagina": "vital-01-6",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ADORNO",
+  "precio": 2500,
+  "pagina": "vital-01-6",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ARBOL DE NAVIDAD 30 CM",
+  "precio": 14000,
+  "pagina": "vital-01-6",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CAÑUELAS Aceite girasol x900ml",
+  "precio": 2999,
+  "pagina": "vital-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "DOMINO Azúcar x1kg",
+  "precio": 1199,
+  "pagina": "vital-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "INCA Tomate triturado botella x910gr",
+  "precio": 2599,
+  "pagina": "vital-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "AMANDA Yerba tradicional x500gr",
+  "precio": 1399,
+  "pagina": "vital-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "FAVORITA Fideos x500gr",
+  "precio": 669,
+  "pagina": "vital-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "NATURA Mayonesa sachet x125gr",
+  "precio": 539,
+  "pagina": "vital-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "S&P Duraznos x800gr",
+  "precio": 2249,
+  "pagina": "vital-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "S&P Harina 000 x1kg",
+  "precio": 689,
+  "pagina": "vital-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SWIFT Hamburguesa clásica 6x20 x80gr",
+  "precio": 24399,
+  "pagina": "vital-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ANGELITA Leche x1lt",
+  "precio": 1799,
+  "pagina": "vital-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ARCOR Jugo en polvo x15 gr",
+  "precio": 299,
+  "pagina": "vital-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "GANCIA Aperitivo americano x1.25lt",
+  "precio": 6899,
+  "pagina": "vital-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SEDAL Shampoo / acondicionador d/p x300ml",
+  "precio": 2289,
+  "pagina": "vital-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "REXONA Jabón x120gr",
+  "precio": 989,
+  "pagina": "vital-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "COLGATE Crema dental original x180gr",
+  "precio": 4499,
+  "pagina": "vital-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "BONUX Papel higiénico blanco d/h. x4u.x30mt",
+  "precio": 2099,
+  "pagina": "vital-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ALA Jabón líquido matic ecolavado d/p.x3lt",
+  "precio": 7199,
+  "pagina": "vital-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CIF Detergente bio active x500ml",
+  "precio": 2389,
+  "pagina": "vital-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "RAID Insecticida mmm x380cc",
+  "precio": 5199,
+  "pagina": "vital-02-01",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "REXONA Jabón glicerina x90gr",
+  "precio": 1199,
+  "pagina": "vital-02-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PANTENE PROV Shampoo y Acondicionador x200ml",
+  "precio": 3599,
+  "pagina": "vital-02-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SUAVE Jabon liquido d/p x220ml",
+  "precio": 1299,
+  "pagina": "vital-02-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Tintura 317 kit",
+  "precio": 2399,
+  "pagina": "vital-02-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ALGABO Gel pomo x200gr",
+  "precio": 2499,
+  "pagina": "vital-02-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PLUSBELLE Jabon espuma x250ml",
+  "precio": 2599,
+  "pagina": "vital-02-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "DOVE Jabon liquido nutri prof rep x220ml",
+  "precio": 2799,
+  "pagina": "vital-02-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "DOVE Jabon liquido a/ bact cuida&prot x250ml",
+  "precio": 4899,
+  "pagina": "vital-02-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "DOVE Shampoo y Acondicionador x400ml",
+  "precio": 5399,
+  "pagina": "vital-02-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CAPILATIS Shampoo y Acond x410/420ml",
+  "precio": 6499,
+  "pagina": "vital-02-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "H&S Acondicionador x300ml",
+  "precio": 7199,
+  "pagina": "vital-02-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PANTENE Shampoo y Acondicio. x700/750ml",
+  "precio": 13999,
+  "pagina": "vital-02-02",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SEDAL Shampoo y Acondicionador x190ml",
+  "precio": 2289,
+  "pagina": "vital-02-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SEDAL Shampoo y Acondicionador x340ml",
+  "precio": 3899,
+  "pagina": "vital-02-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SEDAL Shampoo y Acondicionador x650ml",
+  "precio": 6799,
+  "pagina": "vital-02-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "REXONA Jabon antibacterial 3ux90gr",
+  "precio": 3199,
+  "pagina": "vital-02-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "REXONA Jabon antibacterial x90gr",
+  "precio": 1219,
+  "pagina": "vital-02-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "REXONA Jabon liquido a/b doypack x220ml",
+  "precio": 2699,
+  "pagina": "vital-02-03",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "REXONA Antitransp antibacterial x90gr",
+  "precio": 2999,
+  "pagina": "vital-02-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CHESTER ICE Desodorante corporal x150ml",
+  "precio": 3399,
+  "pagina": "vital-02-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MUJERCITAS Desodorante corporal funny x102ml",
+  "precio": 2499,
+  "pagina": "vital-02-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "NIVEA Antitranspirante aerosol x150ml",
+  "precio": 2999,
+  "pagina": "vital-02-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PATRICHS Desodorante x97gr",
+  "precio": 3199,
+  "pagina": "vital-02-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "KEVIN Desodorante aerosol x250ml",
+  "precio": 4299,
+  "pagina": "vital-02-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "AXE Desodorante corporal aero x230ml",
+  "precio": 4299,
+  "pagina": "vital-02-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "REXONA MEN Antitranspirante V8 aex250ml",
+  "precio": 4599,
+  "pagina": "vital-02-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "DOVE Desodorante en barra original x50g",
+  "precio": 5799,
+  "pagina": "vital-02-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "DOVE All body deo x150ml",
+  "precio": 4999,
+  "pagina": "vital-02-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CIEL Perfume love edt x60ml",
+  "precio": 10399,
+  "pagina": "vital-02-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "KEVIN Perfume black edt c/vap x60ml",
+  "precio": 12999,
+  "pagina": "vital-02-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PRUNE Perfume x50ml",
+  "precio": 18999,
+  "pagina": "vital-02-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "KEVIN DUBAI Perfume edp c/vap x100ml",
+  "precio": 26999,
+  "pagina": "vital-02-04",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "KOLYNOS Crema dental super blanco x70g",
+  "precio": 1819,
+  "pagina": "vital-02-05",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "COLGATE Crema dental Tr acc original x70g",
+  "precio": 1899,
+  "pagina": "vital-02-05",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CLOSE UP Crema dental x70g",
+  "precio": 2099,
+  "pagina": "vital-02-05",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "COLGATE Hilo dental 2x1 x50m",
+  "precio": 3539,
+  "pagina": "vital-02-05",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "COLGATE Crema dental herbal x140g",
+  "precio": 3559,
+  "pagina": "vital-02-05",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "COLGATE Crema dental Total encias x90g",
+  "precio": 4799,
+  "pagina": "vital-02-05",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "COLGATE Crema dental Total limp inter x90g",
+  "precio": 4799,
+  "pagina": "vital-02-05",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "COLGATE Cepillo dental brillianstar x2u",
+  "precio": 4899,
+  "pagina": "vital-02-05",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "COLGATE Crema dental Sens original x110gr",
+  "precio": 5499,
+  "pagina": "vital-02-05",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "COLGATE Cepillo dental 360 promo 2x1",
+  "precio": 5699,
+  "pagina": "vital-02-05",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ORAL-B Cepillo interdental expert x20u",
+  "precio": 5899,
+  "pagina": "vital-02-05",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "COLGATE Crema dental Sens pro alivio x140g",
+  "precio": 6829,
+  "pagina": "vital-02-05",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "LISTERINE Enjuague bucal x500ml",
+  "precio": 7399,
+  "pagina": "vital-02-05",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CALIPSO Protectores diarios colaless x20u",
+  "precio": 1139,
+  "pagina": "vital-02-06",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "LINA Toalla femenina normal c/a x8u",
+  "precio": 1159,
+  "pagina": "vital-02-06",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "NOSOTRAS Protectores diarios normal x20u",
+  "precio": 1199,
+  "pagina": "vital-02-06",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CALIPSO Toalla femenina normal c/a x16u",
+  "precio": 1299,
+  "pagina": "vital-02-06",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "NOSOTRAS Toalla femenina esencial sua x16u",
+  "precio": 1799,
+  "pagina": "vital-02-06",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "LADYSOFT Toalla femenina ultra suave c/a x8u",
+  "precio": 1999,
+  "pagina": "vital-02-06",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "NOSOTRAS Protectores diarios largos x20u",
+  "precio": 2119,
+  "pagina": "vital-02-06",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "KOTEX Toalla femenina nocturna c/a x8u",
+  "precio": 2999,
+  "pagina": "vital-02-06",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "NOSOTRAS Protectores diarios normal x60u",
+  "precio": 4699,
+  "pagina": "vital-02-06",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "O.B. Tampones x16u",
+  "precio": 5199,
+  "pagina": "vital-02-06",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ALWAYS Toalla femenina xtra seca c/a x16u",
+  "precio": 5399,
+  "pagina": "vital-02-06",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ALWAYS Toalla femenina dia suave c/a x16u",
+  "precio": 5999,
+  "pagina": "vital-02-06",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "KOTEX Toalla femenina normal c/a x32u",
+  "precio": 8599,
+  "pagina": "vital-02-06",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CAREFREE Protectores diarios protectores largos x60u",
+  "precio": 8349,
+  "pagina": "vital-02-07",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CAREFREE Protectores diarios protectores largos x20u",
+  "precio": 3329,
+  "pagina": "vital-02-07",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CAREFREE Protectores diarios compact s/perf x20u",
+  "precio": 1909,
+  "pagina": "vital-02-07",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CAREFREE Protectores diarios tanga s/perf x60u",
+  "precio": 8349,
+  "pagina": "vital-02-07",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CAREFREE Protectores diarios todos los dias x100u",
+  "precio": 10219,
+  "pagina": "vital-02-07",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SIEMPRE LIBRE Toalla femenina especial c/a x8u",
+  "precio": 1359,
+  "pagina": "vital-02-07",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SIEMPRE LIBRE Toalla femenina tanga c/a x8u",
+  "precio": 2259,
+  "pagina": "vital-02-07",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SIEMPRE LIBRE Toalla femenina adapt plus c/a x8u",
+  "precio": 3089,
+  "pagina": "vital-02-07",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SIEMPRE LIBRE Toalla femenina especial c/a x16u",
+  "precio": 2969,
+  "pagina": "vital-02-07",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SIEMPRE LIBRE Toalla femenina adapt plus c/ax32u",
+  "precio": 9589,
+  "pagina": "vital-02-07",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "BABYSEC PREMIUM Pañal soft reg",
+  "precio": 3899,
+  "pagina": "vital-02-08",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "HUGGIES Pañales Flexi Confort",
+  "precio": 13999,
+  "pagina": "vital-02-08",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "HUGGIES Natural care",
+  "precio": 15399,
+  "pagina": "vital-02-08",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PAMPERS Pañal Babysan mes de uso",
+  "precio": 21999,
+  "pagina": "vital-02-08",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PAMPERS Pañal Babydry mes de uso",
+  "precio": 29999,
+  "pagina": "vital-02-08",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ESTRELLA Pañal hiperpack",
+  "precio": 11799,
+  "pagina": "vital-02-08",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ESTRELLA Pañal super pack",
+  "precio": 18999,
+  "pagina": "vital-02-08",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "KIMBIES Toalla humeda x48u",
+  "precio": 1869,
+  "pagina": "vital-02-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "JOHNSON BABY Jabón x80g",
+  "precio": 1499,
+  "pagina": "vital-02-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "IDEAL Toalla humeda aloe vera x50u",
+  "precio": 1499,
+  "pagina": "vital-02-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "HUGGIES Toalla humeda limpieza efectiva x48u",
+  "precio": 2999,
+  "pagina": "vital-02-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "DONCELLA Protector mamario x24u",
+  "precio": 3129,
+  "pagina": "vital-02-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "JOHONSON BABY Baño líquido glicerina x200ml",
+  "precio": 3799,
+  "pagina": "vital-02-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "JOHNSON BABY Aceite de bebe puro x100ml",
+  "precio": 4299,
+  "pagina": "vital-02-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "JOHNSON BABY Shampoo y acondicionador kids x200ml",
+  "precio": 4599,
+  "pagina": "vital-02-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "BABY DOVE Shampoo humectación enriquecida x200ml",
+  "precio": 5199,
+  "pagina": "vital-02-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ESTRELLA BABY Oleo calcáreo sin perfume x950ml",
+  "precio": 7999,
+  "pagina": "vital-02-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "JOHNSON BABY Shampoo y acondicionador x400ml",
+  "precio": 8999,
+  "pagina": "vital-02-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "DANIELLE Kit edt. x90 + jabonera/jabón x75g",
+  "precio": 11999,
+  "pagina": "vital-02-09",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PRESTOBARBA Maquina ultragrip rosa x1u",
+  "precio": 1099,
+  "pagina": "vital-02-10",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ESTRELLA Algodon super x100gr",
+  "precio": 1119,
+  "pagina": "vital-02-10",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CUTEX Quitaesmalte 50ml",
+  "precio": 1629,
+  "pagina": "vital-02-10",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Q-SOFT Hisopos pote x150u",
+  "precio": 2599,
+  "pagina": "vital-02-10",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "DONCELLA Algodon x300gr",
+  "precio": 2999,
+  "pagina": "vital-02-10",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "NIVEA Crema lata x150ml",
+  "precio": 4799,
+  "pagina": "vital-02-10",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "VENUS Maquina afeitar desc suave x2u",
+  "precio": 5119,
+  "pagina": "vital-02-10",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "GILLETTE Crema afeitar cara/ cuerpox150ml",
+  "precio": 6129,
+  "pagina": "vital-02-10",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "GILLETTE Maquina afeitar desc cuerpo x2u",
+  "precio": 6299,
+  "pagina": "vital-02-10",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ST IVES Crema corporal x532ml",
+  "precio": 9999,
+  "pagina": "vital-02-10",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PRESTOBARBA3 Maquina afeitar desc ext suax8u",
+  "precio": 18999,
+  "pagina": "vital-02-10",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CIF Lavavajillas bioactive x300ml",
+  "precio": 1299,
+  "pagina": "vital-02-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "POETT Pastilla inod c/red x25g",
+  "precio": 1499,
+  "pagina": "vital-02-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "GLADE Desodorante ambiente x360cc",
+  "precio": 2599,
+  "pagina": "vital-02-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "AYUDIN Lavandina gel original x700ml",
+  "precio": 2649,
+  "pagina": "vital-02-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CERAMICOL Autobrillo incoloro d/p x450ml",
+  "precio": 2899,
+  "pagina": "vital-02-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CIF Limpiador gel desinfectante original x500g",
+  "precio": 3599,
+  "pagina": "vital-02-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CIF BIO ACTIVE Lavavajillas x750ml",
+  "precio": 3799,
+  "pagina": "vital-02-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CIF Limpiador piso plastificado x750ml",
+  "precio": 3869,
+  "pagina": "vital-02-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "BLEM Lustramuebles x360cc",
+  "precio": 4299,
+  "pagina": "vital-02-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "REX Limpiador acero inox. gatillo x500cc",
+  "precio": 4299,
+  "pagina": "vital-02-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "AYUDIN Lavandina original x4lt",
+  "precio": 4399,
+  "pagina": "vital-02-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "POETT Desinfectante x4lt",
+  "precio": 6899,
+  "pagina": "vital-02-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "GLADE Difusor aceite + repuesto vainilla x21ml",
+  "precio": 15999,
+  "pagina": "vital-02-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "GLADE Difusor autom + repuesto lavanda x175g",
+  "precio": 24999,
+  "pagina": "vital-02-11",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "RAID Tabletas Rápida acción x 12u",
+  "precio": 2729,
+  "pagina": "vital-02-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "RAID Espirales x4u.",
+  "precio": 759,
+  "pagina": "vital-02-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "RAID Espirales x12u",
+  "precio": 1789,
+  "pagina": "vital-02-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "RAID Espirales Country fresh x12u",
+  "precio": 2399,
+  "pagina": "vital-02-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "FUYI Tabletas x12u",
+  "precio": 2799,
+  "pagina": "vital-02-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SELTON Insecticida mmm accion Instant x360cc",
+  "precio": 3199,
+  "pagina": "vital-02-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SELTON Insecticida mmm aerosol x360cc",
+  "precio": 3199,
+  "pagina": "vital-02-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "FUYI Tabletas x24/28u",
+  "precio": 3699,
+  "pagina": "vital-02-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "FUYI Insecticida mmm aero x360cc x360cc.",
+  "precio": 3799,
+  "pagina": "vital-02-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "BAYGON Insecticida cucarachas /araña aerosol x300ml",
+  "precio": 3999,
+  "pagina": "vital-02-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "RAID Mata cucarachas exterminador x360cc",
+  "precio": 4289,
+  "pagina": "vital-02-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "RAID Tabletas rápida acción x24u.",
+  "precio": 5199,
+  "pagina": "vital-02-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "RAID Insecticida casa y jardín x360/380ml.",
+  "precio": 5999,
+  "pagina": "vital-02-12",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SEISEME Jabon en pan x300g",
+  "precio": 2599,
+  "pagina": "vital-02-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SKIP Jabon liq d/p x800ml",
+  "precio": 1699,
+  "pagina": "vital-02-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "VANISH Quitamanchas oxi-gel d/p x400cc",
+  "precio": 1799,
+  "pagina": "vital-02-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "VIVERE Suavizante plancha d/p x900ml",
+  "precio": 1899,
+  "pagina": "vital-02-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "VIVERE Suavizante d/p x900cc",
+  "precio": 2289,
+  "pagina": "vital-02-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ARIEL Jabon liquido platinum d/p x800ml",
+  "precio": 2399,
+  "pagina": "vital-02-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ALA CAMELLITO Jabon liquido d/p x900ml",
+  "precio": 4899,
+  "pagina": "vital-02-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "GRANBY Jabon en polvo x3kg",
+  "precio": 5339,
+  "pagina": "vital-02-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SKIP Jabon liquido botella x800ml",
+  "precio": 6599,
+  "pagina": "vital-02-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "AYUDIN Quitamanchas colores vivos botella x1.5lt",
+  "precio": 6799,
+  "pagina": "vital-02-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "COMFORT Suavizante concentrado bridgerton botella x1lt",
+  "precio": 8699,
+  "pagina": "vital-02-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "TRENET Quitamanchas polvo d/p x850g",
+  "precio": 9399,
+  "pagina": "vital-02-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ARIEL Jabon liquido delicados d/p x3lt",
+  "precio": 11499,
+  "pagina": "vital-02-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "VIVERE Suavizante clasico bidon x5lt",
+  "precio": 12299,
+  "pagina": "vital-02-13",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ELEGANTE Papel higienico blanco h/s 4x30mt",
+  "precio": 1249,
+  "pagina": "vital-02-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ELITE MAXIROLLO Rollo de cocina 120px2u",
+  "precio": 3149,
+  "pagina": "vital-02-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ENCENDEDOR bic mini J5",
+  "precio": 829,
+  "pagina": "vital-02-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "GLOW Bolsa residuos 45x60 rollo 20u",
+  "precio": 1429,
+  "pagina": "vital-02-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "VIRULANA Guantes multiuso",
+  "precio": 2789,
+  "pagina": "vital-02-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MORTIMER Bolsa residuos 50x65 rollo 15u",
+  "precio": 2899,
+  "pagina": "vital-02-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SUSSEX MAXI Rollo de cocina 3ux100p",
+  "precio": 3799,
+  "pagina": "vital-02-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "IMPEKE Trapero humedo limon x10u",
+  "precio": 4399,
+  "pagina": "vital-02-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "RAID Cebo Mata Cucarachas Max x6u",
+  "precio": 7899,
+  "pagina": "vital-02-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SKAY Paño multiuso lleva 8 paga 6",
+  "precio": 7999,
+  "pagina": "vital-02-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SKAY Paño multiuso rollo x25u",
+  "precio": 13999,
+  "pagina": "vital-02-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ELEGANTE Papel higienico blanco h/s 24x50mt",
+  "precio": 18299,
+  "pagina": "vital-02-14",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "NEW AGE Vino gasificado blanco x750cc",
+  "precio": 3799,
+  "pagina": "vital-02-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "DON VALENTIN Vino lacrado tinto x750cc",
+  "precio": 3099,
+  "pagina": "vital-02-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ALARIS Vino malbec/ cabernet x750cc",
+  "precio": 3199,
+  "pagina": "vital-02-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "RESERO Vino blanco/ tinto tetrabrik x1lt",
+  "precio": 1349,
+  "pagina": "vital-02-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "DON DAVID Vino malbec/ cabernet x750cc",
+  "precio": 6399,
+  "pagina": "vital-02-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SANTA JULIA Vino tardio blanco x500cc",
+  "precio": 5349,
+  "pagina": "vital-02-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SAN TELMO Vino malbec x750ml",
+  "precio": 2849,
+  "pagina": "vital-02-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "DADA Vino x750cc",
+  "precio": 4299,
+  "pagina": "vital-02-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SENSEI Vino malbec x750cc",
+  "precio": 3599,
+  "pagina": "vital-02-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "FAMILIA GASCON Vino reserva malbec x750cc",
+  "precio": 5699,
+  "pagina": "vital-02-15",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "BRANCA Fernet menta x750cc",
+  "precio": 11399,
+  "pagina": "vital-02-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "DR.LEMON Aperitivo pomelo vodka x1lt",
+  "precio": 3029,
+  "pagina": "vital-02-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CAMPARI Aperitivo x450cc",
+  "precio": 5499,
+  "pagina": "vital-02-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CARPANO Vermouth rosso x950cc",
+  "precio": 5499,
+  "pagina": "vital-02-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "1882 Fernet x1lt",
+  "precio": 7699,
+  "pagina": "vital-02-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "AMARGO OBRERO Aperitivo X950cc",
+  "precio": 4199,
+  "pagina": "vital-02-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CINZANO Vermouth bianco/rosso x1lt",
+  "precio": 6999,
+  "pagina": "vital-02-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MARCELA Aperitivo americano x950cc",
+  "precio": 3659,
+  "pagina": "vital-02-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SMIRNOFF Vodka italia x700cc",
+  "precio": 7299,
+  "pagina": "vital-02-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "BOMBAY SAPPHIRE Gin x750cc",
+  "precio": 33799,
+  "pagina": "vital-02-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "BACARDI Ron blanco/oro",
+  "precio": 18799,
+  "pagina": "vital-02-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CORONA Cerveza botella NR x710cc",
+  "precio": 4699,
+  "pagina": "vital-02-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "AMSTEL Cerveza lata x473cc",
+  "precio": 1699,
+  "pagina": "vital-02-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "HEINEKEN Cerveza lata x473cc",
+  "precio": 2799,
+  "pagina": "vital-02-16",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "VILLA DEL SUR LEVITE Agua saborizada x2.5lt",
+  "precio": 2599,
+  "pagina": "vital-02-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "VILLA DEL SUR Agua mineral x2.5/2.25lt",
+  "precio": 1899,
+  "pagina": "vital-02-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "BAGGIO PRONTO Jugo 1x1.5lt",
+  "precio": 2399,
+  "pagina": "vital-02-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MONSTER Energizante x473ml",
+  "precio": 2599,
+  "pagina": "vital-02-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "VILLA DEL SUR Agua bidon x6.2lt",
+  "precio": 3699,
+  "pagina": "vital-02-17",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MOLINOS ALA Arroz parboil g.selecto x1kg",
+  "precio": 1659,
+  "pagina": "vital-02-18",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "LEGITIMO Aceite girasol x1.5lt",
+  "precio": 4749,
+  "pagina": "vital-02-18",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "FAVORITA Harina 000 x1kg",
+  "precio": 779,
+  "pagina": "vital-02-18",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MORIXE Harina de maiz para arepas x1kg",
+  "precio": 2599,
+  "pagina": "vital-02-18",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PRESTOPRONTA Polenta x490gr",
+  "precio": 1099,
+  "pagina": "vital-02-18",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MAMA COCINA Pan rallado x1kg",
+  "precio": 2099,
+  "pagina": "vital-02-18",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MAGGI Pure de papa orig ins/cremo x200g",
+  "precio": 2899,
+  "pagina": "vital-02-18",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MORIXE Aceite oliva ext/virgen petx500ml",
+  "precio": 8999,
+  "pagina": "vital-02-18",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "FRITOLIM Aceite aerosol manteca x120gr",
+  "precio": 3599,
+  "pagina": "vital-02-18",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "GIACOMO Capelettini x500gr.",
+  "precio": 4499,
+  "pagina": "vital-02-18",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "DE LA HUERTA Pulpa de tomate x520g",
+  "precio": 749,
+  "pagina": "vital-02-18",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SALSATI T/B Pure de tomate x520gr",
+  "precio": 1099,
+  "pagina": "vital-02-18",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MOLINOS ALA Arroz doble carolina x500gr",
+  "precio": 1479,
+  "pagina": "vital-02-18",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "GALLO ORO Arroz parboil estuche x1kg",
+  "precio": 2449,
+  "pagina": "vital-02-18",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "DOS ESTRELLAS Sal fina x500gr",
+  "precio": 549,
+  "pagina": "vital-02-19",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "KNORR Caldo deshidratado x2u",
+  "precio": 389,
+  "pagina": "vital-02-19",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "NATURA Mostaza doy pack x250gr",
+  "precio": 899,
+  "pagina": "vital-02-19",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "NATURA Ketchup doy pack x250g",
+  "precio": 1299,
+  "pagina": "vital-02-19",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MAYOLIVA Mayonesa doy pack x250cc",
+  "precio": 2049,
+  "pagina": "vital-02-19",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MAGGI Caldo x12u",
+  "precio": 1599,
+  "pagina": "vital-02-19",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "KNORR Bolsa p/horno x21g",
+  "precio": 2399,
+  "pagina": "vital-02-19",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "LA CAMPAGNOLA Arvejas secas remo.x300gr",
+  "precio": 1199,
+  "pagina": "vital-02-19",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "DOS ANCLAS Vinagre alcohol pet x1lt.",
+  "precio": 1299,
+  "pagina": "vital-02-19",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "DOS ANCLAS Vinagre manzana pet x1lt.",
+  "precio": 2999,
+  "pagina": "vital-02-19",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "DOS ANCLAS Vinagre vino pet x500cc.",
+  "precio": 1499,
+  "pagina": "vital-02-19",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "DOS ANCLAS Jugo de limon x500cc.",
+  "precio": 1999,
+  "pagina": "vital-02-19",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Ketchup Hellmann's x 500gr.",
+  "precio": 3599,
+  "pagina": "vital-02-20",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Mayonesa clásica y liviana x 118gr.",
+  "precio": 599,
+  "pagina": "vital-02-20",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Hellmann's sabor ajoj, picante y asado x 250gr.",
+  "precio": 2299,
+  "pagina": "vital-02-20",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Salsa barbacoa x 250gr.",
+  "precio": 1999,
+  "pagina": "vital-02-20",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Mostaza Savora x 250gr.",
+  "precio": 1149,
+  "pagina": "vital-02-20",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Toddy Cacao original x180g",
+  "precio": 1299,
+  "pagina": "vital-02-21",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Dolca Cafe instantaneo frasco x170g",
+  "precio": 7699,
+  "pagina": "vital-02-21",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Super Cabrales Cafe molido x500",
+  "precio": 19999,
+  "pagina": "vital-02-21",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "La Morenita Cafe saquitos torr.clas x20u",
+  "precio": 3699,
+  "pagina": "vital-02-21",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Nesquik Cacao s/tacc x800g",
+  "precio": 7499,
+  "pagina": "vital-02-21",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "La Planta De Cafe Cafe molido x500gr",
+  "precio": 10799,
+  "pagina": "vital-02-21",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Dolce Gusto Capsulas au lait x10u",
+  "precio": 9499,
+  "pagina": "vital-02-21",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "La Virginia Cafe mol. arab.tost. x500ml",
+  "precio": 17999,
+  "pagina": "vital-02-21",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Nesquik Leche chocolatada tb x200ml",
+  "precio": 1199,
+  "pagina": "vital-02-21",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Nesquik Cacao menos azucar x150g",
+  "precio": 2489,
+  "pagina": "vital-02-21",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Emeth Mermelada durazno y ciruela x420gr",
+  "precio": 1299,
+  "pagina": "vital-02-21",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Lasfor Bolitas chocolatadas / Aritos frutados x180grs",
+  "precio": 1299,
+  "pagina": "vital-02-21",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Lasfor Almohadita rell. x200gr",
+  "precio": 1899,
+  "pagina": "vital-02-21",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Nutrifoods Granola c/pasas balance x320g",
+  "precio": 2999,
+  "pagina": "vital-02-21",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Exquisita Bizcochuelo vainilla x540gr",
+  "precio": 2599,
+  "pagina": "vital-02-22",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Ledesma Azucar light x500gr",
+  "precio": 1199,
+  "pagina": "vital-02-22",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "BC Gelatina light x18g",
+  "precio": 599,
+  "pagina": "vital-02-22",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Exquisita Flan x40gr",
+  "precio": 999,
+  "pagina": "vital-02-22",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Aguila Bizcochuelo torta humeda x450gr",
+  "precio": 4299,
+  "pagina": "vital-02-22",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Exquisita Premezcla p/ brownies x425g",
+  "precio": 3599,
+  "pagina": "vital-02-22",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Aguila/Bon o Bon/Cofler Relleno untable x290gr",
+  "precio": 5899,
+  "pagina": "vital-02-22",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Dos Anclas Coco rallado x40gr",
+  "precio": 999,
+  "pagina": "vital-02-22",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Aleluya Miel liquida sin tacc x190gr",
+  "precio": 2999,
+  "pagina": "vital-02-22",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Royal Polvo para hornear x50g",
+  "precio": 1299,
+  "pagina": "vital-02-22",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Royal Gelatina x25gr",
+  "precio": 1179,
+  "pagina": "vital-02-22",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Alicante Esencia de vainilla x100cc",
+  "precio": 1599,
+  "pagina": "vital-02-22",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Ledesma Azucar rubio mascabo bolsa x800g",
+  "precio": 1499,
+  "pagina": "vital-02-22",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Morixe Avena x400gr",
+  "precio": 1299,
+  "pagina": "vital-02-22",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Rosamonte Yerba x500gr",
+  "precio": 1499,
+  "pagina": "vital-02-23",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CBSe Yerba x500g",
+  "precio": 1579,
+  "pagina": "vital-02-23",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Pipore Yerba suave clasica x500gr",
+  "precio": 1599,
+  "pagina": "vital-02-23",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Mateando Yerba suave x500g",
+  "precio": 1749,
+  "pagina": "vital-02-23",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Romance Yerba x1kg",
+  "precio": 2899,
+  "pagina": "vital-02-23",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Canarias Yerba tradicional x1kg",
+  "precio": 10799,
+  "pagina": "vital-02-23",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Cachamate Yerba coco x500g",
+  "precio": 1599,
+  "pagina": "vital-02-23",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Playadito Yerba hierbas x500gr",
+  "precio": 2599,
+  "pagina": "vital-02-23",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "La Merced Yerba x500gr",
+  "precio": 3599,
+  "pagina": "vital-02-23",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Playadito Mate cocido x25sq",
+  "precio": 999,
+  "pagina": "vital-02-23",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Taragui Mate cocido f/ diaman. s/ens.x50u",
+  "precio": 2299,
+  "pagina": "vital-02-23",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Taragui Te filtro diam. s/ ons.X25sq",
+  "precio": 999,
+  "pagina": "vital-02-23",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Taragui Te filtro diamant. s/ en.X100sq",
+  "precio": 3399,
+  "pagina": "vital-02-23",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CHOCOLINAS Galletitas x250/262grs",
+  "precio": 1849,
+  "pagina": "vital-02-24",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "TERRABUSI Galletitas variedad x390gr",
+  "precio": 2099,
+  "pagina": "vital-02-24",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PEPITOS Galletitas x119gr",
+  "precio": 1499,
+  "pagina": "vital-02-24",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "POZO Vainillas x480/444grs",
+  "precio": 3499,
+  "pagina": "vital-02-24",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "TRIO Pepas membrillo x200gr",
+  "precio": 929,
+  "pagina": "vital-02-24",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CEREALITAS Galletitas 3ux207/212grs",
+  "precio": 3999,
+  "pagina": "vital-02-24",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MOLINOS ALA Tostadas arroz clasic.x150gr",
+  "precio": 1529,
+  "pagina": "vital-02-24",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CACHAFAZ Galletitas integral chips x225g",
+  "precio": 1999,
+  "pagina": "vital-02-24",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "RIERA Tostadas dulce / mesa / sin sal x200g",
+  "precio": 1099,
+  "pagina": "vital-02-24",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "RONDA Galletita hojaldradas x150gr",
+  "precio": 1599,
+  "pagina": "vital-02-24",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MELLIZAS Galletitas 3ux110gr",
+  "precio": 3299,
+  "pagina": "vital-02-24",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "OPERA Obleas x92gr",
+  "precio": 959,
+  "pagina": "vital-02-24",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "POLVORITA Galletitas x81g",
+  "precio": 479,
+  "pagina": "vital-02-24",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CEREALES BAGLEY Galletitas salv.3ux169gr",
+  "precio": 3399,
+  "pagina": "vital-02-24",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "BELDENT Chicles menta x10g",
+  "precio": 599,
+  "pagina": "vital-02-25",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ARCOR Turron de mani x25g",
+  "precio": 249,
+  "pagina": "vital-02-25",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "BABY DOLL Chupetin blister x24g",
+  "precio": 599,
+  "pagina": "vital-02-25",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "BILLIKEN Gomitas roll frutal x35gr",
+  "precio": 429,
+  "pagina": "vital-02-25",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "BULL DOG Pastillas mix sand/manzana y mandar/uva x30g",
+  "precio": 399,
+  "pagina": "vital-02-25",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "HALL'S Pastillas x25.6g",
+  "precio": 549,
+  "pagina": "vital-02-25",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "BON O BON Bombon dubai 18ux16.5g",
+  "precio": 11999,
+  "pagina": "vital-02-25",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "BON O BON/ COFLER/ RCKLETS Chocolate bites x130g",
+  "precio": 3999,
+  "pagina": "vital-02-25",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "BON O BON Chocolate tableta x160g",
+  "precio": 5999,
+  "pagina": "vital-02-25",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "BON O BON Oblea x30g",
+  "precio": 999,
+  "pagina": "vital-02-25",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PICO DULCE Chupetin display x24u",
+  "precio": 4549,
+  "pagina": "vital-02-25",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MONDELEZ Alfajores triple x 55gr/60gr/70gr",
+  "precio": 1349,
+  "pagina": "vital-02-25",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "LA YAPA Pastillas surtido x17g",
+  "precio": 299,
+  "pagina": "vital-02-25",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "BILLIKEN Caramelos x600gr",
+  "precio": 4299,
+  "pagina": "vital-02-25",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PEHUAMAR Papas fritas clásicas/acanaladas x420gr",
+  "precio": 6799,
+  "pagina": "vital-02-26",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "REX Galletitas bolsa x75gr",
+  "precio": 1129,
+  "pagina": "vital-02-26",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SALADIX Galletitas x100gr",
+  "precio": 1379,
+  "pagina": "vital-02-26",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "KESITAS Galletitas estuche x125gr",
+  "precio": 1799,
+  "pagina": "vital-02-26",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "TWISTOS Tostaditas saborizadas jamón/queso x155gr",
+  "precio": 3799,
+  "pagina": "vital-02-26",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MANIAX Mani japones sabor jamon x95gr",
+  "precio": 1999,
+  "pagina": "vital-02-26",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "LAY'S Papas fritas clasicas x40grs",
+  "precio": 1799,
+  "pagina": "vital-02-26",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "DORITOS Nachos de queso x129gr",
+  "precio": 4799,
+  "pagina": "vital-02-26",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PEHUAMAR Papas fritas saborizadas x310gr",
+  "precio": 5999,
+  "pagina": "vital-02-26",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CAT CHOW Alimento para gato pouch x85gr",
+  "precio": 1189,
+  "pagina": "vital-02-27",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "DOG CHOW Alimento para perro adulto mix x15kg",
+  "precio": 39999,
+  "pagina": "vital-02-27",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "FELIX Alimento para gato pouch x85gr",
+  "precio": 1099,
+  "pagina": "vital-02-27",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "GATI Alimento para gato adulto pescado y salmón x1kg",
+  "precio": 3599,
+  "pagina": "vital-02-27",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "DOG CHOW Alimento para perro adulto proteína x1kg",
+  "precio": 4499,
+  "pagina": "vital-02-27",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CAT CHOW Alimento para gato adulto pollo y pescado carne y pollo x3kg",
+  "precio": 17999,
+  "pagina": "vital-02-27",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CAT CHOW Alimento para gato esterilizado pescado x3kg",
+  "precio": 19999,
+  "pagina": "vital-02-27",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "FELIX Alimento para gato adulto megamix x8kg",
+  "precio": 35999,
+  "pagina": "vital-02-27",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CAT CHOW Alimento para gato adulto x8kg",
+  "precio": 34999,
+  "pagina": "vital-02-27",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PEDIGREE Alimento para perro bolsa x15kg",
+  "precio": 25999,
+  "pagina": "vital-02-27",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MANTECOL Postre x111gr",
+  "precio": 1989,
+  "pagina": "vital-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "DON SATUR Pan dulce con fruta / c/chips choco x400gr",
+  "precio": 3499,
+  "pagina": "vital-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "NUCREM Postre original x150gr",
+  "precio": 2199,
+  "pagina": "vital-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "GEORGALOS Crocante con chocolate x100gr",
+  "precio": 2999,
+  "pagina": "vital-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ARCOR Turrón de maní x280gr",
+  "precio": 4399,
+  "pagina": "vital-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "GEORGALOS Garrapiñada de maní x100gr",
+  "precio": 1249,
+  "pagina": "vital-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "AGUILA Almendras doble tentacion x90gr",
+  "precio": 7999,
+  "pagina": "vital-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "GEORGALOS Maní con chocolate x120gr",
+  "precio": 2699,
+  "pagina": "vital-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ROCKLETS Chocolate confit navidad x120gr",
+  "precio": 5199,
+  "pagina": "vital-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "DON SATUR Budín x190gr",
+  "precio": 1499,
+  "pagina": "vital-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "POZO Budín vainilla x170gr",
+  "precio": 949,
+  "pagina": "vital-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ARCOR Pan dulce con fruta x400gr",
+  "precio": 7399,
+  "pagina": "vital-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MUSEL Pan dulce con fruta x500gr",
+  "precio": 4699,
+  "pagina": "vital-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "STEINHAUSER Pan dulce c/almendras x850gr",
+  "precio": 24999,
+  "pagina": "vital-03-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Set cubiertos Tramontina X3, tenedor, cuchillo, cuchara y cucharita",
+  "precio": 2500,
+  "pagina": "vital-04-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Vaso facetado 290ml. X6u.",
+  "precio": 10000,
+  "pagina": "vital-04-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Set jarra X900ml. + 4 vasos X240ml.",
+  "precio": 20000,
+  "pagina": "vital-04-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Mate AFA acero inoxidable 180ml",
+  "precio": 7000,
+  "pagina": "vital-04-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Vaso AFA acero inoxidable 1.2lt",
+  "precio": 13000,
+  "pagina": "vital-04-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Parrilla carbon c/mesa lateral",
+  "precio": 250000,
+  "pagina": "vital-04-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Remeron manga corta mujer",
+  "precio": 11000,
+  "pagina": "vital-04-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Almohada 50x70 cm",
+  "precio": 7000,
+  "pagina": "vital-04-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Toallon colores surtidos 70x140cm",
+  "precio": 6000,
+  "pagina": "vital-04-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Toalla secado rapido 80x130cm",
+  "precio": 8000,
+  "pagina": "vital-04-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Poncho de toalla infantil 60x120cm",
+  "precio": 7500,
+  "pagina": "vital-04-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Bermuda cargo con cordon",
+  "precio": 16000,
+  "pagina": "vital-04-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Alfombra baño chenille 40x60",
+  "precio": 6800,
+  "pagina": "vital-04-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Set de baño 4 en 1",
+  "precio": 24500,
+  "pagina": "vital-04-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Rack tv centro estant 3 div c/est 55\"",
+  "precio": 100000,
+  "pagina": "vital-04-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Amoladora angular VTL 500W",
+  "precio": 39000,
+  "pagina": "vital-04-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Taladro VTL inalambrico 18NM",
+  "precio": 67000,
+  "pagina": "vital-04-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Sierra caladora VTL 450W",
+  "precio": 35000,
+  "pagina": "vital-04-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Bicicleta VTL R29 MTB aluminio 21 vel",
+  "precio": 350000,
+  "pagina": "vital-04-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Set exterior jardin 3 piezas",
+  "precio": 280000,
+  "pagina": "vital-04-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Vacio Swift xkg.",
+  "precio": 14999,
+  "pagina": "vital-05-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Carne picada Swift congelada 500xkg.",
+  "precio": 5999,
+  "pagina": "vital-05-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Tapa de asado Swift xkg.",
+  "precio": 14999,
+  "pagina": "vital-05-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Tapa de nalga Swift xkg.",
+  "precio": 13999,
+  "pagina": "vital-05-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Carnaza de paleta Swift xkg.",
+  "precio": 14999,
+  "pagina": "vital-05-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Peceto Swift xkg.",
+  "precio": 18999,
+  "pagina": "vital-05-1",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "BONDIOLA Seara congelada xkg",
+  "precio": 7999,
+  "pagina": "vital-05-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "VACÍO DE CERDO Campo Austral congelada .e/v xkg.",
+  "precio": 9999,
+  "pagina": "vital-05-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CHURRASQUITO Campo Austral congelada e/v xkg.",
+  "precio": 13999,
+  "pagina": "vital-05-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MATAMBRITO CERDO Campo Austral xkg.",
+  "precio": 15999,
+  "pagina": "vital-05-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CARNE PICADA CERDO Catter Meat x500gr.",
+  "precio": 4999,
+  "pagina": "vital-05-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "LA PAULINA Queso port salut Horma xkg",
+  "precio": 10999,
+  "pagina": "vital-05-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "LA PAULINA Queso rallado x40gr",
+  "precio": 1499,
+  "pagina": "vital-05-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ELOGIO Queso sardo negro Horma xkg",
+  "precio": 17099,
+  "pagina": "vital-05-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CREMATTO Queso crema x285gr",
+  "precio": 3719,
+  "pagina": "vital-05-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MILKAUT Manteca x100gr",
+  "precio": 1999,
+  "pagina": "vital-05-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "LA PAULINA Dulce de leche familiar x400gr",
+  "precio": 2999,
+  "pagina": "vital-05-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ILOLAY Yogur bebible x900g",
+  "precio": 2679,
+  "pagina": "vital-05-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MILKAUT Yogur cremoso x120g",
+  "precio": 869,
+  "pagina": "vital-05-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "TREGAR Yogur con frutas x150g",
+  "precio": 1499,
+  "pagina": "vital-05-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MILKAUT Yogur firme x180gr",
+  "precio": 1269,
+  "pagina": "vital-05-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MILKAUT Yogur 0% lactosa",
+  "precio": 1049,
+  "pagina": "vital-05-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "ILOLAY Yogur bebible botella x950g",
+  "precio": 3399,
+  "pagina": "vital-05-4",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "VILLA D'AGRI Ravioles x500gr",
+  "precio": 2899,
+  "pagina": "vital-05-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "LA SALTEÑA Ñoquis papa x900grs",
+  "precio": 5289,
+  "pagina": "vital-05-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "VILLA D'AGRI Panzottis jamón/queso x500gr",
+  "precio": 3489,
+  "pagina": "vital-05-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "S&P Sorrentinos jamón/queso x500gr",
+  "precio": 2289,
+  "pagina": "vital-05-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "VILLA D'AGRI Tallarines x500gr",
+  "precio": 2489,
+  "pagina": "vital-05-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "LA SANTIAGUEÑA Tapa pascualina x360gr",
+  "precio": 1599,
+  "pagina": "vital-05-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "VILLA D'AGRI Tapa empanada x300gr",
+  "precio": 1849,
+  "pagina": "vital-05-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "BIMBO Pan artesano masa madre x500g",
+  "precio": 6279,
+  "pagina": "vital-05-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "LACTAL Pan lacteado x460/550g",
+  "precio": 3250,
+  "pagina": "vital-05-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "LA SANTIAGUEÑA Pan de salvado doble x600",
+  "precio": 2699,
+  "pagina": "vital-05-5",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "UNION GANADERA Nuggets de pollo x1kg",
+  "precio": 10999,
+  "pagina": "vital-05-6",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SIBARITA Pizza Mozzarella x470g",
+  "precio": 7999,
+  "pagina": "vital-05-6",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SWIFT Medallón de pollo 4ux80g",
+  "precio": 5899,
+  "pagina": "vital-05-6",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "MAMA COCINA Pan baguettin multicereal Pan prehorneado x6",
+  "precio": 3699,
+  "pagina": "vital-05-6",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "LUCCHETTI Milanesa de soja 4ux72.5g",
+  "precio": 2799,
+  "pagina": "vital-05-6",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "TUKI Hamburguesas 2ux55g",
+  "precio": 1399,
+  "pagina": "vital-05-7",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "UNIÓN GANADERA Hamburguesa supergigantes 2ux140g",
+  "precio": 5549,
+  "pagina": "vital-05-7",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "UNIÓN GANADERA Hamburguesa clásicas 4ux83g",
+  "precio": 6989,
+  "pagina": "vital-05-7",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "EXPRESS Medallón de carne c/soja 4ux69g",
+  "precio": 3899,
+  "pagina": "vital-05-7",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "UNIÓN GANADERA Hamburguesa clásicas 12ux83g",
+  "precio": 20879,
+  "pagina": "vital-05-7",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SWIFT BURGER Medallón de carne 12ux69g",
+  "precio": 12299,
+  "pagina": "vital-05-7",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PATY Hamburguesa clásico 20ux80g",
+  "precio": 25999,
+  "pagina": "vital-05-7",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PATY SUPER Hamburguesa 40ux125g",
+  "precio": 88315,
+  "pagina": "vital-05-7",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PATY Hamburguesa clásico 60ux80gr",
+  "precio": 80965,
+  "pagina": "vital-05-7",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "EXPRESS BY PATY Medallón 72ux69g",
+  "precio": 68895,
+  "pagina": "vital-05-7",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "LA BLANCA Nuggets de pollo x1.5kg",
+  "precio": 11999,
+  "pagina": "vital-05-8",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SWIFT Hamburguesa tipo casera 2ux120g",
+  "precio": 5299,
+  "pagina": "vital-05-8",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SWIFT BURGERI Medallon de carne 4ux69g",
+  "precio": 3599,
+  "pagina": "vital-05-8",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SWIFT Hamburgues clasica 4ux80g",
+  "precio": 6109,
+  "pagina": "vital-05-8",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SWIFT Hamburguesa clasica 12ux80g",
+  "precio": 14999,
+  "pagina": "vital-05-8",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SWIFT BURGER Medallon de carne 12ux69g",
+  "precio": 12299,
+  "pagina": "vital-05-8",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SWIFT Hamburguesa clasica 20ux80g",
+  "precio": 24399,
+  "pagina": "vital-05-8",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SWIFT Salchicha x6u (225gr)",
+  "precio": 1799,
+  "pagina": "vital-05-8",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SWIFT Papas prefritas congeladas x2kg",
+  "precio": 9519,
+  "pagina": "vital-05-8",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "SWIFT Salchicha x12u (450gr)",
+  "precio": 3699,
+  "pagina": "vital-05-8",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PALADINI Mortadela mini x300gr",
+  "precio": 3499,
+  "pagina": "vital-05-9",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CAGNOLI Salamin tandilero picado fino/ grueso xkg",
+  "precio": 29999,
+  "pagina": "vital-05-9",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CAGNOLI Salame bastón tandilero picado fino/ grueso xkg",
+  "precio": 27999,
+  "pagina": "vital-05-9",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "CAGNOLI Salame tipo fuet x150gr",
+  "precio": 6999,
+  "pagina": "vital-05-9",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PALADINI Jamón cocido fetas fina x200g",
+  "precio": 3999,
+  "pagina": "vital-05-9",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PALADINI Mortadela fetas finas x200g",
+  "precio": 2999,
+  "pagina": "vital-05-9",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PALADINI Salame milan feteado x120g",
+  "precio": 4999,
+  "pagina": "vital-05-9",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PALADINI Bondiola fetas finas x500gr",
+  "precio": 5999,
+  "pagina": "vital-05-9",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PALADINI Lomo cocido feteado x120g",
+  "precio": 3499,
+  "pagina": "vital-05-9",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PALADINI Panceta salada bacon fetas x150g",
+  "precio": 4999,
+  "pagina": "vital-05-9",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PALADINI Jamón cocido fetas b/sodio x150g",
+  "precio": 3499,
+  "pagina": "vital-05-9",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "PALADINI Jamón crudo fetas finas x120g",
+  "precio": 7999,
+  "pagina": "vital-05-9",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Atun S&P lomo natural/aceite lata 3ux80g",
+  "precio": 3399,
+  "pagina": "vital-06-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Arroz S&P largo fino 00000 x1kg",
+  "precio": 1139,
+  "pagina": "vital-06-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Lentejas S&P bolsa x400gr",
+  "precio": 869,
+  "pagina": "vital-06-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Garbanzos S&P bolsa x400gr",
+  "precio": 1299,
+  "pagina": "vital-06-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Vinagre de alcohol S&P x500cc",
+  "precio": 899,
+  "pagina": "vital-06-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Ketchup S&P d/p x200g",
+  "precio": 699,
+  "pagina": "vital-06-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Pera en mitades S&P x820g",
+  "precio": 2199,
+  "pagina": "vital-06-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Durazno S&P mitad x3kg",
+  "precio": 9499,
+  "pagina": "vital-06-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Maiz pisado blanco S&P bolsa x400gr",
+  "precio": 1449,
+  "pagina": "vital-06-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Te S&P x50sq",
+  "precio": 1119,
+  "pagina": "vital-06-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Mate cocido S&P x50u",
+  "precio": 1219,
+  "pagina": "vital-06-2",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Papel higienico BONUX max hoja simple 4ux80m",
+  "precio": 3240,
+  "pagina": "vital-06-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Papel film repuesto BONUX 38cmx300mt",
+  "precio": 12999,
+  "pagina": "vital-06-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Panuelos CARMEL clasicos box x75u",
+  "precio": 1199,
+  "pagina": "vital-06-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Jabon tocador CARMEL 3ux125gr",
+  "precio": 1899,
+  "pagina": "vital-06-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Alcohol fino CARMEL x500cc",
+  "precio": 2299,
+  "pagina": "vital-06-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Limpiador BONUX x900cc",
+  "precio": 899,
+  "pagina": "vital-06-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Jabon liquido BONUX d/p x800ml",
+  "precio": 1799,
+  "pagina": "vital-06-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Suavizante Papel higienico BONUX flores silvestre d/p x900ml",
+  "precio": 1699,
+  "pagina": "vital-06-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Limpiador cocina BONUX d/p x450ml",
+  "precio": 1199,
+  "pagina": "vital-06-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Franela tradicional BONUX 35x45cm",
+  "precio": 1699,
+  "pagina": "vital-06-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Separadores BONUX 19x25cmx100u",
+  "precio": 2599,
+  "pagina": "vital-06-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Papel aluminio BONUX 45cm x7.5mt",
+  "precio": 3999,
+  "pagina": "vital-06-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Bolsa resid BONUX 45x60 10u",
+  "precio": 999,
+  "pagina": "vital-06-3",
+  "ia": 1
+ },
+ {
+  "tienda": "Vital",
+  "texto": "Lana acero BONUX rollito 42g c/u x6u",
+  "precio": 849,
+  "pagina": "vital-06-3",
+  "ia": 1
+ }
+]

@@ -1,0 +1,35 @@
+IA: 107 páginas para leer, de a 4 por pedido.
+IA (gemini-flash-lite-latest): diarco-01-01.png, diarco-01-02.png, diarco-01-03.png, diarco-01-04.png -> 77 productos
+IA: gemini-flash-lite-latest respondió 503: { "error": { "code": 503, "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.", "status": "UNAVAILABLE" } } 
+IA: gemini-flash-lite-latest respondió 503: { "error": { "code": 503, "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.", "status": "UNAVAILABLE" } } 
+IA: gemini-flash-lite-latest respondió 503: { "error": { "code": 503, "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.", "status": "UNAVAILABLE" } } 
+IA: gemini-flash-lite-latest respondió 503: { "error": { "code": 503, "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.", "status": "UNAVAILABLE" } } 
+IA: gemini-flash-lite-latest respondió 503: { "error": { "code": 503, "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.", "status": "UNAVAILABLE" } } 
+IA: gemini-flash-lite-latest respondió 503: { "error": { "code": 503, "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.", "status": "UNAVAILABLE" } } 
+IA (gemini-flash-lite-latest): diarco-01-09.png, diarco-01-10.png, diarco-01-11.png, diarco-01-12.png -> 65 productos
+IA: gemini-flash-lite-latest respondió 503: { "error": { "code": 503, "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.", "status": "UNAVAILABLE" } } 
+IA (gemini-flash-lite-latest): diarco-01-13.png, diarco-01-14.png, diarco-01-15.png, diarco-01-16.png -> 74 productos
+IA (gemini-flash-lite-latest): diarco-01-17.png, diarco-01-18.png, diarco-01-19.png, diarco-02-1.png -> 20 productos
+IA (gemini-flash-lite-latest): diarco-03-1.png, makro-01-1.png, makro-01-2.png, makro-02-01.png -> 41 productos
+IA (gemini-flash-lite-latest): makro-02-02.png, makro-02-03.png, makro-02-04.png, makro-02-05.png -> 27 productos
+IA (gemini-flash-lite-latest): makro-02-06.png, makro-02-07.png, makro-02-08.png, makro-02-09.png -> 32 productos
+IA (gemini-flash-lite-latest): makro-02-10.png, makro-02-11.png, makro-02-12.png, makro-02-13.png -> 21 productos
+IA (gemini-flash-lite-latest): makro-02-14.png, makro-02-15.png, makro-02-16.png, makro-02-17.png -> 32 productos
+IA (gemini-flash-lite-latest): makro-02-18.png, makro-03-1.png, makro-03-2.png, makro-03-3.png -> 24 productos
+IA (gemini-flash-lite-latest): makro-03-4.png, makro-03-5.png, makro-03-6.png, makro-03-7.png -> 28 productos
+IA (gemini-flash-lite-latest): makro-03-8.png, makro-03-9.png, makro-04-1.png, makro-04-2.png -> 31 productos
+IA (gemini-flash-lite-latest): makro-04-3.png, makro-04-4.png, makro-04-5.png, vital-01-1.png -> 47 productos
+IA (gemini-flash-lite-latest): vital-01-2.png, vital-01-3.png, vital-01-4.png, vital-01-5.png -> 33 productos
+IA (gemini-flash-lite-latest): vital-01-6.png, vital-02-01.png, vital-02-02.png, vital-02-03.png -> 44 productos
+IA (gemini-flash-lite-latest): vital-02-04.png, vital-02-05.png, vital-02-06.png, vital-02-07.png -> 50 productos
+IA (gemini-flash-lite-latest): vital-02-08.png, vital-02-09.png, vital-02-10.png, vital-02-11.png -> 44 productos
+IA (gemini-flash-lite-latest): vital-02-12.png, vital-02-13.png, vital-02-14.png, vital-02-15.png -> 49 productos
+IA (gemini-flash-lite-latest): vital-02-16.png, vital-02-17.png, vital-02-18.png, vital-02-19.png -> 45 productos
+IA (gemini-flash-lite-latest): vital-02-20.png, vital-02-21.png, vital-02-22.png, vital-02-23.png -> 46 productos
+IA (gemini-flash-lite-latest): vital-02-24.png, vital-02-25.png, vital-02-26.png, vital-02-27.png -> 47 productos
+IA (gemini-flash-lite-latest): vital-03-1.png, vital-03-2.png, vital-04-1.png, vital-04-2.png -> 14 productos
+IA (gemini-flash-lite-latest): vital-04-3.png, vital-04-4.png, vital-04-5.png, vital-05-1.png -> 26 productos
+IA (gemini-flash-lite-latest): vital-05-2.png, vital-05-3.png, vital-05-4.png, vital-05-5.png -> 27 productos
+IA (gemini-flash-lite-latest): vital-05-6.png, vital-05-7.png, vital-05-8.png, vital-05-9.png -> 37 productos
+IA (gemini-flash-lite-latest): vital-06-1.png, vital-06-2.png, vital-06-3.png -> 25 productos
+IA: leyó 103 páginas, 998 productos.
