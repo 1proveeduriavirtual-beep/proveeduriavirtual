@@ -1,0 +1,74 @@
+[
+ {
+  "tienda": "diarco",
+  "archivo": "ofertas/raw/diarco/01.pdf",
+  "url": "https://www.diarco.com.ar/wp-content/uploads/2026/10/Cajas-Navidad-2026.pdf",
+  "bytes": 4692457
+ },
+ {
+  "tienda": "makro",
+  "archivo": "ofertas/raw/makro/01.pdf",
+  "url": "https://makro-com-ar.b-cdn.net/wp-content/uploads/1-ATF-V7.pdf",
+  "bytes": 612316
+ },
+ {
+  "tienda": "makro",
+  "archivo": "ofertas/raw/makro/02.pdf",
+  "url": "https://makro-com-ar.b-cdn.net/wp-content/uploads/Flyer-MM-NOV-2-VF.pdf",
+  "bytes": 9544787
+ },
+ {
+  "tienda": "makro",
+  "archivo": "ofertas/raw/makro/03.pdf",
+  "url": "https://makro-com-ar.b-cdn.net/wp-content/uploads/Flyer-PROV-NOV-2-1.pdf",
+  "bytes": 4838841
+ },
+ {
+  "tienda": "makro",
+  "archivo": "ofertas/raw/makro/04.pdf",
+  "url": "https://makro-com-ar.b-cdn.net/wp-content/uploads/Flyer-GT-NOV-1.pdf",
+  "bytes": 1562669
+ },
+ {
+  "tienda": "vital",
+  "archivo": "ofertas/raw/vital/01.pdf",
+  "url": "https://www.vital.com.ar/wp-content/uploads/folletos/2026/11/118371.pdf",
+  "bytes": 1127658
+ },
+ {
+  "tienda": "vital",
+  "archivo": "ofertas/raw/vital/02.pdf",
+  "url": "https://www.vital.com.ar/wp-content/uploads/folletos/2026/11/118377.pdf",
+  "bytes": 2223930
+ },
+ {
+  "tienda": "vital",
+  "archivo": "ofertas/raw/vital/03.pdf",
+  "url": "https://www.vital.com.ar/wp-content/uploads/folletos/2026/11/118121.pdf",
+  "bytes": 30491180
+ },
+ {
+  "tienda": "vital",
+  "archivo": "ofertas/raw/vital/04.pdf",
+  "url": "https://www.vital.com.ar/wp-content/uploads/folletos/2026/11/118122.pdf",
+  "bytes": 2276151
+ },
+ {
+  "tienda": "vital",
+  "archivo": "ofertas/raw/vital/05.pdf",
+  "url": "https://www.vital.com.ar/wp-content/uploads/folletos/2026/11/118123.pdf",
+  "bytes": 2449900
+ },
+ {
+  "tienda": "vital",
+  "archivo": "ofertas/raw/vital/06.pdf",
+  "url": "https://www.vital.com.ar/wp-content/uploads/folletos/2026/11/118124.pdf",
+  "bytes": 6712457
+ },
+ {
+  "tienda": "vital",
+  "archivo": "ofertas/raw/vital/07.pdf",
+  "url": "https://www.vital.com.ar/wp-content/uploads/folletos/2026/11/118125.pdf",
+  "bytes": 2163713
+ }
+]
