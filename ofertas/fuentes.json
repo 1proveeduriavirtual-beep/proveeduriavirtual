@@ -1,0 +1,80 @@
+[
+ {
+  "tienda": "diarco",
+  "archivo": "ofertas/raw/diarco/01.pdf",
+  "url": "https://www.diarco.com.ar/wp-content/uploads/2024/02/GBA-DEL-23.11-AL-27.11-4.pdf",
+  "bytes": 15425495
+ },
+ {
+  "tienda": "diarco",
+  "archivo": "ofertas/raw/diarco/02.pdf",
+  "url": "https://www.diarco.com.ar/wp-content/uploads/2026/10/Cajas-Navidad-2026.pdf",
+  "bytes": 4692457
+ },
+ {
+  "tienda": "diarco",
+  "archivo": "ofertas/raw/diarco/03.pdf",
+  "url": "https://www.diarco.com.ar/wp-content/uploads/2025/05/ESPECIAL-UG-MY-23.11-AL-27.11.pdf",
+  "bytes": 4619962
+ },
+ {
+  "tienda": "makro",
+  "archivo": "ofertas/raw/makro/01.pdf",
+  "url": "https://makro-com-ar.b-cdn.net/wp-content/uploads/4-ATF-NAVIDENO-V5.pdf",
+  "bytes": 34376809
+ },
+ {
+  "tienda": "makro",
+  "archivo": "ofertas/raw/makro/02.pdf",
+  "url": "https://makro-com-ar.b-cdn.net/wp-content/uploads/Flyer-MM-NOV-4-V-FINAL.pdf",
+  "bytes": 25544604
+ },
+ {
+  "tienda": "makro",
+  "archivo": "ofertas/raw/makro/03.pdf",
+  "url": "https://makro-com-ar.b-cdn.net/wp-content/uploads/Flyer-PROV-NOV-4.pdf",
+  "bytes": 2936224
+ },
+ {
+  "tienda": "makro",
+  "archivo": "ofertas/raw/makro/04.pdf",
+  "url": "https://makro-com-ar.b-cdn.net/wp-content/uploads/Flyer-GT-NOV-3-V-FINAL-.pdf",
+  "bytes": 6017682
+ },
+ {
+  "tienda": "vital",
+  "archivo": "ofertas/raw/vital/01.pdf",
+  "url": "https://www.vital.com.ar/wp-content/uploads/folletos/2026/11/119067.pdf",
+  "bytes": 4091434
+ },
+ {
+  "tienda": "vital",
+  "archivo": "ofertas/raw/vital/02.pdf",
+  "url": "https://www.vital.com.ar/wp-content/uploads/folletos/2026/11/118783.pdf",
+  "bytes": 17466118
+ },
+ {
+  "tienda": "vital",
+  "archivo": "ofertas/raw/vital/03.pdf",
+  "url": "https://www.vital.com.ar/wp-content/uploads/folletos/2026/11/118868.pdf",
+  "bytes": 2384954
+ },
+ {
+  "tienda": "vital",
+  "archivo": "ofertas/raw/vital/04.pdf",
+  "url": "https://www.vital.com.ar/wp-content/uploads/folletos/2026/11/118440.pdf",
+  "bytes": 11047822
+ },
+ {
+  "tienda": "vital",
+  "archivo": "ofertas/raw/vital/05.pdf",
+  "url": "https://www.vital.com.ar/wp-content/uploads/folletos/2026/11/118786.pdf",
+  "bytes": 7121743
+ },
+ {
+  "tienda": "vital",
+  "archivo": "ofertas/raw/vital/06.pdf",
+  "url": "https://www.vital.com.ar/wp-content/uploads/folletos/2026/11/118787.pdf",
+  "bytes": 2103430
+ }
+]
